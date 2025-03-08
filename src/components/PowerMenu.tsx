@@ -44,7 +44,7 @@ export default function PowerMenu() {
             <Image src="/power.svg" alt="Power Icon" className="w-8 h-8" />
             </button>
           <span className="bg-green-500 px-3 py-1 rounded-md text-black">
-            catppuccin
+            Git Fool
           </span>
           <span className="text-gray-400">Uptime: 24/7</span>
 
