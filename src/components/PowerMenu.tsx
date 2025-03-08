@@ -1,5 +1,6 @@
 "use client"
 import { useState } from "react";
+import Image from 'next/image';
 
 export default function PowerMenu() {
   const [isVisible, setIsVisible] = useState(false);
@@ -15,7 +16,7 @@ export default function PowerMenu() {
   className="absolute left-1/2 -translate-x-1/2 text-gray-400 text-lg transition-opacity duration-300"
   style={{ opacity: isVisible ? 0 : 1 }}
 >
-  <img src="/down.svg" alt="Drop Icon" className="w-6 h-6" />
+  <Image src="/down.svg" alt="Drop Icon" className="w-6 h-6" />
 </div>
 
       </div>
@@ -40,7 +41,7 @@ export default function PowerMenu() {
                 }
             }}
             >
-            <img src="/power.svg" alt="Power Icon" className="w-8 h-8" />
+            <Image src="/power.svg" alt="Power Icon" className="w-8 h-8" />
             </button>
           <span className="bg-green-500 px-3 py-1 rounded-md text-black">
             catppuccin

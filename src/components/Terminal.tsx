@@ -75,6 +75,7 @@ const Terminal = () => {
       const data = await response.json();
       return data.reply || "AI: No response.";
     } catch (error) {
+      console.error("Error processing AI command", error);
       return "AI: Error processing command.";
     }
   };

@@ -81,6 +81,8 @@ export async function POST(req: Request) {
     console.log(reply);console.log("Reply: ", reply);
     return NextResponse.json({ reply });
   } catch (error) {
+    console.error("Error processing request", error);
     return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
   }
 }
+e
