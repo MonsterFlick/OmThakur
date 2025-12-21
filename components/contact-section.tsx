@@ -67,65 +67,38 @@ export function ContactSection() {
     return Object.keys(newErrors).length === 0
   }
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    if (!validateForm()) return
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault()
+  if (!validateForm()) return
 
-    setIsSubmitting(true)
-    try {
-      const webhookUrl = process.env.NEXT_PUBLIC_DISCORD_WEBHOOK_URL
-      
-      if (!webhookUrl) {
-        throw new Error("Webhook URL not configured")
-      }
-      
-      const response = await fetch(webhookUrl, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          content: `New contact form submission:\n\n**Name:** ${formState.name}\n**Email:** ${formState.email}\n**Message:** ${formState.message}`,
-          embeds: [
-            {
-              color: 0x3498db,
-              fields: [
-                {
-                  name: "Name",
-                  value: formState.name,
-                  inline: true,
-                },
-                {
-                  name: "Email",
-                  value: formState.email,
-                  inline: true,
-                },
-                {
-                  name: "Message",
-                  value: formState.message,
-                  inline: false,
-                },
-              ],
-              footer: {
-                text: "Portfolio Contact Form",
-              },
-              timestamp: new Date().toISOString(),
-            },
-          ],
-        }),
-      })
+  setIsSubmitting(true)
 
-      if (!response.ok) {
-        throw new Error("Failed to send message")
-      }
-    } catch (error) {
-      console.error("Error sending message:", error)
-    } finally {
-      setIsSubmitting(false)
-      setIsSubmitted(true)
-      setFormState({ name: "", email: "", message: "" })
+  try {
+    const response = await fetch("/api/contact", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: formState.name,
+        email: formState.email,
+        message: formState.message,
+      }),
+    })
+
+    if (!response.ok) {
+      throw new Error("Failed to send message")
     }
+
+    setIsSubmitted(true)
+    setFormState({ name: "", email: "", message: "" })
+  } catch (error) {
+    console.error("Contact form error:", error)
+  } finally {
+    setIsSubmitting(false)
   }
+}
+
 
   return (
     <section id="contact" className="py-24 bg-secondary/30">

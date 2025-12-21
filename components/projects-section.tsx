@@ -37,14 +37,18 @@ const categories = ["All", "Web", "Tools", "AI"]
 
 export function ProjectsSection() {
   const [activeCategory, setActiveCategory] = useState("All")
-  const ref = useRef(null)
+  const ref = useRef<HTMLDivElement | null>(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
 
-  const filteredProjects = activeCategory === "All" ? projects : projects.filter((p) => p.category === activeCategory)
+  const filteredProjects =
+    activeCategory === "All"
+      ? projects
+      : projects.filter((p) => p.category === activeCategory)
 
   return (
     <section id="projects" className="py-24 bg-secondary/30">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 20 }}
@@ -52,8 +56,12 @@ export function ProjectsSection() {
           transition={{ duration: 0.5 }}
           className="text-center mb-12"
         >
-          <span className="text-primary font-medium text-sm uppercase tracking-wider">Portfolio</span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-foreground mt-2 mb-4">Featured Projects</h2>
+          <span className="text-primary font-medium text-sm uppercase tracking-wider">
+            Portfolio
+          </span>
+          <h2 className="text-3xl sm:text-4xl font-bold text-foreground mt-2 mb-4">
+            Featured Projects
+          </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
             A selection of projects showcasing backend systems, AI integrations, and developer tools.
           </p>
@@ -83,7 +91,10 @@ export function ProjectsSection() {
         </motion.div>
 
         {/* Projects grid */}
-        <motion.div layout className="grid md:grid-cols-2 gap-6">
+        <motion.div
+          layout
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+        >
           <AnimatePresence mode="popLayout">
             {filteredProjects.map((project, index) => (
               <motion.div
@@ -95,27 +106,35 @@ export function ProjectsSection() {
                 transition={{ duration: 0.3, delay: index * 0.1 }}
                 className="group relative bg-card rounded-2xl border border-border overflow-hidden hover:border-primary/50 transition-all duration-300"
               >
-                {/* Project image */}
-                <div className="aspect-video overflow-hidden">
+                {/* Image */}
+                <div className="relative w-full pt-[56.25%] overflow-hidden">
                   <img
                     src={project.image || "/placeholder.svg"}
                     alt={project.name}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
 
-                {/* Project info */}
-                <div className="p-6">
+                {/* Content */}
+                <div className="p-4 sm:p-6">
                   <div className="flex items-start justify-between mb-3">
                     <div>
                       <span className="inline-block px-2 py-1 rounded-md bg-primary/10 text-primary text-xs font-medium mb-2">
                         {project.category}
                       </span>
-                      <h3 className="text-xl font-semibold text-foreground">{project.name}</h3>
+                      <h3 className="text-lg sm:text-xl font-semibold text-foreground">
+                        {project.name}
+                      </h3>
                     </div>
+
+                    {/* Icon link */}
                     <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
-                      <Button size="icon" variant="ghost" className="rounded-full" asChild>
+                      <Button
+                        asChild
+                        size="icon"
+                        variant="ghost"
+                        className="rounded-full w-10 h-10 sm:w-9 sm:h-9"
+                      >
                         <a
                           href={project.url}
                           target="_blank"
@@ -127,15 +146,24 @@ export function ProjectsSection() {
                       </Button>
                     </motion.div>
                   </div>
-                  <p className="text-muted-foreground text-sm mb-2">{project.purpose}</p>
+
+                  <p className="text-muted-foreground text-sm mb-2">
+                    {project.purpose}
+                  </p>
+
                   <p className="text-primary/80 text-sm font-medium flex items-center gap-1">
                     <span className="w-1.5 h-1.5 rounded-full bg-primary" />
                     {project.feature}
                   </p>
                 </div>
 
-                {/* Hover overlay button */}
-                <div className="absolute inset-0 flex items-center justify-center bg-background/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none group-hover:pointer-events-auto">
+                {/* Overlay CTA */}
+                <div
+                  className="absolute inset-0 flex items-center justify-center bg-background/80
+                  opacity-100 sm:opacity-0 sm:group-hover:opacity-100
+                  transition-opacity duration-300
+                  pointer-events-auto sm:pointer-events-none sm:group-hover:pointer-events-auto"
+                >
                   <Button asChild className="gap-2">
                     <a href={project.url} target="_blank" rel="noopener noreferrer">
                       <ExternalLink className="w-4 h-4" />
