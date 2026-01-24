@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useRef } from "react"
+import Image from "next/image"
 import { motion, useInView, AnimatePresence } from "framer-motion"
 import { ExternalLink, ArrowUpRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -13,7 +14,7 @@ const projects = [
     feature: "AI-prompt responses for unique user experience",
     url: "https://om-thakur.vercel.app/",
     category: "Web",
-    image: "/terminal.png?height=300&width=400",
+    image: "/terminal-optimized.webp",
   },
   {
     name: "MonsterFPS",
@@ -21,7 +22,7 @@ const projects = [
     feature: "Safe-revert optimization system for gaming",
     url: "https://monsterfps.netlify.app/",
     category: "Tools",
-    image: "/monsterFPS.png?height=300&width=400",
+    image: "/monsterfps-optimized.webp",
   },
   {
     name: "Agni",
@@ -29,7 +30,7 @@ const projects = [
     feature: "Safe PC automation with security rules",
     url: "https://github.com/MonsterFlick/Agni",
     category: "AI",
-    image: "/agni.png?height=300&width=400",
+    image: "/agni-optimized.webp",
   },
 ]
 
@@ -108,10 +109,13 @@ export function ProjectsSection() {
               >
                 {/* Image */}
                 <div className="relative w-full pt-[56.25%] overflow-hidden">
-                  <img
-                    src={project.image || "/placeholder.svg"}
+                  <Image
+                    src={project.image}
                     alt={project.name}
-                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    priority={index === 0}
                   />
                 </div>
 
