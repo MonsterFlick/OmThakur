@@ -9,6 +9,7 @@ const navLinks = [
   { label: "Projects", href: "#projects" },
   { label: "Experience", href: "#experience" },
   { label: "Contact", href: "#contact" },
+  { label: "Blog", href: "https://blog.omthakur.in", external: true },
 ]
 
 const socialLinks = [
@@ -47,6 +48,7 @@ export function Footer() {
               <a
                 key={link.href}
                 href={link.href}
+                {...(link.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                 className="text-sm text-muted-foreground hover:text-foreground transition-colors"
               >
                 {link.label}

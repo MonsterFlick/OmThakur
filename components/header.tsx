@@ -12,6 +12,7 @@ const navItems = [
   { label: "Projects", href: "#projects" },
   { label: "Experience", href: "#experience" },
   { label: "Contact", href: "#contact" },
+  { label: "Blog", href: "https://blog.omthakur.in", external: true },
 ]
 
 export function Header() {
@@ -52,6 +53,7 @@ export function Header() {
               <motion.a
                 key={item.href}
                 href={item.href}
+                {...(item.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
@@ -86,6 +88,7 @@ export function Header() {
                 <a
                   key={item.href}
                   href={item.href}
+                  {...(item.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors py-2"
                 >
