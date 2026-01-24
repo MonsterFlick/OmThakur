@@ -85,7 +85,7 @@ export function Footer() {
           transition={{ duration: 0.5, delay: 0.3 }}
           className="mt-8 pt-8 border-t border-border text-center"
         >
-          <p className="text-sm text-muted-foreground">© 2025 Om Thakur. All rights reserved.</p>
+          <p className="text-sm text-muted-foreground">© 2026 Om Thakur. All rights reserved.</p>
         </motion.div>
       </div>
     </footer>
