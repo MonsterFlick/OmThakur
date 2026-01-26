@@ -9,7 +9,7 @@ const navLinks = [
   { label: "Projects", href: "#projects" },
   { label: "Experience", href: "#experience" },
   { label: "Contact", href: "#contact" },
-  { label: "Blog", href: "https://blog.omthakur.in", external: true },
+  { label: "Blog", href: "https://blogs.omthakur.in", external: true },
 ]
 
 const socialLinks = [
