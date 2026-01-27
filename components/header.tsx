@@ -68,7 +68,11 @@ export function Header() {
 
           <div className="flex items-center gap-4 md:hidden">
             <ThemeToggle />
-            <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="p-2 text-foreground">
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="p-2 text-foreground"
+              aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+            >
               {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
