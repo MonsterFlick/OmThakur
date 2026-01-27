@@ -8,6 +8,7 @@ const images = [
     { input: 'agni.png', output: 'agni-optimized.webp', width: 400, height: 300 },
     { input: 'monsterFPS.png', output: 'monsterfps-optimized.webp', width: 400, height: 300 },
     { input: 'terminal.png', output: 'terminal-optimized.webp', width: 400, height: 300 },
+    { input: 'fin-read.png', output: 'fin-read-optimized.webp', width: 400, height: 300 },
 ];
 
 async function optimizeImages() {

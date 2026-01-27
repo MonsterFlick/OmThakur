@@ -32,9 +32,17 @@ const projects = [
     category: "AI",
     image: "/agni-optimized.webp",
   },
+  {
+    name: "Fin Read",
+    purpose: "Automated personal finance tracker for Android",
+    feature: "Real-time SMS parsing & offline-first architecture",
+    url: "https://github.com/MonsterFlick/Fin-Read",
+    category: "Mobile",
+    image: "/fin-read-optimized.webp",
+  },
 ]
 
-const categories = ["All", "Web", "Tools", "AI"]
+const categories = ["All", "Web", "Mobile", "Tools", "AI"]
 
 export function ProjectsSection() {
   const [activeCategory, setActiveCategory] = useState("All")
@@ -155,9 +163,11 @@ export function ProjectsSection() {
                     {project.purpose}
                   </p>
 
-                  <p className="text-primary/80 text-sm font-medium flex items-center gap-1">
-                    <span className="w-1.5 h-1.5 rounded-full bg-primary" />
-                    {project.feature}
+                  <p className="text-primary/80 text-sm font-medium flex items-start gap-2">
+                    <span className="h-5 flex items-center shrink-0">
+                      <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+                    </span>
+                    <span>{project.feature}</span>
                   </p>
                 </div>
 

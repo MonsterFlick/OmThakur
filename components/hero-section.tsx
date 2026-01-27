@@ -61,7 +61,7 @@ export function HeroSection() {
             className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12"
           >
             <Button size="lg" className="gap-2" asChild>
-              <a href="https://rxresu.me/omthakur2366/om-sde" target="_blank" rel="noopener noreferrer">
+              <a href="https://rxresu.me/omthakur2366/om" target="_blank" rel="noopener noreferrer">
                 <FileText className="w-4 h-4" />
                 View Resume
               </a>
