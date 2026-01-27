@@ -40,6 +40,14 @@ const projects = [
     category: "Mobile",
     image: "/fin-read-optimized.webp",
   },
+  {
+    name: "GitFool",
+    purpose: "High-performance tech blog on Edge Runtime",
+    feature: "GitHub-sourced markdown with full SEO optimization",
+    url: "https://blogs.omthakur.in",
+    category: "Web",
+    image: "/gitfool-optimized.webp",
+  },
 ]
 
 const categories = ["All", "Web", "Mobile", "Tools", "AI"]
