@@ -1,32 +1,54 @@
 import type React from "react"
 import type { Metadata, Viewport } from "next"
-import { Inter, Geist_Mono } from "next/font/google"
+import { Playfair_Display, Inter, Caveat, Geist_Mono } from "next/font/google"
 import Script from "next/script"
 import { Analytics } from "@vercel/analytics/next"
-import { ThemeProvider } from "@/components/theme-provider"
 import "./globals.css"
 
-const inter = Inter({ subsets: ["latin"] })
-const _geistMono = Geist_Mono({ subsets: ["latin"] })
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  variable: "--font-serif",
+  display: "swap",
+})
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-sans",
+  display: "swap",
+})
+
+const caveat = Caveat({
+  subsets: ["latin"],
+  variable: "--font-script",
+  display: "swap",
+})
+
+const geistMono = Geist_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
+  display: "swap",
+})
 
 export const metadata: Metadata = {
-  title: "Om Thakur | Backend Engineer",
+  title: "Om Thakur — Author's Monograph & Engineering Ledger",
   description:
-    "Om Thakur is a skilled Backend Engineer specializing in building scalable systems, real-time APIs, and high-performance applications. Explore projects, skills, and experience.",
-  generator: "v0.app",
+    "Om Thakur is a Backend Engineer & Distributed Systems Architect specializing in scalable architectures, real-time APIs, and high-performance developer instruments.",
+  generator: "Next.js",
   keywords: [
     "Om Thakur",
     "Backend Engineer",
-    "Software Developer",
-    "Full Stack Developer",
+    "System Architect",
+    "Distributed Systems",
     "Node.js",
-    "Python",
     "Go",
+    "Python",
     "Rust",
+    "PostgreSQL",
+    "Redis",
     "API Development",
     "Scalable Systems",
     "Real-time Applications",
-    "Portfolio",
+    "Engineering Monograph",
   ],
   authors: [{ name: "Om Thakur", url: "https://omthakur.in" }],
   creator: "Om Thakur",
@@ -39,24 +61,24 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "https://omthakur.in",
-    siteName: "Om Thakur Portfolio",
-    title: "Om Thakur | Backend Engineer",
+    siteName: "Om Thakur — Engineering Monograph",
+    title: "Om Thakur — Backend Engineer & Systems Architect",
     description:
-      "Backend Engineer specializing in building scalable systems and real-time APIs. View my projects, skills, and professional experience.",
+      "The digital monograph of Om Thakur: exploring distributed systems, low-level tools, autonomous agents, and real-time backend architectures.",
     images: [
       {
         url: "/icon.svg",
         width: 512,
         height: 512,
-        alt: "Om Thakur - Backend Engineer",
+        alt: "Om Thakur — Backend Engineer",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Om Thakur | Backend Engineer",
+    title: "Om Thakur — Backend Engineer",
     description:
-      "Backend Engineer specializing in building scalable systems and real-time APIs.",
+      "Backend Engineer & Systems Architect specializing in scalable systems, real-time APIs, and high-performance tools.",
     creator: "@omthakur2366",
     images: ["/icon.svg"],
   },
@@ -91,10 +113,7 @@ export const metadata: Metadata = {
 }
 
 export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#f9fafb" },
-    { media: "(prefers-color-scheme: dark)", color: "#0f172a" },
-  ],
+  themeColor: "#FAF6F1",
 }
 
 export default function RootLayout({
@@ -103,13 +122,12 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html
+      lang="en"
+      className={`${playfair.variable} ${inter.variable} ${caveat.variable} ${geistMono.variable}`}
+      suppressHydrationWarning
+    >
       <head>
-        {/* Preconnect to critical origins */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
-
         {/* Google Analytics */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-XPGMFRY0D0"
@@ -132,9 +150,9 @@ export default function RootLayout({
               "@type": "Person",
               name: "Om Thakur",
               url: "https://omthakur.in",
-              jobTitle: "Backend Engineer",
+              jobTitle: "Backend Engineer & Distributed Systems Architect",
               description:
-                "Backend Engineer specializing in building scalable systems and real-time APIs",
+                "Backend Engineer specializing in building scalable systems, real-time APIs, and high-performance instruments",
               sameAs: [
                 "https://github.com/MonsterFlick",
                 "https://linkedin.com/in/omthakur2366",
@@ -142,21 +160,23 @@ export default function RootLayout({
               ],
               knowsAbout: [
                 "Backend Development",
+                "Distributed Systems",
                 "API Development",
                 "Node.js",
-                "Python",
                 "Go",
+                "Python",
                 "Rust",
-                "Scalable Systems",
+                "Database Optimization",
+                "Scalable Architecture",
               ],
             }),
           }}
         />
       </head>
-      <body className={`font-sans antialiased`}>
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange={false}>
-          {children}
-        </ThemeProvider>
+      <body className="bg-cream-100 text-charcoal-900 font-sans antialiased selection:bg-terracotta-200 selection:text-charcoal-950 min-h-screen relative">
+        {/* Paper Grain Noise Overlay */}
+        <div className="grain-layer" aria-hidden="true" />
+        {children}
         <Analytics />
       </body>
     </html>
