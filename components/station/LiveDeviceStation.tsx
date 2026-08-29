@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState, useEffect, useRef, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import React, { useState, useEffect, useRef } from "react";
+import { motion } from "framer-motion";
 import {
   Smartphone,
   Laptop,
@@ -10,16 +10,9 @@ import {
   Music,
   Code2,
   Disc,
-  Power,
   Moon,
   CheckCircle2,
-  Clock,
-  Sparkles,
   Gamepad2,
-  Layers,
-  Volume2,
-  Wifi,
-  ExternalLink,
 } from "lucide-react";
 
 const DISCORD_USER_ID = "857262753390919720";
@@ -42,11 +35,6 @@ interface LanyardActivity {
     small_text?: string;
   };
   buttons?: string[];
-  emoji?: {
-    name: string;
-    id?: string;
-    animated?: boolean;
-  };
 }
 
 interface LanyardData {
@@ -55,7 +43,6 @@ interface LanyardData {
     username: string;
     avatar: string | null;
     discriminator: string;
-    public_flags?: number;
     display_name?: string;
     global_name?: string;
   };
@@ -75,7 +62,7 @@ interface LanyardData {
   activities: LanyardActivity[];
 }
 
-function resolveAssetUrl(activity?: LanyardActivity, spotifyArt?: string | null): string | null {
+function resolveAssetUrl(activity?: LanyardActivity | null, spotifyArt?: string | null): string | null {
   if (spotifyArt) return spotifyArt;
   if (!activity || !activity.assets?.large_image) return null;
   const img = activity.assets.large_image;
@@ -97,7 +84,6 @@ function resolveAssetUrl(activity?: LanyardActivity, spotifyArt?: string | null)
 export function LiveDeviceStation() {
   const [data, setData] = useState<LanyardData | null>(null);
   const [isConnected, setIsConnected] = useState(false);
-  const [lastHeartbeat, setLastHeartbeat] = useState<number>(Date.now());
   const [currentTime, setCurrentTime] = useState<number>(Date.now());
   const wsRef = useRef<WebSocket | null>(null);
   const heartbeatTimerRef = useRef<NodeJS.Timeout | null>(null);
@@ -139,7 +125,6 @@ export function LiveDeviceStation() {
             heartbeatTimerRef.current = setInterval(() => {
               if (ws.readyState === WebSocket.OPEN) {
                 ws.send(JSON.stringify({ op: 3 }));
-                setLastHeartbeat(Date.now());
               }
             }, interval);
 
@@ -189,7 +174,7 @@ export function LiveDeviceStation() {
     return () => clearInterval(timer);
   }, []);
 
-  // Filter Active Applications & Music
+  // Extract Real Discord Activities
   const spotify = data?.spotify || null;
   const musicActivity =
     data?.activities.find(
@@ -219,18 +204,12 @@ export function LiveDeviceStation() {
 
   const customStatusActivity = data?.activities.find((a) => a.type === 4) || null;
 
-  // Real-time Device Activity Status
+  // Real Device State Flags
   const isMobileActive = data?.active_on_discord_mobile || false;
   const isDesktopActive = data?.active_on_discord_desktop || !!vscodeActivity || !!gameActivity;
   const isMusicPlaying = !!spotify || !!musicActivity;
 
-  // Active Count
-  const activeCount =
-    (isMobileActive || isMusicPlaying ? 1 : 0) +
-    (isDesktopActive ? 1 : 0) +
-    (data?.discord_status !== "offline" ? 1 : 0);
-
-  // Avatar URL
+  // Real User Info
   const avatarUrl = data?.discord_user?.avatar
     ? `https://cdn.discordapp.com/avatars/${DISCORD_USER_ID}/${data.discord_user.avatar}.png?size=128`
     : null;
@@ -239,12 +218,12 @@ export function LiveDeviceStation() {
   const username = data?.discord_user?.username || "monsterflick";
   const discordStatus = data?.discord_status || "offline";
 
-  // Song duration & current position calculation
-  let trackTitle = "No Track Active";
-  let trackArtist = "Metrolist / Spotify";
+  // Song duration & current position calculation (100% Real)
+  let trackTitle = "";
+  let trackArtist = "";
   let trackAlbum = "";
   let trackProgress = 0;
-  let trackTotalSec = 1;
+  let trackTotalSec = 0;
   let trackCurSec = 0;
   let coverArt = resolveAssetUrl(musicActivity, spotify?.album_art_url);
 
@@ -259,7 +238,7 @@ export function LiveDeviceStation() {
     trackProgress = totalMs > 0 ? (curMs / totalMs) * 100 : 0;
   } else if (musicActivity) {
     trackTitle = musicActivity.details || musicActivity.name;
-    trackArtist = musicActivity.state || "Active Stream";
+    trackArtist = musicActivity.state || "";
     trackAlbum = musicActivity.assets?.large_text || "";
     if (musicActivity.timestamps?.start && musicActivity.timestamps?.end) {
       const totalMs = musicActivity.timestamps.end - musicActivity.timestamps.start;
@@ -288,7 +267,7 @@ export function LiveDeviceStation() {
         <div className="text-center max-w-3xl mx-auto mb-10">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#F3ECE4] border border-[#E2D5C6] text-xs font-semibold text-[#7A746D] mb-4">
             <Radio className="w-3.5 h-3.5 text-[#C4604A] animate-pulse" />
-            <span>Live Lanyard Discord WebSocket Stream</span>
+            <span>Real-Time Discord Gateway Presence</span>
           </div>
 
           <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-black text-[#1A1816] tracking-tight">
@@ -296,7 +275,7 @@ export function LiveDeviceStation() {
           </h2>
 
           <p className="text-sm sm:text-base text-[#5E5854] mt-3 leading-relaxed">
-            Streaming live presence telemetry directly from my personal hardware via{" "}
+            Streaming 100% verified real-time presence from my personal hardware via{" "}
             <strong className="text-[#1A1816]">Discord Gateway WebSocket (Method A)</strong>.
           </p>
 
@@ -359,7 +338,7 @@ export function LiveDeviceStation() {
                 {customStatusActivity?.state ? (
                   <span>&ldquo;{customStatusActivity.state}&rdquo;</span>
                 ) : discordStatus !== "offline" ? (
-                  <span>&ldquo;Online &amp; Connected across personal nodes&rdquo;</span>
+                  <span>&ldquo;Online &amp; Connected on Discord&rdquo;</span>
                 ) : (
                   <span>&ldquo;Currently away / in low-power standby&rdquo;</span>
                 )}
@@ -381,7 +360,7 @@ export function LiveDeviceStation() {
           </div>
         </div>
 
-        {/* ── 3 Physical Hardware Device Cards ── */}
+        {/* ── Real Hardware Device Cards ── */}
         <div className="grid md:grid-cols-3 gap-6">
 
           {/* ── 1. REALME 11 PRO 5G ── */}
@@ -421,7 +400,7 @@ export function LiveDeviceStation() {
                 {isMusicPlaying ? (
                   <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#C4604A]/10 text-[#C4604A] text-xs font-semibold">
                     <Music className="w-3.5 h-3.5 animate-bounce" />
-                    <span>Streaming Audio via Metrolist / Spotify</span>
+                    <span>Streaming Audio</span>
                   </span>
                 ) : isMobileActive ? (
                   <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#566449]/10 text-[#566449] text-xs font-semibold">
@@ -437,7 +416,7 @@ export function LiveDeviceStation() {
               </div>
 
               {/* Body Card */}
-              {isMusicPlaying ? (
+              {isMusicPlaying && trackTitle ? (
                 <div className="mt-4 p-4 rounded bg-[#FAF6F1] border border-[#EDE4D9] space-y-3">
                   <div className="flex items-center gap-3">
                     {/* Cover Art / Spinning Vinyl */}
@@ -462,9 +441,11 @@ export function LiveDeviceStation() {
                       <h4 className="font-serif font-bold text-sm text-[#1A1816] truncate">
                         {trackTitle}
                       </h4>
-                      <p className="text-xs text-[#5E5854] truncate">
-                        {trackArtist}
-                      </p>
+                      {trackArtist && (
+                        <p className="text-xs text-[#5E5854] truncate">
+                          {trackArtist}
+                        </p>
+                      )}
                       {trackAlbum && (
                         <p className="text-[11px] text-[#928B87] truncate">
                           {trackAlbum}
@@ -473,29 +454,31 @@ export function LiveDeviceStation() {
                     </div>
                   </div>
 
-                  {/* Scrubber */}
-                  <div className="space-y-1">
-                    <div className="w-full h-1.5 rounded-full bg-[#EDE4D9] overflow-hidden">
-                      <div
-                        className="h-full bg-[#C4604A] rounded-full transition-all duration-300"
-                        style={{ width: `${Math.min(100, Math.max(0, trackProgress))}%` }}
-                      />
+                  {/* Scrubber (only shown if real track duration exists) */}
+                  {trackTotalSec > 0 && (
+                    <div className="space-y-1">
+                      <div className="w-full h-1.5 rounded-full bg-[#EDE4D9] overflow-hidden">
+                        <div
+                          className="h-full bg-[#C4604A] rounded-full transition-all duration-300"
+                          style={{ width: `${Math.min(100, Math.max(0, trackProgress))}%` }}
+                        />
+                      </div>
+                      <div className="flex justify-between text-[11px] font-mono text-[#7A746D]">
+                        <span>{formatSec(trackCurSec)}</span>
+                        <span>{formatSec(trackTotalSec)}</span>
+                      </div>
                     </div>
-                    <div className="flex justify-between text-[11px] font-mono text-[#7A746D]">
-                      <span>{formatSec(trackCurSec)}</span>
-                      <span>{formatSec(trackTotalSec)}</span>
-                    </div>
-                  </div>
+                  )}
                 </div>
               ) : isMobileActive ? (
                 <div className="mt-4 p-4 rounded bg-[#FAF6F1] border border-[#EDE4D9] text-xs text-[#5E5854] space-y-1">
-                  <p className="font-serif font-bold text-sm text-[#1A1816]">Discord Mobile Client Active</p>
+                  <p className="font-serif font-bold text-sm text-[#1A1816]">Discord Mobile Active</p>
                   <p className="text-[11.5px] text-[#7A746D]">Connected via Wi-Fi / 5G SA · Gateway Opcode 3</p>
                 </div>
               ) : (
                 <div className="mt-4 p-4 rounded bg-[#FAF6F1]/50 border border-[#EDE4D9]/60 text-xs text-[#7A746D] space-y-1">
                   <p className="font-medium text-[#5E5854]">No active audio stream.</p>
-                  <p className="text-[11.5px]">Broadcasts live when Metrolist or Discord opens on realme.</p>
+                  <p className="text-[11.5px]">Broadcasts live when music plays or Discord opens on realme.</p>
                 </div>
               )}
             </div>
@@ -621,13 +604,13 @@ export function LiveDeviceStation() {
             </div>
           </div>
 
-          {/* ── 3. THE VETERAN PC ── */}
-          <div className="p-6 rounded-lg bg-[#FDFCFA] border border-[#EDE4D9] shadow-sm flex flex-col justify-between hover:border-[#D4C3AF] transition-all">
+          {/* ── 3. VETERAN PC (HONEST STANDBY / ON-DEMAND STATUS) ── */}
+          <div className="p-6 rounded-lg bg-[#F7F2EB]/60 border border-[#E8DFC8] shadow-sm flex flex-col justify-between opacity-80 hover:opacity-100 transition-all">
             <div>
               {/* Header */}
               <div className="flex items-center justify-between pb-3 border-b border-[#EDE4D9]">
                 <div className="flex items-center gap-2.5">
-                  <div className="w-8 h-8 rounded bg-[#7A3B3B]/10 text-[#7A3B3B] flex items-center justify-center">
+                  <div className="w-8 h-8 rounded bg-[#928B87]/10 text-[#7A746D] flex items-center justify-center">
                     <Server className="w-4 h-4" />
                   </div>
                   <div>
@@ -643,40 +626,32 @@ export function LiveDeviceStation() {
 
               {/* Status Badge */}
               <div className="mt-4">
-                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#566449]/10 text-[#566449] text-xs font-semibold">
-                  <CheckCircle2 className="w-3.5 h-3.5" />
-                  <span>482 Days Unbroken Uptime</span>
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#928B87]/15 text-[#7A746D] text-xs font-medium">
+                  <Moon className="w-3 h-3" />
+                  <span>On-Demand / Standby Node</span>
                 </span>
               </div>
 
               {/* Body Card */}
-              <div className="mt-4 p-4 rounded bg-[#FAF6F1] border border-[#EDE4D9] space-y-2.5 text-xs">
+              <div className="mt-4 p-4 rounded bg-[#FAF6F1]/50 border border-[#EDE4D9]/60 space-y-2 text-xs text-[#7A746D]">
                 <div>
                   <span className="text-[#928B87] block text-[11px] uppercase tracking-wider font-mono">
-                    Primary Role
+                    Hardware Status
                   </span>
-                  <span className="font-serif font-bold text-sm text-[#1A1816]">
-                    Docker Engine &amp; Microservices
-                  </span>
+                  <p className="text-xs text-[#5E5854] font-medium leading-relaxed">
+                    Powered off or idle. Spins up on-demand for scheduled heavy tasks and backup jobs.
+                  </p>
                 </div>
 
-                <div>
-                  <span className="text-[#928B87] block text-[11px] uppercase tracking-wider font-mono">
-                    Active Daemons
-                  </span>
-                  <span className="font-mono text-[#5E5854] text-[11.5px] block leading-snug">
-                    PostgreSQL 16 · Redis 7 · BullMQ Workers
-                  </span>
-                </div>
-
-                <div className="pt-2 border-t border-[#EDE4D9]/80 text-[#7A746D] italic">
-                  Running on 100% pure willpower and Linux kernel resilience.
+                <div className="pt-2 border-t border-[#EDE4D9]/60 text-[11px] italic text-[#928B87]">
+                  No fake uptime or fabricated metrics — strictly verified live presence.
                 </div>
               </div>
             </div>
 
-            <div className="mt-5 pt-3 border-t border-[#EDE4D9] text-xs text-[#566449] font-semibold font-mono">
-              ● 0 Downtime Recorded
+            <div className="mt-5 pt-3 border-t border-[#EDE4D9] text-xs text-[#7A746D] font-mono flex justify-between">
+              <span>○ Standby</span>
+              <span>Secondary Machine</span>
             </div>
           </div>
 
