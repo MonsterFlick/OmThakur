@@ -98,10 +98,10 @@ export function LiveDeviceStation() {
           setIsConnected(true);
         }
       })
-      .catch((err) => console.error("Lanyard REST fetch error:", err));
+      .catch((err) => console.error("Presence fetch error:", err));
   }, []);
 
-  // 2. Real-time Lanyard WebSocket Connection
+  // 2. Real-time WebSocket Connection
   useEffect(() => {
     let reconnectTimeout: NodeJS.Timeout;
 
@@ -128,7 +128,6 @@ export function LiveDeviceStation() {
               }
             }, interval);
 
-            // Subscribe to Om's Discord ID
             ws.send(
               JSON.stringify({
                 op: 2,
@@ -144,7 +143,7 @@ export function LiveDeviceStation() {
             }
           }
         } catch (e) {
-          console.error("Lanyard WS parse error:", e);
+          console.error("Presence parse error:", e);
         }
       };
 
@@ -174,7 +173,7 @@ export function LiveDeviceStation() {
     return () => clearInterval(timer);
   }, []);
 
-  // Extract Real Discord Activities
+  // Extract Real Activities
   const spotify = data?.spotify || null;
   const musicActivity =
     data?.activities.find(
@@ -209,7 +208,7 @@ export function LiveDeviceStation() {
   const isDesktopActive = data?.active_on_discord_desktop || !!vscodeActivity || !!gameActivity;
   const isMusicPlaying = !!spotify || !!musicActivity;
 
-  // Real User Info
+  // User Profile
   const avatarUrl = data?.discord_user?.avatar
     ? `https://cdn.discordapp.com/avatars/${DISCORD_USER_ID}/${data.discord_user.avatar}.png?size=128`
     : null;
@@ -267,27 +266,26 @@ export function LiveDeviceStation() {
         <div className="text-center max-w-3xl mx-auto mb-10">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#F3ECE4] border border-[#E2D5C6] text-xs font-semibold text-[#7A746D] mb-4">
             <Radio className="w-3.5 h-3.5 text-[#C4604A] animate-pulse" />
-            <span>Real-Time Discord Gateway Presence</span>
+            <span>Live Activity Stream</span>
           </div>
 
           <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-black text-[#1A1816] tracking-tight">
-            Live Device Activity Station
+            Live Activity &amp; Status
           </h2>
 
           <p className="text-sm sm:text-base text-[#5E5854] mt-3 leading-relaxed">
-            Streaming 100% verified real-time presence from my personal hardware via{" "}
-            <strong className="text-[#1A1816]">Discord Gateway WebSocket (Method A)</strong>.
+            Real-time status, active coding projects, and music playback streaming live from my devices.
           </p>
 
           <div className="flex items-center justify-center gap-2 mt-4 text-xs font-mono">
             <span className={`w-2 h-2 rounded-full ${isConnected ? "bg-[#566449] animate-pulse" : "bg-[#C4604A]"}`} />
             <span className="text-[#7A746D]">
-              {isConnected ? "LIVE GATEWAY FEED ACTIVE" : "CONNECTING TO LANYARD..."}
+              {isConnected ? "LIVE FEED CONNECTED" : "CONNECTING..."}
             </span>
           </div>
         </div>
 
-        {/* ── Discord Central Presence Banner ── */}
+        {/* ── Central Presence Banner ── */}
         <div className="mb-8 p-4 sm:p-5 rounded-lg bg-[#FDFCFA] border border-[#EDE4D9] shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div className="flex items-center gap-3.5">
             <div className="relative shrink-0">
@@ -338,7 +336,7 @@ export function LiveDeviceStation() {
                 {customStatusActivity?.state ? (
                   <span>&ldquo;{customStatusActivity.state}&rdquo;</span>
                 ) : discordStatus !== "offline" ? (
-                  <span>&ldquo;Online &amp; Connected on Discord&rdquo;</span>
+                  <span>&ldquo;Online &amp; active across personal devices&rdquo;</span>
                 ) : (
                   <span>&ldquo;Currently away / in low-power standby&rdquo;</span>
                 )}
@@ -472,20 +470,20 @@ export function LiveDeviceStation() {
                 </div>
               ) : isMobileActive ? (
                 <div className="mt-4 p-4 rounded bg-[#FAF6F1] border border-[#EDE4D9] text-xs text-[#5E5854] space-y-1">
-                  <p className="font-serif font-bold text-sm text-[#1A1816]">Discord Mobile Active</p>
-                  <p className="text-[11.5px] text-[#7A746D]">Connected via Wi-Fi / 5G SA · Gateway Opcode 3</p>
+                  <p className="font-serif font-bold text-sm text-[#1A1816]">Mobile Active</p>
+                  <p className="text-[11.5px] text-[#7A746D]">Connected via Wi-Fi / 5G SA</p>
                 </div>
               ) : (
                 <div className="mt-4 p-4 rounded bg-[#FAF6F1]/50 border border-[#EDE4D9]/60 text-xs text-[#7A746D] space-y-1">
                   <p className="font-medium text-[#5E5854]">No active audio stream.</p>
-                  <p className="text-[11.5px]">Broadcasts live when music plays or Discord opens on realme.</p>
+                  <p className="text-[11.5px]">Updates live when listening to music or active on phone.</p>
                 </div>
               )}
             </div>
 
             <div className="mt-5 pt-3 border-t border-[#EDE4D9] text-xs text-[#7A746D] flex justify-between font-mono">
-              <span>{isMobileActive || isMusicPlaying ? "● Live Feed" : "○ Idle"}</span>
-              <span>Mobile Node</span>
+              <span>{isMobileActive || isMusicPlaying ? "● Live" : "○ Idle"}</span>
+              <span>Mobile Device</span>
             </div>
           </div>
 
@@ -587,24 +585,24 @@ export function LiveDeviceStation() {
                 </div>
               ) : isDesktopActive ? (
                 <div className="mt-4 p-4 rounded bg-[#FAF6F1] border border-[#EDE4D9] text-xs text-[#5E5854] space-y-1">
-                  <p className="font-serif font-bold text-sm text-[#1A1816]">Desktop Client Active</p>
-                  <p className="text-[11.5px] text-[#7A746D]">Windows 11 · Discord Desktop RPC Socket linked</p>
+                  <p className="font-serif font-bold text-sm text-[#1A1816]">Desktop Active</p>
+                  <p className="text-[11.5px] text-[#7A746D]">Windows 11 · Desktop Workstation</p>
                 </div>
               ) : (
                 <div className="mt-4 p-4 rounded bg-[#FAF6F1]/50 border border-[#EDE4D9]/60 text-xs text-[#7A746D] space-y-1">
                   <p className="font-medium text-[#5E5854]">Workstation is powered down.</p>
-                  <p className="text-[11.5px]">VS Code or game presence broadcasts automatically when launched.</p>
+                  <p className="text-[11.5px]">Updates live when editing in VS Code or gaming.</p>
                 </div>
               )}
             </div>
 
             <div className="mt-5 pt-3 border-t border-[#EDE4D9] flex items-center justify-between text-xs text-[#7A746D] font-mono">
-              <span>{isDesktopActive ? "● Desktop Active" : "○ Off"}</span>
+              <span>{isDesktopActive ? "● Active" : "○ Off"}</span>
               <span>Primary Rig</span>
             </div>
           </div>
 
-          {/* ── 3. VETERAN PC (HONEST STANDBY / ON-DEMAND STATUS) ── */}
+          {/* ── 3. VETERAN PC ── */}
           <div className="p-6 rounded-lg bg-[#F7F2EB]/60 border border-[#E8DFC8] shadow-sm flex flex-col justify-between opacity-80 hover:opacity-100 transition-all">
             <div>
               {/* Header */}
@@ -628,7 +626,7 @@ export function LiveDeviceStation() {
               <div className="mt-4">
                 <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#928B87]/15 text-[#7A746D] text-xs font-medium">
                   <Moon className="w-3 h-3" />
-                  <span>On-Demand / Standby Node</span>
+                  <span>Standby Node</span>
                 </span>
               </div>
 
@@ -636,15 +634,11 @@ export function LiveDeviceStation() {
               <div className="mt-4 p-4 rounded bg-[#FAF6F1]/50 border border-[#EDE4D9]/60 space-y-2 text-xs text-[#7A746D]">
                 <div>
                   <span className="text-[#928B87] block text-[11px] uppercase tracking-wider font-mono">
-                    Hardware Status
+                    Hardware Role
                   </span>
                   <p className="text-xs text-[#5E5854] font-medium leading-relaxed">
-                    Powered off or idle. Spins up on-demand for scheduled heavy tasks and backup jobs.
+                    Dedicated secondary server for scheduled background builds and tasks.
                   </p>
-                </div>
-
-                <div className="pt-2 border-t border-[#EDE4D9]/60 text-[11px] italic text-[#928B87]">
-                  No fake uptime or fabricated metrics — strictly verified live presence.
                 </div>
               </div>
             </div>
