@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, Phone, Github, Linkedin, Twitter, Send, CheckCircle2, Stamp, MapPin, Sparkles } from "lucide-react";
+import { Mail, Github, Linkedin, Twitter, Send, CheckCircle2, Stamp, MapPin, Sparkles } from "lucide-react";
 
 export function PostalContactStation() {
   const [formState, setFormState] = useState({ name: "", email: "", message: "" });
@@ -99,24 +99,19 @@ export function PostalContactStation() {
                   </div>
                 </a>
 
-                <a
-                  href="https://wa.me/917756898550"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 p-3 rounded bg-[#FAF6F1] border border-[#EDE4D9] hover:border-[#566449] transition-colors group"
-                >
+                <div className="flex items-center gap-3 p-3 rounded bg-[#FAF6F1] border border-[#EDE4D9]">
                   <div className="w-8 h-8 rounded bg-[#566449]/10 text-[#566449] flex items-center justify-center shrink-0">
-                    <Phone className="w-4 h-4" />
+                    <MapPin className="w-4 h-4" />
                   </div>
                   <div className="min-w-0 flex-1">
                     <span className="text-[10px] uppercase font-mono text-[#928B87] block">
-                      Encrypted Messaging / WhatsApp
+                      Base Location
                     </span>
-                    <span className="font-mono text-xs font-semibold text-[#1A1816] group-hover:text-[#566449] transition-colors truncate block">
-                      +91 7756898550
+                    <span className="font-mono text-xs font-semibold text-[#1A1816] truncate block">
+                      Mumbai, India (IST · UTC+5:30)
                     </span>
                   </div>
-                </a>
+                </div>
               </div>
 
               {/* Social Channels */}

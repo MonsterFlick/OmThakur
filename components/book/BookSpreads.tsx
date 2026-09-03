@@ -638,7 +638,7 @@ function ColophonRight() {
             Om Thakur
           </h2>
           <p className="text-[10px] sm:text-xs text-[#7A746D] font-mono mt-0.5">
-            omthakur2366@gmail.com · +91 7756898550
+            omthakur2366@gmail.com · Mumbai, India
           </p>
 
           <p className="text-[10.5px] sm:text-xs text-[#5E5854] mt-2 sm:mt-3 leading-relaxed">

@@ -4,7 +4,7 @@ import type React from "react"
 
 import { useState, useRef } from "react"
 import { motion, useInView } from "framer-motion"
-import { Mail, Phone, Github, Linkedin, Twitter, Send, CheckCircle } from "lucide-react"
+import { Mail, Github, Linkedin, Twitter, Send, CheckCircle } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -15,12 +15,6 @@ const contactCards = [
     label: "Email",
     value: "omthakur2366@gmail.com",
     href: "mailto:omthakur2366@gmail.com",
-  },
-  {
-    icon: Phone,
-    label: "WhatsApp",
-    value: "+91 7756898550",
-    href: "https://wa.me/917756898550",
   },
   {
     icon: Github,
