@@ -1,5 +1,6 @@
 "use client"
 
+import Link from "next/link"
 import { motion } from "framer-motion"
 import { ArrowDown, Github, Linkedin, Twitter, FileText } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -61,10 +62,10 @@ export function HeroSection() {
             className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12"
           >
             <Button size="lg" className="gap-2" asChild>
-              <a href="https://rxresu.me/omthakur2366/om" target="_blank" rel="noopener noreferrer">
+              <Link href="/resume">
                 <FileText className="w-4 h-4" />
-                View Resume
-              </a>
+                View Resume / CV
+              </Link>
             </Button>
             <Button size="lg" variant="outline" className="gap-2 bg-transparent" asChild>
               <a href="#about">

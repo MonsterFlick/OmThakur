@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { Github, Linkedin, Twitter, Mail, ArrowUp, Sparkles, Heart } from "lucide-react";
 
 export function EditorialFooter() {
@@ -85,9 +86,9 @@ export function EditorialFooter() {
                 </a>
               </li>
               <li>
-                <a href="https://rxresu.me/omthakur2366/om" target="_blank" rel="noopener noreferrer" className="hover:text-[#C4604A] transition-colors">
-                  Curriculum Vitae (PDF) ↗
-                </a>
+                <Link href="/resume" className="hover:text-[#C4604A] transition-colors font-semibold">
+                  Curriculum Vitae (Resume / CV) →
+                </Link>
               </li>
               <li>
                 <a href="https://trainings.internshala.com/verify-certificate/?certificate_number=263gl7b3rur" target="_blank" rel="noopener noreferrer" className="hover:text-[#C4604A] transition-colors">

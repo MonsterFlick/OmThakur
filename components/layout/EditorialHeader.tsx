@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { Search, Terminal, FileText, Menu, X, BookOpen, Clock, Sparkles } from "lucide-react";
 
@@ -71,7 +72,7 @@ export function EditorialHeader({
                 Om Thakur<span className="text-[#C4604A]">.</span>
               </span>
               <span className="hidden sm:block text-[9px] uppercase font-mono tracking-[0.2em] text-[#928B87]">
-                Architect & Backend Engineer
+                Architect &amp; Backend Engineer
               </span>
             </button>
           </div>
@@ -121,15 +122,13 @@ export function EditorialHeader({
             </button>
 
             {/* Resume button */}
-            <a
-              href="https://rxresu.me/omthakur2366/om"
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="/resume"
               className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-[#F3ECE4] text-[#1A1816] border border-[#E2D5C6] hover:bg-[#E2D5C6] transition-colors text-xs font-semibold"
             >
               <FileText className="w-3.5 h-3.5 text-[#566449]" />
               <span>Resume</span>
-            </a>
+            </Link>
 
             {/* Mobile Menu Toggle */}
             <button
@@ -217,15 +216,14 @@ export function EditorialHeader({
                     <span>REPL Terminal</span>
                   </button>
 
-                  <a
-                    href="https://rxresu.me/omthakur2366/om"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <Link
+                    href="/resume"
+                    onClick={() => setMobileMenuOpen(false)}
                     className="flex items-center justify-center gap-1.5 px-3 py-2.5 rounded bg-[#F3ECE4] text-[#1A1816] border border-[#E2D5C6] text-xs font-semibold hover:bg-[#E2D5C6]"
                   >
                     <FileText className="w-3.5 h-3.5 text-[#566449]" />
                     <span>CV (Resume)</span>
-                  </a>
+                  </Link>
                 </div>
               </div>
             </motion.div>

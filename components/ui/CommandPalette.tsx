@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { Search, X, BookOpen, Layers, Terminal, Mail, FileText, ArrowRight, ExternalLink, Radio } from "lucide-react";
 import { PROJECTS, MONOGRAPH_PLATES, SKILL_SPECIMENS } from "@/data/portfolio-data";
@@ -100,18 +101,17 @@ export function CommandPalette({
                   <span className="font-mono text-[10px] text-[#928B87]">Terminal</span>
                 </button>
 
-                <a
-                  href="https://rxresu.me/omthakur2366/om"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <Link
+                  href="/resume"
+                  onClick={onClose}
                   className="w-full flex items-center justify-between p-2 rounded text-left hover:bg-[#F3ECE4] transition-colors text-xs text-[#1A1816]"
                 >
                   <div className="flex items-center gap-2.5">
                     <FileText className="w-3.5 h-3.5 text-[#566449]" />
                     <span>Inspect Verified Curriculum Vitae (Resume)</span>
                   </div>
-                  <ExternalLink className="w-3 h-3 text-[#928B87]" />
-                </a>
+                  <span className="font-mono text-[10px] text-[#566449] font-bold">/resume</span>
+                </Link>
 
                 <button
                   onClick={() => {

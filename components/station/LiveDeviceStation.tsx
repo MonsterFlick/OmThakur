@@ -5,7 +5,6 @@ import { motion } from "framer-motion";
 import {
   Smartphone,
   Laptop,
-  Server,
   Radio,
   Music,
   Code2,
@@ -16,11 +15,11 @@ import {
   Tv,
   Play,
   ExternalLink,
-  Cloud,
-  Globe2,
-  ShieldCheck,
-  RefreshCw,
-  BarChart3,
+  Instagram,
+  Youtube,
+  Github,
+  Linkedin,
+  Twitter,
 } from "lucide-react";
 
 const DISCORD_USER_ID = "857262753390919720";
@@ -290,60 +289,58 @@ function parseLanyardActivity(
 function renderActivityWidget(act: ParsedActivity) {
   if (act.category === "music") {
     return (
-      <div className="mt-4 p-4 rounded bg-[#FAF6F1] border border-[#EDE4D9] flex-1 flex flex-col justify-between space-y-3">
-        <div className="space-y-3">
-          <div className="flex items-center gap-3">
-            <div className="relative w-12 h-12 rounded-full bg-[#1A1816] flex items-center justify-center shadow shrink-0 border border-[#D4C3AF] overflow-hidden">
-              {act.largeImage ? (
-                <img
-                  src={act.largeImage}
-                  alt={act.title}
-                  className="w-full h-full object-cover animate-spin"
-                  style={{ animationDuration: "8s" }}
-                />
-              ) : (
-                <Disc
-                  className="w-7 h-7 text-[#C4604A] animate-spin"
-                  style={{ animationDuration: "6s" }}
-                />
-              )}
-              <div className="w-2.5 h-2.5 rounded-full bg-[#FAF6F1] absolute shadow-inner" />
-            </div>
-
-            <div className="min-w-0 flex-1">
-              <h4 className="font-serif font-bold text-sm text-[#1A1816] truncate">
-                {act.title}
-              </h4>
-              {act.subtitle && (
-                <p className="text-xs text-[#5E5854] truncate">
-                  {act.subtitle}
-                </p>
-              )}
-              <p className="text-[11px] text-[#928B87] truncate">
-                {act.service}
-              </p>
-            </div>
+      <div key={act.id} className="p-3.5 rounded-lg bg-[#FAF6F1] border border-[#EDE4D9] space-y-3 shadow-2xs">
+        <div className="flex items-center gap-3">
+          <div className="relative w-10 h-10 rounded-full bg-[#1A1816] flex items-center justify-center shadow shrink-0 border border-[#D4C3AF] overflow-hidden">
+            {act.largeImage ? (
+              <img
+                src={act.largeImage}
+                alt={act.title}
+                className="w-full h-full object-cover animate-spin"
+                style={{ animationDuration: "8s" }}
+              />
+            ) : (
+              <Disc
+                className="w-6 h-6 text-[#C4604A] animate-spin"
+                style={{ animationDuration: "6s" }}
+              />
+            )}
+            <div className="w-2 h-2 rounded-full bg-[#FAF6F1] absolute shadow-inner" />
           </div>
 
-          {act.progress?.totalSec ? (
-            <div className="space-y-1 pt-1">
-              <div className="w-full h-1.5 rounded-full bg-[#EDE4D9] overflow-hidden">
-                <div
-                  className="h-full bg-[#C4604A] rounded-full transition-all duration-300"
-                  style={{ width: `${Math.min(100, Math.max(0, act.progress.percent || 0))}%` }}
-                />
-              </div>
-              <div className="flex justify-between text-[11px] font-mono text-[#7A746D]">
-                <span>{formatSec(act.progress.currentSec || 0)}</span>
-                <span>{formatSec(act.progress.totalSec)}</span>
-              </div>
-            </div>
-          ) : null}
+          <div className="min-w-0 flex-1">
+            <h4 className="font-serif font-bold text-xs text-[#1A1816] truncate">
+              {act.title}
+            </h4>
+            {act.subtitle && (
+              <p className="text-[11px] text-[#5E5854] truncate">
+                {act.subtitle}
+              </p>
+            )}
+            <p className="text-[10px] text-[#928B87] truncate">
+              {act.service}
+            </p>
+          </div>
         </div>
 
-        <div className="pt-3 border-t border-[#EDE4D9]/80 mt-auto">
-          {act.buttons && act.buttons.length > 0 ? (
-            <div className={`grid ${act.buttons.length > 1 ? "grid-cols-2" : "grid-cols-1"} gap-2`}>
+        {act.progress?.totalSec ? (
+          <div className="space-y-1 pt-0.5">
+            <div className="w-full h-1.5 rounded-full bg-[#EDE4D9] overflow-hidden">
+              <div
+                className="h-full bg-[#C4604A] rounded-full transition-all duration-300"
+                style={{ width: `${Math.min(100, Math.max(0, act.progress.percent || 0))}%` }}
+              />
+            </div>
+            <div className="flex justify-between text-[10.5px] font-mono text-[#7A746D]">
+              <span>{formatSec(act.progress.currentSec || 0)}</span>
+              <span>{formatSec(act.progress.totalSec)}</span>
+            </div>
+          </div>
+        ) : null}
+
+        {act.buttons && act.buttons.length > 0 && (
+          <div className="pt-2 border-t border-[#EDE4D9]/80">
+            <div className={`grid ${act.buttons.slice(0, 2).length > 1 ? "grid-cols-2" : "grid-cols-1"} gap-2`}>
               {act.buttons.slice(0, 2).map((btn) => (
                 <a
                   key={btn.label}
@@ -357,78 +354,72 @@ function renderActivityWidget(act: ParsedActivity) {
                 </a>
               ))}
             </div>
-          ) : (
-            <span className="text-[11px] font-mono text-[#928B87] text-center block">
-              Media Stream Active
-            </span>
-          )}
-        </div>
+          </div>
+        )}
       </div>
     );
   }
 
   if (act.category === "video") {
     return (
-      <div className="mt-4 p-4 rounded bg-[#FAF6F1] border border-[#EDE4D9] flex-1 flex flex-col justify-between space-y-3">
-        <div className="space-y-3">
-          <div className="flex items-start gap-3">
-            {act.largeImage ? (
-              <div className="relative w-20 aspect-video rounded overflow-hidden border border-[#D4C3AF] shrink-0 bg-black shadow-xs">
-                <img
-                  src={act.largeImage}
-                  alt={act.title}
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-black/25 flex items-center justify-center">
-                  <Play className="w-4 h-4 text-white drop-shadow fill-white" />
-                </div>
+      <div key={act.id} className="p-3.5 rounded-lg bg-[#FAF6F1] border border-[#EDE4D9] space-y-3 shadow-2xs">
+        <div className="flex items-start gap-3">
+          {act.largeImage ? (
+            <div className="relative w-16 aspect-video rounded overflow-hidden border border-[#D4C3AF] shrink-0 bg-black shadow-xs">
+              <img
+                src={act.largeImage}
+                alt={act.title}
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-black/25 flex items-center justify-center">
+                <Play className="w-3.5 h-3.5 text-white drop-shadow fill-white" />
               </div>
-            ) : (
-              <div className="w-16 h-10 rounded bg-[#C4604A]/10 text-[#C4604A] flex items-center justify-center shrink-0 border border-[#C4604A]/20">
-                <Play className="w-4 h-4 fill-current" />
-              </div>
-            )}
+            </div>
+          ) : (
+            <div className="w-12 h-8 rounded bg-[#C4604A]/10 text-[#C4604A] flex items-center justify-center shrink-0 border border-[#C4604A]/20">
+              <Play className="w-3.5 h-3.5 fill-current" />
+            </div>
+          )}
 
-            <div className="min-w-0 flex-1">
+          <div className="min-w-0 flex-1">
+            <a
+              href={act.url || undefined}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-serif font-bold text-xs text-[#1A1816] hover:text-[#C4604A] transition-colors line-clamp-2 leading-snug"
+            >
+              {act.title}
+            </a>
+            {act.subtitle && (
               <a
-                href={act.url || undefined}
+                href={act.channelUrl || undefined}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-serif font-bold text-xs text-[#1A1816] hover:text-[#C4604A] transition-colors line-clamp-2 leading-snug"
+                className="text-[11px] text-[#5E5854] hover:text-[#1A1816] hover:underline block truncate mt-0.5"
               >
-                {act.title}
+                {act.subtitle}
               </a>
-              {act.subtitle && (
-                <a
-                  href={act.channelUrl || undefined}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[11px] text-[#5E5854] hover:text-[#1A1816] hover:underline block truncate mt-0.5"
-                >
-                  {act.subtitle}
-                </a>
-              )}
-            </div>
+            )}
           </div>
-
-          {act.progress?.totalSec ? (
-            <div className="space-y-1">
-              <div className="w-full h-1.5 rounded-full bg-[#EDE4D9] overflow-hidden">
-                <div
-                  className="h-full bg-[#C4604A] rounded-full transition-all duration-300"
-                  style={{ width: `${Math.min(100, Math.max(0, act.progress.percent || 0))}%` }}
-                />
-              </div>
-              <div className="flex justify-between text-[11px] font-mono text-[#7A746D]">
-                <span>{formatSec(act.progress.currentSec || 0)}</span>
-                <span>{formatSec(act.progress.totalSec)}</span>
-              </div>
-            </div>
-          ) : null}
         </div>
 
-        <div className="pt-3 border-t border-[#EDE4D9]/80 mt-auto">
-          {act.buttons && act.buttons.length > 0 ? (
+        {act.progress?.totalSec ? (
+          <div className="space-y-1">
+            <div className="w-full h-1.5 rounded-full bg-[#EDE4D9] overflow-hidden">
+              <div
+                className="h-full bg-[#C4604A] rounded-full transition-all duration-300"
+                style={{ width: `${Math.min(100, Math.max(0, act.progress.percent || 0))}%` }}
+              />
+            </div>
+            <div className="flex justify-between text-[10.5px] font-mono text-[#7A746D]">
+              <span>{formatSec(act.progress.currentSec || 0)}</span>
+              <span>{formatSec(act.progress.totalSec)}</span>
+            </div>
+          </div>
+        ) : null}
+
+        {act.buttons && act.buttons.length > 0 && (
+          <div className="pt-2 border-t border-[#EDE4D9]/80">
             <a
               href={act.buttons[0].url}
               target="_blank"
@@ -438,67 +429,61 @@ function renderActivityWidget(act: ParsedActivity) {
               <span>{act.buttons[0].label}</span>
               <ExternalLink className="w-3 h-3" />
             </a>
-          ) : (
-            <span className="text-[11px] font-mono text-[#928B87] text-center block">
-              Broadcast Active
-            </span>
-          )}
-        </div>
+          </div>
+        )}
       </div>
     );
   }
 
   if (act.category === "code") {
     return (
-      <div className="mt-4 p-4 rounded bg-[#FAF6F1] border border-[#EDE4D9] flex-1 flex flex-col justify-between space-y-3">
-        <div className="space-y-3">
-          <div className="flex items-center gap-3">
-            {act.largeImage ? (
-              <div className="relative shrink-0 w-12 h-12 rounded bg-[#1A1816] p-1.5 border border-[#4A4541] flex items-center justify-center shadow-xs">
+      <div key={act.id} className="p-3.5 rounded-lg bg-[#FAF6F1] border border-[#EDE4D9] space-y-3 shadow-2xs">
+        <div className="flex items-center gap-3">
+          {act.largeImage ? (
+            <div className="relative shrink-0 w-10 h-10 rounded bg-[#1A1816] p-1 border border-[#4A4541] flex items-center justify-center shadow-xs">
+              <img
+                src={act.largeImage}
+                alt={act.largeText || "Code file"}
+                className="w-7 h-7 object-contain"
+                title={act.largeText}
+              />
+              {act.smallImage && (
                 <img
-                  src={act.largeImage}
-                  alt={act.largeText || "Code file"}
-                  className="w-8 h-8 object-contain"
-                  title={act.largeText}
+                  src={act.smallImage}
+                  alt={act.smallText || "IDE"}
+                  className="w-3.5 h-3.5 rounded-full absolute -bottom-1 -right-1 border border-white bg-white p-0.5"
+                  title={act.smallText}
                 />
-                {act.smallImage && (
-                  <img
-                    src={act.smallImage}
-                    alt={act.smallText || "IDE"}
-                    className="w-4 h-4 rounded-full absolute -bottom-1 -right-1 border border-white bg-white p-0.5"
-                    title={act.smallText}
-                  />
-                )}
-              </div>
-            ) : (
-              <div className="w-12 h-12 rounded bg-[#566449]/10 text-[#566449] flex items-center justify-center shrink-0">
-                <Code2 className="w-6 h-6" />
-              </div>
-            )}
-
-            <div className="min-w-0 flex-1">
-              <div className="flex items-center justify-between gap-1">
-                <span className="font-serif font-bold text-sm text-[#1A1816] truncate">
-                  {act.title}
-                </span>
-                <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-[#566449]/15 text-[#566449] shrink-0 font-semibold">
-                  {act.service}
-                </span>
-              </div>
-              <p className="font-mono text-xs text-[#C4604A] truncate mt-0.5 font-medium">
-                {act.subtitle}
-              </p>
+              )}
             </div>
-          </div>
+          ) : (
+            <div className="w-10 h-10 rounded bg-[#566449]/10 text-[#566449] flex items-center justify-center shrink-0">
+              <Code2 className="w-5 h-5" />
+            </div>
+          )}
 
-          <div className="p-2 rounded bg-[#F3ECE4]/60 border border-[#EDE4D9]/80 flex items-center justify-between text-[11px] font-mono text-[#5E5854]">
-            <span>Antigravity Buffer</span>
-            <span className="text-[#566449] font-semibold">● 0 Problems</span>
+          <div className="min-w-0 flex-1">
+            <div className="flex items-center justify-between gap-1">
+              <span className="font-serif font-bold text-xs text-[#1A1816] truncate">
+                {act.title}
+              </span>
+              <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-[#566449]/15 text-[#566449] shrink-0 font-semibold">
+                {act.service}
+              </span>
+            </div>
+            <p className="font-mono text-[11px] text-[#C4604A] truncate mt-0.5 font-medium">
+              {act.subtitle}
+            </p>
           </div>
         </div>
 
-        <div className="pt-3 border-t border-[#EDE4D9]/80 mt-auto">
-          {act.buttons && act.buttons.length > 0 ? (
+        <div className="p-2 rounded bg-[#F3ECE4]/60 border border-[#EDE4D9]/80 flex items-center justify-between text-[10.5px] font-mono text-[#5E5854]">
+          <span>Antigravity Buffer</span>
+          <span className="text-[#566449] font-semibold">● 0 Problems</span>
+        </div>
+
+        {act.buttons && act.buttons.length > 0 && (
+          <div className="pt-2 border-t border-[#EDE4D9]/80">
             <a
               href={act.buttons[0].url}
               target="_blank"
@@ -508,21 +493,17 @@ function renderActivityWidget(act: ParsedActivity) {
               <span>{act.buttons[0].label}</span>
               <ExternalLink className="w-3 h-3 opacity-70" />
             </a>
-          ) : (
-            <span className="text-[11px] font-mono text-[#928B87] text-center block">
-              Active Workspace Buffer
-            </span>
-          )}
-        </div>
+          </div>
+        )}
       </div>
     );
   }
 
   return (
-    <div className="mt-4 p-4 rounded bg-[#FAF6F1] border border-[#EDE4D9] flex-1 flex flex-col justify-between space-y-3">
-      <div className="space-y-2">
+    <div key={act.id} className="p-3.5 rounded-lg bg-[#FAF6F1] border border-[#EDE4D9] space-y-3 shadow-2xs">
+      <div className="space-y-1">
         <div className="flex items-center justify-between">
-          <span className="text-[#928B87] block text-[11px] uppercase tracking-wider font-mono">
+          <span className="text-[#928B87] block text-[10px] uppercase tracking-wider font-mono">
             {act.service} Active
           </span>
           <span className="inline-flex items-center gap-1 text-[10px] font-mono text-[#C4604A] font-semibold">
@@ -530,16 +511,16 @@ function renderActivityWidget(act: ParsedActivity) {
             <span>Live Session</span>
           </span>
         </div>
-        <h4 className="font-serif font-bold text-sm text-[#1A1816]">
+        <h4 className="font-serif font-bold text-xs text-[#1A1816]">
           {act.title}
         </h4>
         {act.subtitle && (
-          <p className="text-[#5E5854] text-[11.5px]">{act.subtitle}</p>
+          <p className="text-[#5E5854] text-[11px]">{act.subtitle}</p>
         )}
       </div>
 
-      <div className="pt-3 border-t border-[#EDE4D9]/80 mt-auto">
-        {act.buttons && act.buttons.length > 0 ? (
+      {act.buttons && act.buttons.length > 0 && (
+        <div className="pt-2 border-t border-[#EDE4D9]/80">
           <a
             href={act.buttons[0].url}
             target="_blank"
@@ -549,12 +530,8 @@ function renderActivityWidget(act: ParsedActivity) {
             <span>{act.buttons[0].label}</span>
             <ExternalLink className="w-3 h-3 opacity-70" />
           </a>
-        ) : (
-          <span className="text-[11px] font-mono text-[#C4604A] font-semibold block text-center">
-            ● Active Process
-          </span>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 }
@@ -565,67 +542,8 @@ export function LiveDeviceStation() {
   const [currentTime, setCurrentTime] = useState<number>(Date.now());
   const [selectedDesktopActivityId, setSelectedDesktopActivityId] = useState<string | null>(null);
   const [selectedMobileActivityId, setSelectedMobileActivityId] = useState<string | null>(null);
-  const [cfTab, setCfTab] = useState<"traffic" | "deploy" | "network">("traffic");
-  const [isPinging, setIsPinging] = useState(false);
-  const [cfData, setCfData] = useState<{
-    traffic: {
-      totalRequests: string;
-      totalVisits: string;
-      bandwidthMb: string;
-      desktopRequests: string;
-      mobileRequests: string;
-      topHosts: Array<{ host: string; requests: string }>;
-      topCountries: Array<{ code: string; name: string; flag?: string; requests: string }>;
-    } | null;
-    pages: {
-      shortId: string;
-      commitHash: string;
-      commitMessage: string;
-      branch: string;
-      buildDurationSec: number;
-      framework: string;
-      updatedAt: string;
-      environment: string;
-      status: string;
-    } | null;
-    edge: {
-      pop: string | null;
-      country: string | null;
-      ray: string | null;
-      protocol: string | null;
-      latencyMs: number;
-    } | null;
-    latencyMs: number;
-  }>({
-    traffic: null,
-    pages: null,
-    edge: null,
-    latencyMs: 0,
-  });
   const wsRef = useRef<WebSocket | null>(null);
   const heartbeatTimerRef = useRef<NodeJS.Timeout | null>(null);
-
-  const refreshTelemetry = () => {
-    setIsPinging(true);
-    const start = Date.now();
-    fetch("/api/cloudflare-telemetry")
-      .then((res) => res.json())
-      .then((json) => {
-        const clientLatency = Date.now() - start;
-        setCfData({
-          traffic: json.traffic || null,
-          pages: json.pages || null,
-          edge: json.edge || null,
-          latencyMs: clientLatency,
-        });
-      })
-      .catch(() => {})
-      .finally(() => setIsPinging(false));
-  };
-
-  useEffect(() => {
-    refreshTelemetry();
-  }, []);
 
   useEffect(() => {
     fetch(`https://api.lanyard.rest/v1/users/${DISCORD_USER_ID}`)
@@ -891,7 +809,7 @@ export function LiveDeviceStation() {
               />
               <span className="font-semibold">
                 {discordStatus === "offline"
-                  ? "Devices Standby • Edge Live"
+                  ? "Devices Standby • Hub Online"
                   : `${isMobileActive || mobileActivities.length > 0 ? "Mobile Node" : ""} ${
                       (isMobileActive || mobileActivities.length > 0) &&
                       (isDesktopActive || desktopActivities.length > 0)
@@ -901,7 +819,7 @@ export function LiveDeviceStation() {
               </span>
             </div>
             <span className="text-[11px] font-mono text-[#7A746D]">
-              Cloudflare Edge (BOM) &amp; Lanyard Telemetry
+              Lanyard Telemetry &amp; Social Channels
             </span>
           </div>
         </div>
@@ -921,26 +839,16 @@ export function LiveDeviceStation() {
                 </div>
               </div>
               <div className="mt-4 h-7 flex items-center">
-                {mobileActivities.length > 1 ? (
-                  <div className="flex items-center gap-1 bg-[#F3ECE4] p-1 rounded border border-[#EDE4D9] w-full overflow-x-auto no-scrollbar">
-                    {mobileActivities.map((act) => {
-                      const isSelected = act.id === activeMobileActivity?.id;
-                      return (
-                        <button key={act.id} onClick={() => setSelectedMobileActivityId(act.id)} className={`flex-1 min-w-[72px] py-1 px-2 rounded text-[10.5px] font-mono font-medium flex items-center justify-center gap-1 transition-all shrink-0 ${isSelected ? "bg-[#1A1816] text-[#FAF6F1] shadow-xs" : "text-[#5E5854] hover:text-[#1A1816] hover:bg-[#E2D5C6]/60"}`}>
-                          {act.iconType === "music" && <Music className="w-3 h-3 text-[#C4604A]" />}
-                          {act.iconType === "video" && <Tv className="w-3 h-3 text-[#C4604A]" />}
-                          {act.iconType === "code" && <Code2 className="w-3 h-3 text-[#C4604A]" />}
-                          <span className="truncate max-w-[85px]">{act.service}</span>
-                          <span className="w-1.5 h-1.5 rounded-full shrink-0 animate-pulse" style={{ backgroundColor: act.badgeColor }} />
-                        </button>
-                      );
-                    })}
+                {mobileActivities.length > 0 ? (
+                  <div className="flex items-center justify-between gap-2 bg-[#F3ECE4] px-2.5 py-1 rounded border border-[#EDE4D9] w-full text-xs font-mono text-[#5E5854]">
+                    <span className="flex items-center gap-1.5 font-semibold text-[#1A1816] truncate">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#C4604A] animate-pulse" />
+                      <span>{mobileActivities.length > 1 ? `${mobileActivities.length} Sessions Active` : `${mobileActivities[0].service} Active`}</span>
+                    </span>
+                    <span className="text-[10.5px] text-[#928B87] shrink-0 font-medium">
+                      {mobileActivities.map((a) => a.service).join(" + ")}
+                    </span>
                   </div>
-                ) : activeMobileActivity ? (
-                  <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#C4604A]/10 text-[#C4604A] text-xs font-semibold">
-                    {activeMobileActivity.iconType === "music" ? <Music className="w-3.5 h-3.5 animate-bounce" /> : <Tv className="w-3.5 h-3.5" />}
-                    <span>{activeMobileActivity.service} Active</span>
-                  </span>
                 ) : isMobileActive ? (
                   <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#566449]/10 text-[#566449] text-xs font-semibold">
                     <CheckCircle2 className="w-3.5 h-3.5" />
@@ -953,51 +861,54 @@ export function LiveDeviceStation() {
                   </span>
                 )}
               </div>
-              {activeMobileActivity ? (
-                renderActivityWidget(activeMobileActivity)
-              ) : (
-                <div className="mt-4 p-4 rounded bg-[#FAF6F1] border border-[#EDE4D9] flex-1 flex flex-col justify-between space-y-3">
-                  <div className="space-y-2.5">
-                    <div className="flex items-center justify-between">
-                      <span className="text-[10px] font-mono uppercase tracking-wider font-semibold text-[#7A746D]">
-                        Mobile Station Specs
-                      </span>
-                      <span className="inline-flex items-center gap-1 text-[10px] font-mono text-[#566449] font-medium">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#566449] animate-pulse" />
-                        <span>5G SA Connected</span>
-                      </span>
+
+              <div className="mt-4 flex-1 flex flex-col justify-start space-y-3">
+                {mobileActivities.length > 0 ? (
+                  mobileActivities.map((act) => renderActivityWidget(act))
+                ) : (
+                  <div className="p-4 rounded bg-[#FAF6F1] border border-[#EDE4D9] flex-1 flex flex-col justify-between space-y-3">
+                    <div className="space-y-2.5">
+                      <div className="flex items-center justify-between">
+                        <span className="text-[10px] font-mono uppercase tracking-wider font-semibold text-[#7A746D]">
+                          Mobile Station Specs
+                        </span>
+                        <span className="inline-flex items-center gap-1 text-[10px] font-mono text-[#566449] font-medium">
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#566449] animate-pulse" />
+                          <span>5G SA Connected</span>
+                        </span>
+                      </div>
+
+                      <div className="space-y-1.5 text-[11.5px] font-mono text-[#5E5854]">
+                        <div className="flex justify-between pb-1 border-b border-[#EDE4D9]/60">
+                          <span className="text-[#928B87]">Processor</span>
+                          <span className="font-semibold text-[#1A1816]">Dimensity 7050 (6nm)</span>
+                        </div>
+                        <div className="flex justify-between pb-1 border-b border-[#EDE4D9]/60">
+                          <span className="text-[#928B87]">Platform</span>
+                          <span className="font-semibold text-[#1A1816]">realme UI 5.0 · Android 14</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-[#928B87]">Media Sync</span>
+                          <span className="font-semibold text-[#1A1816]">Audio &amp; Video Streams Ready</span>
+                        </div>
+                      </div>
                     </div>
 
-                    <div className="space-y-1.5 text-[11.5px] font-mono text-[#5E5854]">
-                      <div className="flex justify-between pb-1 border-b border-[#EDE4D9]/60">
-                        <span className="text-[#928B87]">Processor</span>
-                        <span className="font-semibold text-[#1A1816]">Dimensity 7050 (6nm)</span>
-                      </div>
-                      <div className="flex justify-between pb-1 border-b border-[#EDE4D9]/60">
-                        <span className="text-[#928B87]">Platform</span>
-                        <span className="font-semibold text-[#1A1816]">realme UI 5.0 · Android 14</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-[#928B87]">Media Sync</span>
-                        <span className="font-semibold text-[#1A1816]">Audio &amp; Video Streams Ready</span>
+                    <div className="pt-3 border-t border-[#EDE4D9]/80 mt-auto">
+                      <div className="w-full py-1.5 px-3 rounded bg-[#EDE4D9]/40 border border-[#E2D5C6] text-[#7A746D] text-[11px] font-mono flex items-center justify-between">
+                        <span className="flex items-center gap-1.5">
+                          <Radio className="w-3 h-3 text-[#7A746D]" />
+                          <span>Mobile Feed</span>
+                        </span>
+                        <span className="text-[#5E5854] font-medium flex items-center gap-1">
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#928B87]" />
+                          Standby
+                        </span>
                       </div>
                     </div>
                   </div>
-
-                  <div className="pt-3 border-t border-[#EDE4D9]/80 mt-auto">
-                    <div className="w-full py-1.5 px-3 rounded bg-[#EDE4D9]/40 border border-[#E2D5C6] text-[#7A746D] text-[11px] font-mono flex items-center justify-between">
-                      <span className="flex items-center gap-1.5">
-                        <Radio className="w-3 h-3 text-[#7A746D]" />
-                        <span>Mobile Feed</span>
-                      </span>
-                      <span className="text-[#5E5854] font-medium flex items-center gap-1">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#928B87]" />
-                        Standby
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              )}
+                )}
+              </div>
             </div>
             <div className="mt-5 pt-3 border-t border-[#EDE4D9] text-xs text-[#7A746D] flex justify-between font-mono">
               <span>{isMobileActive || mobileActivities.length > 0 ? "● Live" : "○ Idle"}</span>
@@ -1019,31 +930,16 @@ export function LiveDeviceStation() {
                 </div>
               </div>
               <div className="mt-4 h-7 flex items-center">
-                {desktopActivities.length > 1 ? (
-                  <div className="flex items-center gap-1 bg-[#F3ECE4] p-1 rounded border border-[#EDE4D9] w-full overflow-x-auto no-scrollbar">
-                    {desktopActivities.map((act) => {
-                      const isSelected = act.id === activeDesktopActivity?.id;
-                      return (
-                        <button key={act.id} onClick={() => setSelectedDesktopActivityId(act.id)} className={`flex-1 min-w-[72px] py-1 px-2 rounded text-[10.5px] font-mono font-medium flex items-center justify-center gap-1 transition-all shrink-0 ${isSelected ? "bg-[#1A1816] text-[#FAF6F1] shadow-xs" : "text-[#5E5854] hover:text-[#1A1816] hover:bg-[#E2D5C6]/60"}`}>
-                          {act.iconType === "code" && <Code2 className="w-3 h-3 text-[#C4604A]" />}
-                          {act.iconType === "video" && <Tv className="w-3 h-3 text-[#C4604A]" />}
-                          {act.iconType === "music" && <Music className="w-3 h-3 text-[#C4604A]" />}
-                          {act.iconType === "game" && <Gamepad2 className="w-3 h-3 text-[#C4604A]" />}
-                          {act.iconType === "stream" && <Radio className="w-3 h-3 text-[#C4604A]" />}
-                          <span className="truncate max-w-[85px]">{act.service}</span>
-                          <span className="w-1.5 h-1.5 rounded-full shrink-0 animate-pulse" style={{ backgroundColor: act.badgeColor }} />
-                        </button>
-                      );
-                    })}
+                {desktopActivities.length > 0 ? (
+                  <div className="flex items-center justify-between gap-2 bg-[#F3ECE4] px-2.5 py-1 rounded border border-[#EDE4D9] w-full text-xs font-mono text-[#5E5854]">
+                    <span className="flex items-center gap-1.5 font-semibold text-[#1A1816] truncate">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#566449] animate-pulse" />
+                      <span>{desktopActivities.length > 1 ? `${desktopActivities.length} Processes Active` : `${desktopActivities[0].service} Active`}</span>
+                    </span>
+                    <span className="text-[10.5px] text-[#928B87] shrink-0 font-medium">
+                      {desktopActivities.map((a) => a.service).join(" + ")}
+                    </span>
                   </div>
-                ) : activeDesktopActivity ? (
-                  <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#566449]/10 text-[#566449] text-xs font-semibold">
-                    {activeDesktopActivity.iconType === "code" && <Code2 className="w-3.5 h-3.5" />}
-                    {activeDesktopActivity.iconType === "video" && <Tv className="w-3.5 h-3.5" />}
-                    {activeDesktopActivity.iconType === "music" && <Music className="w-3.5 h-3.5" />}
-                    {activeDesktopActivity.iconType === "game" && <Gamepad2 className="w-3.5 h-3.5" />}
-                    <span>{activeDesktopActivity.service} Active</span>
-                  </span>
                 ) : isDesktopActive ? (
                   <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#566449]/10 text-[#566449] text-xs font-semibold">
                     <CheckCircle2 className="w-3.5 h-3.5" />
@@ -1056,18 +952,21 @@ export function LiveDeviceStation() {
                   </span>
                 )}
               </div>
-              {activeDesktopActivity ? renderActivityWidget(activeDesktopActivity) : isDesktopActive ? (
-                <div className="mt-4 p-4 rounded bg-[#FAF6F1] border border-[#EDE4D9] flex-1 flex flex-col justify-between space-y-3">
-                  <div className="space-y-1">
+
+              <div className="mt-4 flex-1 flex flex-col justify-start space-y-3">
+                {desktopActivities.length > 0 ? (
+                  desktopActivities.map((act) => renderActivityWidget(act))
+                ) : isDesktopActive ? (
+                  <div className="p-4 rounded bg-[#FAF6F1] border border-[#EDE4D9] space-y-1">
                     <p className="font-serif font-bold text-sm text-[#1A1816]">Desktop Online</p>
                     <p className="text-xs text-[#5E5854]">Windows 11 · Workstation Ready</p>
                   </div>
-                </div>
-              ) : (
-                <div className="mt-4 p-4 rounded bg-[#FAF6F1]/50 border border-[#EDE4D9]/60 flex-1 flex flex-col justify-between space-y-3">
-                  <div className="space-y-1"><p className="text-xs text-[#5E5854]">Off</p></div>
-                </div>
-              )}
+                ) : (
+                  <div className="p-4 rounded bg-[#FAF6F1]/50 border border-[#EDE4D9]/60 space-y-1">
+                    <p className="text-xs text-[#5E5854]">Off</p>
+                  </div>
+                )}
+              </div>
             </div>
             <div className="mt-5 pt-3 border-t border-[#EDE4D9] flex items-center justify-between text-xs text-[#7A746D] font-mono">
               <span>{isDesktopActive || desktopActivities.length > 0 ? "● Active" : "○ Off"}</span>
@@ -1075,214 +974,126 @@ export function LiveDeviceStation() {
             </div>
           </div>
 
-          {/* Card 3: Cloudflare Pages & Edge Real Telemetry Monitor */}
+          {/* Card 3: Social Channels & Content Hub */}
           <div className="p-4 sm:p-6 rounded-lg bg-[#FDFCFA] border border-[#EDE4D9] hover:border-[#D4C3AF] shadow-sm flex flex-col justify-between h-full transition-all">
             <div className="flex-1 flex flex-col">
               <div className="flex items-center justify-between pb-3 border-b border-[#EDE4D9] h-12">
                 <div className="flex items-center gap-2.5">
-                  <div className="w-8 h-8 rounded bg-[#F6821F]/10 text-[#F6821F] flex items-center justify-center">
-                    <Cloud className="w-4 h-4" />
+                  <div className="w-8 h-8 rounded bg-[#E1306C]/10 text-[#E1306C] flex items-center justify-center">
+                    <Instagram className="w-4 h-4" />
                   </div>
                   <div>
-                    <h3 className="font-serif font-bold text-base text-[#1A1816]">Cloudflare Pages &amp; Edge</h3>
-                    <p className="text-xs text-[#7A746D]">Production Node · omthakur.in</p>
+                    <h3 className="font-serif font-bold text-base text-[#1A1816]">Social &amp; Content Hub</h3>
+                    <p className="text-xs text-[#7A746D]">@omthakur.op · Creator Handles</p>
                   </div>
                 </div>
               </div>
 
-              {/* Dynamic Telemetry 3-Tab Selector */}
+              {/* Status Banner */}
               <div className="mt-4 h-7 flex items-center">
-                <div className="flex items-center gap-1 bg-[#F3ECE4] p-1 rounded border border-[#EDE4D9] w-full">
-                  <button
-                    type="button"
-                    onClick={() => setCfTab("traffic")}
-                    className={`flex-1 py-1 px-1.5 rounded text-[10.5px] font-mono font-medium flex items-center justify-center gap-1 transition-all ${
-                      cfTab === "traffic"
-                        ? "bg-[#1A1816] text-[#FAF6F1] shadow-xs"
-                        : "text-[#5E5854] hover:text-[#1A1816] hover:bg-[#E2D5C6]/60"
-                    }`}
-                  >
-                    <BarChart3 className="w-3 h-3 text-[#C4604A]" />
-                    <span>Traffic</span>
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#C4604A] animate-pulse" />
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setCfTab("deploy")}
-                    className={`flex-1 py-1 px-1.5 rounded text-[10.5px] font-mono font-medium flex items-center justify-center gap-1 transition-all ${
-                      cfTab === "deploy"
-                        ? "bg-[#1A1816] text-[#FAF6F1] shadow-xs"
-                        : "text-[#5E5854] hover:text-[#1A1816] hover:bg-[#E2D5C6]/60"
-                    }`}
-                  >
-                    <CheckCircle2 className="w-3 h-3 text-[#566449]" />
-                    <span>Deploy</span>
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#566449] animate-pulse" />
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setCfTab("network")}
-                    className={`flex-1 py-1 px-1.5 rounded text-[10.5px] font-mono font-medium flex items-center justify-center gap-1 transition-all ${
-                      cfTab === "network"
-                        ? "bg-[#1A1816] text-[#FAF6F1] shadow-xs"
-                        : "text-[#5E5854] hover:text-[#1A1816] hover:bg-[#E2D5C6]/60"
-                    }`}
-                  >
-                    <Globe2 className="w-3 h-3 text-[#F6821F]" />
-                    <span>Hosts</span>
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#F6821F] animate-pulse" />
-                  </button>
+                <div className="flex items-center gap-2 px-2.5 py-1 rounded bg-[#F3ECE4] border border-[#EDE4D9] w-full text-xs font-mono text-[#5E5854]">
+                  <span className="w-2 h-2 rounded-full bg-[#E1306C] animate-pulse" />
+                  <span className="font-semibold text-[#1A1816]">Instagram Connected</span>
+                  <span className="ml-auto text-[10.5px] text-[#928B87]">@omthakur.op</span>
                 </div>
               </div>
 
-              {/* Real Telemetry Details Box */}
-              <div className="mt-4 p-4 rounded bg-[#FAF6F1] border border-[#EDE4D9] flex-1 flex flex-col justify-between space-y-3">
-                {cfTab === "traffic" ? (
-                  !cfData.traffic ? (
-                    <div className="flex items-center justify-center py-4 text-[11px] font-mono text-[#928B87]">
-                      <RefreshCw className="w-3 h-3 animate-spin mr-2" /> Fetching live traffic from Cloudflare...
-                    </div>
-                  ) : (
-                    <div className="space-y-2.5">
-                      <div className="flex items-center justify-between">
-                        <span className="text-[10px] font-mono uppercase tracking-wider font-semibold text-[#7A746D]">
-                          Traffic Overview (24h)
-                        </span>
-                        <span className="inline-flex items-center gap-1 text-[10px] font-mono text-[#566449] font-medium">
-                          <span className="w-1.5 h-1.5 rounded-full bg-[#566449] animate-pulse" />
-                          <span>{cfData.traffic.totalRequests} Requests</span>
-                        </span>
+              {/* Details Box */}
+              <div className="mt-4 p-4 rounded bg-[#FAF6F1] border border-[#EDE4D9] flex-1 flex flex-col justify-between space-y-4">
+                <div className="space-y-3">
+                  {/* Instagram Card */}
+                  <div className="p-3 rounded-lg bg-[#FDFCFA] border border-[#E8DFC8] space-y-2">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <Instagram className="w-4 h-4 text-[#E1306C]" />
+                        <span className="font-serif font-bold text-sm text-[#1A1816]">Instagram</span>
                       </div>
-                      <div className="space-y-1.5 text-[11.5px] font-mono text-[#5E5854]">
-                        <div className="flex justify-between pb-1 border-b border-[#EDE4D9]/60">
-                          <span className="text-[#928B87]">Visits &amp; Bandwidth</span>
-                          <span className="font-semibold text-[#1A1816]">
-                            {cfData.traffic.totalVisits} Visits · {cfData.traffic.bandwidthMb}
-                          </span>
-                        </div>
-                        <div className="flex justify-between items-center pb-1 border-b border-[#EDE4D9]/60">
-                          <span className="text-[#928B87]">Devices</span>
-                          <span className="font-semibold text-[#1A1816] flex items-center gap-2 font-mono">
-                            <span className="inline-flex items-center gap-1">
-                              <Laptop className="w-3.5 h-3.5 text-[#7A746D]" />
-                              <span>{cfData.traffic.desktopRequests}</span>
-                            </span>
-                            <span className="text-[#DDD3C6]">/</span>
-                            <span className="inline-flex items-center gap-1">
-                              <Smartphone className="w-3.5 h-3.5 text-[#7A746D]" />
-                              <span>{cfData.traffic.mobileRequests}</span>
-                            </span>
-                          </span>
-                        </div>
-                        <div className="flex justify-between items-center">
-                          <span className="text-[#928B87]">Top Countries</span>
-                          <span className="font-semibold text-[#1A1816] flex items-center gap-1 font-mono">
-                            {cfData.traffic.topCountries.map((c) => (
-                              <span
-                                key={c.code}
-                                title={`${c.name} (${c.code}) · ${c.requests} requests`}
-                                className="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-[#EFE8DE] text-[#1A1816] border border-[#DDD3C6] cursor-default hover:bg-[#E2D5C6] transition-colors"
-                              >
-                                {c.code}
-                              </span>
-                            ))}
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  )
-                ) : cfTab === "deploy" ? (
-                  !cfData.pages ? (
-                    <div className="flex items-center justify-center py-4 text-[11px] font-mono text-[#928B87]">
-                      <RefreshCw className="w-3 h-3 animate-spin mr-2" /> Fetching deploy status from Cloudflare...
-                    </div>
-                  ) : (
-                    <div className="space-y-2.5">
-                      <div className="flex items-center justify-between">
-                        <span className="text-[10px] font-mono uppercase tracking-wider font-semibold text-[#7A746D]">
-                          Pages Deployment
-                        </span>
-                        <span className="inline-flex items-center gap-1 text-[10px] font-mono text-[#566449] font-medium">
-                          <span className="w-1.5 h-1.5 rounded-full bg-[#566449] animate-pulse" />
-                          <span>#{cfData.pages.shortId} · {cfData.pages.status}</span>
-                        </span>
-                      </div>
-                      <div className="space-y-1.5 text-[11.5px] font-mono text-[#5E5854]">
-                        <div className="flex justify-between pb-1 border-b border-[#EDE4D9]/60">
-                          <span className="text-[#928B87]">Branch / Commit</span>
-                          <span className="font-semibold text-[#1A1816] truncate max-w-[185px]">
-                            {cfData.pages.branch} @ {cfData.pages.commitHash}
-                          </span>
-                        </div>
-                        <div className="flex justify-between pb-1 border-b border-[#EDE4D9]/60">
-                          <span className="text-[#928B87]">Build Runtime</span>
-                          <span className="font-semibold text-[#1A1816]">
-                            {cfData.pages.buildDurationSec}s · {cfData.pages.framework}
-                          </span>
-                        </div>
-                        <div className="flex justify-between">
-                          <span className="text-[#928B87]">Environment</span>
-                          <span className="font-semibold text-[#1A1816]">
-                            {cfData.pages.environment}
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  )
-                ) : (
-                  !cfData.traffic ? (
-                    <div className="flex items-center justify-center py-4 text-[11px] font-mono text-[#928B87]">
-                      <RefreshCw className="w-3 h-3 animate-spin mr-2" /> Fetching host data from Cloudflare...
-                    </div>
-                  ) : (
-                    <div className="space-y-2.5">
-                      <div className="flex items-center justify-between">
-                        <span className="text-[10px] font-mono uppercase tracking-wider font-semibold text-[#7A746D]">
-                          Top Hosts (24h)
-                        </span>
-                        <span className="inline-flex items-center gap-1 text-[10px] font-mono text-[#566449] font-medium">
-                          <span className="w-1.5 h-1.5 rounded-full bg-[#566449] animate-pulse" />
-                          <span>Live from Cloudflare</span>
-                        </span>
-                      </div>
-                      <div className="space-y-1.5 text-[11.5px] font-mono text-[#5E5854]">
-                        {cfData.traffic.topHosts.map((h, i) => (
-                          <div key={h.host} className={`flex justify-between ${i < cfData.traffic!.topHosts.length - 1 ? "pb-1 border-b border-[#EDE4D9]/60" : ""}`}>
-                            <span className="text-[#928B87] truncate max-w-[140px]">{h.host}</span>
-                            <span className="font-semibold text-[#1A1816]">{h.requests} req</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  )
-                )}
-
-                {/* Refresh Button */}
-                <div className="pt-3 border-t border-[#EDE4D9]/80 mt-auto">
-                  <button
-                    type="button"
-                    onClick={refreshTelemetry}
-                    disabled={isPinging}
-                    className="w-full inline-flex items-center justify-between px-3 py-1.5 rounded bg-[#F3ECE4] hover:bg-[#E2D5C6] text-[#1A1816] text-[11px] font-mono font-medium transition-colors border border-[#E2D5C6] cursor-pointer"
-                    title="Refresh all data live from Cloudflare"
-                  >
-                    <span className="flex items-center gap-1.5">
-                      <RefreshCw className={`w-3 h-3 text-[#7A746D] ${isPinging ? "animate-spin text-[#C4604A]" : ""}`} />
-                      <span>{isPinging ? "Fetching from Cloudflare..." : "Refresh Live Data"}</span>
-                    </span>
-                    {cfData.latencyMs > 0 && (
-                      <span className="text-[#566449] font-bold font-mono flex items-center gap-1">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#566449] animate-pulse" />
-                        {cfData.latencyMs}ms
+                      <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#E1306C]/10 text-[#E1306C] font-bold">
+                        ● Active Profile
                       </span>
-                    )}
-                  </button>
+                    </div>
+                    <div className="flex justify-between items-center text-xs font-mono">
+                      <span className="text-[#7A746D]">Handle</span>
+                      <span className="font-bold text-[#1A1816]">@omthakur.op</span>
+                    </div>
+                    <p className="text-[11.5px] text-[#5E5854] leading-snug">
+                      Dev updates, project highlights &amp; behind-the-scenes engineering logs.
+                    </p>
+                    <a
+                      href="https://www.instagram.com/omthakur.op"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded bg-[#E1306C] text-white hover:bg-[#C1275B] text-[11px] font-mono font-medium transition-colors shadow-xs text-center mt-1"
+                    >
+                      <span>Visit @omthakur.op</span>
+                      <ExternalLink className="w-3 h-3" />
+                    </a>
+                  </div>
+
+                  {/* YouTube Card (Coming Soon) */}
+                  <div className="p-3 rounded-lg bg-[#F7F2EB]/70 border border-[#EDE4D9] space-y-1.5 opacity-90">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <Youtube className="w-4 h-4 text-[#C4604A]" />
+                        <span className="font-serif font-bold text-sm text-[#1A1816]">YouTube Channel</span>
+                      </div>
+                      <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#C4604A]/10 text-[#C4604A] font-medium">
+                        Opening Soon
+                      </span>
+                    </div>
+                    <p className="text-[11.5px] text-[#7A746D] leading-snug">
+                      Account setup in progress. Video devlogs &amp; system architecture tutorials.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Footer Profiles */}
+                <div className="pt-3 border-t border-[#EDE4D9]/80 mt-auto flex items-center justify-between text-[11px] font-mono text-[#7A746D]">
+                  <span>Connected Channels</span>
+                  <div className="flex items-center gap-2.5">
+                    <a
+                      href="https://www.instagram.com/omthakur.op"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:text-[#E1306C] transition-colors"
+                      title="Instagram @omthakur.op"
+                    >
+                      <Instagram className="w-3.5 h-3.5" />
+                    </a>
+                    <a
+                      href="https://github.com/MonsterFlick"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:text-[#1A1816] transition-colors"
+                      title="GitHub @MonsterFlick"
+                    >
+                      <Github className="w-3.5 h-3.5" />
+                    </a>
+                    <a
+                      href="https://linkedin.com/in/om-thakur"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:text-[#0A66C2] transition-colors"
+                      title="LinkedIn"
+                    >
+                      <Linkedin className="w-3.5 h-3.5" />
+                    </a>
+                    <a
+                      href="https://x.com/omthakur_og"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:text-[#1A1816] transition-colors"
+                      title="X / Twitter"
+                    >
+                      <Twitter className="w-3.5 h-3.5" />
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
             <div className="mt-5 pt-3 border-t border-[#EDE4D9] text-xs text-[#7A746D] font-mono flex justify-between">
-              <span>{cfData.traffic ? "● Live" : "○ Loading"} · Cloudflare Edge</span>
-              <span>omthakur.in</span>
+              <span>● Connected</span>
+              <span>Instagram @omthakur.op</span>
             </div>
           </div>
         </div>
