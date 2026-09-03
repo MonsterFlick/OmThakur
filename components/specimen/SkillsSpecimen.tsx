@@ -41,13 +41,13 @@ export function SkillsSpecimen() {
           </div>
         </div>
 
-        {/* Category Tabs */}
-        <div className="flex flex-wrap items-center gap-2 mb-10">
+        {/* Category Tabs (Scrollable on Mobile, Wrapped on Desktop) ── */}
+        <div className="flex items-center sm:flex-wrap gap-2 mb-8 overflow-x-auto no-scrollbar py-1 -mx-4 px-4 sm:mx-0 sm:px-0">
           {CATEGORIES.map((cat) => (
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
-              className={`px-3.5 py-1.5 rounded text-xs font-mono transition-all ${
+              className={`px-3 py-1.5 rounded text-xs font-mono transition-all shrink-0 ${
                 activeCategory === cat
                   ? "bg-[#1A1816] text-[#FAF6F1] font-semibold shadow-sm"
                   : "bg-[#F3ECE4] text-[#5E5854] hover:bg-[#E2D5C6] hover:text-[#1A1816]"
@@ -59,7 +59,7 @@ export function SkillsSpecimen() {
         </div>
 
         {/* Specimen Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
           {filteredSkills.map((skill, idx) => (
             <motion.div
               key={skill.name}
@@ -67,7 +67,7 @@ export function SkillsSpecimen() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.3, delay: idx * 0.04 }}
-              className="p-5 sm:p-6 rounded-md bg-[#FAF6F1] border border-[#EDE4D9] hover:border-[#D4C3AF] hover:shadow-paper transition-all"
+              className="p-4 sm:p-6 rounded-md bg-[#FAF6F1] border border-[#EDE4D9] hover:border-[#D4C3AF] hover:shadow-paper transition-all flex flex-col justify-between"
             >
               <div className="flex items-start justify-between mb-3">
                 <span className="text-[10px] font-mono uppercase tracking-wider text-[#7A746D]">

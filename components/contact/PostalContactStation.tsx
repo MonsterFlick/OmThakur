@@ -67,11 +67,11 @@ export function PostalContactStation() {
         </div>
 
         {/* ── Main Postal Layout ── */}
-        <div className="grid lg:grid-cols-12 gap-8 items-start">
+        <div className="grid lg:grid-cols-12 gap-6 sm:gap-8 items-start">
           
           {/* Left Column: Direct Coordinates & Social Registry (5 Cols) */}
           <div className="lg:col-span-5 space-y-4">
-            <div className="p-6 sm:p-7 rounded-md bg-[#FDFCFA] border border-[#EDE4D9] shadow-paper">
+            <div className="p-4 sm:p-7 rounded-md bg-[#FDFCFA] border border-[#EDE4D9] shadow-paper">
               <div className="flex items-center justify-between pb-3 mb-4 border-b border-[#EDE4D9]">
                 <span className="font-mono text-xs uppercase tracking-wider text-[#7A746D]">
                   Coordinates Registry
@@ -89,11 +89,11 @@ export function PostalContactStation() {
                   <div className="w-8 h-8 rounded bg-[#C4604A]/10 text-[#C4604A] flex items-center justify-center shrink-0">
                     <Mail className="w-4 h-4" />
                   </div>
-                  <div>
+                  <div className="min-w-0 flex-1">
                     <span className="text-[10px] uppercase font-mono text-[#928B87] block">
                       Direct Inquiries
                     </span>
-                    <span className="font-mono text-xs font-semibold text-[#1A1816] group-hover:text-[#C4604A] transition-colors">
+                    <span className="font-mono text-xs font-semibold text-[#1A1816] group-hover:text-[#C4604A] transition-colors truncate block">
                       omthakur2366@gmail.com
                     </span>
                   </div>
@@ -108,11 +108,11 @@ export function PostalContactStation() {
                   <div className="w-8 h-8 rounded bg-[#566449]/10 text-[#566449] flex items-center justify-center shrink-0">
                     <Phone className="w-4 h-4" />
                   </div>
-                  <div>
+                  <div className="min-w-0 flex-1">
                     <span className="text-[10px] uppercase font-mono text-[#928B87] block">
                       Encrypted Messaging / WhatsApp
                     </span>
-                    <span className="font-mono text-xs font-semibold text-[#1A1816] group-hover:text-[#566449] transition-colors">
+                    <span className="font-mono text-xs font-semibold text-[#1A1816] group-hover:text-[#566449] transition-colors truncate block">
                       +91 7756898550
                     </span>
                   </div>
@@ -135,8 +135,9 @@ export function PostalContactStation() {
                       href={s.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-2.5 rounded bg-[#FAF6F1] text-[#5E5854] hover:text-[#1A1816] hover:bg-[#EDE4D9] border border-[#EDE4D9] transition-colors"
+                      className="min-w-[44px] min-h-[44px] flex items-center justify-center rounded bg-[#FAF6F1] text-[#5E5854] hover:text-[#1A1816] hover:bg-[#EDE4D9] border border-[#EDE4D9] transition-colors"
                       title={s.label}
+                      aria-label={s.label}
                     >
                       <s.icon className="w-4 h-4" />
                     </a>
@@ -148,7 +149,7 @@ export function PostalContactStation() {
 
           {/* Right Column: Airmail Stationery Dispatch Form (7 Cols) */}
           <div className="lg:col-span-7">
-            <div className="p-6 sm:p-8 rounded-md bg-[#FDFCFA] border-2 border-dashed border-[#D4C3AF] shadow-paper relative overflow-hidden">
+            <div className="p-4 sm:p-8 rounded-md bg-[#FDFCFA] border-2 border-dashed border-[#D4C3AF] shadow-paper relative overflow-hidden">
               
               {/* Postal Airmail Edge Stripes */}
               <div
@@ -206,7 +207,7 @@ export function PostalContactStation() {
                         value={formState.name}
                         onChange={(e) => setFormState({ ...formState, name: e.target.value })}
                         placeholder="e.g. Mira Castellano"
-                        className="w-full px-3.5 py-2.5 rounded border border-[#EDE4D9] bg-[#FAF6F1] text-xs font-sans text-[#1A1816] placeholder-[#928B87] focus:outline-none focus:border-[#C4604A]"
+                        className="w-full px-3.5 py-2.5 rounded border border-[#EDE4D9] bg-[#FAF6F1] text-base sm:text-xs font-sans text-[#1A1816] placeholder-[#928B87] focus:outline-none focus:border-[#C4604A]"
                       />
                       {errors.name && <p className="text-[10px] text-[#7A3B3B] mt-1 font-mono">{errors.name}</p>}
                     </div>
@@ -220,7 +221,7 @@ export function PostalContactStation() {
                         value={formState.email}
                         onChange={(e) => setFormState({ ...formState, email: e.target.value })}
                         placeholder="e.g. mira@studio.org"
-                        className="w-full px-3.5 py-2.5 rounded border border-[#EDE4D9] bg-[#FAF6F1] text-xs font-sans text-[#1A1816] placeholder-[#928B87] focus:outline-none focus:border-[#C4604A]"
+                        className="w-full px-3.5 py-2.5 rounded border border-[#EDE4D9] bg-[#FAF6F1] text-base sm:text-xs font-sans text-[#1A1816] placeholder-[#928B87] focus:outline-none focus:border-[#C4604A]"
                       />
                       {errors.email && <p className="text-[10px] text-[#7A3B3B] mt-1 font-mono">{errors.email}</p>}
                     </div>
@@ -235,20 +236,20 @@ export function PostalContactStation() {
                       value={formState.message}
                       onChange={(e) => setFormState({ ...formState, message: e.target.value })}
                       placeholder="Outline system architecture requirements, appointment timeline, or consulting scope..."
-                      className="w-full px-3.5 py-2.5 rounded border border-[#EDE4D9] bg-[#FAF6F1] text-xs font-sans text-[#1A1816] placeholder-[#928B87] focus:outline-none focus:border-[#C4604A] leading-relaxed"
+                      className="w-full px-3.5 py-2.5 rounded border border-[#EDE4D9] bg-[#FAF6F1] text-base sm:text-xs font-sans text-[#1A1816] placeholder-[#928B87] focus:outline-none focus:border-[#C4604A] leading-relaxed"
                     />
                     {errors.message && <p className="text-[10px] text-[#7A3B3B] mt-1 font-mono">{errors.message}</p>}
                   </div>
 
-                  <div className="pt-2 flex items-center justify-between">
-                    <span className="font-script text-base text-[#7A746D]">
+                  <div className="pt-2 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                    <span className="font-script text-sm sm:text-base text-[#7A746D]">
                       instant encrypted webhook transmission
                     </span>
 
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="inline-flex items-center gap-2 px-6 py-2.5 rounded bg-[#C4604A] text-white font-medium text-xs hover:bg-[#A8493A] transition-colors disabled:opacity-50"
+                      className="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded bg-[#C4604A] text-white font-medium text-xs hover:bg-[#A8493A] transition-colors disabled:opacity-50"
                     >
                       <Send className="w-3.5 h-3.5" />
                       <span>{isSubmitting ? "Transmitting..." : "Seal & Dispatch"}</span>

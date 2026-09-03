@@ -108,7 +108,7 @@ export function BookSpread({
 ───────────────────────────────────────────────────────────── */
 function FrontispieceLeft() {
   return (
-    <div className="h-full w-full p-6 sm:p-9 border-r border-[#EDE4D9] flex flex-col justify-between relative bg-[#FAF6F1] text-[#2C2825] overflow-hidden select-none">
+    <div className="h-full w-full p-4 sm:p-6 md:p-8 lg:p-9 border-r border-[#EDE4D9] flex flex-col justify-between relative bg-[#FAF6F1] text-[#2C2825] overflow-hidden select-none">
       <div className="absolute top-3 left-3 right-3 bottom-3 border border-[#E2D5C6] pointer-events-none rounded-sm" />
       <div>
         <div className="flex items-center justify-between text-[10px] sm:text-xs uppercase tracking-[0.22em] text-[#928B87] pb-2 sm:pb-3 border-b border-[#EDE4D9]">
@@ -160,7 +160,7 @@ function FrontispieceLeft() {
 
 function FrontispieceRight() {
   return (
-    <div className="h-full w-full p-6 sm:p-9 flex flex-col justify-between relative bg-[#FDFCFA] text-[#2C2825] overflow-hidden select-none">
+    <div className="h-full w-full p-4 sm:p-6 md:p-8 lg:p-9 flex flex-col justify-between relative bg-[#FDFCFA] text-[#2C2825] overflow-hidden select-none">
       <div className="absolute top-3 left-3 right-3 bottom-3 border border-[#E2D5C6] pointer-events-none rounded-sm" />
       <div>
         <div className="flex items-center justify-between text-[10px] sm:text-xs uppercase tracking-[0.22em] text-[#928B87] pb-2 sm:pb-3 border-b border-[#EDE4D9]">
@@ -205,7 +205,7 @@ function FrontispieceRight() {
 ───────────────────────────────────────────────────────────── */
 function ManifestoLeft() {
   return (
-    <div className="h-full w-full p-6 sm:p-9 border-r border-[#EDE4D9] flex flex-col justify-between bg-[#FAF6F1] text-[#2C2825] overflow-hidden select-none">
+    <div className="h-full w-full p-4 sm:p-6 md:p-8 lg:p-9 border-r border-[#EDE4D9] flex flex-col justify-between bg-[#FAF6F1] text-[#2C2825] overflow-hidden select-none">
       <div>
         <div className="flex items-center justify-between text-[10px] sm:text-xs uppercase tracking-[0.22em] text-[#928B87] pb-2 sm:pb-3 border-b border-[#EDE4D9]">
           <span>Doctrine & Craft</span>
@@ -249,7 +249,7 @@ function ManifestoLeft() {
 
 function ManifestoRight() {
   return (
-    <div className="h-full w-full p-6 sm:p-9 flex flex-col justify-between bg-[#FDFCFA] text-[#2C2825] overflow-hidden select-none">
+    <div className="h-full w-full p-4 sm:p-6 md:p-8 lg:p-9 flex flex-col justify-between bg-[#FDFCFA] text-[#2C2825] overflow-hidden select-none">
       <div>
         <div className="flex items-center justify-between text-[10px] sm:text-xs uppercase tracking-[0.22em] text-[#928B87] pb-2 sm:pb-3 border-b border-[#EDE4D9]">
           <span>Pillars of Execution</span>
@@ -291,7 +291,7 @@ function ManifestoRight() {
 ───────────────────────────────────────────────────────────── */
 function ProjectBlueprintLeft({ project, plateNumber }: { project: (typeof PROJECTS)[0]; plateNumber: string }) {
   return (
-    <div className="h-full w-full p-6 sm:p-9 border-r border-[#EDE4D9] flex flex-col justify-between bg-[#FAF6F1] text-[#2C2825] overflow-hidden select-none">
+    <div className="h-full w-full p-4 sm:p-6 md:p-8 lg:p-9 border-r border-[#EDE4D9] flex flex-col justify-between bg-[#FAF6F1] text-[#2C2825] overflow-hidden select-none">
       <div>
         <div className="flex items-center justify-between text-[10px] sm:text-xs uppercase tracking-[0.22em] text-[#928B87] pb-2 sm:pb-3 border-b border-[#EDE4D9]">
           <span className="text-[#C4604A] font-bold">{plateNumber}</span>
@@ -345,7 +345,7 @@ function ProjectBlueprintRight({
   onInspect?: () => void;
 }) {
   return (
-    <div className="h-full w-full p-6 sm:p-9 flex flex-col justify-between bg-[#FDFCFA] text-[#2C2825] overflow-hidden select-none">
+    <div className="h-full w-full p-4 sm:p-6 md:p-8 lg:p-9 flex flex-col justify-between bg-[#FDFCFA] text-[#2C2825] overflow-hidden select-none">
       <div>
         <div className="flex items-center justify-between text-[10px] sm:text-xs uppercase tracking-[0.22em] text-[#928B87] pb-2 sm:pb-3 border-b border-[#EDE4D9]">
           <span>Specimen & Implementation</span>
@@ -400,7 +400,7 @@ function ProjectBlueprintRight({
 ───────────────────────────────────────────────────────────── */
 function TaxonomyLeft() {
   return (
-    <div className="h-full w-full p-6 sm:p-9 border-r border-[#EDE4D9] flex flex-col justify-between bg-[#FAF6F1] text-[#2C2825] overflow-hidden select-none">
+    <div className="h-full w-full p-4 sm:p-6 md:p-8 lg:p-9 border-r border-[#EDE4D9] flex flex-col justify-between bg-[#FAF6F1] text-[#2C2825] overflow-hidden select-none">
       <div>
         <div className="flex items-center justify-between text-[10px] sm:text-xs uppercase tracking-[0.22em] text-[#928B87] pb-2 sm:pb-3 border-b border-[#EDE4D9]">
           <span className="text-[#C4604A] font-bold">Plate VIII</span>
@@ -445,7 +445,7 @@ function TaxonomyLeft() {
 
 function TaxonomyRight() {
   return (
-    <div className="h-full w-full p-6 sm:p-9 flex flex-col justify-between bg-[#FDFCFA] text-[#2C2825] overflow-hidden select-none">
+    <div className="h-full w-full p-4 sm:p-6 md:p-8 lg:p-9 flex flex-col justify-between bg-[#FDFCFA] text-[#2C2825] overflow-hidden select-none">
       <div>
         <div className="flex items-center justify-between text-[10px] sm:text-xs uppercase tracking-[0.22em] text-[#928B87] pb-2 sm:pb-3 border-b border-[#EDE4D9]">
           <span>Storage & Cloud</span>
@@ -493,7 +493,7 @@ function TaxonomyRight() {
 ───────────────────────────────────────────────────────────── */
 function ChronologyLeft() {
   return (
-    <div className="h-full w-full p-6 sm:p-9 border-r border-[#EDE4D9] flex flex-col justify-between bg-[#FAF6F1] text-[#2C2825] overflow-hidden select-none">
+    <div className="h-full w-full p-4 sm:p-6 md:p-8 lg:p-9 border-r border-[#EDE4D9] flex flex-col justify-between bg-[#FAF6F1] text-[#2C2825] overflow-hidden select-none">
       <div>
         <div className="flex items-center justify-between text-[10px] sm:text-xs uppercase tracking-[0.22em] text-[#928B87] pb-2 sm:pb-3 border-b border-[#EDE4D9]">
           <span className="text-[#C4604A] font-bold">Plate IX</span>
@@ -537,7 +537,7 @@ function ChronologyLeft() {
 
 function ChronologyRight() {
   return (
-    <div className="h-full w-full p-6 sm:p-9 flex flex-col justify-between bg-[#FDFCFA] text-[#2C2825] overflow-hidden select-none">
+    <div className="h-full w-full p-4 sm:p-6 md:p-8 lg:p-9 flex flex-col justify-between bg-[#FDFCFA] text-[#2C2825] overflow-hidden select-none">
       <div>
         <div className="flex items-center justify-between text-[10px] sm:text-xs uppercase tracking-[0.22em] text-[#928B87] pb-2 sm:pb-3 border-b border-[#EDE4D9]">
           <span>Dispatch Nº 02 & 03</span>
@@ -582,7 +582,7 @@ function ChronologyRight() {
 ───────────────────────────────────────────────────────────── */
 function ColophonLeft() {
   return (
-    <div className="h-full w-full p-6 sm:p-9 border-r border-[#EDE4D9] flex flex-col justify-between bg-[#FAF6F1] text-[#2C2825] overflow-hidden select-none">
+    <div className="h-full w-full p-4 sm:p-6 md:p-8 lg:p-9 border-r border-[#EDE4D9] flex flex-col justify-between bg-[#FAF6F1] text-[#2C2825] overflow-hidden select-none">
       <div>
         <div className="flex items-center justify-between text-[10px] sm:text-xs uppercase tracking-[0.22em] text-[#928B87] pb-2 sm:pb-3 border-b border-[#EDE4D9]">
           <span className="text-[#C4604A] font-bold">Plate X</span>
@@ -626,7 +626,7 @@ function ColophonLeft() {
 
 function ColophonRight() {
   return (
-    <div className="h-full w-full p-6 sm:p-9 flex flex-col justify-between bg-[#FDFCFA] text-[#2C2825] overflow-hidden select-none">
+    <div className="h-full w-full p-4 sm:p-6 md:p-8 lg:p-9 flex flex-col justify-between bg-[#FDFCFA] text-[#2C2825] overflow-hidden select-none">
       <div>
         <div className="flex items-center justify-between text-[10px] sm:text-xs uppercase tracking-[0.22em] text-[#928B87] pb-2 sm:pb-3 border-b border-[#EDE4D9]">
           <span>Grand Colophon</span>

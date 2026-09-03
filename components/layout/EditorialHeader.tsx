@@ -143,50 +143,93 @@ export function EditorialHeader({
         </div>
       </div>
 
-      {/* Mobile Drawer */}
+      {/* Mobile Drawer Overlay & Sheet */}
       <AnimatePresence>
         {mobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden bg-[#FAF6F1] border-b border-[#EDE4D9] px-4 py-4 space-y-2 shadow-lg"
-          >
-            {navLinks.map((link) => (
-              <button
-                key={link.id}
-                onClick={() => {
-                  onNavigate(link.id);
-                  setMobileMenuOpen(false);
-                }}
-                className="w-full text-left py-2 text-sm font-medium text-[#2C2825] hover:text-[#C4604A] border-b border-[#EDE4D9]/60"
-              >
-                {link.label}
-              </button>
-            ))}
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setMobileMenuOpen(false)}
+              className="fixed inset-0 top-[60px] bg-black/30 backdrop-blur-sm z-40 lg:hidden"
+            />
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.2 }}
+              className="relative z-50 lg:hidden bg-[#FAF6F1] border-b border-[#EDE4D9] px-4 py-5 shadow-xl max-h-[calc(100vh-70px)] overflow-y-auto"
+            >
+              {/* Mobile IST Clock Bar */}
+              <div className="flex items-center justify-between pb-3 mb-3 border-b border-[#EDE4D9] text-xs font-mono text-[#7A746D]">
+                <div className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-[#566449] animate-pulse" />
+                  <span className="font-semibold text-[#1A1816]">IST {istTime || "Active"}</span>
+                </div>
+                <span className="text-[10px] text-[#928B87]">Mumbai Hub</span>
+              </div>
 
-            <div className="pt-2 flex items-center justify-between">
-              <button
-                onClick={() => {
-                  onOpenTerminal();
-                  setMobileMenuOpen(false);
-                }}
-                className="inline-flex items-center gap-2 px-3 py-2 rounded bg-[#1A1816] text-[#FAF6F1] text-xs font-mono"
-              >
-                <Terminal className="w-4 h-4 text-[#C4604A]" />
-                <span>Launch Telemetry Console</span>
-              </button>
+              {/* Navigation Links */}
+              <div className="space-y-1">
+                {navLinks.map((link) => (
+                  <button
+                    key={link.id}
+                    onClick={() => {
+                      onNavigate(link.id);
+                      setMobileMenuOpen(false);
+                    }}
+                    className="w-full text-left px-3 py-2.5 rounded-md text-sm font-serif font-bold text-[#2C2825] hover:text-[#C4604A] hover:bg-[#F3ECE4] active:bg-[#EDE4D9] transition-colors flex items-center justify-between"
+                  >
+                    <span>{link.label}</span>
+                    <span className="font-mono text-xs text-[#928B87]">#</span>
+                  </button>
+                ))}
+              </div>
 
-              <a
-                href="https://rxresu.me/omthakur2366/om"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-3 py-2 rounded bg-[#F3ECE4] text-[#1A1816] text-xs font-semibold"
-              >
-                <span>CV (Resume)</span>
-              </a>
-            </div>
-          </motion.div>
+              {/* Search & Terminal Quick Triggers */}
+              <div className="pt-4 mt-3 border-t border-[#EDE4D9] space-y-2">
+                <button
+                  onClick={() => {
+                    onOpenSearch();
+                    setMobileMenuOpen(false);
+                  }}
+                  className="w-full flex items-center justify-between px-3 py-2.5 rounded-md border border-[#D4C3AF] bg-[#FDFCFA] text-xs text-[#5E5854] hover:text-[#1A1816]"
+                >
+                  <div className="flex items-center gap-2">
+                    <Search className="w-4 h-4 text-[#C4604A]" />
+                    <span>Search Archives</span>
+                  </div>
+                  <kbd className="font-mono text-[10px] px-1.5 py-0.5 bg-[#EDE4D9] rounded text-[#7A746D]">
+                    ⌘K
+                  </kbd>
+                </button>
+
+                <div className="grid grid-cols-2 gap-2 pt-1">
+                  <button
+                    onClick={() => {
+                      onOpenTerminal();
+                      setMobileMenuOpen(false);
+                    }}
+                    className="flex items-center justify-center gap-1.5 px-3 py-2.5 rounded bg-[#1A1816] text-[#FAF6F1] text-xs font-mono font-semibold"
+                  >
+                    <Terminal className="w-3.5 h-3.5 text-[#C4604A]" />
+                    <span>REPL Terminal</span>
+                  </button>
+
+                  <a
+                    href="https://rxresu.me/omthakur2366/om"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-1.5 px-3 py-2.5 rounded bg-[#F3ECE4] text-[#1A1816] border border-[#E2D5C6] text-xs font-semibold hover:bg-[#E2D5C6]"
+                  >
+                    <FileText className="w-3.5 h-3.5 text-[#566449]" />
+                    <span>CV (Resume)</span>
+                  </a>
+                </div>
+              </div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </header>

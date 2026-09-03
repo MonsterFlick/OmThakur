@@ -313,9 +313,9 @@ export function LiveDeviceStation() {
               />
             </div>
 
-            <div>
-              <div className="flex items-center gap-2">
-                <span className="font-serif font-bold text-base text-[#1A1816]">{displayName}</span>
+            <div className="min-w-0 flex-1">
+              <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
+                <span className="font-serif font-bold text-base text-[#1A1816] truncate">{displayName}</span>
                 <span className="text-xs font-mono text-[#7A746D]">@{username}</span>
                 <span
                   className={`px-2 py-0.5 rounded-full text-[10px] font-mono font-semibold uppercase ${
@@ -332,7 +332,7 @@ export function LiveDeviceStation() {
                 </span>
               </div>
 
-              <p className="text-xs sm:text-sm text-[#5E5854] mt-0.5 italic">
+              <p className="text-xs sm:text-sm text-[#5E5854] mt-0.5 italic truncate">
                 {customStatusActivity?.state ? (
                   <span>&ldquo;{customStatusActivity.state}&rdquo;</span>
                 ) : discordStatus !== "offline" ? (
@@ -363,7 +363,7 @@ export function LiveDeviceStation() {
 
           {/* ── 1. REALME 11 PRO 5G ── */}
           <div
-            className={`p-6 rounded-lg border shadow-sm flex flex-col justify-between transition-all ${
+            className={`p-4 sm:p-6 rounded-lg border shadow-sm flex flex-col justify-between transition-all ${
               isMobileActive || isMusicPlaying
                 ? "bg-[#FDFCFA] border-[#EDE4D9] hover:border-[#D4C3AF]"
                 : "bg-[#F7F2EB]/60 border-[#E8DFC8] opacity-80"
@@ -489,7 +489,7 @@ export function LiveDeviceStation() {
 
           {/* ── 2. GAMING & DEV RIG ── */}
           <div
-            className={`p-6 rounded-lg border shadow-sm flex flex-col justify-between transition-all ${
+            className={`p-4 sm:p-6 rounded-lg border shadow-sm flex flex-col justify-between transition-all ${
               isDesktopActive
                 ? "bg-[#FDFCFA] border-[#EDE4D9] hover:border-[#D4C3AF]"
                 : "bg-[#F7F2EB]/60 border-[#E8DFC8] opacity-80"
@@ -603,7 +603,7 @@ export function LiveDeviceStation() {
           </div>
 
           {/* ── 3. VETERAN PC ── */}
-          <div className="p-6 rounded-lg bg-[#F7F2EB]/60 border border-[#E8DFC8] shadow-sm flex flex-col justify-between opacity-80 hover:opacity-100 transition-all">
+          <div className="p-4 sm:p-6 rounded-lg bg-[#F7F2EB]/60 border border-[#E8DFC8] shadow-sm flex flex-col justify-between opacity-80 hover:opacity-100 transition-all">
             <div>
               {/* Header */}
               <div className="flex items-center justify-between pb-3 border-b border-[#EDE4D9]">

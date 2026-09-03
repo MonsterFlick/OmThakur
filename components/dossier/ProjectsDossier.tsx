@@ -52,13 +52,13 @@ export function ProjectsDossier({ onSelectProject }: ProjectsDossierProps) {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Filter by title or technology..."
-              className="w-full px-4 py-2 text-xs rounded border border-[#D4C3AF] bg-[#FDFCFA] text-[#1A1816] placeholder-[#928B87] focus:outline-none focus:border-[#C4604A]"
+              className="w-full px-3.5 py-2 text-base sm:text-xs rounded border border-[#D4C3AF] bg-[#FDFCFA] text-[#1A1816] placeholder-[#928B87] focus:outline-none focus:border-[#C4604A]"
             />
           </div>
         </div>
 
-        {/* ── Category Filter Pills ── */}
-        <div className="flex flex-wrap items-center gap-2 mb-10">
+        {/* ── Category Filter Pills (Scrollable on Mobile, Wrapped on Desktop) ── */}
+        <div className="flex items-center sm:flex-wrap gap-2 mb-8 overflow-x-auto no-scrollbar py-1 -mx-4 px-4 sm:mx-0 sm:px-0">
           {CATEGORIES.map((cat) => {
             const count = cat === "All" ? PROJECTS.length : PROJECTS.filter((p) => p.category === cat).length;
             const isActive = activeCategory === cat;
@@ -67,7 +67,7 @@ export function ProjectsDossier({ onSelectProject }: ProjectsDossierProps) {
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-                className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded text-xs font-mono transition-all ${
+                className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded text-xs font-mono transition-all shrink-0 ${
                   isActive
                     ? "bg-[#1A1816] text-[#FAF6F1] font-semibold shadow-sm"
                     : "bg-[#F3ECE4] text-[#5E5854] hover:bg-[#E2D5C6] hover:text-[#1A1816]"
@@ -110,7 +110,7 @@ export function ProjectsDossier({ onSelectProject }: ProjectsDossierProps) {
                   </div>
 
                   {/* Card Content */}
-                  <div className="p-5 sm:p-6 space-y-3">
+                  <div className="p-4 sm:p-6 space-y-3">
                     <div>
                       <span className="text-[10px] uppercase font-mono text-[#928B87] block">
                         {project.edition}
@@ -148,7 +148,7 @@ export function ProjectsDossier({ onSelectProject }: ProjectsDossierProps) {
                 </div>
 
                 {/* Footer Action */}
-                <div className="p-5 pt-0 flex items-center justify-between border-t border-[#EDE4D9]/60 mt-4">
+                <div className="p-4 sm:p-5 pt-0 flex items-center justify-between border-t border-[#EDE4D9]/60 mt-3">
                   <button
                     onClick={() => onSelectProject(project)}
                     className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#C4604A] hover:text-[#A8493A] transition-colors"

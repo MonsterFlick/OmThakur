@@ -26,7 +26,7 @@ export function AcademicHonors() {
         </div>
 
         {/* Honors Grid */}
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6">
           {ACADEMIC_HONORS.map((honor, idx) => (
             <motion.div
               key={honor.id}
@@ -34,7 +34,7 @@ export function AcademicHonors() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.35, delay: idx * 0.08 }}
-              className="p-6 sm:p-7 rounded-md bg-[#FAF6F1] border border-[#EDE4D9] hover:border-[#D4C3AF] hover:shadow-paper transition-all flex flex-col justify-between"
+              className="p-4 sm:p-6 rounded-md bg-[#FAF6F1] border border-[#EDE4D9] hover:border-[#D4C3AF] hover:shadow-paper transition-all flex flex-col justify-between"
             >
               <div>
                 <div className="flex items-center justify-between pb-3 mb-3 border-b border-[#EDE4D9]">

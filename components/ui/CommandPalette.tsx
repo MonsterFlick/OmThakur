@@ -51,7 +51,7 @@ export function CommandPalette({
 
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 z-[9999] flex items-start justify-center pt-20 sm:pt-28 px-4 bg-black/60 backdrop-blur-sm">
+      <div className="fixed inset-0 z-[9999] flex items-start justify-center pt-14 sm:pt-28 px-3 sm:px-4 bg-black/60 backdrop-blur-sm">
         <motion.div
           initial={{ opacity: 0, scale: 0.96, y: -10 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -60,7 +60,7 @@ export function CommandPalette({
           className="w-full max-w-xl bg-[#FAF6F1] text-[#2C2825] rounded-lg border border-[#EDE4D9] shadow-2xl overflow-hidden"
         >
           {/* Search Input Bar */}
-          <div className="flex items-center gap-3 px-4 py-3.5 border-b border-[#EDE4D9] bg-[#FDFCFA]">
+          <div className="flex items-center gap-3 px-3.5 py-3 sm:px-4 sm:py-3.5 border-b border-[#EDE4D9] bg-[#FDFCFA]">
             <Search className="w-4 h-4 text-[#C4604A]" />
             <input
               type="text"
@@ -68,7 +68,7 @@ export function CommandPalette({
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search blueprints, skills, plates, or actions..."
-              className="flex-1 bg-transparent text-sm text-[#1A1816] placeholder-[#928B87] focus:outline-none font-sans"
+              className="flex-1 bg-transparent text-base sm:text-sm text-[#1A1816] placeholder-[#928B87] focus:outline-none font-sans"
             />
             <button
               onClick={onClose}

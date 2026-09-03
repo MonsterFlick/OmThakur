@@ -35,30 +35,30 @@ export function CareerChronology() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: idx * 0.1 }}
-              className="p-6 sm:p-8 rounded-md bg-[#FDFCFA] border border-[#EDE4D9] hover:border-[#D4C3AF] hover:shadow-paper transition-all"
+              className="p-4 sm:p-6 md:p-8 rounded-md bg-[#FDFCFA] border border-[#EDE4D9] hover:border-[#D4C3AF] hover:shadow-paper transition-all"
             >
-              <div className="flex flex-wrap items-center justify-between gap-2 pb-4 mb-4 border-b border-[#EDE4D9]">
-                <div className="flex items-center gap-3">
-                  <span className="px-2.5 py-0.5 rounded text-[10px] font-mono font-semibold bg-[#C4604A]/10 text-[#C4604A] uppercase tracking-wider">
+              <div className="flex flex-wrap items-center justify-between gap-2 pb-3 sm:pb-4 mb-3 sm:mb-4 border-b border-[#EDE4D9]">
+                <div className="flex items-center gap-2 sm:gap-3">
+                  <span className="px-2 sm:px-2.5 py-0.5 rounded text-[10px] font-mono font-semibold bg-[#C4604A]/10 text-[#C4604A] uppercase tracking-wider">
                     {entry.classification}
                   </span>
-                  <span className="font-mono text-xs text-[#7A746D] flex items-center gap-1">
+                  <span className="font-mono text-[11px] sm:text-xs text-[#7A746D] flex items-center gap-1">
                     <Calendar className="w-3 h-3" />
                     {entry.period}
                   </span>
                 </div>
 
-                <span className="font-mono text-xs text-[#928B87] flex items-center gap-1">
+                <span className="font-mono text-[11px] sm:text-xs text-[#928B87] flex items-center gap-1">
                   <MapPin className="w-3 h-3" />
                   {entry.location}
                 </span>
               </div>
 
               <div>
-                <h3 className="font-serif text-2xl font-black text-[#1A1816]">
+                <h3 className="font-serif text-xl sm:text-2xl font-black text-[#1A1816]">
                   {entry.company}
                 </h3>
-                <p className="text-sm font-semibold text-[#C4604A] mt-0.5 mb-3">
+                <p className="text-xs sm:text-sm font-semibold text-[#C4604A] mt-0.5 mb-2 sm:mb-3">
                   {entry.role}
                 </p>
                 <p className="text-xs sm:text-sm text-[#5E5854] leading-relaxed mb-4">
@@ -67,7 +67,7 @@ export function CareerChronology() {
               </div>
 
               {/* Deliverables List */}
-              <div className="p-4 rounded bg-[#FAF6F1] border border-[#EDE4D9] space-y-2 mb-4">
+              <div className="p-3 sm:p-4 rounded bg-[#FAF6F1] border border-[#EDE4D9] space-y-2 mb-4">
                 <span className="text-xs font-mono font-semibold text-[#1A1816] uppercase tracking-wider block">
                   Core Engineering Deliverables:
                 </span>

@@ -174,21 +174,21 @@ export function TelemetryConsole({ open, onClose }: TelemetryConsoleProps) {
 
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 z-[9990] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+      <div className="fixed inset-0 z-[9990] flex items-center justify-center p-2.5 sm:p-4 bg-black/60 backdrop-blur-sm">
         <motion.div
           initial={{ opacity: 0, scale: 0.95, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 20 }}
           transition={{ duration: 0.2 }}
-          className="w-full max-w-2xl bg-[#1A1816] text-[#FAF6F1] rounded-lg border border-[#4A4541] shadow-2xl overflow-hidden flex flex-col h-[520px]"
+          className="w-full max-w-2xl bg-[#1A1816] text-[#FAF6F1] rounded-lg border border-[#4A4541] shadow-2xl overflow-hidden flex flex-col h-[85vh] sm:h-[520px] max-h-[92vh]"
         >
           {/* Terminal Title Bar */}
-          <div className="flex items-center justify-between px-4 py-3 bg-[#2C2825] border-b border-[#383432] select-none">
+          <div className="flex items-center justify-between px-3.5 py-2.5 sm:px-4 sm:py-3 bg-[#2C2825] border-b border-[#383432] select-none shrink-0">
             <div className="flex items-center gap-2">
-              <span className="w-3 h-3 rounded-full bg-[#C4604A] inline-block" />
-              <span className="w-3 h-3 rounded-full bg-[#D4C3AF] inline-block" />
-              <span className="w-3 h-3 rounded-full bg-[#566449] inline-block" />
-              <span className="font-mono text-xs text-[#928B87] ml-2">
+              <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#C4604A] inline-block" />
+              <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#D4C3AF] inline-block" />
+              <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#566449] inline-block" />
+              <span className="font-mono text-[11px] sm:text-xs text-[#928B87] ml-2 truncate">
                 omthakur@workstation:~ (zsh)
               </span>
             </div>
@@ -196,13 +196,14 @@ export function TelemetryConsole({ open, onClose }: TelemetryConsoleProps) {
             <button
               onClick={onClose}
               className="p-1 rounded text-[#928B87] hover:text-[#FAF6F1] hover:bg-[#383432] transition-colors"
+              aria-label="Close Terminal"
             >
               <X className="w-4 h-4" />
             </button>
           </div>
 
           {/* Terminal Screen & History */}
-          <div className="flex-1 p-4 overflow-y-auto space-y-4 font-mono text-xs no-scrollbar">
+          <div className="flex-1 p-3.5 sm:p-4 overflow-y-auto space-y-3 sm:space-y-4 font-mono text-xs no-scrollbar">
             {history.map((item) => (
               <div key={item.id} className="space-y-1">
                 <div className="flex items-center gap-2 text-[#928B87]">
@@ -210,10 +211,27 @@ export function TelemetryConsole({ open, onClose }: TelemetryConsoleProps) {
                   <span className="text-[#EDE4D9] font-bold">{item.command}</span>
                   <span className="text-[10px] ml-auto text-[#7A746D]">{item.time}</span>
                 </div>
-                <div className="pl-4">{item.output}</div>
+                <div className="pl-3 sm:pl-4">{item.output}</div>
               </div>
             ))}
             <div ref={bottomRef} />
+          </div>
+
+          {/* Quick Command Suggestion Chips for Fast Touch Interaction */}
+          <div className="px-3 py-2 bg-[#23201D] border-t border-[#383432]/60 flex items-center gap-1.5 overflow-x-auto no-scrollbar shrink-0">
+            <span className="text-[10px] font-mono text-[#7A746D] uppercase tracking-wider shrink-0 mr-1">
+              Quick:
+            </span>
+            {["help", "whoami", "skills", "projects", "metrics", "resume", "clear"].map((c) => (
+              <button
+                key={c}
+                type="button"
+                onClick={() => handleCommand(c)}
+                className="px-2 py-0.5 rounded bg-[#383432] hover:bg-[#4A4541] active:bg-[#C4604A] text-[#EDE4D9] hover:text-[#FAF6F1] text-[10.5px] font-mono shrink-0 transition-colors"
+              >
+                {c}
+              </button>
+            ))}
           </div>
 
           {/* Interactive Command Input Line */}
@@ -222,7 +240,7 @@ export function TelemetryConsole({ open, onClose }: TelemetryConsoleProps) {
               e.preventDefault();
               handleCommand(inputVal);
             }}
-            className="flex items-center gap-2 p-3 bg-[#2C2825] border-t border-[#383432]"
+            className="flex items-center gap-2 p-2.5 sm:p-3 bg-[#2C2825] border-t border-[#383432] shrink-0"
           >
             <span className="text-[#C4604A] font-mono font-bold">➜</span>
             <input
@@ -230,12 +248,12 @@ export function TelemetryConsole({ open, onClose }: TelemetryConsoleProps) {
               type="text"
               value={inputVal}
               onChange={(e) => setInputVal(e.target.value)}
-              placeholder="Type command (try 'help', 'skills', 'metrics', 'projects')..."
-              className="flex-1 bg-transparent text-[#FAF6F1] font-mono text-xs focus:outline-none placeholder-[#7A746D]"
+              placeholder="Type command ('help', 'skills')..."
+              className="flex-1 bg-transparent text-[#FAF6F1] font-mono text-base sm:text-xs focus:outline-none placeholder-[#7A746D]"
             />
             <button
               type="submit"
-              className="p-1.5 rounded bg-[#C4604A] text-white hover:bg-[#A8493A] transition-colors text-xs"
+              className="p-1.5 rounded bg-[#C4604A] text-white hover:bg-[#A8493A] transition-colors text-xs shrink-0"
             >
               <CornerDownLeft className="w-3.5 h-3.5" />
             </button>

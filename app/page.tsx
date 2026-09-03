@@ -74,14 +74,24 @@ export default function Home() {
       </div>
 
       {/* 2. Live Gazette Editorial Status Ticker */}
-      <div className="py-3 px-4 bg-[#F3ECE4] border-y border-[#EDE4D9] text-xs font-mono text-[#5E5854] overflow-hidden select-none">
-        <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
-          <div className="flex items-center gap-2 shrink-0">
-            <span className="w-2 h-2 rounded-full bg-[#566449] animate-pulse" />
-            <span className="font-semibold text-[#1A1816]">STATUS: AVAILABLE FOR 2026 ENGAGEMENTS</span>
+      <div className="py-2.5 px-3 sm:px-4 bg-[#F3ECE4] border-y border-[#EDE4D9] text-xs font-mono text-[#5E5854] overflow-hidden select-none">
+        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-4">
+          <div className="flex items-center justify-between sm:justify-start gap-2">
+            <div className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-[#566449] animate-pulse shrink-0" />
+              <span className="font-semibold text-[#1A1816] text-[11px] sm:text-xs">
+                STATUS: AVAILABLE FOR 2026 ENGAGEMENTS
+              </span>
+            </div>
+            <button
+              onClick={() => setTerminalOpen(true)}
+              className="sm:hidden text-[10px] text-[#C4604A] font-semibold bg-[#FAF6F1] px-2 py-0.5 rounded border border-[#EDE4D9] shrink-0"
+            >
+              Terminal ➜
+            </button>
           </div>
 
-          <div className="hidden sm:flex items-center gap-6 text-[11px] text-[#7A746D]">
+          <div className="hidden lg:flex items-center gap-6 text-[11px] text-[#7A746D]">
             <span>NODE.JS CLUSTERS</span>
             <span>•</span>
             <span>POSTGRESQL &amp; SUPABASE RLS</span>
@@ -93,7 +103,7 @@ export default function Home() {
 
           <button
             onClick={() => setTerminalOpen(true)}
-            className="text-[11px] text-[#C4604A] hover:underline font-semibold shrink-0"
+            className="hidden sm:inline-block text-[11px] text-[#C4604A] hover:underline font-semibold shrink-0"
           >
             Press ⌘` or Click for Terminal ➜
           </button>
@@ -122,10 +132,10 @@ export default function Home() {
       <EditorialFooter />
 
       {/* Floating REPL Console Trigger Badge */}
-      <div className="fixed bottom-6 right-6 z-40">
+      <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40">
         <button
           onClick={() => setTerminalOpen(true)}
-          className="flex items-center gap-2 px-3.5 py-2 rounded-full bg-[#1A1816] text-[#FAF6F1] hover:bg-[#C4604A] transition-all shadow-lg border border-[#4A4541] font-mono text-xs font-semibold"
+          className="flex items-center gap-2 px-3 sm:px-3.5 py-1.5 sm:py-2 rounded-full bg-[#1A1816]/95 backdrop-blur text-[#FAF6F1] hover:bg-[#C4604A] transition-all shadow-xl border border-[#4A4541] font-mono text-xs font-semibold active:scale-95"
           title="Open Telemetry Terminal Console (⌘`)"
         >
           <Terminal className="w-3.5 h-3.5 text-[#C4604A]" />

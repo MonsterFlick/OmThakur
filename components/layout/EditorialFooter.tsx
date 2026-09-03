@@ -13,15 +13,15 @@ export function EditorialFooter() {
       <div className="max-w-7xl mx-auto">
         
         {/* ── Curator Letter & Personal Reflection Card ── */}
-        <div className="p-8 sm:p-10 rounded-md bg-[#FDFCFA] border border-[#EDE4D9] shadow-paper mb-16 relative overflow-hidden">
-          <div className="max-w-3xl space-y-4">
+        <div className="p-5 sm:p-8 md:p-10 rounded-md bg-[#FDFCFA] border border-[#EDE4D9] shadow-paper mb-12 sm:mb-16 relative overflow-hidden">
+          <div className="max-w-3xl space-y-3 sm:space-y-4">
             <span className="text-xs uppercase tracking-[0.22em] text-[#C4604A] font-semibold block">
               Author&apos;s Epilogue & Mission
             </span>
-            <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#1A1816]">
+            <h3 className="font-serif text-xl sm:text-2xl md:text-3xl font-bold text-[#1A1816]">
               Building for Longevity in an Era of Transient SaaS
             </h3>
-            <p className="text-sm text-[#5E5854] leading-relaxed">
+            <p className="text-xs sm:text-sm text-[#5E5854] leading-relaxed">
               Software is most resilient when built with mathematical simplicity, rigorous boundary isolation,
               and deep respect for the hardware beneath it. Whether constructing a multi-tenant PostgreSQL schema
               or tuning low-level operating system frame pacing, my commitment is to software that stands the test of time.
@@ -37,8 +37,8 @@ export function EditorialFooter() {
                 </span>
               </div>
 
-              <div className="w-12 h-12 rounded-full border-2 border-dashed border-[#C4604A]/60 flex items-center justify-center p-1 shrink-0">
-                <span className="text-[8px] font-mono text-[#C4604A] font-bold text-center leading-none">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 border-dashed border-[#C4604A]/60 flex items-center justify-center p-1 shrink-0">
+                <span className="text-[7px] sm:text-[8px] font-mono text-[#C4604A] font-bold text-center leading-none">
                   COLOPHON<br />SEAL
                 </span>
               </div>
@@ -47,7 +47,7 @@ export function EditorialFooter() {
         </div>
 
         {/* ── Directory & Colophon Grid ── */}
-        <div className="grid md:grid-cols-4 gap-8 pb-12 border-b border-[#EDE4D9] text-xs">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 pb-12 border-b border-[#EDE4D9] text-xs">
           {/* Identity */}
           <div className="space-y-2">
             <span className="font-serif text-lg font-black text-[#1A1816] block">
