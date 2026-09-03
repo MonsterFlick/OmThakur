@@ -13,6 +13,9 @@ import {
   Moon,
   CheckCircle2,
   Gamepad2,
+  Tv,
+  Play,
+  ExternalLink,
 } from "lucide-react";
 
 const DISCORD_USER_ID = "857262753390919720";
@@ -20,10 +23,14 @@ const DISCORD_USER_ID = "857262753390919720";
 interface LanyardActivity {
   id?: string;
   name: string;
-  type: number; // 0: Game, 1: Stream, 2: Listen, 3: Watch, 4: Custom, 5: Compete
+  type: number; // 0: Game/Code, 1: Stream, 2: Listen, 3: Watch, 4: Custom, 5: Compete
   state?: string;
   details?: string;
   application_id?: string;
+  platform?: string;
+  details_url?: string;
+  state_url?: string;
+  large_url?: string;
   timestamps?: {
     start?: number;
     end?: number;
@@ -31,8 +38,10 @@ interface LanyardActivity {
   assets?: {
     large_image?: string;
     large_text?: string;
+    large_url?: string;
     small_image?: string;
     small_text?: string;
+    small_url?: string;
   };
   buttons?: string[];
 }
@@ -62,21 +71,26 @@ interface LanyardData {
   activities: LanyardActivity[];
 }
 
-function resolveAssetUrl(activity?: LanyardActivity | null, spotifyArt?: string | null): string | null {
-  if (spotifyArt) return spotifyArt;
-  if (!activity || !activity.assets?.large_image) return null;
-  const img = activity.assets.large_image;
-
+function resolveAsset(img?: string | null, appId?: string | null): string | null {
+  if (!img) return null;
   if (img.startsWith("mp:external/")) {
     const rawPath = img.replace("mp:external/", "");
+    const httpsIdx = rawPath.indexOf("https/");
+    if (httpsIdx !== -1) {
+      return "https://" + rawPath.slice(httpsIdx + 6);
+    }
+    const httpIdx = rawPath.indexOf("http/");
+    if (httpIdx !== -1) {
+      return "http://" + rawPath.slice(httpIdx + 5);
+    }
     return `https://media.discordapp.net/external/${rawPath}`;
   }
   if (img.startsWith("spotify:")) {
     const spotifyId = img.replace("spotify:", "");
     return `https://i.scdn.co/image/${spotifyId}`;
   }
-  if (activity.application_id) {
-    return `https://cdn.discordapp.com/app-assets/${activity.application_id}/${img}.png`;
+  if (appId) {
+    return `https://cdn.discordapp.com/app-assets/${appId}/${img}.png`;
   }
   return null;
 }
@@ -118,7 +132,6 @@ export function LiveDeviceStation() {
           const msg = JSON.parse(event.data);
           const { op, d, t } = msg;
 
-          // Opcode 1: Hello -> start heartbeat & subscribe
           if (op === 1) {
             const interval = d.heartbeat_interval || 30000;
             if (heartbeatTimerRef.current) clearInterval(heartbeatTimerRef.current);
@@ -136,7 +149,6 @@ export function LiveDeviceStation() {
             );
           }
 
-          // Dispatch Events
           if (op === 0) {
             if (t === "INIT_STATE" || t === "PRESENCE_UPDATE") {
               setData(d);
@@ -161,9 +173,9 @@ export function LiveDeviceStation() {
     connectWs();
 
     return () => {
-      clearTimeout(reconnectTimeout);
-      if (heartbeatTimerRef.current) clearInterval(heartbeatTimerRef.current);
       if (wsRef.current) wsRef.current.close();
+      if (heartbeatTimerRef.current) clearInterval(heartbeatTimerRef.current);
+      clearTimeout(reconnectTimeout);
     };
   }, []);
 
@@ -173,40 +185,62 @@ export function LiveDeviceStation() {
     return () => clearInterval(timer);
   }, []);
 
-  // Extract Real Activities
+  // ── Exact Activity Classification ──
+
+  // 1. Video Watching (YouTube, Twitch, Netflix, Streams - type 3 or video names)
+  const videoActivity =
+    data?.activities.find(
+      (a) =>
+        a.type === 3 ||
+        (a.name.toLowerCase() === "youtube" && a.type !== 2) ||
+        a.name.toLowerCase().includes("twitch") ||
+        a.name.toLowerCase().includes("netflix")
+    ) || null;
+
+  // 2. Audio & Music Streaming (Spotify, YouTube Music, Metrolist - type 2 or audio names)
   const spotify = data?.spotify || null;
   const musicActivity =
     data?.activities.find(
       (a) =>
-        a.type === 2 ||
-        a.name.toLowerCase().includes("music") ||
+        (a.type === 2 && a !== videoActivity) ||
+        (a.name.toLowerCase().includes("music") && a.type !== 3) ||
         a.name.toLowerCase().includes("metrolist") ||
-        a.name.toLowerCase().includes("youtube") ||
         a.name.toLowerCase().includes("spotify")
     ) || null;
 
+  // 3. Coding / IDE Activity (Antigravity IDE, VS Code, Cursor, Code - type 0)
   const vscodeActivity =
     data?.activities.find(
       (a) =>
+        a.name.toLowerCase() === "code" ||
         a.name.toLowerCase().includes("visual studio") ||
-        a.name.toLowerCase().includes("code") ||
-        a.name.toLowerCase().includes("cursor")
+        a.name.toLowerCase().includes("cursor") ||
+        a.name.toLowerCase().includes("antigravity") ||
+        (a.assets?.large_text && a.assets.large_text.toLowerCase().includes("editing")) ||
+        (a.details && a.details.toLowerCase().includes("problems found"))
     ) || null;
 
+  // 4. Gaming Activity (type 0 games that are not code or media)
   const gameActivity =
     data?.activities.find(
       (a) =>
         a.type === 0 &&
-        !a.name.toLowerCase().includes("code") &&
-        !a.name.toLowerCase().includes("studio")
+        a !== vscodeActivity &&
+        a !== videoActivity &&
+        a !== musicActivity
     ) || null;
 
   const customStatusActivity = data?.activities.find((a) => a.type === 4) || null;
 
   // Real Device State Flags
-  const isMobileActive = data?.active_on_discord_mobile || false;
-  const isDesktopActive = data?.active_on_discord_desktop || !!vscodeActivity || !!gameActivity;
+  const isVideoWatching = !!videoActivity;
   const isMusicPlaying = !!spotify || !!musicActivity;
+  const isMobileActive = data?.active_on_discord_mobile || false;
+  const isDesktopActive =
+    data?.active_on_discord_desktop ||
+    !!vscodeActivity ||
+    !!gameActivity ||
+    (isVideoWatching && videoActivity?.platform === "desktop");
 
   // User Profile
   const avatarUrl = data?.discord_user?.avatar
@@ -217,14 +251,63 @@ export function LiveDeviceStation() {
   const username = data?.discord_user?.username || "monsterflick";
   const discordStatus = data?.discord_status || "offline";
 
-  // Song duration & current position calculation (100% Real)
+  // ── Video Metrics Calculation (100% Real) ──
+  let videoTitle = "";
+  let videoChannel = "";
+  let videoChannelUrl = "";
+  let videoWatchUrl = "";
+  let videoThumb = "";
+  let videoTotalSec = 0;
+  let videoCurSec = 0;
+  let videoProgress = 0;
+  let videoButtons: Array<{ label: string; url: string }> = [];
+
+  if (videoActivity) {
+    videoTitle = videoActivity.details || videoActivity.name;
+    videoChannel = videoActivity.state || "";
+    videoChannelUrl = videoActivity.state_url || "";
+    videoWatchUrl =
+      videoActivity.details_url ||
+      videoActivity.assets?.large_url ||
+      (videoActivity.name.toLowerCase() === "youtube" && videoTitle
+        ? `https://www.youtube.com/results?search_query=${encodeURIComponent(videoTitle)}`
+        : "");
+    videoThumb = resolveAsset(videoActivity.assets?.large_image, videoActivity.application_id) || "";
+
+    if (videoActivity.timestamps?.start && videoActivity.timestamps?.end) {
+      const totalMs = videoActivity.timestamps.end - videoActivity.timestamps.start;
+      const curMs = Math.max(0, Math.min(totalMs, currentTime - videoActivity.timestamps.start));
+      videoTotalSec = Math.floor(totalMs / 1000);
+      videoCurSec = Math.floor(curMs / 1000);
+      videoProgress = totalMs > 0 ? (curMs / totalMs) * 100 : 0;
+    } else if (videoActivity.timestamps?.start) {
+      videoCurSec = Math.floor((currentTime - videoActivity.timestamps.start) / 1000);
+    }
+
+    if (videoActivity.buttons && videoActivity.buttons.length > 0) {
+      videoButtons = videoActivity.buttons.map((btn) => {
+        let url = videoWatchUrl;
+        if (btn.toLowerCase().includes("channel") && videoChannelUrl) {
+          url = videoChannelUrl;
+        }
+        return { label: btn, url: url || videoWatchUrl || "https://youtube.com" };
+      });
+    } else if (videoWatchUrl) {
+      videoButtons = [{ label: "Watch on YouTube", url: videoWatchUrl }];
+    }
+  }
+
+  // ── Song Duration & Audio Calculation (100% Real) ──
   let trackTitle = "";
   let trackArtist = "";
   let trackAlbum = "";
   let trackProgress = 0;
   let trackTotalSec = 0;
   let trackCurSec = 0;
-  let coverArt = resolveAssetUrl(musicActivity, spotify?.album_art_url);
+  let coverArt =
+    spotify?.album_art_url ||
+    resolveAsset(musicActivity?.assets?.large_image, musicActivity?.application_id);
+  let musicButtons: Array<{ label: string; url: string }> = [];
 
   if (spotify) {
     trackTitle = spotify.song;
@@ -235,6 +318,9 @@ export function LiveDeviceStation() {
     trackTotalSec = Math.floor(totalMs / 1000);
     trackCurSec = Math.floor(curMs / 1000);
     trackProgress = totalMs > 0 ? (curMs / totalMs) * 100 : 0;
+    musicButtons = [
+      { label: "Listen on Spotify", url: `https://open.spotify.com/track/${spotify.track_id}` },
+    ];
   } else if (musicActivity) {
     trackTitle = musicActivity.details || musicActivity.name;
     trackArtist = musicActivity.state || "";
@@ -249,6 +335,55 @@ export function LiveDeviceStation() {
       trackCurSec = Math.floor((currentTime - musicActivity.timestamps.start) / 1000);
       trackTotalSec = Math.max(trackCurSec + 60, 240);
       trackProgress = Math.min(100, (trackCurSec / trackTotalSec) * 100);
+    }
+
+    if (musicActivity.buttons && musicActivity.buttons.length > 0) {
+      musicButtons = musicActivity.buttons.map((btn) => {
+        let url = "";
+        if (btn.toLowerCase().includes("youtube music") || btn.toLowerCase().includes("youtube")) {
+          url = `https://music.youtube.com/search?q=${encodeURIComponent(trackTitle + " " + trackArtist)}`;
+        } else if (btn.toLowerCase().includes("metrolist")) {
+          url = "https://metrolist.app";
+        } else if (musicActivity.details_url) {
+          url = musicActivity.details_url;
+        } else {
+          url = `https://www.youtube.com/results?search_query=${encodeURIComponent(trackTitle + " " + trackArtist)}`;
+        }
+        return { label: btn, url };
+      });
+    } else if (trackTitle) {
+      musicButtons = [
+        {
+          label: "Listen on YouTube Music",
+          url: `https://music.youtube.com/search?q=${encodeURIComponent(trackTitle + " " + trackArtist)}`,
+        },
+      ];
+    }
+  }
+
+  // ── IDE / Coding Data ──
+  let codeLargeIcon = "";
+  let codeSmallIcon = "";
+  let codeLargeText = "";
+  let codeSmallText = "";
+  let codeButtons: Array<{ label: string; url: string }> = [];
+
+  if (vscodeActivity) {
+    codeLargeIcon = resolveAsset(vscodeActivity.assets?.large_image, vscodeActivity.application_id) || "";
+    codeSmallIcon = resolveAsset(vscodeActivity.assets?.small_image, vscodeActivity.application_id) || "";
+    codeLargeText = vscodeActivity.assets?.large_text || "Editing Code";
+    codeSmallText = vscodeActivity.assets?.small_text || vscodeActivity.name;
+
+    if (vscodeActivity.buttons && vscodeActivity.buttons.length > 0) {
+      codeButtons = vscodeActivity.buttons.map((btn) => {
+        let url = "https://github.com/MonsterFlick/OmThakur";
+        if (vscodeActivity.details_url) {
+          url = vscodeActivity.details_url;
+        }
+        return { label: btn, url };
+      });
+    } else {
+      codeButtons = [{ label: "View Repository", url: "https://github.com/MonsterFlick/OmThakur" }];
     }
   }
 
@@ -341,6 +476,32 @@ export function LiveDeviceStation() {
                   <span>&ldquo;Currently away / in low-power standby&rdquo;</span>
                 )}
               </p>
+
+              {/* Real-time Simultaneous Activity Chips */}
+              <div className="flex flex-wrap items-center gap-1.5 mt-2">
+                {vscodeActivity && (
+                  <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10.5px] font-mono bg-[#566449]/10 text-[#566449] border border-[#566449]/20 font-medium">
+                    <Code2 className="w-3 h-3" />
+                    <span className="truncate max-w-[200px]">
+                      Coding: {vscodeActivity.state || vscodeActivity.details || "In IDE"}
+                    </span>
+                  </span>
+                )}
+                {isVideoWatching && (
+                  <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10.5px] font-mono bg-[#C4604A]/10 text-[#C4604A] border border-[#C4604A]/20 font-medium">
+                    <Tv className="w-3 h-3" />
+                    <span className="truncate max-w-[200px]">
+                      Watching: {videoTitle || videoActivity?.name}
+                    </span>
+                  </span>
+                )}
+                {isMusicPlaying && trackTitle && (
+                  <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10.5px] font-mono bg-[#7A3B3B]/10 text-[#7A3B3B] border border-[#7A3B3B]/20 font-medium">
+                    <Music className="w-3 h-3" />
+                    <span className="truncate max-w-[200px]">Listening: {trackTitle}</span>
+                  </span>
+                )}
+              </div>
             </div>
           </div>
 
@@ -364,7 +525,7 @@ export function LiveDeviceStation() {
           {/* ── 1. REALME 11 PRO 5G ── */}
           <div
             className={`p-4 sm:p-6 rounded-lg border shadow-sm flex flex-col justify-between transition-all ${
-              isMobileActive || isMusicPlaying
+              isMobileActive || isMusicPlaying || (isVideoWatching && videoActivity?.platform === "mobile")
                 ? "bg-[#FDFCFA] border-[#EDE4D9] hover:border-[#D4C3AF]"
                 : "bg-[#F7F2EB]/60 border-[#E8DFC8] opacity-80"
             }`}
@@ -395,10 +556,15 @@ export function LiveDeviceStation() {
 
               {/* Status Badge */}
               <div className="mt-4">
-                {isMusicPlaying ? (
+                {isMusicPlaying && trackTitle ? (
                   <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#C4604A]/10 text-[#C4604A] text-xs font-semibold">
                     <Music className="w-3.5 h-3.5 animate-bounce" />
                     <span>Streaming Audio</span>
+                  </span>
+                ) : isVideoWatching && videoActivity?.platform === "mobile" ? (
+                  <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#C4604A]/10 text-[#C4604A] text-xs font-semibold">
+                    <Tv className="w-3.5 h-3.5" />
+                    <span>Watching {videoActivity.name}</span>
                   </span>
                 ) : isMobileActive ? (
                   <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#566449]/10 text-[#566449] text-xs font-semibold">
@@ -435,7 +601,7 @@ export function LiveDeviceStation() {
                       <div className="w-2.5 h-2.5 rounded-full bg-[#FAF6F1] absolute shadow-inner" />
                     </div>
 
-                    <div className="min-w-0">
+                    <div className="min-w-0 flex-1">
                       <h4 className="font-serif font-bold text-sm text-[#1A1816] truncate">
                         {trackTitle}
                       </h4>
@@ -452,7 +618,7 @@ export function LiveDeviceStation() {
                     </div>
                   </div>
 
-                  {/* Scrubber (only shown if real track duration exists) */}
+                  {/* Scrubber (shown when duration exists) */}
                   {trackTotalSec > 0 && (
                     <div className="space-y-1">
                       <div className="w-full h-1.5 rounded-full bg-[#EDE4D9] overflow-hidden">
@@ -465,6 +631,24 @@ export function LiveDeviceStation() {
                         <span>{formatSec(trackCurSec)}</span>
                         <span>{formatSec(trackTotalSec)}</span>
                       </div>
+                    </div>
+                  )}
+
+                  {/* Interactive Action Buttons from API */}
+                  {musicButtons.length > 0 && (
+                    <div className="flex flex-wrap gap-1.5 pt-1 border-t border-[#EDE4D9]/80">
+                      {musicButtons.map((btn) => (
+                        <a
+                          key={btn.label}
+                          href={btn.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#F3ECE4] hover:bg-[#E2D5C6] text-[#1A1816] text-[10.5px] font-mono font-medium transition-colors border border-[#E2D5C6]"
+                        >
+                          <span>{btn.label}</span>
+                          <ExternalLink className="w-3 h-3 text-[#7A746D]" />
+                        </a>
+                      ))}
                     </div>
                   )}
                 </div>
@@ -490,7 +674,7 @@ export function LiveDeviceStation() {
           {/* ── 2. GAMING & DEV RIG ── */}
           <div
             className={`p-4 sm:p-6 rounded-lg border shadow-sm flex flex-col justify-between transition-all ${
-              isDesktopActive
+              isDesktopActive || isVideoWatching
                 ? "bg-[#FDFCFA] border-[#EDE4D9] hover:border-[#D4C3AF]"
                 : "bg-[#F7F2EB]/60 border-[#E8DFC8] opacity-80"
             }`}
@@ -501,7 +685,7 @@ export function LiveDeviceStation() {
                 <div className="flex items-center gap-2.5">
                   <div
                     className={`w-8 h-8 rounded flex items-center justify-center ${
-                      isDesktopActive
+                      isDesktopActive || isVideoWatching
                         ? "bg-[#1A1816] text-[#FAF6F1]"
                         : "bg-[#928B87]/10 text-[#928B87]"
                     }`}
@@ -520,23 +704,32 @@ export function LiveDeviceStation() {
               </div>
 
               {/* Status Badge */}
-              <div className="mt-4">
-                {vscodeActivity ? (
+              <div className="mt-4 flex flex-wrap gap-1.5">
+                {vscodeActivity && (
                   <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#566449]/10 text-[#566449] text-xs font-semibold">
                     <Code2 className="w-3.5 h-3.5" />
-                    <span>Coding in {vscodeActivity.name}</span>
+                    <span>Coding in {codeSmallText || vscodeActivity.name}</span>
                   </span>
-                ) : gameActivity ? (
+                )}
+                {isVideoWatching && (
+                  <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#C4604A]/10 text-[#C4604A] text-xs font-semibold">
+                    <Tv className="w-3.5 h-3.5" />
+                    <span>Watching {videoActivity?.name || "Video"}</span>
+                  </span>
+                )}
+                {!vscodeActivity && !isVideoWatching && gameActivity && (
                   <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#C4604A]/10 text-[#C4604A] text-xs font-semibold">
                     <Gamepad2 className="w-3.5 h-3.5" />
                     <span>Playing {gameActivity.name}</span>
                   </span>
-                ) : isDesktopActive ? (
+                )}
+                {!vscodeActivity && !isVideoWatching && !gameActivity && isDesktopActive && (
                   <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#566449]/10 text-[#566449] text-xs font-semibold">
                     <CheckCircle2 className="w-3.5 h-3.5" />
                     <span>Desktop Workstation Online</span>
                   </span>
-                ) : (
+                )}
+                {!vscodeActivity && !isVideoWatching && !gameActivity && !isDesktopActive && (
                   <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#928B87]/15 text-[#7A746D] text-xs font-medium">
                     <Moon className="w-3 h-3" />
                     <span>Standby · Desk Rig Asleep</span>
@@ -544,32 +737,158 @@ export function LiveDeviceStation() {
                 )}
               </div>
 
-              {/* Body Card */}
-              {vscodeActivity ? (
-                <div className="mt-4 p-4 rounded bg-[#FAF6F1] border border-[#EDE4D9] space-y-2 text-xs">
-                  {vscodeActivity.state && (
-                    <div>
-                      <span className="text-[#928B87] block text-[11px] uppercase tracking-wider font-mono">
-                        Workspace / Project
-                      </span>
-                      <span className="font-serif font-bold text-sm text-[#1A1816]">
-                        {vscodeActivity.state}
-                      </span>
-                    </div>
-                  )}
+              {/* ── Active IDE Workbench Block ── */}
+              {vscodeActivity && (
+                <div className="mt-4 p-3.5 rounded bg-[#FAF6F1] border border-[#EDE4D9] space-y-2.5 text-xs">
+                  <div className="flex items-center gap-3">
+                    {codeLargeIcon ? (
+                      <div className="relative shrink-0 w-10 h-10 rounded bg-[#1A1816] p-1.5 border border-[#4A4541] flex items-center justify-center shadow-xs">
+                        <img
+                          src={codeLargeIcon}
+                          alt={codeLargeText}
+                          className="w-7 h-7 object-contain"
+                          title={codeLargeText}
+                        />
+                        {codeSmallIcon && (
+                          <img
+                            src={codeSmallIcon}
+                            alt={codeSmallText}
+                            className="w-4 h-4 rounded-full absolute -bottom-1 -right-1 border border-white bg-white p-0.5"
+                            title={codeSmallText}
+                          />
+                        )}
+                      </div>
+                    ) : (
+                      <div className="w-10 h-10 rounded bg-[#566449]/10 text-[#566449] flex items-center justify-center shrink-0">
+                        <Code2 className="w-5 h-5" />
+                      </div>
+                    )}
 
-                  {vscodeActivity.details && (
-                    <div>
-                      <span className="text-[#928B87] block text-[11px] uppercase tracking-wider font-mono">
-                        Active Buffer
-                      </span>
-                      <span className="font-mono text-[#C4604A] font-semibold text-[11.5px] block truncate">
-                        {vscodeActivity.details}
-                      </span>
+                    <div className="min-w-0 flex-1">
+                      <div className="flex items-center justify-between gap-1">
+                        <span className="font-serif font-bold text-sm text-[#1A1816] truncate">
+                          {vscodeActivity.details || "Active Workspace"}
+                        </span>
+                        <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-[#566449]/15 text-[#566449] shrink-0 font-semibold">
+                          {codeSmallText || "IDE"}
+                        </span>
+                      </div>
+                      <p className="font-mono text-xs text-[#C4604A] truncate mt-0.5 font-medium">
+                        {vscodeActivity.state || codeLargeText}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Code Action Buttons (e.g. View Repository) */}
+                  {codeButtons.length > 0 && (
+                    <div className="flex flex-wrap gap-1.5 pt-1 border-t border-[#EDE4D9]/80">
+                      {codeButtons.map((btn) => (
+                        <a
+                          key={btn.label}
+                          href={btn.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 px-3 py-1 rounded bg-[#1A1816] text-[#FAF6F1] hover:bg-[#C4604A] text-[10.5px] font-mono transition-colors"
+                        >
+                          <span>{btn.label}</span>
+                          <ExternalLink className="w-3 h-3 opacity-70" />
+                        </a>
+                      ))}
                     </div>
                   )}
                 </div>
-              ) : gameActivity ? (
+              )}
+
+              {/* ── Active Video Stream Block (e.g. YouTube Video - Distinct from Music) ── */}
+              {isVideoWatching && (
+                <div className="mt-3 p-3.5 rounded bg-[#FAF6F1] border border-[#EDE4D9] space-y-2.5">
+                  <div className="flex items-center justify-between">
+                    <span className="inline-flex items-center gap-1 text-[10px] font-mono uppercase tracking-wider font-semibold text-[#C4604A]">
+                      <Tv className="w-3 h-3" />
+                      <span>{videoActivity?.name || "Video"} Broadcast</span>
+                    </span>
+                    {videoTotalSec > 0 && (
+                      <span className="text-[10px] font-mono text-[#7A746D]">
+                        {formatSec(videoCurSec)} / {formatSec(videoTotalSec)}
+                      </span>
+                    )}
+                  </div>
+
+                  <div className="flex items-start gap-3">
+                    {/* Video Thumbnail with Play Overlay */}
+                    {videoThumb ? (
+                      <div className="relative w-20 aspect-video rounded overflow-hidden border border-[#D4C3AF] shrink-0 bg-black shadow-xs">
+                        <img
+                          src={videoThumb}
+                          alt={videoTitle}
+                          className="w-full h-full object-cover"
+                        />
+                        <div className="absolute inset-0 bg-black/25 flex items-center justify-center">
+                          <Play className="w-4 h-4 text-white drop-shadow fill-white" />
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="w-16 h-10 rounded bg-[#C4604A]/10 text-[#C4604A] flex items-center justify-center shrink-0 border border-[#C4604A]/20">
+                        <Play className="w-4 h-4 fill-current" />
+                      </div>
+                    )}
+
+                    <div className="min-w-0 flex-1">
+                      <a
+                        href={videoWatchUrl || undefined}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="font-serif font-bold text-xs text-[#1A1816] hover:text-[#C4604A] transition-colors line-clamp-2 leading-snug"
+                      >
+                        {videoTitle}
+                      </a>
+                      {videoChannel && (
+                        <a
+                          href={videoChannelUrl || undefined}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-[11px] text-[#5E5854] hover:text-[#1A1816] hover:underline block truncate mt-0.5"
+                        >
+                          {videoChannel}
+                        </a>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Video Live Scrubber */}
+                  {videoTotalSec > 0 && (
+                    <div className="space-y-1">
+                      <div className="w-full h-1.5 rounded-full bg-[#EDE4D9] overflow-hidden">
+                        <div
+                          className="h-full bg-[#C4604A] rounded-full transition-all duration-300"
+                          style={{ width: `${Math.min(100, Math.max(0, videoProgress))}%` }}
+                        />
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Video Action Buttons (e.g. Watch on YouTube) */}
+                  {videoButtons.length > 0 && (
+                    <div className="flex flex-wrap gap-1.5 pt-0.5">
+                      {videoButtons.map((btn) => (
+                        <a
+                          key={btn.label}
+                          href={btn.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#C4604A] text-white hover:bg-[#A8493A] text-[10.5px] font-mono font-medium transition-colors shadow-xs"
+                        >
+                          <span>{btn.label}</span>
+                          <ExternalLink className="w-3 h-3" />
+                        </a>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {/* Game Block (if only gaming) */}
+              {!vscodeActivity && !isVideoWatching && gameActivity && (
                 <div className="mt-4 p-4 rounded bg-[#FAF6F1] border border-[#EDE4D9] space-y-2 text-xs">
                   <div>
                     <span className="text-[#928B87] block text-[11px] uppercase tracking-wider font-mono">
@@ -583,21 +902,26 @@ export function LiveDeviceStation() {
                     <p className="text-[#5E5854] text-[11.5px]">{gameActivity.details}</p>
                   )}
                 </div>
-              ) : isDesktopActive ? (
-                <div className="mt-4 p-4 rounded bg-[#FAF6F1] border border-[#EDE4D9] text-xs text-[#5E5854] space-y-1">
-                  <p className="font-serif font-bold text-sm text-[#1A1816]">Desktop Active</p>
-                  <p className="text-[11.5px] text-[#7A746D]">Windows 11 · Desktop Workstation</p>
-                </div>
-              ) : (
-                <div className="mt-4 p-4 rounded bg-[#FAF6F1]/50 border border-[#EDE4D9]/60 text-xs text-[#7A746D] space-y-1">
-                  <p className="font-medium text-[#5E5854]">Workstation is powered down.</p>
-                  <p className="text-[11.5px]">Updates live when editing in VS Code or gaming.</p>
-                </div>
+              )}
+
+              {/* Default Standby / Online when no active rich presence */}
+              {!vscodeActivity && !isVideoWatching && !gameActivity && (
+                isDesktopActive ? (
+                  <div className="mt-4 p-4 rounded bg-[#FAF6F1] border border-[#EDE4D9] text-xs text-[#5E5854] space-y-1">
+                    <p className="font-serif font-bold text-sm text-[#1A1816]">Desktop Active</p>
+                    <p className="text-[11.5px] text-[#7A746D]">Windows 11 · Desktop Workstation</p>
+                  </div>
+                ) : (
+                  <div className="mt-4 p-4 rounded bg-[#FAF6F1]/50 border border-[#EDE4D9]/60 text-xs text-[#7A746D] space-y-1">
+                    <p className="font-medium text-[#5E5854]">Workstation is powered down.</p>
+                    <p className="text-[11.5px]">Updates live when editing in IDE or streaming.</p>
+                  </div>
+                )
               )}
             </div>
 
             <div className="mt-5 pt-3 border-t border-[#EDE4D9] flex items-center justify-between text-xs text-[#7A746D] font-mono">
-              <span>{isDesktopActive ? "● Active" : "○ Off"}</span>
+              <span>{isDesktopActive || isVideoWatching ? "● Active" : "○ Off"}</span>
               <span>Primary Rig</span>
             </div>
           </div>
