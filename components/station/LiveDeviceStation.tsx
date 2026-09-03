@@ -16,6 +16,11 @@ import {
   Tv,
   Play,
   ExternalLink,
+  Cloud,
+  Globe2,
+  ShieldCheck,
+  RefreshCw,
+  BarChart3,
 } from "lucide-react";
 
 const DISCORD_USER_ID = "857262753390919720";
@@ -560,8 +565,67 @@ export function LiveDeviceStation() {
   const [currentTime, setCurrentTime] = useState<number>(Date.now());
   const [selectedDesktopActivityId, setSelectedDesktopActivityId] = useState<string | null>(null);
   const [selectedMobileActivityId, setSelectedMobileActivityId] = useState<string | null>(null);
+  const [cfTab, setCfTab] = useState<"traffic" | "deploy" | "network">("traffic");
+  const [isPinging, setIsPinging] = useState(false);
+  const [cfData, setCfData] = useState<{
+    traffic: {
+      totalRequests: string;
+      totalVisits: string;
+      bandwidthMb: string;
+      desktopRequests: string;
+      mobileRequests: string;
+      topHosts: Array<{ host: string; requests: string }>;
+      topCountries: Array<{ code: string; name: string; flag?: string; requests: string }>;
+    } | null;
+    pages: {
+      shortId: string;
+      commitHash: string;
+      commitMessage: string;
+      branch: string;
+      buildDurationSec: number;
+      framework: string;
+      updatedAt: string;
+      environment: string;
+      status: string;
+    } | null;
+    edge: {
+      pop: string | null;
+      country: string | null;
+      ray: string | null;
+      protocol: string | null;
+      latencyMs: number;
+    } | null;
+    latencyMs: number;
+  }>({
+    traffic: null,
+    pages: null,
+    edge: null,
+    latencyMs: 0,
+  });
   const wsRef = useRef<WebSocket | null>(null);
   const heartbeatTimerRef = useRef<NodeJS.Timeout | null>(null);
+
+  const refreshTelemetry = () => {
+    setIsPinging(true);
+    const start = Date.now();
+    fetch("/api/cloudflare-telemetry")
+      .then((res) => res.json())
+      .then((json) => {
+        const clientLatency = Date.now() - start;
+        setCfData({
+          traffic: json.traffic || null,
+          pages: json.pages || null,
+          edge: json.edge || null,
+          latencyMs: clientLatency,
+        });
+      })
+      .catch(() => {})
+      .finally(() => setIsPinging(false));
+  };
+
+  useEffect(() => {
+    refreshTelemetry();
+  }, []);
 
   useEffect(() => {
     fetch(`https://api.lanyard.rest/v1/users/${DISCORD_USER_ID}`)
@@ -650,17 +714,37 @@ export function LiveDeviceStation() {
   const customStatusActivity = data?.activities.find((a) => a.type === 4) || null;
   const isMobileActive = data?.active_on_discord_mobile || false;
   const isDesktopActive = data?.active_on_discord_desktop || false;
-  const desktopActivities = allParsedActivities.filter(
-    (a) => a.platform === "desktop" || a.category === "code" || a.category === "video" || a.category === "game"
-  );
-  const mobileActivities = allParsedActivities.filter(
-    (a) => a.platform === "mobile" || a.category === "music"
-  );
+  const desktopActivities: ParsedActivity[] = [];
+  const mobileActivities: ParsedActivity[] = [];
+
+  allParsedActivities.forEach((act) => {
+    if (act.platform === "desktop") {
+      desktopActivities.push(act);
+    } else if (act.platform === "mobile") {
+      mobileActivities.push(act);
+    } else {
+      // Platform is unspecified or "any" (e.g. Spotify)
+      if (isMobileActive && !isDesktopActive) {
+        mobileActivities.push(act);
+      } else if (isMobileActive && isDesktopActive) {
+        // Both devices active: if desktop has coding/video, route ambient music to mobile
+        const desktopHasNonMusic = desktopActivities.some((d) => d.category !== "music");
+        if (desktopHasNonMusic && act.category === "music") {
+          mobileActivities.push(act);
+        } else {
+          desktopActivities.push(act);
+        }
+      } else {
+        desktopActivities.push(act);
+      }
+    }
+  });
   const activeDesktopActivity = desktopActivities.find((a) => a.id === selectedDesktopActivityId) || desktopActivities[0] || null;
   const activeMobileActivity = mobileActivities.find((a) => a.id === selectedMobileActivityId) || mobileActivities[0] || null;
   const avatarUrl = data?.discord_user?.avatar ? `https://cdn.discordapp.com/avatars/${DISCORD_USER_ID}/${data.discord_user.avatar}.png?size=128` : null;
-  const displayName = data?.discord_user?.display_name || data?.discord_user?.global_name || "MonsterFlick";
-  const username = data?.discord_user?.username || "monsterflick";
+  const displayName = "Om Thakur";
+  const professionalTitle = "Architect & Backend Engineer";
+  const discordHandle = data?.discord_user?.username || "monsterflick";
   const discordStatus = data?.discord_status || "offline";
 
   return (
@@ -683,57 +767,141 @@ export function LiveDeviceStation() {
           </div>
         </div>
 
-        <div className="mb-8 p-4 sm:p-5 rounded-lg bg-[#FDFCFA] border border-[#EDE4D9] shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-          <div className="flex items-center gap-3.5">
+        {/* ── Central Presence Beacon Banner ── */}
+        <div className="mb-8 p-5 sm:p-6 rounded-xl bg-[#FDFCFA] border border-[#EDE4D9] shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-6">
+          <div className="flex items-center gap-4">
+            {/* Avatar with dynamic radar ping */}
             <div className="relative shrink-0">
-              {avatarUrl ? (
-                <img src={avatarUrl} alt={displayName} className="w-12 h-12 rounded-full border-2 border-[#D4C3AF] object-cover shadow-sm" />
-              ) : (
-                <div className="w-12 h-12 rounded-full bg-[#1A1816] text-[#FAF6F1] font-serif font-black flex items-center justify-center text-base border-2 border-[#D4C3AF]">OT</div>
-              )}
-              <span className={`absolute bottom-0 right-0 w-3.5 h-3.5 rounded-full border-2 border-white ${discordStatus === "online" ? "bg-[#566449]" : discordStatus === "idle" ? "bg-[#D97706]" : discordStatus === "dnd" ? "bg-[#C4604A]" : "bg-[#928B87]"}`} />
+              <div className="w-14 h-14 rounded-full p-0.5 bg-gradient-to-tr from-[#C4604A] via-[#D4C3AF] to-[#566449] shadow-sm">
+                {avatarUrl ? (
+                  <img
+                    src={avatarUrl}
+                    alt={displayName}
+                    className="w-full h-full rounded-full object-cover bg-[#1A1816]"
+                  />
+                ) : (
+                  <div className="w-full h-full rounded-full bg-[#1A1816] text-[#FAF6F1] font-serif font-black flex items-center justify-center text-lg">
+                    OT
+                  </div>
+                )}
+              </div>
+              <span
+                className={`absolute bottom-0 right-0 w-4 h-4 rounded-full border-2 border-white ${
+                  discordStatus === "online"
+                    ? "bg-[#566449]"
+                    : discordStatus === "idle"
+                    ? "bg-[#D97706]"
+                    : discordStatus === "dnd"
+                    ? "bg-[#C4604A]"
+                    : "bg-[#928B87]"
+                }`}
+              />
             </div>
+
+            {/* Author Identity & Custom Status */}
             <div className="min-w-0">
-              <div className="flex items-center gap-2 flex-wrap">
-                <span className="font-serif font-bold text-base sm:text-lg text-[#1A1816]">{displayName}</span>
-                <span className="text-xs font-mono text-[#7A746D]">@{username}</span>
-                <span className={`text-[10px] font-mono uppercase tracking-wider px-2 py-0.5 rounded-full font-bold ${discordStatus === "online" ? "bg-[#566449]/10 text-[#566449]" : discordStatus === "idle" ? "bg-[#D97706]/10 text-[#D97706]" : discordStatus === "dnd" ? "bg-[#C4604A]/10 text-[#C4604A]" : "bg-[#928B87]/15 text-[#7A746D]"}`}>
-                  {discordStatus}
+              <div className="flex items-center gap-2.5 flex-wrap">
+                <span className="font-serif font-black text-lg sm:text-xl text-[#1A1816] tracking-tight">
+                  {displayName}
+                </span>
+                <span className="text-[11px] font-mono px-2 py-0.5 rounded bg-[#EDE4D9]/80 text-[#5E5854] border border-[#D4C3AF]/60 font-medium">
+                  {professionalTitle}
+                </span>
+                <span
+                  className={`text-[10.5px] font-mono uppercase tracking-wider px-2 py-0.5 rounded-full font-bold flex items-center gap-1.5 ${
+                    discordStatus === "online"
+                      ? "bg-[#566449]/10 text-[#566449]"
+                      : discordStatus === "idle"
+                      ? "bg-[#D97706]/10 text-[#D97706]"
+                      : discordStatus === "dnd"
+                      ? "bg-[#C4604A]/10 text-[#C4604A]"
+                      : "bg-[#928B87]/15 text-[#7A746D]"
+                  }`}
+                >
+                  <span
+                    className={`w-1.5 h-1.5 rounded-full ${
+                      discordStatus !== "offline" ? "bg-current animate-pulse" : "bg-current"
+                    }`}
+                  />
+                  <span>{discordStatus === "online" ? "Active Now" : discordStatus}</span>
                 </span>
               </div>
-              <p className="text-xs sm:text-sm text-[#5E5854] mt-0.5 italic truncate">
-                {customStatusActivity?.state ? (
-                  <span>&ldquo;{customStatusActivity.state}&rdquo;</span>
-                ) : discordStatus !== "offline" ? (
-                  <span>&ldquo;Online &amp; active across personal devices&rdquo;</span>
-                ) : (
-                  <span>&ldquo;Currently away / in low-power standby&rdquo;</span>
+
+              <div className="flex items-center gap-3 text-xs text-[#7A746D] mt-1 font-mono flex-wrap">
+                <span>Discord Handle: @{discordHandle}</span>
+                <span>•</span>
+                <span>Location: Mumbai, IN (IST)</span>
+                {customStatusActivity?.state && (
+                  <>
+                    <span>•</span>
+                    <span className="text-[#C4604A] italic font-sans font-medium truncate max-w-[320px]">
+                      &ldquo;{customStatusActivity.state}&rdquo;
+                    </span>
+                  </>
                 )}
-              </p>
-              <div className="flex flex-wrap items-center gap-1.5 mt-2">
+              </div>
+
+              {/* Real-time Simultaneous Process Ribbon */}
+              <div className="flex flex-wrap items-center gap-2 mt-3">
                 {allParsedActivities.length > 0 ? (
                   allParsedActivities.map((act) => (
-                    <span key={act.id} className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10.5px] font-mono font-medium truncate max-w-[220px]" style={{ backgroundColor: `${act.badgeColor}15`, color: act.badgeColor, border: `1px solid ${act.badgeColor}30` }}>
-                      {act.iconType === "code" && <Code2 className="w-3 h-3 shrink-0" />}
-                      {act.iconType === "video" && <Tv className="w-3 h-3 shrink-0" />}
-                      {act.iconType === "music" && <Music className="w-3 h-3 shrink-0" />}
-                      {act.iconType === "game" && <Gamepad2 className="w-3 h-3 shrink-0" />}
-                      {act.iconType === "stream" && <Radio className="w-3 h-3 shrink-0" />}
+                    <span
+                      key={act.id}
+                      className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[11px] font-mono font-medium truncate max-w-[260px] shadow-2xs transition-all hover:scale-[1.02]"
+                      style={{
+                        backgroundColor: `${act.badgeColor}12`,
+                        color: act.badgeColor,
+                        border: `1px solid ${act.badgeColor}30`,
+                      }}
+                    >
+                      {act.iconType === "code" && <Code2 className="w-3.5 h-3.5 shrink-0" />}
+                      {act.iconType === "video" && <Tv className="w-3.5 h-3.5 shrink-0" />}
+                      {act.iconType === "music" && <Music className="w-3.5 h-3.5 shrink-0" />}
+                      {act.iconType === "game" && <Gamepad2 className="w-3.5 h-3.5 shrink-0" />}
+                      {act.iconType === "stream" && <Radio className="w-3.5 h-3.5 shrink-0" />}
                       <span className="truncate">
-                        {act.category === "code" ? `Coding: ${act.subtitle || act.title}` : act.category === "video" ? `Watching: ${act.title}` : act.category === "music" ? `Listening: ${act.title}` : `${act.service}: ${act.title}`}
+                        {act.category === "code"
+                          ? `Coding: ${act.subtitle || act.title}`
+                          : act.category === "video"
+                          ? `Watching: ${act.title}`
+                          : act.category === "music"
+                          ? `Listening: ${act.title}`
+                          : `${act.service}: ${act.title}`}
                       </span>
+                      <span className="w-1.5 h-1.5 rounded-full shrink-0 bg-current animate-pulse" />
                     </span>
                   ))
                 ) : (
-                  <span className="text-[11px] font-mono text-[#928B87]">● Hardware daemons in idle state</span>
+                  <span className="text-xs font-mono text-[#928B87] flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#928B87]" />
+                    <span>Hardware daemons standing by · Ready for task execution</span>
+                  </span>
                 )}
               </div>
             </div>
           </div>
-          <div className="flex items-center gap-2 text-xs font-mono text-[#1A1816] bg-[#F3ECE4] px-3.5 py-1.5 rounded-full border border-[#EDE4D9] self-start sm:self-auto shrink-0">
-            <span className={`w-2 h-2 rounded-full ${discordStatus !== "offline" ? "bg-[#566449] animate-pulse" : "bg-[#928B87]"}`} />
-            <span className="font-semibold">
-              {discordStatus === "offline" ? "All Devices in Standby" : `${isMobileActive || mobileActivities.length > 0 ? "Mobile" : ""} ${isDesktopActive || desktopActivities.length > 0 ? "• Desktop PC" : ""} Active`}
+
+          {/* Right Status Pill */}
+          <div className="flex flex-col sm:flex-row md:flex-col items-start md:items-end justify-center gap-1.5 pt-3 md:pt-0 border-t md:border-t-0 border-[#EDE4D9] shrink-0">
+            <div className="flex items-center gap-2 text-xs font-mono text-[#1A1816] bg-[#F3ECE4] px-3.5 py-1.5 rounded-full border border-[#EDE4D9]">
+              <span
+                className={`w-2 h-2 rounded-full ${
+                  discordStatus !== "offline" ? "bg-[#566449] animate-pulse" : "bg-[#928B87]"
+                }`}
+              />
+              <span className="font-semibold">
+                {discordStatus === "offline"
+                  ? "Devices Standby • Edge Live"
+                  : `${isMobileActive || mobileActivities.length > 0 ? "Mobile Node" : ""} ${
+                      (isMobileActive || mobileActivities.length > 0) &&
+                      (isDesktopActive || desktopActivities.length > 0)
+                        ? "• "
+                        : ""
+                    }${isDesktopActive || desktopActivities.length > 0 ? "Desktop Rig" : ""} Active`}
+              </span>
+            </div>
+            <span className="text-[11px] font-mono text-[#7A746D]">
+              Cloudflare Edge (BOM) &amp; Lanyard Telemetry
             </span>
           </div>
         </div>
@@ -785,16 +953,49 @@ export function LiveDeviceStation() {
                   </span>
                 )}
               </div>
-              {activeMobileActivity ? renderActivityWidget(activeMobileActivity) : isMobileActive ? (
-                <div className="mt-4 p-4 rounded bg-[#FAF6F1] border border-[#EDE4D9] flex-1 flex flex-col justify-between space-y-3">
-                  <div className="space-y-1">
-                    <p className="font-serif font-bold text-sm text-[#1A1816]">Mobile Online</p>
-                    <p className="text-xs text-[#5E5854]">Connected via 5G SA · Mumbai Hub</p>
-                  </div>
-                </div>
+              {activeMobileActivity ? (
+                renderActivityWidget(activeMobileActivity)
               ) : (
-                <div className="mt-4 p-4 rounded bg-[#FAF6F1]/50 border border-[#EDE4D9]/60 flex-1 flex flex-col justify-between space-y-3">
-                  <div className="space-y-1"><p className="text-xs text-[#5E5854]">Standby</p></div>
+                <div className="mt-4 p-4 rounded bg-[#FAF6F1] border border-[#EDE4D9] flex-1 flex flex-col justify-between space-y-3">
+                  <div className="space-y-2.5">
+                    <div className="flex items-center justify-between">
+                      <span className="text-[10px] font-mono uppercase tracking-wider font-semibold text-[#7A746D]">
+                        Mobile Station Specs
+                      </span>
+                      <span className="inline-flex items-center gap-1 text-[10px] font-mono text-[#566449] font-medium">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#566449] animate-pulse" />
+                        <span>5G SA Connected</span>
+                      </span>
+                    </div>
+
+                    <div className="space-y-1.5 text-[11.5px] font-mono text-[#5E5854]">
+                      <div className="flex justify-between pb-1 border-b border-[#EDE4D9]/60">
+                        <span className="text-[#928B87]">Processor</span>
+                        <span className="font-semibold text-[#1A1816]">Dimensity 7050 (6nm)</span>
+                      </div>
+                      <div className="flex justify-between pb-1 border-b border-[#EDE4D9]/60">
+                        <span className="text-[#928B87]">Platform</span>
+                        <span className="font-semibold text-[#1A1816]">realme UI 5.0 · Android 14</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-[#928B87]">Media Sync</span>
+                        <span className="font-semibold text-[#1A1816]">Audio &amp; Video Streams Ready</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="pt-3 border-t border-[#EDE4D9]/80 mt-auto">
+                    <div className="w-full py-1.5 px-3 rounded bg-[#EDE4D9]/40 border border-[#E2D5C6] text-[#7A746D] text-[11px] font-mono flex items-center justify-between">
+                      <span className="flex items-center gap-1.5">
+                        <Radio className="w-3 h-3 text-[#7A746D]" />
+                        <span>Mobile Feed</span>
+                      </span>
+                      <span className="text-[#5E5854] font-medium flex items-center gap-1">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#928B87]" />
+                        Standby
+                      </span>
+                    </div>
+                  </div>
                 </div>
               )}
             </div>
@@ -874,60 +1075,214 @@ export function LiveDeviceStation() {
             </div>
           </div>
 
+          {/* Card 3: Cloudflare Pages & Edge Real Telemetry Monitor */}
           <div className="p-4 sm:p-6 rounded-lg bg-[#FDFCFA] border border-[#EDE4D9] hover:border-[#D4C3AF] shadow-sm flex flex-col justify-between h-full transition-all">
             <div className="flex-1 flex flex-col">
               <div className="flex items-center justify-between pb-3 border-b border-[#EDE4D9] h-12">
                 <div className="flex items-center gap-2.5">
-                  <div className="w-8 h-8 rounded bg-[#928B87]/10 text-[#7A746D] flex items-center justify-center">
-                    <Server className="w-4 h-4" />
+                  <div className="w-8 h-8 rounded bg-[#F6821F]/10 text-[#F6821F] flex items-center justify-center">
+                    <Cloud className="w-4 h-4" />
                   </div>
                   <div>
-                    <h3 className="font-serif font-bold text-base text-[#1A1816]">Veteran PC</h3>
-                    <p className="text-xs text-[#7A3B3B] font-medium">&quot;i better not say it, it&apos;s very old&quot;</p>
+                    <h3 className="font-serif font-bold text-base text-[#1A1816]">Cloudflare Pages &amp; Edge</h3>
+                    <p className="text-xs text-[#7A746D]">Production Node · omthakur.in</p>
                   </div>
                 </div>
               </div>
+
+              {/* Dynamic Telemetry 3-Tab Selector */}
               <div className="mt-4 h-7 flex items-center">
-                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#928B87]/15 text-[#7A746D] text-xs font-medium">
-                  <Server className="w-3.5 h-3.5 text-[#566449]" />
-                  <span>Daemon Standby Node</span>
-                </span>
-              </div>
-              <div className="mt-4 p-4 rounded bg-[#FAF6F1] border border-[#EDE4D9] flex-1 flex flex-col justify-between space-y-3">
-                <div className="space-y-2.5">
-                  <div className="flex items-center justify-between">
-                    <span className="text-[10px] font-mono uppercase tracking-wider font-semibold text-[#7A746D]">Node Telemetry Specs</span>
-                    <span className="inline-flex items-center gap-1 text-[10px] font-mono text-[#566449] font-medium">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#566449]" />
-                      <span>Standby Daemon</span>
-                    </span>
-                  </div>
-                  <div className="space-y-1.5 text-[11.5px] font-mono text-[#5E5854]">
-                    <div className="flex justify-between pb-1 border-b border-[#EDE4D9]/60">
-                      <span className="text-[#928B87]">CPU</span>
-                      <span className="font-semibold text-[#1A1816]">Intel Core i5-4460</span>
-                    </div>
-                    <div className="flex justify-between pb-1 border-b border-[#EDE4D9]/60">
-                      <span className="text-[#928B87]">Architecture</span>
-                      <span className="font-semibold text-[#1A1816]">x86_64 · 16GB RAM</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-[#928B87]">System Role</span>
-                      <span className="font-semibold text-[#1A1816]">Cron &amp; CI Build Worker</span>
-                    </div>
-                  </div>
+                <div className="flex items-center gap-1 bg-[#F3ECE4] p-1 rounded border border-[#EDE4D9] w-full">
+                  <button
+                    type="button"
+                    onClick={() => setCfTab("traffic")}
+                    className={`flex-1 py-1 px-1.5 rounded text-[10.5px] font-mono font-medium flex items-center justify-center gap-1 transition-all ${
+                      cfTab === "traffic"
+                        ? "bg-[#1A1816] text-[#FAF6F1] shadow-xs"
+                        : "text-[#5E5854] hover:text-[#1A1816] hover:bg-[#E2D5C6]/60"
+                    }`}
+                  >
+                    <BarChart3 className="w-3 h-3 text-[#C4604A]" />
+                    <span>Traffic</span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#C4604A] animate-pulse" />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setCfTab("deploy")}
+                    className={`flex-1 py-1 px-1.5 rounded text-[10.5px] font-mono font-medium flex items-center justify-center gap-1 transition-all ${
+                      cfTab === "deploy"
+                        ? "bg-[#1A1816] text-[#FAF6F1] shadow-xs"
+                        : "text-[#5E5854] hover:text-[#1A1816] hover:bg-[#E2D5C6]/60"
+                    }`}
+                  >
+                    <CheckCircle2 className="w-3 h-3 text-[#566449]" />
+                    <span>Deploy</span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#566449] animate-pulse" />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setCfTab("network")}
+                    className={`flex-1 py-1 px-1.5 rounded text-[10.5px] font-mono font-medium flex items-center justify-center gap-1 transition-all ${
+                      cfTab === "network"
+                        ? "bg-[#1A1816] text-[#FAF6F1] shadow-xs"
+                        : "text-[#5E5854] hover:text-[#1A1816] hover:bg-[#E2D5C6]/60"
+                    }`}
+                  >
+                    <Globe2 className="w-3 h-3 text-[#F6821F]" />
+                    <span>Hosts</span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#F6821F] animate-pulse" />
+                  </button>
                 </div>
+              </div>
+
+              {/* Real Telemetry Details Box */}
+              <div className="mt-4 p-4 rounded bg-[#FAF6F1] border border-[#EDE4D9] flex-1 flex flex-col justify-between space-y-3">
+                {cfTab === "traffic" ? (
+                  !cfData.traffic ? (
+                    <div className="flex items-center justify-center py-4 text-[11px] font-mono text-[#928B87]">
+                      <RefreshCw className="w-3 h-3 animate-spin mr-2" /> Fetching live traffic from Cloudflare...
+                    </div>
+                  ) : (
+                    <div className="space-y-2.5">
+                      <div className="flex items-center justify-between">
+                        <span className="text-[10px] font-mono uppercase tracking-wider font-semibold text-[#7A746D]">
+                          Traffic Overview (24h)
+                        </span>
+                        <span className="inline-flex items-center gap-1 text-[10px] font-mono text-[#566449] font-medium">
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#566449] animate-pulse" />
+                          <span>{cfData.traffic.totalRequests} Requests</span>
+                        </span>
+                      </div>
+                      <div className="space-y-1.5 text-[11.5px] font-mono text-[#5E5854]">
+                        <div className="flex justify-between pb-1 border-b border-[#EDE4D9]/60">
+                          <span className="text-[#928B87]">Visits &amp; Bandwidth</span>
+                          <span className="font-semibold text-[#1A1816]">
+                            {cfData.traffic.totalVisits} Visits · {cfData.traffic.bandwidthMb}
+                          </span>
+                        </div>
+                        <div className="flex justify-between items-center pb-1 border-b border-[#EDE4D9]/60">
+                          <span className="text-[#928B87]">Devices</span>
+                          <span className="font-semibold text-[#1A1816] flex items-center gap-2 font-mono">
+                            <span className="inline-flex items-center gap-1">
+                              <Laptop className="w-3.5 h-3.5 text-[#7A746D]" />
+                              <span>{cfData.traffic.desktopRequests}</span>
+                            </span>
+                            <span className="text-[#DDD3C6]">/</span>
+                            <span className="inline-flex items-center gap-1">
+                              <Smartphone className="w-3.5 h-3.5 text-[#7A746D]" />
+                              <span>{cfData.traffic.mobileRequests}</span>
+                            </span>
+                          </span>
+                        </div>
+                        <div className="flex justify-between items-center">
+                          <span className="text-[#928B87]">Top Countries</span>
+                          <span className="font-semibold text-[#1A1816] flex items-center gap-1 font-mono">
+                            {cfData.traffic.topCountries.map((c) => (
+                              <span
+                                key={c.code}
+                                title={`${c.name} (${c.code}) · ${c.requests} requests`}
+                                className="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-[#EFE8DE] text-[#1A1816] border border-[#DDD3C6] cursor-default hover:bg-[#E2D5C6] transition-colors"
+                              >
+                                {c.code}
+                              </span>
+                            ))}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  )
+                ) : cfTab === "deploy" ? (
+                  !cfData.pages ? (
+                    <div className="flex items-center justify-center py-4 text-[11px] font-mono text-[#928B87]">
+                      <RefreshCw className="w-3 h-3 animate-spin mr-2" /> Fetching deploy status from Cloudflare...
+                    </div>
+                  ) : (
+                    <div className="space-y-2.5">
+                      <div className="flex items-center justify-between">
+                        <span className="text-[10px] font-mono uppercase tracking-wider font-semibold text-[#7A746D]">
+                          Pages Deployment
+                        </span>
+                        <span className="inline-flex items-center gap-1 text-[10px] font-mono text-[#566449] font-medium">
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#566449] animate-pulse" />
+                          <span>#{cfData.pages.shortId} · {cfData.pages.status}</span>
+                        </span>
+                      </div>
+                      <div className="space-y-1.5 text-[11.5px] font-mono text-[#5E5854]">
+                        <div className="flex justify-between pb-1 border-b border-[#EDE4D9]/60">
+                          <span className="text-[#928B87]">Branch / Commit</span>
+                          <span className="font-semibold text-[#1A1816] truncate max-w-[185px]">
+                            {cfData.pages.branch} @ {cfData.pages.commitHash}
+                          </span>
+                        </div>
+                        <div className="flex justify-between pb-1 border-b border-[#EDE4D9]/60">
+                          <span className="text-[#928B87]">Build Runtime</span>
+                          <span className="font-semibold text-[#1A1816]">
+                            {cfData.pages.buildDurationSec}s · {cfData.pages.framework}
+                          </span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-[#928B87]">Environment</span>
+                          <span className="font-semibold text-[#1A1816]">
+                            {cfData.pages.environment}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  )
+                ) : (
+                  !cfData.traffic ? (
+                    <div className="flex items-center justify-center py-4 text-[11px] font-mono text-[#928B87]">
+                      <RefreshCw className="w-3 h-3 animate-spin mr-2" /> Fetching host data from Cloudflare...
+                    </div>
+                  ) : (
+                    <div className="space-y-2.5">
+                      <div className="flex items-center justify-between">
+                        <span className="text-[10px] font-mono uppercase tracking-wider font-semibold text-[#7A746D]">
+                          Top Hosts (24h)
+                        </span>
+                        <span className="inline-flex items-center gap-1 text-[10px] font-mono text-[#566449] font-medium">
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#566449] animate-pulse" />
+                          <span>Live from Cloudflare</span>
+                        </span>
+                      </div>
+                      <div className="space-y-1.5 text-[11.5px] font-mono text-[#5E5854]">
+                        {cfData.traffic.topHosts.map((h, i) => (
+                          <div key={h.host} className={`flex justify-between ${i < cfData.traffic!.topHosts.length - 1 ? "pb-1 border-b border-[#EDE4D9]/60" : ""}`}>
+                            <span className="text-[#928B87] truncate max-w-[140px]">{h.host}</span>
+                            <span className="font-semibold text-[#1A1816]">{h.requests} req</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )
+                )}
+
+                {/* Refresh Button */}
                 <div className="pt-3 border-t border-[#EDE4D9]/80 mt-auto">
-                  <a href="#workbench" className="w-full inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded bg-[#F3ECE4] hover:bg-[#E2D5C6] text-[#1A1816] text-[11px] font-mono font-medium transition-colors border border-[#E2D5C6] text-center">
-                    <span>Node Telemetry Live</span>
-                    <ExternalLink className="w-3 h-3 text-[#7A746D]" />
-                  </a>
+                  <button
+                    type="button"
+                    onClick={refreshTelemetry}
+                    disabled={isPinging}
+                    className="w-full inline-flex items-center justify-between px-3 py-1.5 rounded bg-[#F3ECE4] hover:bg-[#E2D5C6] text-[#1A1816] text-[11px] font-mono font-medium transition-colors border border-[#E2D5C6] cursor-pointer"
+                    title="Refresh all data live from Cloudflare"
+                  >
+                    <span className="flex items-center gap-1.5">
+                      <RefreshCw className={`w-3 h-3 text-[#7A746D] ${isPinging ? "animate-spin text-[#C4604A]" : ""}`} />
+                      <span>{isPinging ? "Fetching from Cloudflare..." : "Refresh Live Data"}</span>
+                    </span>
+                    {cfData.latencyMs > 0 && (
+                      <span className="text-[#566449] font-bold font-mono flex items-center gap-1">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#566449] animate-pulse" />
+                        {cfData.latencyMs}ms
+                      </span>
+                    )}
+                  </button>
                 </div>
               </div>
             </div>
             <div className="mt-5 pt-3 border-t border-[#EDE4D9] text-xs text-[#7A746D] font-mono flex justify-between">
-              <span>● Standby Node</span>
-              <span>Secondary Machine</span>
+              <span>{cfData.traffic ? "● Live" : "○ Loading"} · Cloudflare Edge</span>
+              <span>omthakur.in</span>
             </div>
           </div>
         </div>

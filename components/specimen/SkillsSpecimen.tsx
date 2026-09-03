@@ -82,14 +82,9 @@ export function SkillsSpecimen() {
                 {skill.name}
               </h3>
 
-              <p className="text-xs text-[#5E5854] leading-relaxed mb-4">
+              <p className="text-xs text-[#5E5854] leading-relaxed">
                 {skill.specimenNote}
               </p>
-
-              <div className="pt-3 border-t border-[#EDE4D9] flex items-center justify-between text-[11px] font-mono text-[#4A4541]">
-                <span>Demonstrated Depth:</span>
-                <span className="font-semibold text-[#1A1816]">{skill.level}</span>
-              </div>
             </motion.div>
           ))}
         </div>
