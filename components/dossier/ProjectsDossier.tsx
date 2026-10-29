@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { ExternalLink, ArrowUpRight, Sparkles, Github, Code2 } from "lucide-react";
@@ -15,6 +15,22 @@ const CATEGORIES = ["All", "Distributed Web", "Low-Level Tools", "Autonomous AI"
 export function ProjectsDossier({ onSelectProject }: ProjectsDossierProps) {
   const [activeCategory, setActiveCategory] = useState<string>("All");
   const [searchQuery, setSearchQuery] = useState("");
+  const [numCols, setNumCols] = useState<number>(3);
+
+  useEffect(() => {
+    const updateCols = () => {
+      if (window.innerWidth >= 1024) {
+        setNumCols(3);
+      } else if (window.innerWidth >= 640) {
+        setNumCols(2);
+      } else {
+        setNumCols(1);
+      }
+    };
+    updateCols();
+    window.addEventListener("resize", updateCols);
+    return () => window.removeEventListener("resize", updateCols);
+  }, []);
 
   const filteredProjects = PROJECTS.filter((p) => {
     const matchesCat = activeCategory === "All" || p.category === activeCategory;
@@ -25,6 +41,13 @@ export function ProjectsDossier({ onSelectProject }: ProjectsDossierProps) {
       p.techStack.some((t) => t.toLowerCase().includes(searchQuery.toLowerCase()));
     return matchesCat && matchesSearch;
   });
+
+  // Partition cards across independent vertical columns so opening a card only pushes down cards directly below it in the same column
+  const columns = Array.from({ length: numCols }, (_, colIdx) =>
+    filteredProjects
+      .map((project, originalIdx) => ({ project, originalIdx }))
+      .filter((_, idx) => idx % numCols === colIdx)
+  );
 
   return (
     <section
@@ -98,164 +121,167 @@ export function ProjectsDossier({ onSelectProject }: ProjectsDossierProps) {
           })}
         </div>
 
-        {/* ── Project Cards Grid ── */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-          <AnimatePresence mode="popLayout">
-            {filteredProjects.map((project, idx) => (
-              <motion.article
-                key={project.id}
-                layout
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.35, delay: idx * 0.06 }}
-                className="group relative bg-[#FDFCFA] border border-[#EDE4D9] rounded-md overflow-hidden hover:border-[#D4C3AF] hover:shadow-paper-hover transition-all duration-300 flex flex-col justify-between"
-              >
-                <div>
-                  {/* Thumbnail Banner */}
-                  <div className="relative aspect-video w-full overflow-hidden bg-[#F3ECE4] border-b border-[#EDE4D9]">
-                    <Image
-                      src={project.image}
-                      alt={`${project.name} — ${project.category} system architecture by Om Thakur`}
-                      fill
-                      priority={idx === 0}
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                    <div className="absolute top-3 left-3">
-                      <span className="px-2.5 py-0.5 rounded text-xs font-mono font-semibold bg-[#FAF6F1]/90 backdrop-blur text-[#C4604A] border border-[#EDE4D9]">
-                        {project.category}
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Card Content */}
-                  <div className="p-4 sm:p-6 space-y-3">
+        {/* ── Independent Column Masonry Grid (opening a card only moves cards directly below it in its column) ── */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 items-start">
+          {columns.map((colItems, colIdx) => (
+            <div key={colIdx} className="flex flex-col gap-6 sm:gap-8 min-w-0">
+              <AnimatePresence mode="popLayout">
+                {colItems.map(({ project, originalIdx }) => (
+                  <motion.article
+                    key={project.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.95 }}
+                    transition={{ duration: 0.35, delay: originalIdx * 0.06 }}
+                    className="group relative bg-[#FDFCFA] border border-[#EDE4D9] rounded-md overflow-hidden hover:border-[#D4C3AF] hover:shadow-paper-hover transition-all duration-300 flex flex-col justify-between"
+                  >
                     <div>
-                      <span className="text-xs uppercase font-mono text-[#928B87] block">
-                        {project.edition}
-                      </span>
-                      <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#1A1816] mt-0.5">
-                        {project.name}
-                      </h3>
-                    </div>
-
-                    <p className="text-sm sm:text-base text-[#2C2825] leading-relaxed font-normal">
-                      {project.purpose}
-                    </p>
-
-                    {/* Key Metrics Strip (Visible in SSR HTML for AEO/GEO) */}
-                    <div className="grid grid-cols-3 gap-1.5 pt-0.5">
-                      {project.stats.map((s) => (
-                        <div
-                          key={s.label}
-                          className="p-2 rounded bg-[#FAF6F1] border border-[#EDE4D9] text-center"
-                        >
-                          <span className="text-[10px] uppercase font-mono text-[#7A746D] block truncate">
-                            {s.label}
-                          </span>
-                          <span className="font-mono text-xs font-bold text-[#1A1816] block truncate mt-0.5">
-                            {s.value}
+                      {/* Thumbnail Banner */}
+                      <div className="relative aspect-video w-full overflow-hidden bg-[#F3ECE4] border-b border-[#EDE4D9]">
+                        <Image
+                          src={project.image}
+                          alt={`${project.name} — ${project.category} system architecture by Om Thakur`}
+                          fill
+                          priority={originalIdx === 0}
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                          className="object-cover transition-transform duration-500 group-hover:scale-105"
+                        />
+                        <div className="absolute top-3 left-3">
+                          <span className="px-2.5 py-0.5 rounded text-xs font-mono font-semibold bg-[#FAF6F1]/90 backdrop-blur text-[#C4604A] border border-[#EDE4D9]">
+                            {project.category}
                           </span>
                         </div>
-                      ))}
-                    </div>
-
-                    <div className="p-3.5 rounded bg-[#FAF6F1] border border-[#EDE4D9]">
-                      <span className="text-xs uppercase tracking-wider font-bold text-[#C4604A] block mb-1">
-                        Key Architecture:
-                      </span>
-                      <p className="text-sm sm:text-base text-[#1A1816] font-semibold leading-relaxed">
-                        {project.feature}
-                      </p>
-                    </div>
-
-                    {/* Tech Stack Pills */}
-                    <div className="flex flex-wrap gap-1.5 pt-1">
-                      {project.techStack.map((tech) => (
-                        <span
-                          key={tech}
-                          className="px-2.5 py-1 rounded text-xs font-mono font-medium bg-[#F3ECE4] text-[#1A1816] border border-[#D4C3AF]"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-
-                    {/* Crawlable Architecture & Fenced Code Specimen (AR-READ-01 compliant) */}
-                    <details className="group/spec rounded border border-[#EDE4D9] bg-[#FAF6F1] text-xs">
-                      <summary className="cursor-pointer select-none px-3 py-2 font-mono font-semibold text-[#5E5854] hover:text-[#1A1816] flex items-center justify-between">
-                        <span className="inline-flex items-center gap-1.5">
-                          <Code2 className="w-3.5 h-3.5 text-[#566449]" />
-                          <span>Architecture Spec &amp; Code Specimen</span>
-                        </span>
-                        <span className="text-[#C4604A] group-open/spec:rotate-180 transition-transform">▾</span>
-                      </summary>
-                      <div className="p-3 pt-2 border-t border-[#EDE4D9] space-y-2.5 text-[#2C2825]">
-                        <p className="leading-relaxed">
-                          <strong className="text-[#7A3B3B] font-mono uppercase text-[11px]">Challenge: </strong>
-                          {project.problemStatement}
-                        </p>
-                        <ul className="list-disc pl-4 space-y-1 leading-snug">
-                          {project.solutionDetails.map((detail, i) => (
-                            <li key={i}>{detail}</li>
-                          ))}
-                        </ul>
-                        {project.codeSpecimen && (
-                          <div className="rounded bg-[#1A1816] text-[#FAF6F1] p-2.5 overflow-x-auto">
-                            <div className="flex justify-between text-[10px] font-mono text-[#928B87] pb-1 mb-1 border-b border-[#383432]">
-                              <span>{project.codeSpecimen.filename}</span>
-                              <span>{project.codeSpecimen.language}</span>
-                            </div>
-                            <pre className="font-mono text-[11px] leading-relaxed overflow-x-auto text-[#EDE4D9]">
-                              <code className={`language-${project.codeSpecimen.language}`}>
-                                {project.codeSpecimen.code}
-                              </code>
-                            </pre>
-                          </div>
-                        )}
                       </div>
-                    </details>
-                  </div>
-                </div>
 
-                {/* Footer Action */}
-                <div className="p-4 sm:p-6 pt-3 flex items-center justify-between border-t border-[#EDE4D9]/60 mt-2">
-                  <button
-                    onClick={() => onSelectProject(project)}
-                    className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#C4604A] hover:text-[#A8493A] transition-colors"
-                  >
-                    <span>Full Blueprint</span>
-                    <ArrowUpRight className="w-3.5 h-3.5" />
-                  </button>
+                      {/* Card Content */}
+                      <div className="p-4 sm:p-6 space-y-3">
+                        <div>
+                          <span className="text-xs uppercase font-mono text-[#928B87] block">
+                            {project.edition}
+                          </span>
+                          <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#1A1816] mt-0.5">
+                            {project.name}
+                          </h3>
+                        </div>
 
-                  <div className="flex items-center gap-3">
-                    {project.github && project.github !== project.url && (
-                      <a
-                        href={project.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-xs font-mono text-[#5E5854] hover:text-[#1A1816] inline-flex items-center gap-1 font-medium"
-                        title={`View ${project.name} source code on GitHub`}
+                        <p className="text-sm sm:text-base text-[#2C2825] leading-relaxed font-normal">
+                          {project.purpose}
+                        </p>
+
+                        {/* Key Metrics Strip (Visible in SSR HTML for AEO/GEO) */}
+                        <div className="grid grid-cols-3 gap-1.5 pt-0.5">
+                          {project.stats.map((s) => (
+                            <div
+                              key={s.label}
+                              className="p-2 rounded bg-[#FAF6F1] border border-[#EDE4D9] text-center"
+                            >
+                              <span className="text-[10px] uppercase font-mono text-[#7A746D] block truncate">
+                                {s.label}
+                              </span>
+                              <span className="font-mono text-xs font-bold text-[#1A1816] block truncate mt-0.5">
+                                {s.value}
+                              </span>
+                            </div>
+                          ))}
+                        </div>
+
+                        <div className="p-3.5 rounded bg-[#FAF6F1] border border-[#EDE4D9]">
+                          <span className="text-xs uppercase tracking-wider font-bold text-[#C4604A] block mb-1">
+                            Key Architecture:
+                          </span>
+                          <p className="text-sm sm:text-base text-[#1A1816] font-semibold leading-relaxed">
+                            {project.feature}
+                          </p>
+                        </div>
+
+                        {/* Tech Stack Pills */}
+                        <div className="flex flex-wrap gap-1.5 pt-1">
+                          {project.techStack.map((tech) => (
+                            <span
+                              key={tech}
+                              className="px-2.5 py-1 rounded text-xs font-mono font-medium bg-[#F3ECE4] text-[#1A1816] border border-[#D4C3AF]"
+                            >
+                              {tech}
+                            </span>
+                          ))}
+                        </div>
+
+                        {/* Crawlable Architecture & Fenced Code Specimen (AR-READ-01 compliant) */}
+                        <details className="group/spec rounded border border-[#EDE4D9] bg-[#FAF6F1] text-xs">
+                          <summary className="cursor-pointer select-none px-3 py-2 font-mono font-semibold text-[#5E5854] hover:text-[#1A1816] flex items-center justify-between">
+                            <span className="inline-flex items-center gap-1.5">
+                              <Code2 className="w-3.5 h-3.5 text-[#566449]" />
+                              <span>Architecture Spec &amp; Code Specimen</span>
+                            </span>
+                            <span className="text-[#C4604A] group-open/spec:rotate-180 transition-transform">▾</span>
+                          </summary>
+                          <div className="p-3 pt-2 border-t border-[#EDE4D9] space-y-2.5 text-[#2C2825]">
+                            <p className="leading-relaxed">
+                              <strong className="text-[#7A3B3B] font-mono uppercase text-[11px]">Challenge: </strong>
+                              {project.problemStatement}
+                            </p>
+                            <ul className="list-disc pl-4 space-y-1 leading-snug">
+                              {project.solutionDetails.map((detail, i) => (
+                                <li key={i}>{detail}</li>
+                              ))}
+                            </ul>
+                            {project.codeSpecimen && (
+                              <div className="rounded bg-[#1A1816] text-[#FAF6F1] p-2.5 overflow-x-auto">
+                                <div className="flex justify-between text-[10px] font-mono text-[#928B87] pb-1 mb-1 border-b border-[#383432]">
+                                  <span>{project.codeSpecimen.filename}</span>
+                                  <span>{project.codeSpecimen.language}</span>
+                                </div>
+                                <pre className="font-mono text-[11px] leading-relaxed overflow-x-auto text-[#EDE4D9]">
+                                  <code className={`language-${project.codeSpecimen.language}`}>
+                                    {project.codeSpecimen.code}
+                                  </code>
+                                </pre>
+                              </div>
+                            )}
+                          </div>
+                        </details>
+                      </div>
+                    </div>
+
+                    {/* Footer Action */}
+                    <div className="p-4 sm:p-6 pt-3 flex items-center justify-between border-t border-[#EDE4D9]/60 mt-2">
+                      <button
+                        onClick={() => onSelectProject(project)}
+                        className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#C4604A] hover:text-[#A8493A] transition-colors"
                       >
-                        <Github className="w-3.5 h-3.5" />
-                        <span>Code</span>
-                      </a>
-                    )}
-                    <a
-                      href={project.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-xs font-mono text-[#5E5854] hover:text-[#1A1816] inline-flex items-center gap-1 font-medium"
-                    >
-                      <span>{project.url.includes("github.com") ? "Repository" : "Live Site"}</span>
-                      <ExternalLink className="w-3.5 h-3.5" />
-                    </a>
-                  </div>
-                </div>
-              </motion.article>
-            ))}
-          </AnimatePresence>
+                        <span>Full Blueprint</span>
+                        <ArrowUpRight className="w-3.5 h-3.5" />
+                      </button>
+
+                      <div className="flex items-center gap-3">
+                        {project.github && project.github !== project.url && (
+                          <a
+                            href={project.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-xs font-mono text-[#5E5854] hover:text-[#1A1816] inline-flex items-center gap-1 font-medium"
+                            title={`View ${project.name} source code on GitHub`}
+                          >
+                            <Github className="w-3.5 h-3.5" />
+                            <span>Code</span>
+                          </a>
+                        )}
+                        <a
+                          href={project.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-xs font-mono text-[#5E5854] hover:text-[#1A1816] inline-flex items-center gap-1 font-medium"
+                        >
+                          <span>{project.url.includes("github.com") ? "Repository" : "Live Site"}</span>
+                          <ExternalLink className="w-3.5 h-3.5" />
+                        </a>
+                      </div>
+                    </div>
+                  </motion.article>
+                ))}
+              </AnimatePresence>
+            </div>
+          ))}
         </div>
       </div>
     </section>
