@@ -2,7 +2,7 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Terminal, X, Maximize2, Minimize2, Sparkles, Send, CornerDownLeft } from "lucide-react";
+import { X, CornerDownLeft } from "lucide-react";
 import { PROJECTS, SKILL_SPECIMENS } from "@/data/portfolio-data";
 
 interface TelemetryConsoleProps {
@@ -68,10 +68,10 @@ export function TelemetryConsole({ open, onClose }: TelemetryConsoleProps) {
               <span className="text-[#C4604A]">whoami / bio</span> — Author summary
             </div>
             <div>
-              <span className="text-[#C4604A]">skills</span> — Technical specimen table
+              <span className="text-[#C4604A]">skills</span> — Technical skills table
             </div>
             <div>
-              <span className="text-[#C4604A]">projects</span> — List active blueprints
+              <span className="text-[#C4604A]">projects</span> — List production projects
             </div>
             <div>
               <span className="text-[#C4604A]">metrics</span> — Live architecture telemetry
@@ -89,18 +89,20 @@ export function TelemetryConsole({ open, onClose }: TelemetryConsoleProps) {
       outputContent = (
         <div className="space-y-1.5 text-xs text-[#EDE4D9]">
           <p className="font-bold text-[#FAF6F1]">Om Thakur</p>
-          <p className="text-[#928B87]">Backend Engineer & Distributed Systems Architect</p>
+          <p className="text-[#928B87]">Backend Engineer | Distributed Systems | Scalable APIs</p>
           <p className="text-[#EDE4D9] leading-relaxed">
-            Specializing in high-throughput Node.js microservices, real-time WebSocket communication,
-            database performance tuning (PostgreSQL/Redis), and safe autonomous system automation.
+            Backend engineer focused on distributed, database-backed systems and production reliability.
+            Reduced a data synchronization workflow from 15 minutes to 4 seconds by replacing cron polling
+            with message-queue processing, and took part in the root cause analysis of a production database
+            outage. Built mainly with TypeScript, Python, and PostgreSQL.
           </p>
         </div>
       );
     } else if (lower === "skills") {
       outputContent = (
         <div className="space-y-2 text-xs text-[#EDE4D9]">
-          <p className="text-[#C4604A] font-semibold">Technical Specimen Matrix:</p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[11px] font-mono">
+          <p className="text-[#C4604A] font-semibold">Technical Skills &amp; Stack:</p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs sm:text-sm font-mono">
             {SKILL_SPECIMENS.slice(0, 8).map((s) => (
               <div key={s.name} className="flex justify-between border-b border-[#383432] pb-0.5">
                 <span>{s.name}</span>
@@ -113,15 +115,15 @@ export function TelemetryConsole({ open, onClose }: TelemetryConsoleProps) {
     } else if (lower === "projects") {
       outputContent = (
         <div className="space-y-2 text-xs text-[#EDE4D9]">
-          <p className="text-[#C4604A] font-semibold">Active Blueprint Editions:</p>
-          <div className="space-y-1.5 text-[11px] font-mono">
+          <p className="text-[#C4604A] font-semibold">Featured Projects:</p>
+          <div className="space-y-1.5 text-xs sm:text-sm font-mono">
             {PROJECTS.map((p) => (
               <div key={p.id} className="p-1.5 rounded bg-[#2C2825]">
                 <div className="flex justify-between font-bold text-[#FAF6F1]">
                   <span>{p.name}</span>
                   <span className="text-[#C4604A]">{p.category}</span>
                 </div>
-                <p className="text-[#928B87] text-[10px]">{p.purpose}</p>
+                <p className="text-[#928B87] text-xs">{p.purpose}</p>
               </div>
             ))}
           </div>
@@ -131,19 +133,19 @@ export function TelemetryConsole({ open, onClose }: TelemetryConsoleProps) {
       outputContent = (
         <div className="space-y-1.5 text-xs font-mono text-[#EDE4D9]">
           <p className="text-[#566449] font-bold">● Production Cluster Telemetry: Optimal</p>
-          <div className="grid grid-cols-2 gap-2 text-[11px]">
-            <div>p99 Ingress Latency: <span className="text-[#C4604A] font-bold">14.2ms</span></div>
-            <div>Cache Hit Ratio: <span className="text-[#566449] font-bold">96.8%</span></div>
-            <div>Event Loop Lag: <span className="text-[#FAF6F1] font-bold">0.82ms</span></div>
-            <div>Uptime Availability: <span className="text-[#566449] font-bold">99.995%</span></div>
+          <div className="grid grid-cols-2 gap-2 text-xs sm:text-sm">
+            <div>Message Queue Sync: <span className="text-[#C4604A] font-bold">15 min → 4 s</span></div>
+            <div>Sync Latency Reduction: <span className="text-[#566449] font-bold">~99.5%</span></div>
+            <div>Python WS Pipeline: <span className="text-[#FAF6F1] font-bold">~700 ms</span></div>
+            <div>Stateless SVG API: <span className="text-[#566449] font-bold">&lt; 10 ms</span></div>
           </div>
         </div>
       );
     } else if (lower === "resume" || lower === "cv") {
-      window.open("https://rxresu.me/omthakur2366/om", "_blank");
+      window.open("/resume", "_blank");
       outputContent = (
         <p className="text-xs text-[#566449]">
-          ✓ Opened resume in external window (rxresu.me/omthakur2366/om)
+          ✓ Opened resume in new tab (/resume)
         </p>
       );
     } else if (lower === "clear") {
@@ -188,7 +190,7 @@ export function TelemetryConsole({ open, onClose }: TelemetryConsoleProps) {
               <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#C4604A] inline-block" />
               <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#D4C3AF] inline-block" />
               <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#566449] inline-block" />
-              <span className="font-mono text-[11px] sm:text-xs text-[#928B87] ml-2 truncate">
+              <span className="font-mono text-xs sm:text-sm sm:text-xs text-[#928B87] ml-2 truncate">
                 omthakur@workstation:~ (zsh)
               </span>
             </div>
@@ -209,7 +211,7 @@ export function TelemetryConsole({ open, onClose }: TelemetryConsoleProps) {
                 <div className="flex items-center gap-2 text-[#928B87]">
                   <span className="text-[#C4604A]">➜</span>
                   <span className="text-[#EDE4D9] font-bold">{item.command}</span>
-                  <span className="text-[10px] ml-auto text-[#7A746D]">{item.time}</span>
+                  <span className="text-xs ml-auto text-[#7A746D]">{item.time}</span>
                 </div>
                 <div className="pl-3 sm:pl-4">{item.output}</div>
               </div>
@@ -219,7 +221,7 @@ export function TelemetryConsole({ open, onClose }: TelemetryConsoleProps) {
 
           {/* Quick Command Suggestion Chips for Fast Touch Interaction */}
           <div className="px-3 py-2 bg-[#23201D] border-t border-[#383432]/60 flex items-center gap-1.5 overflow-x-auto no-scrollbar shrink-0">
-            <span className="text-[10px] font-mono text-[#7A746D] uppercase tracking-wider shrink-0 mr-1">
+            <span className="text-xs font-mono text-[#7A746D] uppercase tracking-wider shrink-0 mr-1">
               Quick:
             </span>
             {["help", "whoami", "skills", "projects", "metrics", "resume", "clear"].map((c) => (
@@ -227,7 +229,7 @@ export function TelemetryConsole({ open, onClose }: TelemetryConsoleProps) {
                 key={c}
                 type="button"
                 onClick={() => handleCommand(c)}
-                className="px-2 py-0.5 rounded bg-[#383432] hover:bg-[#4A4541] active:bg-[#C4604A] text-[#EDE4D9] hover:text-[#FAF6F1] text-[10.5px] font-mono shrink-0 transition-colors"
+                className="px-2 py-0.5 rounded bg-[#383432] hover:bg-[#4A4541] active:bg-[#C4604A] text-[#EDE4D9] hover:text-[#FAF6F1] text-xs font-mono shrink-0 transition-colors"
               >
                 {c}
               </button>
@@ -263,3 +265,4 @@ export function TelemetryConsole({ open, onClose }: TelemetryConsoleProps) {
     </AnimatePresence>
   );
 }
+

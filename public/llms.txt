@@ -1,0 +1,50 @@
+# Om Thakur — Backend & Distributed Systems Engineer
+
+> Om Thakur is a Backend and Distributed Systems Engineer based in Mumbai, India, specializing in distributed database-backed systems, low-latency WebSocket pipelines, asynchronous message queues, and high-performance APIs (TypeScript, Python, Deno, Node.js, PostgreSQL, Qdrant, Redis).
+
+Last updated: 2026-10-29
+
+## Summary & Core Competencies
+- **Role**: Founding Software Engineer at Krishora Technologies | Backend & Distributed Systems Engineer.
+- **Specialization**: Backend Engineering, Distributed Systems, Real-Time Audio & Data Streaming, Database Concurrency & Outage RCA, Offline-First Mobile Architectures, and Applied AI/RAG.
+- **Key Verified Metrics**:
+  - **15 min → 4 s (~99.5% reduction)**: Replaced polling cron workflows with Flexbase asynchronous message queues at Sumeru Technology Solutions.
+  - **~700 ms turnaround**: Engineered low-latency Python + Pipecat + Exotel WebSockets + CUDA GPU voice streaming pipelines at Krishora Technologies.
+  - **< 10 ms TTFB**: Built `devpic`, a stateless mathematical SVG REST API executing on Next.js Edge Runtime with zero database dependencies.
+  - **First Rank (CGPA 8.55/10)**: B.Sc. in Information Technology, Sonubhau Baswant College, University of Mumbai.
+- **Location**: Mumbai / Thane, Maharashtra, India (IST · UTC+5:30).
+- **Availability**: Open to full-time Backend Engineer, Distributed Systems Engineer, Founding Engineer roles, and technical architecture consulting.
+
+## Primary Canonical Pages & Machine-Readable Bundles
+- [Portfolio Homepage](https://omthakur.in): Interactive 3D engineering monograph, live Lanyard device telemetry, project blueprints, architecture comparison table, and engineering FAQ.
+- [Resume / Curriculum Vitae](https://omthakur.in/resume): ATS-ready and print-formatted curriculum vitae with full career chronology, metrics, and credentials.
+- [Full LLM Dossier (llms-full.txt)](https://omthakur.in/llms-full.txt): Complete single-request markdown dossier containing all project blueprints, code specimens, architecture benchmark tables, and FAQs.
+- [Open Knowledge Format Bundle (okf/index.md)](https://omthakur.in/okf/index.md): Structured OKF v0.1 knowledge bundle with YAML frontmatter.
+- [AI Catalog Manifest (.well-known/ai-catalog.json)](https://omthakur.in/.well-known/ai-catalog.json): AgentReady discovery manifest.
+- [GitFool Technical Blog](https://blogs.omthakur.in): Edge-rendered engineering articles and architecture deep dives.
+
+## Key Open Source & Production Systems
+- **Digital Commerce & Entitlement Platform** ([store.sowebuild.in](https://store.sowebuild.in)): Dual-verification checkout (synchronous API + timing-safe HMAC-SHA256 webhook) and AES-256-GCM encryption at rest with randomized IVs.
+- **devpic — Stateless Mathematical SVG API** ([github.com/MonsterFlick/devpic](https://github.com/MonsterFlick/devpic)): Open-source, zero-dependency REST API generating deterministic SVG meshes in <10ms on Next.js Edge Runtime.
+- **Agni — Local AI Automation Agent** ([github.com/MonsterFlick/Agni](https://github.com/MonsterFlick/Agni)): Offline Windows automation agent powered by local Ollama models with regex command blacklisting and self-repairing execution loops.
+- **Fin Read — Offline-First Finance Tracker** ([github.com/MonsterFlick/Fin-Read](https://github.com/MonsterFlick/Fin-Read)): Android Kotlin expense tracker extracting SMS transactions into Room Database with idempotent Supabase cloud synchronization.
+- **GitFool** ([blogs.omthakur.in](https://blogs.omthakur.in)): Edge-runtime publication platform compiling markdown directly from GitHub repositories via webhooks with sub-30ms TTFB.
+
+## Career History
+- **Krishora Technologies** (May 2026 – Present): Founding Software Engineer — Python/CUDA low-latency voice pipelines (~700ms), Qdrant vector retrieval service router for Sevak AI (`nomic-embed-text`), self-hosted Linux/Nginx/Mailcow/Dograh infrastructure.
+- **Cyber Intelligence and Research Lab (CIARL)** (Aug 2025 – May 2026): Software Developer — Kotlin encrypted SQLite offline background queues, React/PostgreSQL RBAC portals, legal-domain citation-backed RAG pipelines, and Matrix real-time chat/voice/video systems.
+- **Sumeru Technology Solutions Pvt. Ltd.** (Aug 2024 – Feb 2025): Software Development Engineer Intern — Flexbase message queue migration (15 min → 4 s sync), production database crash RCA (payment retry burst mitigation), PHP to TypeScript/Deno Edge Function migration, Supabase RLS + Drizzle ORM.
+- **Bhimrao Pradhan College, University of Mumbai** (Jun 2024 – Aug 2024): Assistant Professor (Volunteer) — Taught B.Sc. IT database systems and software architecture.
+
+## Verified Credentials & Academic Honors
+- **First Rank — B.Sc. in Information Technology (CGPA: 8.55/10)**, Sonubhau Baswant College, University of Mumbai (2021–2024).
+- **Data Science Training Certification**, Internshala ([Verify ID: 263gl7b3rur](https://trainings.internshala.com/verify-certificate/?certificate_number=263gl7b3rur)).
+
+## External Profiles & Direct Contact
+- **Email**: omthakur2366@gmail.com
+- **Phone**: +91 7756898550
+- **Website**: [https://omthakur.in](https://omthakur.in)
+- **GitHub**: [https://github.com/MonsterFlick](https://github.com/MonsterFlick)
+- **LinkedIn**: [https://linkedin.com/in/omthakur2366](https://linkedin.com/in/omthakur2366)
+- **X (Twitter)**: [https://twitter.com/omthakur2366](https://twitter.com/omthakur2366)
+- **Instagram**: [https://www.instagram.com/omthakur.op](https://www.instagram.com/omthakur.op)

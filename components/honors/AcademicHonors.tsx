@@ -8,7 +8,7 @@ import { ACADEMIC_HONORS } from "@/data/portfolio-data";
 export function AcademicHonors() {
   return (
     <section id="honors" className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 border-b border-[#EDE4D9] bg-[#FDFCFA]">
-      <div className="max-w-7xl mx-auto">
+      <div className="w-full max-w-7xl xl:max-w-[1360px] mx-auto">
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12 pb-6 border-b border-[#EDE4D9]">
           <div>
@@ -16,10 +16,10 @@ export function AcademicHonors() {
               <Award className="w-3.5 h-3.5" />
               <span>Academic Distinctions</span>
             </div>
-            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-black text-[#1A1816] tracking-tight">
+            <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#1A1816] tracking-tight">
               Honors & Certified Attestations
             </h2>
-            <p className="text-sm text-[#5E5854] mt-2 max-w-xl">
+            <p className="text-sm sm:text-base text-[#4A4541] mt-2 max-w-xl leading-relaxed">
               Academic excellence recognition from Mumbai University and professional verified credentials.
             </p>
           </div>
@@ -38,21 +38,21 @@ export function AcademicHonors() {
             >
               <div>
                 <div className="flex items-center justify-between pb-3 mb-3 border-b border-[#EDE4D9]">
-                  <span className="px-2.5 py-0.5 rounded text-[10px] font-mono font-semibold bg-[#C4604A]/10 text-[#C4604A]">
+                  <span className="px-2.5 py-1 rounded text-xs sm:text-sm font-mono font-bold bg-[#C4604A]/10 text-[#C4604A]">
                     {honor.badge}
                   </span>
-                  <span className="font-mono text-xs text-[#928B87]">
+                  <span className="font-mono text-xs sm:text-sm font-medium text-[#7A746D]">
                     {honor.date}
                   </span>
                 </div>
 
-                <h3 className="font-serif text-xl font-bold text-[#1A1816] mb-1">
+                <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#1A1816] mb-1.5">
                   {honor.title}
                 </h3>
-                <p className="text-xs font-semibold text-[#566449] mb-3">
+                <p className="text-sm sm:text-base font-semibold text-[#566449] mb-3">
                   {honor.organization}
                 </p>
-                <p className="text-xs text-[#5E5854] leading-relaxed">
+                <p className="text-sm sm:text-base text-[#2C2825] leading-relaxed font-normal">
                   {honor.description}
                 </p>
               </div>
@@ -63,7 +63,7 @@ export function AcademicHonors() {
                     href={honor.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-xs font-mono font-semibold text-[#C4604A] hover:underline"
+                    className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-mono font-bold text-[#C4604A] hover:underline"
                   >
                     <span>{honor.linkText || "Verify Credential"}</span>
                     <ExternalLink className="w-3.5 h-3.5" />
@@ -77,3 +77,5 @@ export function AcademicHonors() {
     </section>
   );
 }
+
+

@@ -309,15 +309,15 @@ function renderActivityWidget(act: ParsedActivity) {
           </div>
 
           <div className="min-w-0 flex-1">
-            <h4 className="font-serif font-bold text-xs text-[#1A1816] truncate">
+            <h4 className="font-serif font-bold text-sm sm:text-base text-[#1A1816] truncate">
               {act.title}
             </h4>
             {act.subtitle && (
-              <p className="text-[11px] text-[#5E5854] truncate">
+              <p className="text-xs sm:text-sm text-[#5E5854] truncate">
                 {act.subtitle}
               </p>
             )}
-            <p className="text-[10px] text-[#928B87] truncate">
+            <p className="text-xs sm:text-sm text-[#5E5854] truncate">
               {act.service}
             </p>
           </div>
@@ -331,7 +331,7 @@ function renderActivityWidget(act: ParsedActivity) {
                 style={{ width: `${Math.min(100, Math.max(0, act.progress.percent || 0))}%` }}
               />
             </div>
-            <div className="flex justify-between text-[10.5px] font-mono text-[#7A746D]">
+            <div className="flex justify-between text-xs font-mono text-[#7A746D]">
               <span>{formatSec(act.progress.currentSec || 0)}</span>
               <span>{formatSec(act.progress.totalSec)}</span>
             </div>
@@ -347,7 +347,7 @@ function renderActivityWidget(act: ParsedActivity) {
                   href={btn.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-1.5 px-2.5 py-1.5 rounded bg-[#F3ECE4] hover:bg-[#E2D5C6] text-[#1A1816] text-[11px] font-mono font-medium transition-colors border border-[#E2D5C6] text-center"
+                  className="inline-flex items-center justify-center gap-1.5 px-2.5 py-1.5 rounded bg-[#F3ECE4] hover:bg-[#E2D5C6] text-[#1A1816] text-xs sm:text-sm font-mono font-medium transition-colors border border-[#E2D5C6] text-center"
                 >
                   <span className="truncate">{btn.label.replace("Listen on ", "").replace("Visit ", "")}</span>
                   <ExternalLink className="w-3 h-3 text-[#7A746D] shrink-0" />
@@ -386,7 +386,7 @@ function renderActivityWidget(act: ParsedActivity) {
               href={act.url || undefined}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-serif font-bold text-xs text-[#1A1816] hover:text-[#C4604A] transition-colors line-clamp-2 leading-snug"
+              className="font-serif font-bold text-sm sm:text-base text-[#1A1816] hover:text-[#C4604A] transition-colors line-clamp-2 leading-snug"
             >
               {act.title}
             </a>
@@ -395,7 +395,7 @@ function renderActivityWidget(act: ParsedActivity) {
                 href={act.channelUrl || undefined}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[11px] text-[#5E5854] hover:text-[#1A1816] hover:underline block truncate mt-0.5"
+                className="text-xs sm:text-sm text-[#5E5854] hover:text-[#1A1816] hover:underline block truncate mt-0.5"
               >
                 {act.subtitle}
               </a>
@@ -411,7 +411,7 @@ function renderActivityWidget(act: ParsedActivity) {
                 style={{ width: `${Math.min(100, Math.max(0, act.progress.percent || 0))}%` }}
               />
             </div>
-            <div className="flex justify-between text-[10.5px] font-mono text-[#7A746D]">
+            <div className="flex justify-between text-xs font-mono text-[#7A746D]">
               <span>{formatSec(act.progress.currentSec || 0)}</span>
               <span>{formatSec(act.progress.totalSec)}</span>
             </div>
@@ -424,7 +424,7 @@ function renderActivityWidget(act: ParsedActivity) {
               href={act.buttons[0].url}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded bg-[#C4604A] text-white hover:bg-[#A8493A] text-[11px] font-mono font-medium transition-colors shadow-xs text-center"
+              className="w-full inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded bg-[#C4604A] text-white hover:bg-[#A8493A] text-xs sm:text-sm font-mono font-medium transition-colors shadow-xs text-center"
             >
               <span>{act.buttons[0].label}</span>
               <ExternalLink className="w-3 h-3" />
@@ -464,20 +464,20 @@ function renderActivityWidget(act: ParsedActivity) {
 
           <div className="min-w-0 flex-1">
             <div className="flex items-center justify-between gap-1">
-              <span className="font-serif font-bold text-xs text-[#1A1816] truncate">
+              <span className="font-serif font-bold text-sm sm:text-base text-[#1A1816] truncate">
                 {act.title}
               </span>
-              <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-[#566449]/15 text-[#566449] shrink-0 font-semibold">
+              <span className="text-xs font-mono px-1.5 py-0.5 rounded bg-[#566449]/15 text-[#566449] shrink-0 font-semibold">
                 {act.service}
               </span>
             </div>
-            <p className="font-mono text-[11px] text-[#C4604A] truncate mt-0.5 font-medium">
+            <p className="font-mono text-xs sm:text-sm text-[#C4604A] truncate mt-0.5 font-medium">
               {act.subtitle}
             </p>
           </div>
         </div>
 
-        <div className="p-2 rounded bg-[#F3ECE4]/60 border border-[#EDE4D9]/80 flex items-center justify-between text-[10.5px] font-mono text-[#5E5854]">
+        <div className="p-2 rounded bg-[#F3ECE4]/60 border border-[#EDE4D9]/80 flex items-center justify-between text-xs font-mono text-[#5E5854]">
           <span>Antigravity Buffer</span>
           <span className="text-[#566449] font-semibold">● 0 Problems</span>
         </div>
@@ -488,7 +488,7 @@ function renderActivityWidget(act: ParsedActivity) {
               href={act.buttons[0].url}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded bg-[#1A1816] text-[#FAF6F1] hover:bg-[#C4604A] text-[11px] font-mono font-medium transition-colors shadow-xs text-center"
+              className="w-full inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded bg-[#1A1816] text-[#FAF6F1] hover:bg-[#C4604A] text-xs sm:text-sm font-mono font-medium transition-colors shadow-xs text-center"
             >
               <span>{act.buttons[0].label}</span>
               <ExternalLink className="w-3 h-3 opacity-70" />
@@ -503,19 +503,19 @@ function renderActivityWidget(act: ParsedActivity) {
     <div key={act.id} className="p-3.5 rounded-lg bg-[#FAF6F1] border border-[#EDE4D9] space-y-3 shadow-2xs">
       <div className="space-y-1">
         <div className="flex items-center justify-between">
-          <span className="text-[#928B87] block text-[10px] uppercase tracking-wider font-mono">
+          <span className="text-[#928B87] block text-xs uppercase tracking-wider font-mono">
             {act.service} Active
           </span>
-          <span className="inline-flex items-center gap-1 text-[10px] font-mono text-[#C4604A] font-semibold">
+          <span className="inline-flex items-center gap-1 text-xs font-mono text-[#C4604A] font-semibold">
             <span className="w-1.5 h-1.5 rounded-full bg-[#C4604A] animate-pulse" />
             <span>Live Session</span>
           </span>
         </div>
-        <h4 className="font-serif font-bold text-xs text-[#1A1816]">
+        <h4 className="font-serif font-bold text-sm sm:text-base text-[#1A1816]">
           {act.title}
         </h4>
         {act.subtitle && (
-          <p className="text-[#5E5854] text-[11px]">{act.subtitle}</p>
+          <p className="text-[#5E5854] text-xs sm:text-sm">{act.subtitle}</p>
         )}
       </div>
 
@@ -525,7 +525,7 @@ function renderActivityWidget(act: ParsedActivity) {
             href={act.buttons[0].url}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded bg-[#1A1816] text-[#FAF6F1] hover:bg-[#C4604A] text-[11px] font-mono font-medium transition-colors text-center"
+            className="w-full inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded bg-[#1A1816] text-[#FAF6F1] hover:bg-[#C4604A] text-xs sm:text-sm font-mono font-medium transition-colors text-center"
           >
             <span>{act.buttons[0].label}</span>
             <ExternalLink className="w-3 h-3 opacity-70" />
@@ -667,16 +667,16 @@ export function LiveDeviceStation() {
 
   return (
     <section id="workbench" className="py-20 md:py-28 px-4 sm:px-6 lg:px-8 border-b border-[#EDE4D9] bg-[#FAF6F1]">
-      <div className="max-w-6xl mx-auto">
+      <div className="w-full max-w-7xl xl:max-w-[1360px] mx-auto">
         <div className="text-center max-w-3xl mx-auto mb-10">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#F3ECE4] border border-[#E2D5C6] text-xs font-semibold text-[#7A746D] mb-4">
             <Radio className="w-3.5 h-3.5 text-[#C4604A] animate-pulse" />
             <span>Live Activity Stream</span>
           </div>
-          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-black text-[#1A1816] tracking-tight">
+          <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#1A1816] tracking-tight">
             Live Activity &amp; Status
           </h2>
-          <p className="text-sm sm:text-base text-[#5E5854] mt-3 leading-relaxed">
+          <p className="text-base sm:text-lg text-[#2C2825] mt-3 leading-relaxed font-normal">
             Real-time status, active coding projects, and media streaming live across personal devices.
           </p>
           <div className="flex items-center justify-center gap-2 mt-4 text-xs font-mono">
@@ -722,11 +722,11 @@ export function LiveDeviceStation() {
                 <span className="font-serif font-black text-lg sm:text-xl text-[#1A1816] tracking-tight">
                   {displayName}
                 </span>
-                <span className="text-[11px] font-mono px-2 py-0.5 rounded bg-[#EDE4D9]/80 text-[#5E5854] border border-[#D4C3AF]/60 font-medium">
+                <span className="text-xs font-mono px-2.5 py-0.5 rounded bg-[#EDE4D9]/80 text-[#5E5854] border border-[#D4C3AF]/60 font-semibold">
                   {professionalTitle}
                 </span>
                 <span
-                  className={`text-[10.5px] font-mono uppercase tracking-wider px-2 py-0.5 rounded-full font-bold flex items-center gap-1.5 ${
+                  className={`text-xs font-mono uppercase tracking-wider px-2.5 py-0.5 rounded-full font-bold flex items-center gap-1.5 ${
                     discordStatus === "online"
                       ? "bg-[#566449]/10 text-[#566449]"
                       : discordStatus === "idle"
@@ -737,7 +737,7 @@ export function LiveDeviceStation() {
                   }`}
                 >
                   <span
-                    className={`w-1.5 h-1.5 rounded-full ${
+                    className={`w-2 h-2 rounded-full ${
                       discordStatus !== "offline" ? "bg-current animate-pulse" : "bg-current"
                     }`}
                   />
@@ -745,7 +745,7 @@ export function LiveDeviceStation() {
                 </span>
               </div>
 
-              <div className="flex items-center gap-3 text-xs text-[#7A746D] mt-1 font-mono flex-wrap">
+              <div className="flex items-center gap-3 text-xs sm:text-sm text-[#7A746D] mt-1.5 font-mono flex-wrap">
                 <span>Discord Handle: @{discordHandle}</span>
                 <span>•</span>
                 <span>Location: Mumbai, IN (IST)</span>
@@ -765,7 +765,7 @@ export function LiveDeviceStation() {
                   allParsedActivities.map((act) => (
                     <span
                       key={act.id}
-                      className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[11px] font-mono font-medium truncate max-w-[260px] shadow-2xs transition-all hover:scale-[1.02]"
+                      className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs sm:text-sm font-mono font-medium truncate max-w-[260px] shadow-2xs transition-all hover:scale-[1.02]"
                       style={{
                         backgroundColor: `${act.badgeColor}12`,
                         color: act.badgeColor,
@@ -818,7 +818,7 @@ export function LiveDeviceStation() {
                     }${isDesktopActive || desktopActivities.length > 0 ? "Desktop Rig" : ""} Active`}
               </span>
             </div>
-            <span className="text-[11px] font-mono text-[#7A746D]">
+            <span className="text-xs sm:text-sm font-mono text-[#7A746D]">
               Lanyard Telemetry &amp; Social Channels
             </span>
           </div>
@@ -833,8 +833,8 @@ export function LiveDeviceStation() {
                     <Smartphone className="w-4 h-4" />
                   </div>
                   <div>
-                    <h3 className="font-serif font-bold text-base text-[#1A1816]">realme 11 Pro 5G</h3>
-                    <p className="text-xs text-[#7A746D]">Dimensity 7050 · Android 14</p>
+                    <h3 className="font-serif font-bold text-lg sm:text-xl text-[#1A1816]">realme 11 Pro 5G</h3>
+                    <p className="text-xs sm:text-sm text-[#5E5854] font-medium">Dimensity 7050 · Android 14</p>
                   </div>
                 </div>
               </div>
@@ -845,7 +845,7 @@ export function LiveDeviceStation() {
                       <span className="w-1.5 h-1.5 rounded-full bg-[#C4604A] animate-pulse" />
                       <span>{mobileActivities.length > 1 ? `${mobileActivities.length} Sessions Active` : `${mobileActivities[0].service} Active`}</span>
                     </span>
-                    <span className="text-[10.5px] text-[#928B87] shrink-0 font-medium">
+                    <span className="text-xs sm:text-sm text-[#5E5854] shrink-0 font-medium">
                       {mobileActivities.map((a) => a.service).join(" + ")}
                     </span>
                   </div>
@@ -869,16 +869,16 @@ export function LiveDeviceStation() {
                   <div className="p-4 rounded bg-[#FAF6F1] border border-[#EDE4D9] flex-1 flex flex-col justify-between space-y-3">
                     <div className="space-y-2.5">
                       <div className="flex items-center justify-between">
-                        <span className="text-[10px] font-mono uppercase tracking-wider font-semibold text-[#7A746D]">
+                        <span className="text-xs sm:text-sm font-mono uppercase tracking-wider font-bold text-[#1A1816]">
                           Mobile Station Specs
                         </span>
-                        <span className="inline-flex items-center gap-1 text-[10px] font-mono text-[#566449] font-medium">
+                        <span className="inline-flex items-center gap-1 text-xs font-mono text-[#566449] font-medium">
                           <span className="w-1.5 h-1.5 rounded-full bg-[#566449] animate-pulse" />
                           <span>5G SA Connected</span>
                         </span>
                       </div>
 
-                      <div className="space-y-1.5 text-[11.5px] font-mono text-[#5E5854]">
+                      <div className="space-y-1.5 text-xs sm:text-sm font-mono text-[#5E5854]">
                         <div className="flex justify-between pb-1 border-b border-[#EDE4D9]/60">
                           <span className="text-[#928B87]">Processor</span>
                           <span className="font-semibold text-[#1A1816]">Dimensity 7050 (6nm)</span>
@@ -895,7 +895,7 @@ export function LiveDeviceStation() {
                     </div>
 
                     <div className="pt-3 border-t border-[#EDE4D9]/80 mt-auto">
-                      <div className="w-full py-1.5 px-3 rounded bg-[#EDE4D9]/40 border border-[#E2D5C6] text-[#7A746D] text-[11px] font-mono flex items-center justify-between">
+                      <div className="w-full py-1.5 px-3 rounded bg-[#EDE4D9]/40 border border-[#E2D5C6] text-[#7A746D] text-xs sm:text-sm font-mono flex items-center justify-between">
                         <span className="flex items-center gap-1.5">
                           <Radio className="w-3 h-3 text-[#7A746D]" />
                           <span>Mobile Feed</span>
@@ -924,8 +924,8 @@ export function LiveDeviceStation() {
                     <Laptop className="w-4 h-4 text-[#C4604A]" />
                   </div>
                   <div>
-                    <h3 className="font-serif font-bold text-base text-[#1A1816]">Gaming &amp; Dev PC</h3>
-                    <p className="text-xs text-[#7A746D]">RTX 2060S · 32GB RAM · Ryzen 7 2600X</p>
+                    <h3 className="font-serif font-bold text-lg sm:text-xl text-[#1A1816]">Gaming &amp; Dev PC</h3>
+                    <p className="text-xs sm:text-sm text-[#5E5854] font-medium">RTX 2060S · 32GB RAM · Ryzen 7 2600X</p>
                   </div>
                 </div>
               </div>
@@ -936,7 +936,7 @@ export function LiveDeviceStation() {
                       <span className="w-1.5 h-1.5 rounded-full bg-[#566449] animate-pulse" />
                       <span>{desktopActivities.length > 1 ? `${desktopActivities.length} Processes Active` : `${desktopActivities[0].service} Active`}</span>
                     </span>
-                    <span className="text-[10.5px] text-[#928B87] shrink-0 font-medium">
+                    <span className="text-xs sm:text-sm text-[#5E5854] shrink-0 font-medium">
                       {desktopActivities.map((a) => a.service).join(" + ")}
                     </span>
                   </div>
@@ -959,11 +959,11 @@ export function LiveDeviceStation() {
                 ) : isDesktopActive ? (
                   <div className="p-4 rounded bg-[#FAF6F1] border border-[#EDE4D9] space-y-1">
                     <p className="font-serif font-bold text-sm text-[#1A1816]">Desktop Online</p>
-                    <p className="text-xs text-[#5E5854]">Windows 11 · Workstation Ready</p>
+                    <p className="text-xs sm:text-sm text-[#5E5854] font-medium">Windows 11 · Workstation Ready</p>
                   </div>
                 ) : (
                   <div className="p-4 rounded bg-[#FAF6F1]/50 border border-[#EDE4D9]/60 space-y-1">
-                    <p className="text-xs text-[#5E5854]">Off</p>
+                    <p className="text-xs sm:text-sm text-[#5E5854] font-medium">Off</p>
                   </div>
                 )}
               </div>
@@ -983,8 +983,8 @@ export function LiveDeviceStation() {
                     <Instagram className="w-4 h-4" />
                   </div>
                   <div>
-                    <h3 className="font-serif font-bold text-base text-[#1A1816]">Social &amp; Content Hub</h3>
-                    <p className="text-xs text-[#7A746D]">@omthakur.op · Creator Handles</p>
+                    <h3 className="font-serif font-bold text-lg sm:text-xl text-[#1A1816]">Social &amp; Content Hub</h3>
+                    <p className="text-xs sm:text-sm text-[#5E5854] font-medium">@omthakur.op · Creator Handles</p>
                   </div>
                 </div>
               </div>
@@ -994,7 +994,7 @@ export function LiveDeviceStation() {
                 <div className="flex items-center gap-2 px-2.5 py-1 rounded bg-[#F3ECE4] border border-[#EDE4D9] w-full text-xs font-mono text-[#5E5854]">
                   <span className="w-2 h-2 rounded-full bg-[#E1306C] animate-pulse" />
                   <span className="font-semibold text-[#1A1816]">Instagram Connected</span>
-                  <span className="ml-auto text-[10.5px] text-[#928B87]">@omthakur.op</span>
+                  <span className="ml-auto text-xs sm:text-sm text-[#5E5854]">@omthakur.op</span>
                 </div>
               </div>
 
@@ -1008,7 +1008,7 @@ export function LiveDeviceStation() {
                         <Instagram className="w-4 h-4 text-[#E1306C]" />
                         <span className="font-serif font-bold text-sm text-[#1A1816]">Instagram</span>
                       </div>
-                      <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#E1306C]/10 text-[#E1306C] font-bold">
+                      <span className="text-xs font-mono px-2 py-0.5 rounded bg-[#E1306C]/10 text-[#E1306C] font-bold">
                         ● Active Profile
                       </span>
                     </div>
@@ -1016,14 +1016,14 @@ export function LiveDeviceStation() {
                       <span className="text-[#7A746D]">Handle</span>
                       <span className="font-bold text-[#1A1816]">@omthakur.op</span>
                     </div>
-                    <p className="text-[11.5px] text-[#5E5854] leading-snug">
+                    <p className="text-xs sm:text-sm text-[#5E5854] leading-snug">
                       Dev updates, project highlights &amp; behind-the-scenes engineering logs.
                     </p>
                     <a
                       href="https://www.instagram.com/omthakur.op"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-full inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded bg-[#E1306C] text-white hover:bg-[#C1275B] text-[11px] font-mono font-medium transition-colors shadow-xs text-center mt-1"
+                      className="w-full inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded bg-[#E1306C] text-white hover:bg-[#C1275B] text-xs sm:text-sm font-mono font-medium transition-colors shadow-xs text-center mt-1"
                     >
                       <span>Visit @omthakur.op</span>
                       <ExternalLink className="w-3 h-3" />
@@ -1037,18 +1037,18 @@ export function LiveDeviceStation() {
                         <Youtube className="w-4 h-4 text-[#C4604A]" />
                         <span className="font-serif font-bold text-sm text-[#1A1816]">YouTube Channel</span>
                       </div>
-                      <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#C4604A]/10 text-[#C4604A] font-medium">
+                      <span className="text-xs font-mono px-2 py-0.5 rounded bg-[#C4604A]/10 text-[#C4604A] font-medium">
                         Opening Soon
                       </span>
                     </div>
-                    <p className="text-[11.5px] text-[#7A746D] leading-snug">
+                    <p className="text-xs sm:text-sm text-[#7A746D] leading-snug">
                       Account setup in progress. Video devlogs &amp; system architecture tutorials.
                     </p>
                   </div>
                 </div>
 
                 {/* Footer Profiles */}
-                <div className="pt-3 border-t border-[#EDE4D9]/80 mt-auto flex items-center justify-between text-[11px] font-mono text-[#7A746D]">
+                <div className="pt-3 border-t border-[#EDE4D9]/80 mt-auto flex items-center justify-between text-xs sm:text-sm font-mono text-[#7A746D]">
                   <span>Connected Channels</span>
                   <div className="flex items-center gap-2.5">
                     <a
@@ -1070,20 +1070,20 @@ export function LiveDeviceStation() {
                       <Github className="w-3.5 h-3.5" />
                     </a>
                     <a
-                      href="https://linkedin.com/in/om-thakur"
+                      href="https://linkedin.com/in/omthakur2366"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="hover:text-[#0A66C2] transition-colors"
-                      title="LinkedIn"
+                      title="LinkedIn @omthakur2366"
                     >
                       <Linkedin className="w-3.5 h-3.5" />
                     </a>
                     <a
-                      href="https://x.com/omthakur_og"
+                      href="https://twitter.com/omthakur2366"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="hover:text-[#1A1816] transition-colors"
-                      title="X / Twitter"
+                      title="X / Twitter @omthakur2366"
                     >
                       <Twitter className="w-3.5 h-3.5" />
                     </a>
@@ -1101,3 +1101,4 @@ export function LiveDeviceStation() {
     </section>
   );
 }
+

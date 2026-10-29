@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { ExternalLink, ArrowUpRight, Sparkles, Filter, Eye } from "lucide-react";
+import { ExternalLink, ArrowUpRight, Sparkles, Github, Code2 } from "lucide-react";
 import { PROJECTS, type Project } from "@/data/portfolio-data";
 
 interface ProjectsDossierProps {
@@ -27,38 +27,54 @@ export function ProjectsDossier({ onSelectProject }: ProjectsDossierProps) {
   });
 
   return (
-    <section id="projects" className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 border-b border-[#EDE4D9] bg-[#FAF6F1]">
-      <div className="max-w-7xl mx-auto">
+    <section
+      id="projects"
+      aria-labelledby="projects-heading"
+      className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 border-b border-[#EDE4D9] bg-[#FAF6F1]"
+    >
+      <div className="w-full max-w-7xl xl:max-w-[1360px] mx-auto">
         {/* ── Section Masthead ── */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12 pb-6 border-b border-[#EDE4D9]">
           <div>
             <div className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.22em] text-[#C4604A] font-semibold mb-2">
               <Sparkles className="w-3.5 h-3.5" />
-              <span>The Complete Blueprint Archives</span>
+              <span>Selected Work</span>
             </div>
-            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-black text-[#1A1816] tracking-tight">
-              Featured Systems & Instruments
+            <h2
+              id="projects-heading"
+              className="font-serif text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#1A1816] tracking-tight"
+            >
+              Featured Projects &amp; Systems
             </h2>
             <p className="text-sm text-[#5E5854] mt-2 max-w-xl">
-              Engineered systems ranging from in-browser virtual shells to Windows kernel optimizers,
-              local autonomous agents, and edge-native markdown runtimes.
+              Production systems ranging from cryptographic digital commerce platforms to sub-10ms stateless mathematical Edge APIs, offline AI agents, and Android finance engines.
             </p>
           </div>
 
           {/* Search bar */}
           <div className="w-full md:w-72">
+            <label htmlFor="project-filter-input" className="sr-only">
+              Filter projects by title or technology
+            </label>
             <input
-              type="text"
+              id="project-filter-input"
+              name="projectFilter"
+              type="search"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Filter by title or technology..."
+              aria-label="Filter projects by title or technology"
               className="w-full px-3.5 py-2 text-base sm:text-xs rounded border border-[#D4C3AF] bg-[#FDFCFA] text-[#1A1816] placeholder-[#928B87] focus:outline-none focus:border-[#C4604A]"
             />
           </div>
         </div>
 
-        {/* ── Category Filter Pills (Scrollable on Mobile, Wrapped on Desktop) ── */}
-        <div className="flex items-center sm:flex-wrap gap-2 mb-8 overflow-x-auto no-scrollbar py-1 -mx-4 px-4 sm:mx-0 sm:px-0">
+        {/* ── Category Filter Pills ── */}
+        <div
+          role="tablist"
+          aria-label="Project categories"
+          className="flex items-center sm:flex-wrap gap-2 mb-8 overflow-x-auto no-scrollbar py-1 -mx-4 px-4 sm:mx-0 sm:px-0"
+        >
           {CATEGORIES.map((cat) => {
             const count = cat === "All" ? PROJECTS.length : PROJECTS.filter((p) => p.category === cat).length;
             const isActive = activeCategory === cat;
@@ -66,6 +82,8 @@ export function ProjectsDossier({ onSelectProject }: ProjectsDossierProps) {
             return (
               <button
                 key={cat}
+                role="tab"
+                aria-selected={isActive}
                 onClick={() => setActiveCategory(cat)}
                 className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded text-xs font-mono transition-all shrink-0 ${
                   isActive
@@ -74,7 +92,7 @@ export function ProjectsDossier({ onSelectProject }: ProjectsDossierProps) {
                 }`}
               >
                 <span>{cat}</span>
-                <span className="text-[10px] opacity-70">({count})</span>
+                <span className="text-xs opacity-70">({count})</span>
               </button>
             );
           })}
@@ -84,7 +102,7 @@ export function ProjectsDossier({ onSelectProject }: ProjectsDossierProps) {
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           <AnimatePresence mode="popLayout">
             {filteredProjects.map((project, idx) => (
-              <motion.div
+              <motion.article
                 key={project.id}
                 layout
                 initial={{ opacity: 0, y: 20 }}
@@ -98,12 +116,14 @@ export function ProjectsDossier({ onSelectProject }: ProjectsDossierProps) {
                   <div className="relative aspect-video w-full overflow-hidden bg-[#F3ECE4] border-b border-[#EDE4D9]">
                     <Image
                       src={project.image}
-                      alt={project.name}
+                      alt={`${project.name} — ${project.category} system architecture by Om Thakur`}
                       fill
+                      priority={idx === 0}
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                     <div className="absolute top-3 left-3">
-                      <span className="px-2.5 py-0.5 rounded text-[10px] font-mono font-semibold bg-[#FAF6F1]/90 backdrop-blur text-[#C4604A] border border-[#EDE4D9]">
+                      <span className="px-2.5 py-0.5 rounded text-xs font-mono font-semibold bg-[#FAF6F1]/90 backdrop-blur text-[#C4604A] border border-[#EDE4D9]">
                         {project.category}
                       </span>
                     </div>
@@ -112,7 +132,7 @@ export function ProjectsDossier({ onSelectProject }: ProjectsDossierProps) {
                   {/* Card Content */}
                   <div className="p-4 sm:p-6 space-y-3">
                     <div>
-                      <span className="text-[10px] uppercase font-mono text-[#928B87] block">
+                      <span className="text-xs uppercase font-mono text-[#928B87] block">
                         {project.edition}
                       </span>
                       <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#1A1816] mt-0.5">
@@ -120,54 +140,120 @@ export function ProjectsDossier({ onSelectProject }: ProjectsDossierProps) {
                       </h3>
                     </div>
 
-                    <p className="text-xs text-[#5E5854] leading-relaxed line-clamp-2">
+                    <p className="text-sm sm:text-base text-[#2C2825] leading-relaxed font-normal">
                       {project.purpose}
                     </p>
 
-                    <div className="p-2.5 rounded bg-[#FAF6F1] border border-[#EDE4D9]">
-                      <span className="text-[10px] uppercase tracking-wider font-semibold text-[#C4604A] block mb-0.5">
+                    {/* Key Metrics Strip (Visible in SSR HTML for AEO/GEO) */}
+                    <div className="grid grid-cols-3 gap-1.5 pt-0.5">
+                      {project.stats.map((s) => (
+                        <div
+                          key={s.label}
+                          className="p-2 rounded bg-[#FAF6F1] border border-[#EDE4D9] text-center"
+                        >
+                          <span className="text-[10px] uppercase font-mono text-[#7A746D] block truncate">
+                            {s.label}
+                          </span>
+                          <span className="font-mono text-xs font-bold text-[#1A1816] block truncate mt-0.5">
+                            {s.value}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+
+                    <div className="p-3.5 rounded bg-[#FAF6F1] border border-[#EDE4D9]">
+                      <span className="text-xs uppercase tracking-wider font-bold text-[#C4604A] block mb-1">
                         Key Architecture:
                       </span>
-                      <p className="text-[11px] text-[#2C2825] font-medium leading-snug">
+                      <p className="text-sm sm:text-base text-[#1A1816] font-semibold leading-relaxed">
                         {project.feature}
                       </p>
                     </div>
 
                     {/* Tech Stack Pills */}
-                    <div className="flex flex-wrap gap-1 pt-1">
-                      {project.techStack.slice(0, 4).map((tech) => (
+                    <div className="flex flex-wrap gap-1.5 pt-1">
+                      {project.techStack.map((tech) => (
                         <span
                           key={tech}
-                          className="px-2 py-0.5 rounded text-[10px] font-mono bg-[#F3ECE4] text-[#5E5854]"
+                          className="px-2.5 py-1 rounded text-xs font-mono font-medium bg-[#F3ECE4] text-[#1A1816] border border-[#D4C3AF]"
                         >
                           {tech}
                         </span>
                       ))}
                     </div>
+
+                    {/* Crawlable Architecture & Fenced Code Specimen (AR-READ-01 compliant) */}
+                    <details className="group/spec rounded border border-[#EDE4D9] bg-[#FAF6F1] text-xs">
+                      <summary className="cursor-pointer select-none px-3 py-2 font-mono font-semibold text-[#5E5854] hover:text-[#1A1816] flex items-center justify-between">
+                        <span className="inline-flex items-center gap-1.5">
+                          <Code2 className="w-3.5 h-3.5 text-[#566449]" />
+                          <span>Architecture Spec &amp; Code Specimen</span>
+                        </span>
+                        <span className="text-[#C4604A] group-open/spec:rotate-180 transition-transform">▾</span>
+                      </summary>
+                      <div className="p-3 pt-2 border-t border-[#EDE4D9] space-y-2.5 text-[#2C2825]">
+                        <p className="leading-relaxed">
+                          <strong className="text-[#7A3B3B] font-mono uppercase text-[11px]">Challenge: </strong>
+                          {project.problemStatement}
+                        </p>
+                        <ul className="list-disc pl-4 space-y-1 leading-snug">
+                          {project.solutionDetails.map((detail, i) => (
+                            <li key={i}>{detail}</li>
+                          ))}
+                        </ul>
+                        {project.codeSpecimen && (
+                          <div className="rounded bg-[#1A1816] text-[#FAF6F1] p-2.5 overflow-x-auto">
+                            <div className="flex justify-between text-[10px] font-mono text-[#928B87] pb-1 mb-1 border-b border-[#383432]">
+                              <span>{project.codeSpecimen.filename}</span>
+                              <span>{project.codeSpecimen.language}</span>
+                            </div>
+                            <pre className="font-mono text-[11px] leading-relaxed overflow-x-auto text-[#EDE4D9]">
+                              <code className={`language-${project.codeSpecimen.language}`}>
+                                {project.codeSpecimen.code}
+                              </code>
+                            </pre>
+                          </div>
+                        )}
+                      </div>
+                    </details>
                   </div>
                 </div>
 
                 {/* Footer Action */}
-                <div className="p-4 sm:p-5 pt-0 flex items-center justify-between border-t border-[#EDE4D9]/60 mt-3">
+                <div className="p-4 sm:p-6 pt-3 flex items-center justify-between border-t border-[#EDE4D9]/60 mt-2">
                   <button
                     onClick={() => onSelectProject(project)}
-                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#C4604A] hover:text-[#A8493A] transition-colors"
+                    className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#C4604A] hover:text-[#A8493A] transition-colors"
                   >
-                    <span>Inspect Blueprint</span>
+                    <span>Full Blueprint</span>
                     <ArrowUpRight className="w-3.5 h-3.5" />
                   </button>
 
-                  <a
-                    href={project.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-xs font-mono text-[#928B87] hover:text-[#1A1816] inline-flex items-center gap-1"
-                  >
-                    <span>Live</span>
-                    <ExternalLink className="w-3 h-3" />
-                  </a>
+                  <div className="flex items-center gap-3">
+                    {project.github && project.github !== project.url && (
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-xs font-mono text-[#5E5854] hover:text-[#1A1816] inline-flex items-center gap-1 font-medium"
+                        title={`View ${project.name} source code on GitHub`}
+                      >
+                        <Github className="w-3.5 h-3.5" />
+                        <span>Code</span>
+                      </a>
+                    )}
+                    <a
+                      href={project.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-xs font-mono text-[#5E5854] hover:text-[#1A1816] inline-flex items-center gap-1 font-medium"
+                    >
+                      <span>{project.url.includes("github.com") ? "Repository" : "Live Site"}</span>
+                      <ExternalLink className="w-3.5 h-3.5" />
+                    </a>
+                  </div>
                 </div>
-              </motion.div>
+              </motion.article>
             ))}
           </AnimatePresence>
         </div>

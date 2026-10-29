@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, Github, Linkedin, Twitter, Send, CheckCircle2, Stamp, MapPin, Sparkles } from "lucide-react";
+import { Mail, Github, Linkedin, Twitter, Send, CheckCircle2, MapPin } from "lucide-react";
 
 export function PostalContactStation() {
   const [formState, setFormState] = useState({ name: "", email: "", message: "" });
@@ -48,7 +48,7 @@ export function PostalContactStation() {
 
   return (
     <section id="contact" className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 border-b border-[#EDE4D9] bg-[#FAF6F1]">
-      <div className="max-w-7xl mx-auto">
+      <div className="w-full max-w-7xl xl:max-w-[1360px] mx-auto">
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12 pb-6 border-b border-[#EDE4D9]">
           <div>
@@ -56,10 +56,10 @@ export function PostalContactStation() {
               <Mail className="w-3.5 h-3.5" />
               <span>Postal Dispatch Station</span>
             </div>
-            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-black text-[#1A1816] tracking-tight">
+            <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#1A1816] tracking-tight">
               Initiate Direct Correspondence
             </h2>
-            <p className="text-sm text-[#5E5854] mt-2 max-w-xl">
+            <p className="text-sm sm:text-base text-[#4A4541] mt-2 max-w-xl leading-relaxed">
               Available for distributed systems engineering, technical advisory, high-concurrency consulting,
               and full-time backend leadership appointments.
             </p>
@@ -76,7 +76,7 @@ export function PostalContactStation() {
                 <span className="font-mono text-xs uppercase tracking-wider text-[#7A746D]">
                   Coordinates Registry
                 </span>
-                <span className="font-mono text-[10px] text-[#566449] font-bold">
+                <span className="font-mono text-xs text-[#566449] font-bold">
                   ● ACTIVE DISPATCH
                 </span>
               </div>
@@ -90,10 +90,10 @@ export function PostalContactStation() {
                     <Mail className="w-4 h-4" />
                   </div>
                   <div className="min-w-0 flex-1">
-                    <span className="text-[10px] uppercase font-mono text-[#928B87] block">
+                    <span className="text-xs sm:text-sm uppercase font-mono text-[#7A746D] block font-semibold">
                       Direct Inquiries
                     </span>
-                    <span className="font-mono text-xs font-semibold text-[#1A1816] group-hover:text-[#C4604A] transition-colors truncate block">
+                    <span className="font-mono text-sm sm:text-base font-bold text-[#1A1816] group-hover:text-[#C4604A] transition-colors truncate block">
                       omthakur2366@gmail.com
                     </span>
                   </div>
@@ -104,10 +104,10 @@ export function PostalContactStation() {
                     <MapPin className="w-4 h-4" />
                   </div>
                   <div className="min-w-0 flex-1">
-                    <span className="text-[10px] uppercase font-mono text-[#928B87] block">
+                    <span className="text-xs sm:text-sm uppercase font-mono text-[#7A746D] block font-semibold">
                       Base Location
                     </span>
-                    <span className="font-mono text-xs font-semibold text-[#1A1816] truncate block">
+                    <span className="font-mono text-sm sm:text-base font-bold text-[#1A1816] truncate block">
                       Mumbai, India (IST · UTC+5:30)
                     </span>
                   </div>
@@ -116,7 +116,7 @@ export function PostalContactStation() {
 
               {/* Social Channels */}
               <div className="pt-5 mt-5 border-t border-[#EDE4D9]">
-                <span className="text-[10px] uppercase tracking-wider font-mono text-[#7A746D] block mb-3">
+                <span className="text-xs uppercase tracking-wider font-mono text-[#7A746D] font-semibold block mb-3">
                   Verified Public Repositories & Profiles:
                 </span>
                 <div className="flex items-center gap-3">
@@ -162,7 +162,7 @@ export function PostalContactStation() {
                   </span>
                 </div>
 
-                <div className="flex items-center gap-1.5 text-[10px] font-mono text-[#928B87]">
+                <div className="flex items-center gap-1.5 text-xs font-mono text-[#928B87]">
                   <MapPin className="w-3 h-3" />
                   <span>Destination: Mumbai Hub</span>
                 </div>
@@ -191,49 +191,60 @@ export function PostalContactStation() {
                   </button>
                 </motion.div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-4">
+                <form onSubmit={handleSubmit} className="space-y-4" aria-label="Direct Correspondence Form">
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-xs font-mono font-medium text-[#4A4541] mb-1">
+                      <label htmlFor="contact-name" className="block text-xs font-mono font-medium text-[#4A4541] mb-1">
                         Author / Name *
                       </label>
                       <input
+                        id="contact-name"
+                        name="name"
                         type="text"
+                        autoComplete="name"
+                        required
                         value={formState.name}
                         onChange={(e) => setFormState({ ...formState, name: e.target.value })}
                         placeholder="e.g. Mira Castellano"
                         className="w-full px-3.5 py-2.5 rounded border border-[#EDE4D9] bg-[#FAF6F1] text-base sm:text-xs font-sans text-[#1A1816] placeholder-[#928B87] focus:outline-none focus:border-[#C4604A]"
                       />
-                      {errors.name && <p className="text-[10px] text-[#7A3B3B] mt-1 font-mono">{errors.name}</p>}
+                      {errors.name && <p role="alert" className="text-xs text-[#7A3B3B] mt-1 font-mono">{errors.name}</p>}
                     </div>
 
                     <div>
-                      <label className="block text-xs font-mono font-medium text-[#4A4541] mb-1">
+                      <label htmlFor="contact-email" className="block text-xs font-mono font-medium text-[#4A4541] mb-1">
                         Return Address (Email) *
                       </label>
                       <input
+                        id="contact-email"
+                        name="email"
                         type="email"
+                        autoComplete="email"
+                        required
                         value={formState.email}
                         onChange={(e) => setFormState({ ...formState, email: e.target.value })}
                         placeholder="e.g. mira@studio.org"
                         className="w-full px-3.5 py-2.5 rounded border border-[#EDE4D9] bg-[#FAF6F1] text-base sm:text-xs font-sans text-[#1A1816] placeholder-[#928B87] focus:outline-none focus:border-[#C4604A]"
                       />
-                      {errors.email && <p className="text-[10px] text-[#7A3B3B] mt-1 font-mono">{errors.email}</p>}
+                      {errors.email && <p role="alert" className="text-xs text-[#7A3B3B] mt-1 font-mono">{errors.email}</p>}
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-xs font-mono font-medium text-[#4A4541] mb-1">
+                    <label htmlFor="contact-message" className="block text-xs font-mono font-medium text-[#4A4541] mb-1">
                       Dispatch Message / Inquiry *
                     </label>
                     <textarea
+                      id="contact-message"
+                      name="message"
                       rows={5}
+                      required
                       value={formState.message}
                       onChange={(e) => setFormState({ ...formState, message: e.target.value })}
                       placeholder="Outline system architecture requirements, appointment timeline, or consulting scope..."
                       className="w-full px-3.5 py-2.5 rounded border border-[#EDE4D9] bg-[#FAF6F1] text-base sm:text-xs font-sans text-[#1A1816] placeholder-[#928B87] focus:outline-none focus:border-[#C4604A] leading-relaxed"
                     />
-                    {errors.message && <p className="text-[10px] text-[#7A3B3B] mt-1 font-mono">{errors.message}</p>}
+                    {errors.message && <p role="alert" className="text-xs text-[#7A3B3B] mt-1 font-mono">{errors.message}</p>}
                   </div>
 
                   <div className="pt-2 flex flex-col sm:flex-row sm:items-center justify-between gap-3">

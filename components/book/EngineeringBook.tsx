@@ -263,56 +263,53 @@ export function EngineeringBook({
   const nextTargetPlate = targetIdx !== null ? targetIdx : currentIdx;
 
   return (
-    <section className="relative pt-24 md:pt-32 pb-16 md:pb-24 px-4 sm:px-6 lg:px-8 border-b border-[#EDE4D9] bg-gradient-to-b from-[#FAF6F1] via-[#FDFCFA] to-[#FAF6F1]">
-      <div className="max-w-7xl mx-auto">
+    <section className="relative pt-20 md:pt-24 pb-10 md:pb-12 px-4 sm:px-6 lg:px-8 border-b border-[#EDE4D9] bg-gradient-to-b from-[#FAF6F1] via-[#FDFCFA] to-[#FAF6F1]">
+      <div className="w-full max-w-7xl xl:max-w-[1360px] mx-auto">
         {/* ── Top Masthead Information Bar ── */}
-        <div className="flex flex-wrap items-center justify-between gap-3 pb-6 mb-8 border-b border-[#EDE4D9] text-[11px] font-sans uppercase tracking-[0.22em] text-[#7A746D]">
-          <div className="flex items-center gap-3">
-            <span className="inline-block w-2 h-2 rounded-full bg-[#C4604A] animate-pulse" />
-            <span className="font-semibold text-[#1A1816]">Vol. I · Opus Nº 2026</span>
-            <span className="hidden sm:inline text-[#E2D5C6]">/</span>
-            <span className="hidden sm:inline">The Engineer&apos;s Monograph</span>
+        <div className="flex items-center justify-between pb-3.5 mb-6 border-b border-[#EDE4D9] text-xs font-mono text-[#7A746D]">
+          <div className="flex items-center gap-2.5">
+            <span className="inline-block w-2 h-2 rounded-full bg-[#566449] animate-pulse shrink-0" />
+            <span className="font-medium text-[#1A1816] tracking-wide whitespace-nowrap">
+              Production Architecture &amp; Systems
+            </span>
+            <span className="hidden sm:inline text-[#D4C3AF]">/</span>
+            <span className="hidden sm:inline text-[#8C827A] text-xs whitespace-nowrap">
+              Low-Latency APIs · Distributed Queues · Real-Time Pipelines
+            </span>
           </div>
 
-          <div className="hidden md:flex items-center gap-5 text-[#5E5854]">
-            <span>Distributed Systems</span>
-            <span className="text-[#E2D5C6]">•</span>
-            <span>Real-time APIs</span>
-            <span className="text-[#E2D5C6]">•</span>
-            <span>Low-Latency Architectures</span>
-          </div>
-
-          <div className="flex items-center gap-2 font-script text-base text-[#C4604A] lowercase tracking-normal">
-            <span>{TOTAL_PLATES} architectural plates in archive</span>
+          <div className="flex items-center gap-2 font-mono text-xs text-[#C4604A] shrink-0 whitespace-nowrap">
+            <span className="hidden sm:inline text-[#8C827A]">Interactive Volume</span>
+            <span className="hidden sm:inline text-[#D4C3AF]">·</span>
+            <span className="font-semibold">{TOTAL_PLATES} Chapters</span>
           </div>
         </div>
 
-        {/* ── Monograph Hero Title & Mission ── */}
-        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#F3ECE4] border border-[#E2D5C6] text-xs font-semibold text-[#7A746D] mb-4">
+        {/* ── Book Hero Title ── */}
+        <div className="text-center max-w-2xl mx-auto mb-5 sm:mb-6">
+          <div className="inline-flex items-center gap-2 px-3 py-0.5 rounded-full bg-[#F3ECE4] border border-[#E2D5C6] text-xs font-semibold text-[#7A746D] mb-2.5">
             <Sparkles className="w-3.5 h-3.5 text-[#C4604A]" />
-            <span>Interactive Engineering Ledger</span>
+            <span>Interactive Engineering Volume</span>
           </div>
 
-          <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-black text-[#1A1816] tracking-tight leading-[0.98]">
-            The Digital Monograph of{" "}
+          <h1 className="font-serif text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#1A1816] tracking-tight leading-tight">
+            Om Thakur — Scalable Backends &amp;{" "}
             <span className="italic font-serif font-normal text-[#C4604A] block sm:inline">
-              Resilient Systems
-            </span>{" "}
-            & Distributed Craft.
+              Distributed Systems
+            </span>
           </h1>
 
-          <p className="font-script text-xl sm:text-2xl text-[#C4604A] mt-2">
-            drag or click the pages to turn · press arrow keys (← / →)
+          <p className="text-xs font-mono text-[#5E5854] mt-2">
+            Flip through the pages or press arrow keys (← / →)
           </p>
         </div>
 
         {/* ── 3D Physical Book Stage (Dual Mode: Desktop 3D Spread / Mobile Single-Page Leaf) ── */}
-        <div className="flex flex-col items-center gap-6 w-full">
+        <div className="flex flex-col items-center gap-5 w-full">
           
           {/* 1. DESKTOP STAGE (≥ md: Dual-Page 3D Open Book) */}
           <div
-            className="hidden md:flex items-center justify-center w-full max-w-6xl relative select-none"
+            className="hidden md:flex items-center justify-center w-full max-w-[1360px] relative select-none"
             onPointerMove={handleStagePointerMove}
             onPointerLeave={handleStagePointerLeave}
           >
@@ -320,15 +317,15 @@ export function EngineeringBook({
             <button
               onClick={prevPage}
               disabled={isFlipping}
-              className="p-3 text-[#928B87] hover:text-[#1A1816] disabled:opacity-30 transition-colors rounded-full hover:bg-[#F3ECE4] z-30 mr-2 md:mr-4 shrink-0"
+              className="p-2.5 sm:p-3 text-[#928B87] hover:text-[#1A1816] disabled:opacity-30 transition-all rounded-full hover:bg-[#F3ECE4] z-30 mr-2 md:mr-3 shrink-0 shadow-xs border border-[#EDE4D9] bg-[#FDFCFA]"
               aria-label="Previous Page"
-              title="Previous Plate (Left Arrow)"
+              title="Previous (Left Arrow)"
             >
-              <ChevronLeft className="w-8 h-8" />
+              <ChevronLeft className="w-6 h-6" />
             </button>
 
             {/* The Hardcover Open Book Container */}
-            <div className="w-full max-w-5xl [perspective:1800px]">
+            <div className="w-full max-w-[1240px] xl:max-w-[1320px] [perspective:2000px]">
               <motion.div
                 ref={bookContainerRef}
                 style={{
@@ -340,7 +337,7 @@ export function EngineeringBook({
                 onPointerMove={handlePointerMove}
                 onPointerUp={handlePointerUp}
                 onPointerCancel={handlePointerUp}
-                className="relative aspect-[16/10] sm:aspect-[16/9.5] w-full rounded-md shadow-paper-lg border border-[#EDE4D9] bg-[#FAF6F1] overflow-hidden cursor-grab active:cursor-grabbing select-none"
+                className="relative aspect-[16/10.4] min-h-[540px] lg:min-h-[580px] xl:min-h-[620px] max-h-[660px] w-full rounded-lg shadow-paper-lg border border-[#EDE4D9] bg-[#FAF6F1] overflow-hidden cursor-grab active:cursor-grabbing select-none"
               >
                 {/* ── 1. STATIC UNDERNEATH SPREAD ── */}
                 <div className="absolute inset-0 grid grid-cols-2 z-0">
@@ -452,16 +449,16 @@ export function EngineeringBook({
             <button
               onClick={nextPage}
               disabled={isFlipping}
-              className="p-3 text-[#928B87] hover:text-[#1A1816] disabled:opacity-30 transition-colors rounded-full hover:bg-[#F3ECE4] z-30 ml-2 md:mr-4 shrink-0"
+              className="p-2.5 sm:p-3 text-[#928B87] hover:text-[#1A1816] disabled:opacity-30 transition-all rounded-full hover:bg-[#F3ECE4] z-30 ml-2 md:ml-3 shrink-0 shadow-xs border border-[#EDE4D9] bg-[#FDFCFA]"
               aria-label="Next Page"
-              title="Next Plate (Right Arrow)"
+              title="Next (Right Arrow)"
             >
-              <ChevronRight className="w-8 h-8" />
+              <ChevronRight className="w-6 h-6" />
             </button>
           </div>
 
           {/* 2. MOBILE STAGE (< md: Single-Page Leaf Presentation with Touch Swiping) */}
-          <div className="block md:hidden w-full max-w-lg mx-auto">
+          <div className="block md:hidden w-full max-w-xl mx-auto">
             <div
               className="w-full rounded-lg shadow-paper-lg border-2 border-[#D4C3AF] bg-[#FAF6F1] overflow-hidden"
               onTouchStart={handleMobileTouchStart}
@@ -471,13 +468,13 @@ export function EngineeringBook({
               <div className="flex items-center justify-between px-3.5 py-2.5 bg-[#F3ECE4] border-b border-[#EDE4D9] text-xs font-mono">
                 <div className="flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-[#C4604A] animate-pulse" />
-                  <span className="font-bold text-[#1A1816] text-[11px]">
+                  <span className="font-bold text-[#1A1816] text-xs">
                     {activePlate.plateNumber}
                   </span>
                 </div>
 
                 {/* Page Switcher Pill */}
-                <div className="inline-flex rounded-full bg-[#EDE4D9] p-0.5 text-[10px]">
+                <div className="inline-flex rounded-full bg-[#EDE4D9] p-0.5 text-xs">
                   <button
                     onClick={() => setMobileSide("left")}
                     className={`px-2.5 py-1 rounded-full font-semibold transition-all ${
@@ -486,7 +483,7 @@ export function EngineeringBook({
                         : "text-[#5E5854] hover:text-[#1A1816]"
                     }`}
                   >
-                    Page A · Left
+                    Side A
                   </button>
                   <button
                     onClick={() => setMobileSide("right")}
@@ -496,13 +493,13 @@ export function EngineeringBook({
                         : "text-[#5E5854] hover:text-[#1A1816]"
                     }`}
                   >
-                    Page B · Right
+                    Side B
                   </button>
                 </div>
               </div>
 
               {/* Mobile Page Content Leaf with Smooth Transition */}
-              <div className="min-h-[460px] flex flex-col justify-between">
+              <div className="min-h-[580px] sm:min-h-[640px] flex flex-col justify-between">
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={`${currentIdx}-${mobileSide}`}
@@ -522,10 +519,10 @@ export function EngineeringBook({
               </div>
 
               {/* Touch Swipe and Nav Tip */}
-              <div className="px-3 py-2 bg-[#F3ECE4]/80 border-t border-[#EDE4D9] flex items-center justify-between text-[10.5px] font-mono text-[#7A746D]">
+              <div className="px-3 py-2 bg-[#F3ECE4]/80 border-t border-[#EDE4D9] flex items-center justify-between text-xs font-mono text-[#7A746D]">
                 <span>← Swipe to turn →</span>
                 <span className="text-[#C4604A] font-medium">
-                  {mobileSide === "left" ? "Side A" : "Side B"} of Plate {currentIdx + 1}
+                  {mobileSide === "left" ? "Side A" : "Side B"} of Chapter {currentIdx + 1}
                 </span>
               </div>
             </div>
@@ -538,7 +535,7 @@ export function EngineeringBook({
                 className="flex-1 flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-md bg-[#F3ECE4] hover:bg-[#E2D5C6] active:bg-[#D4C3AF] text-[#1A1816] border border-[#EDE4D9] text-xs font-mono font-semibold transition-colors disabled:opacity-40"
               >
                 <ChevronLeft className="w-4 h-4 text-[#C4604A]" />
-                <span>Prev Plate</span>
+                <span>Previous</span>
               </button>
 
               <div className="px-3 py-2 rounded-md bg-[#FAF6F1] border border-[#EDE4D9] text-center shrink-0">
@@ -552,7 +549,7 @@ export function EngineeringBook({
                 disabled={isFlipping}
                 className="flex-1 flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-md bg-[#F3ECE4] hover:bg-[#E2D5C6] active:bg-[#D4C3AF] text-[#1A1816] border border-[#EDE4D9] text-xs font-mono font-semibold transition-colors disabled:opacity-40"
               >
-                <span>Next Plate</span>
+                <span>Next</span>
                 <ChevronRight className="w-4 h-4 text-[#C4604A]" />
               </button>
             </div>
@@ -560,19 +557,19 @@ export function EngineeringBook({
 
           {/* ── Active Plate Title & Position ── */}
           <div className="flex flex-col items-center justify-center text-center mt-2 px-4">
-            <span className="text-[11px] uppercase tracking-[0.22em] font-semibold text-[#C4604A]">
+            <span className="text-xs uppercase tracking-[0.22em] font-bold text-[#C4604A]">
               {activePlate.plateNumber} · {activePlate.category}
             </span>
-            <p className="font-serif font-bold text-lg sm:text-xl text-[#1A1816] mt-0.5">
+            <p className="font-serif font-black text-xl sm:text-2xl text-[#1A1816] mt-1">
               {activePlate.title}
             </p>
-            <p className="text-xs text-[#5E5854] mt-1 max-w-md">
+            <p className="text-xs sm:text-sm text-[#4A4541] mt-1 max-w-lg">
               {activePlate.subtitle}
             </p>
           </div>
 
           {/* ── Plate Index Navigation Tabs (Scrollable on Mobile, Centered on Desktop) ── */}
-          <div className="flex items-center justify-start md:justify-center gap-1.5 max-w-4xl mx-auto pt-2 overflow-x-auto no-scrollbar w-full px-2 py-1">
+          <div className="flex items-center justify-start md:justify-center gap-1.5 max-w-6xl 2xl:max-w-7xl mx-auto pt-2 overflow-x-auto no-scrollbar w-full px-2 py-1">
             {MONOGRAPH_PLATES.map((p, idx) => {
               const isActive = idx === currentIdx;
               return (
@@ -580,10 +577,10 @@ export function EngineeringBook({
                   key={p.id}
                   onClick={() => jumpToPlate(idx)}
                   disabled={isFlipping}
-                  className={`px-3 py-1.5 rounded text-xs font-mono transition-all shrink-0 ${
+                  className={`px-3.5 py-2 rounded text-xs sm:text-sm font-mono transition-all shrink-0 ${
                     isActive
                       ? "bg-[#1A1816] text-[#FAF6F1] font-bold shadow-sm ring-1 ring-[#C4604A]"
-                      : "bg-[#F3ECE4] text-[#5E5854] hover:bg-[#E2D5C6] hover:text-[#1A1816]"
+                      : "bg-[#F3ECE4] text-[#5E5854] hover:bg-[#E2D5C6] hover:text-[#1A1816] font-medium"
                   }`}
                 >
                   <span className="text-[#C4604A] font-bold mr-1.5">
@@ -594,8 +591,58 @@ export function EngineeringBook({
               );
             })}
           </div>
+
+          {/* ── SSR-Accessible 10-Chapter Monograph Index & Case Studies (AR-READ-01) ── */}
+          <details className="w-full max-w-5xl mx-auto mt-2 rounded-md border border-[#EDE4D9] bg-[#FDFCFA] px-4 py-3 text-left shadow-2xs group">
+            <summary className="cursor-pointer font-mono text-xs uppercase tracking-wider text-[#5E5854] hover:text-[#C4604A] font-semibold flex items-center justify-between select-none">
+              <span>Full 10-Chapter Monograph Index &amp; Database RCA Case Studies (Complete Text Archive)</span>
+              <span className="text-[#C4604A] group-open:rotate-180 transition-transform">↓</span>
+            </summary>
+            <div className="mt-4 pt-4 border-t border-[#EDE4D9] space-y-5 text-xs sm:text-sm text-[#4A4541] leading-relaxed">
+              <div className="grid sm:grid-cols-2 gap-4">
+                {MONOGRAPH_PLATES.map((plate, idx) => (
+                  <div key={plate.id} className="p-3 rounded bg-[#FAF6F1] border border-[#EDE4D9]">
+                    <div className="flex items-center justify-between font-mono text-xs text-[#C4604A] font-bold mb-1">
+                      <span>{plate.plateNumber} · {plate.category}</span>
+                      <button
+                        type="button"
+                        onClick={() => jumpToPlate(idx)}
+                        className="underline hover:text-[#1A1816]"
+                      >
+                        Open Chapter →
+                      </button>
+                    </div>
+                    <p className="font-serif font-bold text-[#1A1816] text-sm">{plate.title}</p>
+                    <p className="text-xs text-[#5E5854] mt-0.5">{plate.subtitle}</p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="p-4 rounded bg-[#FAF6F1] border border-[#EDE4D9] space-y-2">
+                <p className="font-mono text-xs uppercase tracking-wider font-bold text-[#C4604A]">
+                  Chapter 02 &amp; 09 Case Study — Production Database Outage RCA &amp; Indexing Optimization
+                </p>
+                <p>
+                  During a production database incident at Sumeru Technology Solutions, Om Thakur identified that a legacy
+                  payment-related cron job was repeatedly retrying failed HTTP requests every 15 minutes without backoff or
+                  idempotency locks, generating simultaneous request bursts that exhausted PostgreSQL connections. Replacing
+                  the cron polling loop with an event-driven <strong>Flexbase message queue</strong> with exponential backoff
+                  and dead-letter routing reduced synchronization latency from <strong>15 minutes to 4 seconds (99.5% faster)</strong>{" "}
+                  and eliminated retry-storm crashes.
+                </p>
+                <p>
+                  For entitlement verification queries under burst webhook load, replacing sequential table scans{" "}
+                  (<code>Seq Scan on orders · Execution Time: 840.2 ms</code>) with a partial covering B-Tree index{" "}
+                  (<code>CREATE INDEX CONCURRENTLY idx_orders_entitlement_covering ON orders (user_id, payment_status) INCLUDE (asset_id, hmac_verified_at) WHERE payment_status = &apos;captured&apos;;</code>){" "}
+                  achieved an <strong>Index-Only Scan</strong> with heap fetches = 0 and execution time reduced to{" "}
+                  <strong>0.11 ms (99.98% latency reduction)</strong>.
+                </p>
+              </div>
+            </div>
+          </details>
         </div>
       </div>
     </section>
   );
 }
+

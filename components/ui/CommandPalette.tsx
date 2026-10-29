@@ -3,8 +3,8 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { Search, X, BookOpen, Layers, Terminal, Mail, FileText, ArrowRight, ExternalLink, Radio } from "lucide-react";
-import { PROJECTS, MONOGRAPH_PLATES, SKILL_SPECIMENS } from "@/data/portfolio-data";
+import { Search, X, Terminal, FileText, Radio } from "lucide-react";
+import { PROJECTS, SKILL_SPECIMENS } from "@/data/portfolio-data";
 
 interface CommandPaletteProps {
   open: boolean;
@@ -27,8 +27,7 @@ export function CommandPalette({
     const onKey = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key === "k") {
         e.preventDefault();
-        if (open) onClose();
-        else onClose(); // parent handles toggle
+        onClose();
       }
       if (e.key === "Escape" && open) {
         onClose();
@@ -68,7 +67,7 @@ export function CommandPalette({
               autoFocus
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="Search blueprints, skills, plates, or actions..."
+              placeholder="Search projects, skills, or actions..."
               className="flex-1 bg-transparent text-base sm:text-sm text-[#1A1816] placeholder-[#928B87] focus:outline-none font-sans"
             />
             <button
@@ -83,7 +82,7 @@ export function CommandPalette({
           <div className="max-h-96 overflow-y-auto p-3 space-y-4 no-scrollbar">
             {/* Quick Actions */}
             <div>
-              <span className="text-[10px] uppercase tracking-wider font-mono text-[#928B87] px-2 block mb-1">
+              <span className="text-xs uppercase tracking-wider font-mono text-[#928B87] px-2 block mb-1">
                 Quick Actions
               </span>
               <div className="space-y-1">
@@ -96,9 +95,9 @@ export function CommandPalette({
                 >
                   <div className="flex items-center gap-2.5">
                     <Terminal className="w-3.5 h-3.5 text-[#C4604A]" />
-                    <span>Launch Live Telemetry REPL Console</span>
+                    <span>Open Terminal REPL</span>
                   </div>
-                  <span className="font-mono text-[10px] text-[#928B87]">Terminal</span>
+                  <span className="font-mono text-xs text-[#928B87]">Terminal</span>
                 </button>
 
                 <Link
@@ -108,9 +107,9 @@ export function CommandPalette({
                 >
                   <div className="flex items-center gap-2.5">
                     <FileText className="w-3.5 h-3.5 text-[#566449]" />
-                    <span>Inspect Verified Curriculum Vitae (Resume)</span>
+                    <span>View Resume</span>
                   </div>
-                  <span className="font-mono text-[10px] text-[#566449] font-bold">/resume</span>
+                  <span className="font-mono text-xs text-[#566449] font-bold">/resume</span>
                 </Link>
 
                 <button
@@ -122,9 +121,9 @@ export function CommandPalette({
                 >
                   <div className="flex items-center gap-2.5">
                     <Radio className="w-3.5 h-3.5 text-[#C4604A]" />
-                    <span>Live Device Activity &amp; Signal Station</span>
+                    <span>Live Activity Feed</span>
                   </div>
-                  <span className="font-mono text-[10px] text-[#928B87]">Telemetry</span>
+                  <span className="font-mono text-xs text-[#928B87]">Stream</span>
                 </button>
               </div>
             </div>
@@ -132,8 +131,8 @@ export function CommandPalette({
             {/* Projects */}
             {filteredProjects.length > 0 && (
               <div>
-                <span className="text-[10px] uppercase tracking-wider font-mono text-[#928B87] px-2 block mb-1">
-                  Blueprint Editions ({filteredProjects.length})
+                <span className="text-xs uppercase tracking-wider font-mono text-[#928B87] px-2 block mb-1">
+                  Projects ({filteredProjects.length})
                 </span>
                 <div className="space-y-1">
                   {filteredProjects.map((p) => (
@@ -147,9 +146,9 @@ export function CommandPalette({
                     >
                       <div>
                         <p className="font-medium text-[#1A1816]">{p.name}</p>
-                        <p className="text-[10px] text-[#7A746D]">{p.purpose}</p>
+                        <p className="text-xs text-[#7A746D]">{p.purpose}</p>
                       </div>
-                      <span className="font-mono text-[10px] text-[#C4604A] shrink-0 ml-2">
+                      <span className="font-mono text-xs text-[#C4604A] shrink-0 ml-2">
                         {p.category}
                       </span>
                     </button>
@@ -161,17 +160,17 @@ export function CommandPalette({
             {/* Skills */}
             {filteredSkills.length > 0 && (
               <div>
-                <span className="text-[10px] uppercase tracking-wider font-mono text-[#928B87] px-2 block mb-1">
-                  Technical Specimens ({filteredSkills.length})
+                <span className="text-xs uppercase tracking-wider font-mono text-[#928B87] px-2 block mb-1">
+                  Skills &amp; Stack ({filteredSkills.length})
                 </span>
                 <div className="grid grid-cols-2 gap-1">
                   {filteredSkills.slice(0, 6).map((s) => (
                     <div
                       key={s.name}
-                      className="p-2 rounded bg-[#FDFCFA] border border-[#EDE4D9] text-[11px]"
+                      className="p-2 rounded bg-[#FDFCFA] border border-[#EDE4D9] text-xs sm:text-sm"
                     >
                       <span className="font-medium text-[#1A1816] block truncate">{s.name}</span>
-                      <span className="text-[9px] font-mono text-[#C4604A]">{s.level}</span>
+                      <span className="text-xs font-mono text-[#C4604A]">{s.level}</span>
                     </div>
                   ))}
                 </div>
@@ -179,12 +178,13 @@ export function CommandPalette({
             )}
           </div>
 
-          <div className="p-2.5 bg-[#F3ECE4] border-t border-[#EDE4D9] flex items-center justify-between text-[10px] font-mono text-[#7A746D]">
+          <div className="p-2.5 bg-[#F3ECE4] border-t border-[#EDE4D9] flex items-center justify-between text-xs font-mono text-[#7A746D]">
             <span>Navigate with arrows · Esc to exit</span>
-            <span>Om Thakur Monograph</span>
+            <span>Om Thakur · Portfolio</span>
           </div>
         </motion.div>
       </div>
     </AnimatePresence>
   );
 }
+

@@ -1,0 +1,45 @@
+{
+  "$schema": "https://agentready.org/schemas/ai-catalog-v1.json",
+  "version": "1.0",
+  "name": "Om Thakur — Backend & Distributed Systems Portfolio",
+  "url": "https://omthakur.in",
+  "updatedAt": "2026-10-29T18:00:00+05:30",
+  "publisher": {
+    "name": "Om Thakur",
+    "email": "omthakur2366@gmail.com",
+    "url": "https://omthakur.in"
+  },
+  "resources": [
+    {
+      "type": "llms-txt",
+      "title": "LLMs Summary Context",
+      "url": "https://omthakur.in/llms.txt",
+      "mediaType": "text/plain"
+    },
+    {
+      "type": "llms-full-txt",
+      "title": "Complete Technical Dossier & Blueprints",
+      "url": "https://omthakur.in/llms-full.txt",
+      "mediaType": "text/plain"
+    },
+    {
+      "type": "okf-bundle",
+      "title": "Open Knowledge Format (OKF v0.1) Index",
+      "url": "https://omthakur.in/okf/index.md",
+      "mediaType": "text/markdown"
+    },
+    {
+      "type": "curriculum-vitae",
+      "title": "Om Thakur Official Resume & CV",
+      "url": "https://omthakur.in/resume",
+      "mediaType": "text/html"
+    },
+    {
+      "type": "sitemap",
+      "title": "XML Sitemap",
+      "url": "https://omthakur.in/sitemap.xml",
+      "mediaType": "application/xml"
+    }
+  ]
+}
+

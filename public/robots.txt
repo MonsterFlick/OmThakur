@@ -1,5 +1,40 @@
+# robots.txt for https://omthakur.in
+# AgentReady (AR-FIND-01) compliant: allows search discovery, user retrieval, and AI indexing crawlers
+
 User-agent: *
 Allow: /
 Disallow: /api/
 
+# Search Discovery & Grounding Crawlers
+User-agent: Googlebot
+User-agent: Bingbot
+User-agent: OAI-SearchBot
+User-agent: PerplexityBot
+User-agent: Claude-SearchBot
+User-agent: meta-webindexer
+User-agent: Applebot
+Allow: /
+Disallow: /api/
+
+# User-Triggered AI Fetchers
+User-agent: ChatGPT-User
+User-agent: Perplexity-User
+User-agent: Claude-User
+User-agent: Claude-Web
+Allow: /
+Disallow: /api/
+
+# AI Knowledge & Extended Indexing Agents
+User-agent: GPTBot
+User-agent: ClaudeBot
+User-agent: Google-Extended
+User-agent: Applebot-Extended
+Allow: /
+Disallow: /api/
+
+# Sitemaps & Machine-Readable Discovery Files
 Sitemap: https://omthakur.in/sitemap.xml
+# LLMs Context: https://omthakur.in/llms.txt
+# Full Dossier: https://omthakur.in/llms-full.txt
+# OKF Bundle: https://omthakur.in/okf/index.md
+# AI Catalog: https://omthakur.in/.well-known/ai-catalog.json
