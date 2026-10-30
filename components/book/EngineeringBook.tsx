@@ -285,15 +285,15 @@ export function EngineeringBook({
             <span className="font-medium text-[#1A1816] tracking-wide whitespace-nowrap">
               Production Architecture &amp; Systems
             </span>
-            <span className="hidden sm:inline text-[#D4C3AF]">/</span>
-            <span className="hidden sm:inline text-[#8C827A] text-xs whitespace-nowrap">
+            <span className="hidden sm:inline text-[#544E49]">/</span>
+            <span className="hidden sm:inline text-[#4A4541] text-xs whitespace-nowrap">
               Low-Latency APIs · Distributed Queues · Real-Time Pipelines
             </span>
           </div>
 
           <div className="flex items-center gap-2 font-mono text-xs text-[#9E3D2B] shrink-0 whitespace-nowrap">
-            <span className="hidden sm:inline text-[#8C827A]">Interactive Volume</span>
-            <span className="hidden sm:inline text-[#D4C3AF]">·</span>
+            <span className="hidden sm:inline text-[#4A4541]">Interactive Volume</span>
+            <span className="hidden sm:inline text-[#544E49]">·</span>
             <span className="font-semibold">{TOTAL_PLATES} Chapters</span>
           </div>
         </div>

@@ -20,12 +20,14 @@ const caveat = Caveat({
   subsets: ["latin"],
   variable: "--font-script",
   display: "swap",
+  preload: false,
 })
 
 const geistMono = Geist_Mono({
   subsets: ["latin"],
   variable: "--font-mono",
   display: "swap",
+  preload: false,
 })
 
 export const metadata: Metadata = {
@@ -271,7 +273,6 @@ export default function RootLayout({
                 events.forEach(function(e) { window.removeEventListener(e, listener); });
               };
               events.forEach(function(e) { window.addEventListener(e, listener, { passive: true, once: true }); });
-              setTimeout(initGTM, 3500);
             }
           `}
         </Script>
