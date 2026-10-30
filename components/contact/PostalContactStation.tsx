@@ -52,7 +52,7 @@ export function PostalContactStation() {
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12 pb-6 border-b border-[#EDE4D9]">
           <div>
-            <div className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.22em] text-[#C4604A] font-semibold mb-2">
+            <div className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.22em] text-[#9E3D2B] font-semibold mb-2">
               <Mail className="w-3.5 h-3.5" />
               <span>Postal Dispatch Station</span>
             </div>
@@ -73,7 +73,7 @@ export function PostalContactStation() {
           <div className="lg:col-span-5 space-y-4">
             <div className="p-4 sm:p-7 rounded-md bg-[#FDFCFA] border border-[#EDE4D9] shadow-paper">
               <div className="flex items-center justify-between pb-3 mb-4 border-b border-[#EDE4D9]">
-                <span className="font-mono text-xs uppercase tracking-wider text-[#7A746D]">
+                <span className="font-mono text-xs uppercase tracking-wider text-[#4A4541]">
                   Coordinates Registry
                 </span>
                 <span className="font-mono text-xs text-[#566449] font-bold">
@@ -84,16 +84,16 @@ export function PostalContactStation() {
               <div className="space-y-3">
                 <a
                   href="mailto:omthakur2366@gmail.com"
-                  className="flex items-center gap-3 p-3 rounded bg-[#FAF6F1] border border-[#EDE4D9] hover:border-[#C4604A] transition-colors group"
+                  className="flex items-center gap-3 p-3 rounded bg-[#FAF6F1] border border-[#EDE4D9] hover:border-[#9E3D2B] transition-colors group"
                 >
-                  <div className="w-8 h-8 rounded bg-[#C4604A]/10 text-[#C4604A] flex items-center justify-center shrink-0">
+                  <div className="w-8 h-8 rounded bg-[#9E3D2B]/10 text-[#9E3D2B] flex items-center justify-center shrink-0">
                     <Mail className="w-4 h-4" />
                   </div>
                   <div className="min-w-0 flex-1">
-                    <span className="text-xs sm:text-sm uppercase font-mono text-[#7A746D] block font-semibold">
+                    <span className="text-xs sm:text-sm uppercase font-mono text-[#4A4541] block font-semibold">
                       Direct Inquiries
                     </span>
-                    <span className="font-mono text-sm sm:text-base font-bold text-[#1A1816] group-hover:text-[#C4604A] transition-colors truncate block">
+                    <span className="font-mono text-sm sm:text-base font-bold text-[#1A1816] group-hover:text-[#9E3D2B] transition-colors truncate block">
                       omthakur2366@gmail.com
                     </span>
                   </div>
@@ -104,7 +104,7 @@ export function PostalContactStation() {
                     <MapPin className="w-4 h-4" />
                   </div>
                   <div className="min-w-0 flex-1">
-                    <span className="text-xs sm:text-sm uppercase font-mono text-[#7A746D] block font-semibold">
+                    <span className="text-xs sm:text-sm uppercase font-mono text-[#4A4541] block font-semibold">
                       Base Location
                     </span>
                     <span className="font-mono text-sm sm:text-base font-bold text-[#1A1816] truncate block">
@@ -116,7 +116,7 @@ export function PostalContactStation() {
 
               {/* Social Channels */}
               <div className="pt-5 mt-5 border-t border-[#EDE4D9]">
-                <span className="text-xs uppercase tracking-wider font-mono text-[#7A746D] font-semibold block mb-3">
+                <span className="text-xs uppercase tracking-wider font-mono text-[#4A4541] font-semibold block mb-3">
                   Verified Public Repositories & Profiles:
                 </span>
                 <div className="flex items-center gap-3">
@@ -130,7 +130,7 @@ export function PostalContactStation() {
                       href={s.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="min-w-[44px] min-h-[44px] flex items-center justify-center rounded bg-[#FAF6F1] text-[#5E5854] hover:text-[#1A1816] hover:bg-[#EDE4D9] border border-[#EDE4D9] transition-colors"
+                      className="min-w-[44px] min-h-[44px] flex items-center justify-center rounded bg-[#FAF6F1] text-[#383432] hover:text-[#1A1816] hover:bg-[#EDE4D9] border border-[#EDE4D9] transition-colors"
                       title={s.label}
                       aria-label={s.label}
                     >
@@ -150,19 +150,19 @@ export function PostalContactStation() {
               <div
                 className="absolute top-0 left-0 right-0 h-1.5"
                 style={{
-                  background: "repeating-linear-gradient(45deg, #C4604A, #C4604A 12px, #FAF6F1 12px, #FAF6F1 20px, #566449 20px, #566449 32px, #FAF6F1 32px, #FAF6F1 40px)",
+                  background: "repeating-linear-gradient(45deg, #9E3D2B, #9E3D2B 12px, #FAF6F1 12px, #FAF6F1 20px, #566449 20px, #566449 32px, #FAF6F1 32px, #FAF6F1 40px)",
                 }}
               />
 
               <div className="flex items-center justify-between pb-4 mb-6 border-b border-[#EDE4D9] pt-2">
                 <div className="flex items-center gap-2">
-                  <span className="w-2.5 h-2.5 rounded-full bg-[#C4604A]" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-[#9E3D2B]" />
                   <span className="font-mono text-xs uppercase tracking-wider text-[#1A1816] font-semibold">
                     Airmail Stationery Dispatch Nº 88
                   </span>
                 </div>
 
-                <div className="flex items-center gap-1.5 text-xs font-mono text-[#928B87]">
+                <div className="flex items-center gap-1.5 text-xs font-mono text-[#4A4541]">
                   <MapPin className="w-3 h-3" />
                   <span>Destination: Mumbai Hub</span>
                 </div>
@@ -180,12 +180,12 @@ export function PostalContactStation() {
                   <h3 className="font-serif text-2xl font-bold text-[#1A1816]">
                     Dispatch Sealed & Transmitted
                   </h3>
-                  <p className="text-xs text-[#5E5854] max-w-sm mx-auto leading-relaxed">
+                  <p className="text-xs text-[#383432] max-w-sm mx-auto leading-relaxed">
                     Thank you. Your message has been routed via our webhook pipeline. I will respond to your return address within 24 hours.
                   </p>
                   <button
                     onClick={() => setIsSubmitted(false)}
-                    className="mt-4 px-4 py-2 rounded text-xs font-mono text-[#C4604A] hover:underline"
+                    className="mt-4 px-4 py-2 rounded text-xs font-mono text-[#9E3D2B] hover:underline"
                   >
                     Send Another Dispatch →
                   </button>
@@ -206,7 +206,7 @@ export function PostalContactStation() {
                         value={formState.name}
                         onChange={(e) => setFormState({ ...formState, name: e.target.value })}
                         placeholder="e.g. Mira Castellano"
-                        className="w-full px-3.5 py-2.5 rounded border border-[#EDE4D9] bg-[#FAF6F1] text-base sm:text-xs font-sans text-[#1A1816] placeholder-[#928B87] focus:outline-none focus:border-[#C4604A]"
+                        className="w-full px-3.5 py-2.5 rounded border border-[#EDE4D9] bg-[#FAF6F1] text-base sm:text-xs font-sans text-[#1A1816] placeholder-[#4A4541] focus:outline-none focus:border-[#9E3D2B]"
                       />
                       {errors.name && <p role="alert" className="text-xs text-[#7A3B3B] mt-1 font-mono">{errors.name}</p>}
                     </div>
@@ -224,7 +224,7 @@ export function PostalContactStation() {
                         value={formState.email}
                         onChange={(e) => setFormState({ ...formState, email: e.target.value })}
                         placeholder="e.g. mira@studio.org"
-                        className="w-full px-3.5 py-2.5 rounded border border-[#EDE4D9] bg-[#FAF6F1] text-base sm:text-xs font-sans text-[#1A1816] placeholder-[#928B87] focus:outline-none focus:border-[#C4604A]"
+                        className="w-full px-3.5 py-2.5 rounded border border-[#EDE4D9] bg-[#FAF6F1] text-base sm:text-xs font-sans text-[#1A1816] placeholder-[#4A4541] focus:outline-none focus:border-[#9E3D2B]"
                       />
                       {errors.email && <p role="alert" className="text-xs text-[#7A3B3B] mt-1 font-mono">{errors.email}</p>}
                     </div>
@@ -242,20 +242,20 @@ export function PostalContactStation() {
                       value={formState.message}
                       onChange={(e) => setFormState({ ...formState, message: e.target.value })}
                       placeholder="Outline system architecture requirements, appointment timeline, or consulting scope..."
-                      className="w-full px-3.5 py-2.5 rounded border border-[#EDE4D9] bg-[#FAF6F1] text-base sm:text-xs font-sans text-[#1A1816] placeholder-[#928B87] focus:outline-none focus:border-[#C4604A] leading-relaxed"
+                      className="w-full px-3.5 py-2.5 rounded border border-[#EDE4D9] bg-[#FAF6F1] text-base sm:text-xs font-sans text-[#1A1816] placeholder-[#4A4541] focus:outline-none focus:border-[#9E3D2B] leading-relaxed"
                     />
                     {errors.message && <p role="alert" className="text-xs text-[#7A3B3B] mt-1 font-mono">{errors.message}</p>}
                   </div>
 
                   <div className="pt-2 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                    <span className="font-script text-sm sm:text-base text-[#7A746D]">
+                    <span className="font-script text-sm sm:text-base text-[#4A4541]">
                       instant encrypted webhook transmission
                     </span>
 
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded bg-[#C4604A] text-white font-medium text-xs hover:bg-[#A8493A] transition-colors disabled:opacity-50"
+                      className="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded bg-[#9E3D2B] text-white font-medium text-xs hover:bg-[#852C1B] transition-colors disabled:opacity-50"
                     >
                       <Send className="w-3.5 h-3.5" />
                       <span>{isSubmitting ? "Transmitting..." : "Seal & Dispatch"}</span>

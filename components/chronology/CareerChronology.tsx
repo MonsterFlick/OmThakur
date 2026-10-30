@@ -12,7 +12,7 @@ export function CareerChronology() {
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12 pb-6 border-b border-[#EDE4D9]">
           <div>
-            <div className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.22em] text-[#C4604A] font-semibold mb-2">
+            <div className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.22em] text-[#9E3D2B] font-semibold mb-2">
               <Briefcase className="w-3.5 h-3.5" />
               <span>Work Experience</span>
             </div>
@@ -39,16 +39,16 @@ export function CareerChronology() {
               <div>
                 <div className="flex flex-wrap items-center justify-between gap-2 pb-3 sm:pb-4 mb-3 sm:mb-4 border-b border-[#EDE4D9]">
                   <div className="flex items-center gap-2 sm:gap-3">
-                    <span className="px-2.5 py-1 rounded text-xs sm:text-sm font-mono font-bold bg-[#C4604A]/10 text-[#C4604A] uppercase tracking-wider">
+                    <span className="px-2.5 py-1 rounded text-xs sm:text-sm font-mono font-bold bg-[#9E3D2B]/10 text-[#9E3D2B] uppercase tracking-wider">
                       {entry.classification}
                     </span>
-                    <span className="font-mono text-xs sm:text-sm text-[#5E5854] flex items-center gap-1.5 font-semibold">
+                    <span className="font-mono text-xs sm:text-sm text-[#383432] flex items-center gap-1.5 font-semibold">
                       <Calendar className="w-3.5 h-3.5" />
                       {entry.period}
                     </span>
                   </div>
 
-                  <span className="font-mono text-xs sm:text-sm text-[#5E5854] flex items-center gap-1.5 font-semibold">
+                  <span className="font-mono text-xs sm:text-sm text-[#383432] flex items-center gap-1.5 font-semibold">
                     <MapPin className="w-3.5 h-3.5" />
                     {entry.location}
                   </span>
@@ -58,7 +58,7 @@ export function CareerChronology() {
                   <h3 className="font-serif text-2xl sm:text-3xl font-extrabold text-[#1A1816]">
                     {entry.company}
                   </h3>
-                  <p className="text-base sm:text-lg font-bold text-[#C4604A] mt-1 mb-2.5">
+                  <p className="text-base sm:text-lg font-bold text-[#9E3D2B] mt-1 mb-2.5">
                     {entry.role}
                   </p>
                   <p className="text-base text-[#2C2825] leading-relaxed mb-4 font-normal">
@@ -74,7 +74,7 @@ export function CareerChronology() {
                   <ul className="space-y-2 text-sm sm:text-base text-[#2C2825] leading-relaxed">
                     {entry.deliverables.map((deliv, i) => (
                       <li key={i} className="flex items-start gap-2">
-                        <span className="w-2 h-2 rounded-full bg-[#C4604A] mt-2 shrink-0" />
+                        <span className="w-2 h-2 rounded-full bg-[#9E3D2B] mt-2 shrink-0" />
                         <span>{deliv}</span>
                       </li>
                     ))}

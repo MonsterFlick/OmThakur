@@ -26,11 +26,11 @@ export function TelemetryConsole({ open, onClose }: TelemetryConsoleProps) {
       time: new Date().toLocaleTimeString(),
       output: (
         <div className="space-y-1 text-[#EDE4D9]">
-          <p className="text-[#C4604A] font-bold">
+          <p className="text-[#E07A5F] font-bold">
             Om Thakur Terminal REPL & Telemetry Console v2.6.0
           </p>
-          <p className="text-xs text-[#928B87]">
-            Type <span className="text-[#C4604A] font-bold font-mono">help</span> to list commands or inspect systems.
+          <p className="text-xs text-[#D6D3D1]">
+            Type <span className="text-[#E07A5F] font-bold font-mono">help</span> to list commands or inspect systems.
           </p>
         </div>
       ),
@@ -62,25 +62,25 @@ export function TelemetryConsole({ open, onClose }: TelemetryConsoleProps) {
     if (lower === "help") {
       outputContent = (
         <div className="space-y-1 text-xs text-[#EDE4D9]">
-          <p className="text-[#C4604A] font-semibold">Available Commands:</p>
+          <p className="text-[#E07A5F] font-semibold">Available Commands:</p>
           <div className="grid grid-cols-2 gap-2 text-xs font-mono">
             <div>
-              <span className="text-[#C4604A]">whoami / bio</span> — Author summary
+              <span className="text-[#E07A5F]">whoami / bio</span> — Author summary
             </div>
             <div>
-              <span className="text-[#C4604A]">skills</span> — Technical skills table
+              <span className="text-[#E07A5F]">skills</span> — Technical skills table
             </div>
             <div>
-              <span className="text-[#C4604A]">projects</span> — List production projects
+              <span className="text-[#E07A5F]">projects</span> — List production projects
             </div>
             <div>
-              <span className="text-[#C4604A]">metrics</span> — Live architecture telemetry
+              <span className="text-[#E07A5F]">metrics</span> — Live architecture telemetry
             </div>
             <div>
-              <span className="text-[#C4604A]">resume</span> — Open verified CV
+              <span className="text-[#E07A5F]">resume</span> — Open verified CV
             </div>
             <div>
-              <span className="text-[#C4604A]">clear</span> — Reset terminal buffer
+              <span className="text-[#E07A5F]">clear</span> — Reset terminal buffer
             </div>
           </div>
         </div>
@@ -89,7 +89,7 @@ export function TelemetryConsole({ open, onClose }: TelemetryConsoleProps) {
       outputContent = (
         <div className="space-y-1.5 text-xs text-[#EDE4D9]">
           <p className="font-bold text-[#FAF6F1]">Om Thakur</p>
-          <p className="text-[#928B87]">Backend Engineer | Distributed Systems | Scalable APIs</p>
+          <p className="text-[#D6D3D1]">Backend Engineer | Distributed Systems | Scalable APIs</p>
           <p className="text-[#EDE4D9] leading-relaxed">
             Backend engineer focused on distributed, database-backed systems and production reliability.
             Reduced a data synchronization workflow from 15 minutes to 4 seconds by replacing cron polling
@@ -101,12 +101,12 @@ export function TelemetryConsole({ open, onClose }: TelemetryConsoleProps) {
     } else if (lower === "skills") {
       outputContent = (
         <div className="space-y-2 text-xs text-[#EDE4D9]">
-          <p className="text-[#C4604A] font-semibold">Technical Skills &amp; Stack:</p>
+          <p className="text-[#E07A5F] font-semibold">Technical Skills &amp; Stack:</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs sm:text-sm font-mono">
             {SKILL_SPECIMENS.slice(0, 8).map((s) => (
               <div key={s.name} className="flex justify-between border-b border-[#383432] pb-0.5">
                 <span>{s.name}</span>
-                <span className="text-[#C4604A]">{s.level}</span>
+                <span className="text-[#E07A5F]">{s.level}</span>
               </div>
             ))}
           </div>
@@ -115,15 +115,15 @@ export function TelemetryConsole({ open, onClose }: TelemetryConsoleProps) {
     } else if (lower === "projects") {
       outputContent = (
         <div className="space-y-2 text-xs text-[#EDE4D9]">
-          <p className="text-[#C4604A] font-semibold">Featured Projects:</p>
+          <p className="text-[#E07A5F] font-semibold">Featured Projects:</p>
           <div className="space-y-1.5 text-xs sm:text-sm font-mono">
             {PROJECTS.map((p) => (
               <div key={p.id} className="p-1.5 rounded bg-[#2C2825]">
                 <div className="flex justify-between font-bold text-[#FAF6F1]">
                   <span>{p.name}</span>
-                  <span className="text-[#C4604A]">{p.category}</span>
+                  <span className="text-[#E07A5F]">{p.category}</span>
                 </div>
-                <p className="text-[#928B87] text-xs">{p.purpose}</p>
+                <p className="text-[#D6D3D1] text-xs">{p.purpose}</p>
               </div>
             ))}
           </div>
@@ -134,7 +134,7 @@ export function TelemetryConsole({ open, onClose }: TelemetryConsoleProps) {
         <div className="space-y-1.5 text-xs font-mono text-[#EDE4D9]">
           <p className="text-[#566449] font-bold">● Production Cluster Telemetry: Optimal</p>
           <div className="grid grid-cols-2 gap-2 text-xs sm:text-sm">
-            <div>Message Queue Sync: <span className="text-[#C4604A] font-bold">15 min → 4 s</span></div>
+            <div>Message Queue Sync: <span className="text-[#E07A5F] font-bold">15 min → 4 s</span></div>
             <div>Sync Latency Reduction: <span className="text-[#566449] font-bold">~99.5%</span></div>
             <div>Python WS Pipeline: <span className="text-[#FAF6F1] font-bold">~700 ms</span></div>
             <div>Stateless SVG API: <span className="text-[#566449] font-bold">&lt; 10 ms</span></div>
@@ -187,17 +187,17 @@ export function TelemetryConsole({ open, onClose }: TelemetryConsoleProps) {
           {/* Terminal Title Bar */}
           <div className="flex items-center justify-between px-3.5 py-2.5 sm:px-4 sm:py-3 bg-[#2C2825] border-b border-[#383432] select-none shrink-0">
             <div className="flex items-center gap-2">
-              <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#C4604A] inline-block" />
+              <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#9E3D2B] inline-block" />
               <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#D4C3AF] inline-block" />
               <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#566449] inline-block" />
-              <span className="font-mono text-xs sm:text-sm sm:text-xs text-[#928B87] ml-2 truncate">
+              <span className="font-mono text-xs sm:text-sm sm:text-xs text-[#D6D3D1] ml-2 truncate">
                 omthakur@workstation:~ (zsh)
               </span>
             </div>
 
             <button
               onClick={onClose}
-              className="p-1 rounded text-[#928B87] hover:text-[#FAF6F1] hover:bg-[#383432] transition-colors"
+              className="p-1 rounded text-[#D6D3D1] hover:text-[#FAF6F1] hover:bg-[#383432] transition-colors"
               aria-label="Close Terminal"
             >
               <X className="w-4 h-4" />
@@ -208,10 +208,10 @@ export function TelemetryConsole({ open, onClose }: TelemetryConsoleProps) {
           <div className="flex-1 p-3.5 sm:p-4 overflow-y-auto space-y-3 sm:space-y-4 font-mono text-xs no-scrollbar">
             {history.map((item) => (
               <div key={item.id} className="space-y-1">
-                <div className="flex items-center gap-2 text-[#928B87]">
-                  <span className="text-[#C4604A]">➜</span>
+                <div className="flex items-center gap-2 text-[#D6D3D1]">
+                  <span className="text-[#E07A5F]">➜</span>
                   <span className="text-[#EDE4D9] font-bold">{item.command}</span>
-                  <span className="text-xs ml-auto text-[#7A746D]">{item.time}</span>
+                  <span className="text-xs ml-auto text-[#A8A29E]">{item.time}</span>
                 </div>
                 <div className="pl-3 sm:pl-4">{item.output}</div>
               </div>
@@ -221,7 +221,7 @@ export function TelemetryConsole({ open, onClose }: TelemetryConsoleProps) {
 
           {/* Quick Command Suggestion Chips for Fast Touch Interaction */}
           <div className="px-3 py-2 bg-[#23201D] border-t border-[#383432]/60 flex items-center gap-1.5 overflow-x-auto no-scrollbar shrink-0">
-            <span className="text-xs font-mono text-[#7A746D] uppercase tracking-wider shrink-0 mr-1">
+            <span className="text-xs font-mono text-[#A8A29E] uppercase tracking-wider shrink-0 mr-1">
               Quick:
             </span>
             {["help", "whoami", "skills", "projects", "metrics", "resume", "clear"].map((c) => (
@@ -229,7 +229,7 @@ export function TelemetryConsole({ open, onClose }: TelemetryConsoleProps) {
                 key={c}
                 type="button"
                 onClick={() => handleCommand(c)}
-                className="px-2 py-0.5 rounded bg-[#383432] hover:bg-[#4A4541] active:bg-[#C4604A] text-[#EDE4D9] hover:text-[#FAF6F1] text-xs font-mono shrink-0 transition-colors"
+                className="px-2 py-0.5 rounded bg-[#383432] hover:bg-[#4A4541] active:bg-[#9E3D2B] text-[#EDE4D9] hover:text-[#FAF6F1] text-xs font-mono shrink-0 transition-colors"
               >
                 {c}
               </button>
@@ -244,18 +244,18 @@ export function TelemetryConsole({ open, onClose }: TelemetryConsoleProps) {
             }}
             className="flex items-center gap-2 p-2.5 sm:p-3 bg-[#2C2825] border-t border-[#383432] shrink-0"
           >
-            <span className="text-[#C4604A] font-mono font-bold">➜</span>
+            <span className="text-[#E07A5F] font-mono font-bold">➜</span>
             <input
               ref={inputRef}
               type="text"
               value={inputVal}
               onChange={(e) => setInputVal(e.target.value)}
               placeholder="Type command ('help', 'skills')..."
-              className="flex-1 bg-transparent text-[#FAF6F1] font-mono text-base sm:text-xs focus:outline-none placeholder-[#7A746D]"
+              className="flex-1 bg-transparent text-[#FAF6F1] font-mono text-base sm:text-xs focus:outline-none placeholder-[#A8A29E]"
             />
             <button
               type="submit"
-              className="p-1.5 rounded bg-[#C4604A] text-white hover:bg-[#A8493A] transition-colors text-xs shrink-0"
+              className="p-1.5 rounded bg-[#9E3D2B] text-white hover:bg-[#852C1B] transition-colors text-xs shrink-0"
             >
               <CornerDownLeft className="w-3.5 h-3.5" />
             </button>

@@ -1,45 +1,92 @@
 {
   "$schema": "https://agentready.org/schemas/ai-catalog-v1.json",
-  "version": "1.0",
+  "specVersion": "1.0.0",
+  "version": "1.0.0",
   "name": "Om Thakur — Backend & Distributed Systems Portfolio",
   "url": "https://omthakur.in",
-  "updatedAt": "2026-10-29T18:00:00+05:30",
+  "updatedAt": "2026-10-30T10:00:00+05:30",
   "publisher": {
     "name": "Om Thakur",
     "email": "omthakur2366@gmail.com",
     "url": "https://omthakur.in"
   },
+  "entries": [
+    {
+      "id": "llms-txt",
+      "name": "LLMs Summary Context",
+      "type": "llms-txt",
+      "url": "https://omthakur.in/llms.txt",
+      "description": "Summary context and architecture highlights formatted for LLMs and autonomous agents.",
+      "mediaType": "text/plain"
+    },
+    {
+      "id": "llms-full-txt",
+      "name": "Complete Technical Dossier & Blueprints",
+      "type": "llms-full-txt",
+      "url": "https://omthakur.in/llms-full.txt",
+      "description": "Full technical monograph, system blueprints, database post-mortems, and code specimens.",
+      "mediaType": "text/plain"
+    },
+    {
+      "id": "okf-bundle",
+      "name": "Open Knowledge Format (OKF v0.1) Index",
+      "type": "okf-bundle",
+      "url": "https://omthakur.in/okf/index.md",
+      "description": "Google Open Knowledge Format bundle describing backend concepts and implementations.",
+      "mediaType": "text/markdown"
+    },
+    {
+      "id": "curriculum-vitae",
+      "name": "Om Thakur Official Resume & CV",
+      "type": "curriculum-vitae",
+      "url": "https://omthakur.in/resume",
+      "description": "Comprehensive engineering curriculum vitae with ATS text copy and verified credentials.",
+      "mediaType": "text/html"
+    },
+    {
+      "id": "sitemap",
+      "name": "XML Sitemap",
+      "type": "sitemap",
+      "url": "https://omthakur.in/sitemap.xml",
+      "description": "Machine-readable site index and route hierarchy.",
+      "mediaType": "application/xml"
+    }
+  ],
   "resources": [
     {
-      "type": "llms-txt",
+      "id": "llms-txt",
       "title": "LLMs Summary Context",
+      "type": "llms-txt",
       "url": "https://omthakur.in/llms.txt",
       "mediaType": "text/plain"
     },
     {
-      "type": "llms-full-txt",
+      "id": "llms-full-txt",
       "title": "Complete Technical Dossier & Blueprints",
+      "type": "llms-full-txt",
       "url": "https://omthakur.in/llms-full.txt",
       "mediaType": "text/plain"
     },
     {
-      "type": "okf-bundle",
+      "id": "okf-bundle",
       "title": "Open Knowledge Format (OKF v0.1) Index",
+      "type": "okf-bundle",
       "url": "https://omthakur.in/okf/index.md",
       "mediaType": "text/markdown"
     },
     {
-      "type": "curriculum-vitae",
+      "id": "curriculum-vitae",
       "title": "Om Thakur Official Resume & CV",
+      "type": "curriculum-vitae",
       "url": "https://omthakur.in/resume",
       "mediaType": "text/html"
     },
     {
-      "type": "sitemap",
+      "id": "sitemap",
       "title": "XML Sitemap",
+      "type": "sitemap",
       "url": "https://omthakur.in/sitemap.xml",
       "mediaType": "application/xml"
     }
   ]
 }
-

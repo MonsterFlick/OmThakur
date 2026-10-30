@@ -205,7 +205,7 @@ export default function Home() {
 
       {/* Terracotta Top Scroll Progress Bar */}
       <motion.div
-        className="fixed top-0 left-0 right-0 h-[2.5px] bg-[#C4604A] z-[9999] origin-left shadow-sm"
+        className="fixed top-0 left-0 right-0 h-[2.5px] bg-[#9E3D2B] z-[9999] origin-left shadow-sm"
         style={{ scaleX: progress }}
       />
 
@@ -225,7 +225,7 @@ export default function Home() {
       </div>
 
       {/* 2. Editorial Status Strip */}
-      <div className="py-2.5 px-4 bg-[#F3ECE4]/80 border-y border-[#EDE4D9] text-xs sm:text-sm font-mono text-[#5E5854] overflow-hidden select-none">
+      <div className="py-2.5 px-4 bg-[#F3ECE4]/80 border-y border-[#EDE4D9] text-xs sm:text-sm font-mono text-[#383432] overflow-hidden select-none">
         <div className="w-full max-w-7xl xl:max-w-[1360px] mx-auto px-2 sm:px-4 flex items-center justify-between gap-4">
           <div className="flex items-center gap-2.5">
             <span className="w-2.5 h-2.5 rounded-full bg-[#566449] animate-pulse shrink-0" />
@@ -236,7 +236,7 @@ export default function Home() {
 
           <button
             onClick={() => setTerminalOpen(true)}
-            className="hidden sm:inline-flex items-center gap-1.5 text-xs text-[#C4604A] hover:underline font-mono font-medium"
+            className="hidden sm:inline-flex items-center gap-1.5 text-xs text-[#9E3D2B] hover:underline font-mono font-medium"
           >
             <Terminal className="w-3.5 h-3.5" />
             <span>Open REPL (⌘`)</span>
@@ -272,10 +272,10 @@ export default function Home() {
       <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40">
         <button
           onClick={() => setTerminalOpen(true)}
-          className="flex items-center gap-2 px-3 sm:px-3.5 py-1.5 sm:py-2 rounded-full bg-[#1A1816]/95 backdrop-blur text-[#FAF6F1] hover:bg-[#C4604A] transition-all shadow-xl border border-[#4A4541] font-mono text-xs font-semibold active:scale-95"
+          className="flex items-center gap-2 px-3 sm:px-3.5 py-1.5 sm:py-2 rounded-full bg-[#1A1816]/95 backdrop-blur text-[#FAF6F1] hover:bg-[#9E3D2B] transition-all shadow-xl border border-[#4A4541] font-mono text-xs font-semibold active:scale-95"
           title="Open Telemetry Terminal Console (⌘`)"
         >
-          <Terminal className="w-3.5 h-3.5 text-[#C4604A]" />
+          <Terminal className="w-3.5 h-3.5 text-[#9E3D2B]" />
           <span>REPL Console</span>
         </button>
       </div>

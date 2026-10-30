@@ -61,18 +61,18 @@ export function CommandPalette({
         >
           {/* Search Input Bar */}
           <div className="flex items-center gap-3 px-3.5 py-3 sm:px-4 sm:py-3.5 border-b border-[#EDE4D9] bg-[#FDFCFA]">
-            <Search className="w-4 h-4 text-[#C4604A]" />
+            <Search className="w-4 h-4 text-[#9E3D2B]" />
             <input
               type="text"
               autoFocus
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search projects, skills, or actions..."
-              className="flex-1 bg-transparent text-base sm:text-sm text-[#1A1816] placeholder-[#928B87] focus:outline-none font-sans"
+              className="flex-1 bg-transparent text-base sm:text-sm text-[#1A1816] placeholder-[#4A4541] focus:outline-none font-sans"
             />
             <button
               onClick={onClose}
-              className="p-1 rounded text-[#928B87] hover:text-[#1A1816]"
+              className="p-1 rounded text-[#4A4541] hover:text-[#1A1816]"
             >
               <X className="w-4 h-4" />
             </button>
@@ -82,7 +82,7 @@ export function CommandPalette({
           <div className="max-h-96 overflow-y-auto p-3 space-y-4 no-scrollbar">
             {/* Quick Actions */}
             <div>
-              <span className="text-xs uppercase tracking-wider font-mono text-[#928B87] px-2 block mb-1">
+              <span className="text-xs uppercase tracking-wider font-mono text-[#4A4541] px-2 block mb-1">
                 Quick Actions
               </span>
               <div className="space-y-1">
@@ -94,10 +94,10 @@ export function CommandPalette({
                   className="w-full flex items-center justify-between p-2 rounded text-left hover:bg-[#F3ECE4] transition-colors text-xs text-[#1A1816]"
                 >
                   <div className="flex items-center gap-2.5">
-                    <Terminal className="w-3.5 h-3.5 text-[#C4604A]" />
+                    <Terminal className="w-3.5 h-3.5 text-[#9E3D2B]" />
                     <span>Open Terminal REPL</span>
                   </div>
-                  <span className="font-mono text-xs text-[#928B87]">Terminal</span>
+                  <span className="font-mono text-xs text-[#4A4541]">Terminal</span>
                 </button>
 
                 <Link
@@ -120,10 +120,10 @@ export function CommandPalette({
                   className="w-full flex items-center justify-between p-2 rounded text-left hover:bg-[#F3ECE4] transition-colors text-xs text-[#1A1816]"
                 >
                   <div className="flex items-center gap-2.5">
-                    <Radio className="w-3.5 h-3.5 text-[#C4604A]" />
+                    <Radio className="w-3.5 h-3.5 text-[#9E3D2B]" />
                     <span>Live Activity Feed</span>
                   </div>
-                  <span className="font-mono text-xs text-[#928B87]">Stream</span>
+                  <span className="font-mono text-xs text-[#4A4541]">Stream</span>
                 </button>
               </div>
             </div>
@@ -131,7 +131,7 @@ export function CommandPalette({
             {/* Projects */}
             {filteredProjects.length > 0 && (
               <div>
-                <span className="text-xs uppercase tracking-wider font-mono text-[#928B87] px-2 block mb-1">
+                <span className="text-xs uppercase tracking-wider font-mono text-[#4A4541] px-2 block mb-1">
                   Projects ({filteredProjects.length})
                 </span>
                 <div className="space-y-1">
@@ -146,9 +146,9 @@ export function CommandPalette({
                     >
                       <div>
                         <p className="font-medium text-[#1A1816]">{p.name}</p>
-                        <p className="text-xs text-[#7A746D]">{p.purpose}</p>
+                        <p className="text-xs text-[#4A4541]">{p.purpose}</p>
                       </div>
-                      <span className="font-mono text-xs text-[#C4604A] shrink-0 ml-2">
+                      <span className="font-mono text-xs text-[#9E3D2B] shrink-0 ml-2">
                         {p.category}
                       </span>
                     </button>
@@ -160,7 +160,7 @@ export function CommandPalette({
             {/* Skills */}
             {filteredSkills.length > 0 && (
               <div>
-                <span className="text-xs uppercase tracking-wider font-mono text-[#928B87] px-2 block mb-1">
+                <span className="text-xs uppercase tracking-wider font-mono text-[#4A4541] px-2 block mb-1">
                   Skills &amp; Stack ({filteredSkills.length})
                 </span>
                 <div className="grid grid-cols-2 gap-1">
@@ -170,7 +170,7 @@ export function CommandPalette({
                       className="p-2 rounded bg-[#FDFCFA] border border-[#EDE4D9] text-xs sm:text-sm"
                     >
                       <span className="font-medium text-[#1A1816] block truncate">{s.name}</span>
-                      <span className="text-xs font-mono text-[#C4604A]">{s.level}</span>
+                      <span className="text-xs font-mono text-[#9E3D2B]">{s.level}</span>
                     </div>
                   ))}
                 </div>
@@ -178,7 +178,7 @@ export function CommandPalette({
             )}
           </div>
 
-          <div className="p-2.5 bg-[#F3ECE4] border-t border-[#EDE4D9] flex items-center justify-between text-xs font-mono text-[#7A746D]">
+          <div className="p-2.5 bg-[#F3ECE4] border-t border-[#EDE4D9] flex items-center justify-between text-xs font-mono text-[#4A4541]">
             <span>Navigate with arrows · Esc to exit</span>
             <span>Om Thakur · Portfolio</span>
           </div>

@@ -123,24 +123,24 @@ function FrontispieceLeft() {
   return (
     <div className="h-full w-full p-5 sm:p-6 md:p-7 border-r border-[#EDE4D9] flex flex-col justify-between relative bg-[#FAF6F1] text-[#2C2825] overflow-hidden select-none">
       {/* Top Header */}
-      <div className="flex items-center justify-between text-xs sm:text-sm font-mono uppercase tracking-widest text-[#7A746D] pb-2.5 border-b border-[#EDE4D9]">
+      <div className="flex items-center justify-between text-xs sm:text-sm font-mono uppercase tracking-widest text-[#4A4541] pb-2.5 border-b border-[#EDE4D9]">
         <span className="flex items-center gap-2">
           <span className="w-2.5 h-2.5 rounded-full bg-[#566449] animate-pulse" />
           <span className="font-bold text-[#1A1816]">Systems Architecture</span>
         </span>
-        <span className="font-semibold text-[#7A746D]">Mumbai, India</span>
+        <span className="font-semibold text-[#4A4541]">Mumbai, India</span>
       </div>
 
       {/* Main Content Flow */}
       <div className="space-y-3.5 sm:space-y-4 my-auto">
         <div>
-          <span className="text-xs sm:text-sm uppercase font-mono tracking-wider text-[#C4604A] font-bold block mb-1">
+          <span className="text-xs sm:text-sm uppercase font-mono tracking-wider text-[#9E3D2B] font-bold block mb-1">
             Backend Engineer · Distributed Systems · Scalable APIs
           </span>
           <p className="font-serif text-3xl sm:text-4xl font-extrabold text-[#1A1816] tracking-tight leading-tight">
             Om Thakur
           </p>
-          <p className="font-mono text-xs sm:text-sm text-[#5E5854] mt-1 font-medium">
+          <p className="font-mono text-xs sm:text-sm text-[#383432] mt-1 font-medium">
             omthakur2366@gmail.com · omthakur.in · github.com/MonsterFlick
           </p>
         </div>
@@ -152,7 +152,7 @@ function FrontispieceLeft() {
         {/* 3 Headline Resume Metrics */}
         <div className="grid grid-cols-3 gap-2.5">
           <div className="p-3 rounded-lg bg-[#FDFCFA] border border-[#EDE4D9] shadow-2xs">
-            <span className="font-serif text-xl sm:text-2xl font-bold text-[#C4604A] block leading-tight">
+            <span className="font-serif text-xl sm:text-2xl font-bold text-[#9E3D2B] block leading-tight">
               15m → 4s
             </span>
             <span className="text-xs sm:text-sm text-[#3A3532] font-medium leading-snug block mt-1">
@@ -198,12 +198,12 @@ function FrontispieceLeft() {
       </div>
 
       {/* Footer Colophon */}
-      <div className="pt-2.5 border-t border-[#EDE4D9] flex items-center justify-between text-xs sm:text-sm text-[#7A746D] font-mono">
+      <div className="pt-2.5 border-t border-[#EDE4D9] flex items-center justify-between text-xs sm:text-sm text-[#4A4541] font-mono">
         <div className="flex items-center gap-2">
           <span className="w-2.5 h-2.5 rounded-full bg-[#566449]" />
           <span className="font-medium text-[#1A1816]">Available for Production Roles · 2026</span>
         </div>
-        <span className="text-[#C4604A] font-bold">Chapter 01 · Page 01</span>
+        <span className="text-[#9E3D2B] font-bold">Chapter 01 · Page 01</span>
       </div>
     </div>
   );
@@ -213,9 +213,9 @@ function FrontispieceRight() {
   return (
     <div className="h-full w-full p-5 sm:p-6 md:p-7 flex flex-col justify-between relative bg-[#FDFCFA] text-[#2C2825] overflow-hidden select-none">
       {/* Top Header */}
-      <div className="flex items-center justify-between text-xs sm:text-sm font-mono uppercase tracking-widest text-[#7A746D] pb-2.5 border-b border-[#EDE4D9]">
+      <div className="flex items-center justify-between text-xs sm:text-sm font-mono uppercase tracking-widest text-[#4A4541] pb-2.5 border-b border-[#EDE4D9]">
         <span className="font-bold text-[#1A1816]">Table of Contents</span>
-        <span className="text-[#C4604A] font-bold">10 Chapters</span>
+        <span className="text-[#9E3D2B] font-bold">10 Chapters</span>
       </div>
 
       {/* Dense, Clean Chapter Index List */}
@@ -227,7 +227,7 @@ function FrontispieceRight() {
               className="px-3.5 py-1.5 rounded-lg bg-[#FAF6F1]/90 hover:bg-[#F3ECE4] border border-[#EDE4D9] transition-colors flex items-center justify-between gap-3"
             >
               <div className="flex items-center gap-3 min-w-0">
-                <span className="font-mono text-xs sm:text-sm text-[#C4604A] font-bold shrink-0">
+                <span className="font-mono text-xs sm:text-sm text-[#9E3D2B] font-bold shrink-0">
                   {plate.plateNumber}
                 </span>
                 <span className="font-serif font-bold text-sm sm:text-base text-[#1A1816] truncate">
@@ -253,11 +253,11 @@ function FrontispieceRight() {
       </div>
 
       {/* Footer */}
-      <div className="pt-2.5 border-t border-[#EDE4D9] flex items-center justify-between text-xs sm:text-sm text-[#5E5854] font-mono">
-        <span className="text-[#C4604A] font-bold">
+      <div className="pt-2.5 border-t border-[#EDE4D9] flex items-center justify-between text-xs sm:text-sm text-[#383432] font-mono">
+        <span className="text-[#9E3D2B] font-bold">
           Flip to proceed to Engineering Principles →
         </span>
-        <span className="text-[#7A746D] font-medium">Page 02</span>
+        <span className="text-[#4A4541] font-medium">Page 02</span>
       </div>
     </div>
   );
@@ -269,9 +269,9 @@ function FrontispieceRight() {
 function ManifestoLeft() {
   return (
     <div className="h-full w-full p-5 sm:p-6 md:p-7 border-r border-[#EDE4D9] flex flex-col justify-between bg-[#FAF6F1] text-[#2C2825] overflow-hidden select-none">
-      <div className="flex items-center justify-between text-xs sm:text-sm font-mono uppercase tracking-widest text-[#7A746D] pb-2.5 border-b border-[#EDE4D9]">
+      <div className="flex items-center justify-between text-xs sm:text-sm font-mono uppercase tracking-widest text-[#4A4541] pb-2.5 border-b border-[#EDE4D9]">
         <span className="font-bold text-[#1A1816]">Core Architectural Principles</span>
-        <span className="text-[#C4604A] font-bold">Chapter 02 · Part I</span>
+        <span className="text-[#9E3D2B] font-bold">Chapter 02 · Part I</span>
       </div>
 
       <div className="space-y-3.5 sm:space-y-4 my-auto">
@@ -290,7 +290,7 @@ function ManifestoLeft() {
 
         {/* Principle II */}
         <div className="space-y-1.5 p-3 sm:p-3.5 rounded-lg bg-[#FDFCFA] border border-[#EDE4D9]">
-          <span className="text-xs uppercase font-mono tracking-wider text-[#C4604A] font-bold block">
+          <span className="text-xs uppercase font-mono tracking-wider text-[#9E3D2B] font-bold block">
             Principle II · Fault Boundaries &amp; Data Preservation
           </span>
           <h3 className="font-serif text-lg sm:text-xl font-bold text-[#1A1816]">
@@ -307,15 +307,15 @@ function ManifestoLeft() {
             Asynchronous Event Pipeline Data Flow:
           </span>
           <div className="p-2.5 rounded bg-[#FAF6F1] border border-[#D4C3AF] text-xs sm:text-sm leading-relaxed text-[#1A1816]">
-            <p className="font-bold text-[#C4604A]">[Client Mutation] → [API Gateway + Rate Limiter]</p>
-            <p className="text-[#5E5854] pl-3 sm:pl-4 font-medium">↳ Enqueue Task into Flexbase Message Queue (Zero Lock Delay)</p>
+            <p className="font-bold text-[#9E3D2B]">[Client Mutation] → [API Gateway + Rate Limiter]</p>
+            <p className="text-[#383432] pl-3 sm:pl-4 font-medium">↳ Enqueue Task into Flexbase Message Queue (Zero Lock Delay)</p>
             <p className="text-[#566449] pl-6 sm:pl-8 font-semibold">↳ Asynchronous Worker Pool Consumer (Idempotent Execution)</p>
             <p className="text-[#1A1816] pl-9 sm:pl-12 font-bold">↳ PostgreSQL (ACID Write) + Redis Cache Invalidation (4s Total)</p>
           </div>
         </div>
       </div>
 
-      <div className="pt-2.5 border-t border-[#EDE4D9] text-xs sm:text-sm text-[#7A746D] flex justify-between font-mono">
+      <div className="pt-2.5 border-t border-[#EDE4D9] text-xs sm:text-sm text-[#4A4541] flex justify-between font-mono">
         <span>Architectural Manifesto</span>
         <span className="font-bold">Page 03</span>
       </div>
@@ -326,15 +326,15 @@ function ManifestoLeft() {
 function ManifestoRight() {
   return (
     <div className="h-full w-full p-5 sm:p-6 md:p-7 flex flex-col justify-between bg-[#FDFCFA] text-[#2C2825] overflow-hidden select-none">
-      <div className="flex items-center justify-between text-xs sm:text-sm font-mono uppercase tracking-widest text-[#7A746D] pb-2.5 border-b border-[#EDE4D9]">
+      <div className="flex items-center justify-between text-xs sm:text-sm font-mono uppercase tracking-widest text-[#4A4541] pb-2.5 border-b border-[#EDE4D9]">
         <span className="font-bold text-[#1A1816]">Reliability &amp; Outage Prevention</span>
-        <span className="text-[#C4604A] font-bold">Chapter 02 · Part II</span>
+        <span className="text-[#9E3D2B] font-bold">Chapter 02 · Part II</span>
       </div>
 
       <div className="space-y-3.5 sm:space-y-4 my-auto">
         {/* Principle III */}
         <div className="space-y-1.5 p-3 sm:p-3.5 rounded-lg bg-[#FAF6F1] border border-[#EDE4D9]">
-          <span className="text-xs uppercase font-mono tracking-wider text-[#C4604A] font-bold block">
+          <span className="text-xs uppercase font-mono tracking-wider text-[#9E3D2B] font-bold block">
             Principle III · Cryptographic Verification &amp; Idempotency
           </span>
           <h2 className="font-serif text-lg sm:text-xl font-bold text-[#1A1816]">
@@ -346,12 +346,12 @@ function ManifestoRight() {
         </div>
 
         {/* RCA Case Study Box */}
-        <div className="p-3 sm:p-3.5 rounded-lg bg-[#FAF6F1] border-l-4 border-l-[#C4604A] border border-[#EDE4D9] space-y-1.5">
+        <div className="p-3 sm:p-3.5 rounded-lg bg-[#FAF6F1] border-l-4 border-l-[#9E3D2B] border border-[#EDE4D9] space-y-1.5">
           <div className="flex items-center justify-between">
-            <span className="text-xs uppercase font-mono font-bold tracking-wider text-[#C4604A]">
+            <span className="text-xs uppercase font-mono font-bold tracking-wider text-[#9E3D2B]">
               Production RCA Case Study:
             </span>
-            <span className="text-xs font-mono font-bold px-2 py-0.5 rounded bg-[#C4604A]/10 text-[#C4604A]">
+            <span className="text-xs font-mono font-bold px-2 py-0.5 rounded bg-[#9E3D2B]/10 text-[#9E3D2B]">
               Resolved
             </span>
           </div>
@@ -374,8 +374,8 @@ function ManifestoRight() {
         </div>
       </div>
 
-      <div className="pt-2.5 border-t border-[#EDE4D9] flex items-center justify-between text-xs sm:text-sm text-[#5E5854] font-mono">
-        <span className="text-[#C4604A] font-bold">Flip to inspect Project Blueprints →</span>
+      <div className="pt-2.5 border-t border-[#EDE4D9] flex items-center justify-between text-xs sm:text-sm text-[#383432] font-mono">
+        <span className="text-[#9E3D2B] font-bold">Flip to inspect Project Blueprints →</span>
         <span className="font-medium">Page 04</span>
       </div>
     </div>
@@ -395,14 +395,14 @@ function ProjectBlueprintLeft({
 }) {
   return (
     <div className="h-full w-full p-5 sm:p-6 md:p-7 border-r border-[#EDE4D9] flex flex-col justify-between bg-[#FAF6F1] text-[#2C2825] overflow-hidden select-none">
-      <div className="flex items-center justify-between text-xs sm:text-sm font-mono uppercase tracking-widest text-[#7A746D] pb-2.5 border-b border-[#EDE4D9]">
-        <span className="text-[#C4604A] font-bold">{plateNumber}</span>
+      <div className="flex items-center justify-between text-xs sm:text-sm font-mono uppercase tracking-widest text-[#4A4541] pb-2.5 border-b border-[#EDE4D9]">
+        <span className="text-[#9E3D2B] font-bold">{plateNumber}</span>
         <span className="font-bold text-[#1A1816]">{project.category}</span>
       </div>
 
       <div className="space-y-3.5 sm:space-y-4 my-auto">
         <div>
-          <span className="text-xs uppercase tracking-wider text-[#7A746D] font-mono font-bold block mb-1">
+          <span className="text-xs uppercase tracking-wider text-[#4A4541] font-mono font-bold block mb-1">
             {project.edition}
           </span>
           <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#1A1816] tracking-tight leading-tight">
@@ -432,7 +432,7 @@ function ProjectBlueprintLeft({
           <ul className="space-y-1.5 text-xs sm:text-sm text-[#2C2825]">
             {project.solutionDetails.slice(0, 3).map((item, i) => (
               <li key={i} className="flex items-start gap-2">
-                <span className="w-2 h-2 rounded-full bg-[#C4604A] mt-1.5 shrink-0" />
+                <span className="w-2 h-2 rounded-full bg-[#9E3D2B] mt-1.5 shrink-0" />
                 <span className="leading-snug">{item}</span>
               </li>
             ))}
@@ -443,7 +443,7 @@ function ProjectBlueprintLeft({
         <div className="grid grid-cols-3 gap-2.5 pt-1">
           {project.stats.map((s) => (
             <div key={s.label} className="p-2.5 sm:p-3 rounded-lg bg-[#F3ECE4] border border-[#EDE4D9] text-center">
-              <span className="text-xs uppercase tracking-wider text-[#7A746D] font-mono font-medium block">
+              <span className="text-xs uppercase tracking-wider text-[#4A4541] font-mono font-medium block">
                 {s.label}
               </span>
               <span className="font-serif text-lg sm:text-xl font-bold text-[#1A1816] mt-1 block leading-tight">
@@ -454,7 +454,7 @@ function ProjectBlueprintLeft({
         </div>
       </div>
 
-      <div className="pt-2.5 border-t border-[#EDE4D9] text-xs sm:text-sm text-[#7A746D] flex justify-between font-mono">
+      <div className="pt-2.5 border-t border-[#EDE4D9] text-xs sm:text-sm text-[#4A4541] flex justify-between font-mono">
         <span className="font-medium">System Specification</span>
         <span className="font-bold">Plate Overview</span>
       </div>
@@ -475,15 +475,15 @@ function ProjectBlueprintRight({
 }) {
   return (
     <div className="h-full w-full p-5 sm:p-6 md:p-7 flex flex-col justify-between bg-[#FDFCFA] text-[#2C2825] overflow-hidden select-none">
-      <div className="flex items-center justify-between text-xs sm:text-sm font-mono uppercase tracking-widest text-[#7A746D] pb-2.5 border-b border-[#EDE4D9]">
+      <div className="flex items-center justify-between text-xs sm:text-sm font-mono uppercase tracking-widest text-[#4A4541] pb-2.5 border-b border-[#EDE4D9]">
         <span className="font-bold text-[#1A1816]">Architecture Blueprint &amp; Topology</span>
-        <span className="text-[#C4604A] font-bold">Systems Design</span>
+        <span className="text-[#9E3D2B] font-bold">Systems Design</span>
       </div>
 
       <div className="space-y-3.5 sm:space-y-4 my-auto">
         {/* Tech Stack Tags */}
         <div>
-          <span className="text-xs uppercase tracking-wider font-mono text-[#7A746D] block mb-2 font-bold">
+          <span className="text-xs uppercase tracking-wider font-mono text-[#4A4541] block mb-2 font-bold">
             Technology Stack &amp; Protocols:
           </span>
           <div className="flex flex-wrap gap-2">
@@ -500,7 +500,7 @@ function ProjectBlueprintRight({
 
         {/* Feature Highlight Callout */}
         <div className="p-3 sm:p-3.5 rounded-lg bg-[#FAF6F1] border border-[#EDE4D9] space-y-1.5">
-          <span className="text-xs uppercase tracking-wider font-bold text-[#C4604A] block font-mono">
+          <span className="text-xs uppercase tracking-wider font-bold text-[#9E3D2B] block font-mono">
             Core Architectural Breakthrough:
           </span>
           <p className="text-sm sm:text-base text-[#1A1816] font-semibold leading-relaxed">
@@ -514,7 +514,7 @@ function ProjectBlueprintRight({
             Data Flow &amp; System Topology:
           </span>
           <div className="p-2.5 rounded bg-[#FDFCFA] border border-[#D4C3AF] text-xs sm:text-sm text-[#1A1816] leading-relaxed font-medium">
-            <p className="text-[#C4604A] font-bold">{topology}</p>
+            <p className="text-[#9E3D2B] font-bold">{topology}</p>
           </div>
         </div>
 
@@ -533,7 +533,7 @@ function ProjectBlueprintRight({
       <div className="pt-2.5 border-t border-[#EDE4D9] flex items-center justify-between gap-3">
         <button
           onClick={onInspect}
-          className="inline-flex items-center gap-2 px-3.5 py-2 rounded-md bg-[#C4604A] text-white text-xs sm:text-sm font-bold hover:bg-[#A8493A] transition-colors shadow-2xs"
+          className="inline-flex items-center gap-2 px-3.5 py-2 rounded-md bg-[#9E3D2B] text-white text-xs sm:text-sm font-bold hover:bg-[#852C1B] transition-colors shadow-2xs"
         >
           <span>Inspect Architecture Dossier</span>
           <ArrowUpRight className="w-4 h-4" />
@@ -543,7 +543,7 @@ function ProjectBlueprintRight({
           href={project.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-xs sm:text-sm font-mono text-[#5E5854] hover:text-[#1A1816] inline-flex items-center gap-1.5 font-bold"
+          className="text-xs sm:text-sm font-mono text-[#383432] hover:text-[#1A1816] inline-flex items-center gap-1.5 font-bold"
         >
           <span>Live Deployment</span>
           <ExternalLink className="w-4 h-4" />
@@ -559,14 +559,14 @@ function ProjectBlueprintRight({
 function TaxonomyLeft() {
   return (
     <div className="h-full w-full p-5 sm:p-6 md:p-7 border-r border-[#EDE4D9] flex flex-col justify-between bg-[#FAF6F1] text-[#2C2825] overflow-hidden select-none">
-      <div className="flex items-center justify-between text-xs font-mono uppercase tracking-widest text-[#7A746D] pb-2 border-b border-[#EDE4D9]">
+      <div className="flex items-center justify-between text-xs font-mono uppercase tracking-widest text-[#4A4541] pb-2 border-b border-[#EDE4D9]">
         <span className="font-bold text-[#1A1816]">Core Engineering Taxonomy</span>
-        <span className="text-[#C4604A] font-bold">Chapter 08 · Runtimes</span>
+        <span className="text-[#9E3D2B] font-bold">Chapter 08 · Runtimes</span>
       </div>
 
       <div className="space-y-2.5 my-auto">
         <div>
-          <span className="text-[11px] uppercase font-mono tracking-wider text-[#C4604A] font-bold block mb-0.5">
+          <span className="text-[11px] uppercase font-mono tracking-wider text-[#9E3D2B] font-bold block mb-0.5">
             Runtimes, APIs &amp; Concurrency
           </span>
           <h2 className="font-serif text-lg sm:text-xl font-bold text-[#1A1816]">
@@ -579,7 +579,7 @@ function TaxonomyLeft() {
           <div className="p-2 sm:p-2.5 rounded-lg bg-[#FDFCFA] border border-[#EDE4D9] space-y-0.5">
             <div className="flex items-center justify-between">
               <span className="font-bold text-xs sm:text-sm text-[#1A1816]">TypeScript, Node.js &amp; Deno</span>
-              <span className="font-mono text-xs font-mono font-bold text-[#C4604A]">Strict Type Safety</span>
+              <span className="font-mono text-xs font-mono font-bold text-[#9E3D2B]">Strict Type Safety</span>
             </div>
             <p className="text-xs sm:text-sm text-[#2C2825] leading-relaxed">
               Deno Edge Functions, Next.js Edge Runtime, asynchronous I/O, REST APIs, PM2 daemon process orchestration, and zero-downtime cluster reloads.
@@ -609,7 +609,7 @@ function TaxonomyLeft() {
           <div className="p-2 sm:p-2.5 rounded-lg bg-[#FDFCFA] border border-[#EDE4D9] space-y-0.5">
             <div className="flex items-center justify-between">
               <span className="font-bold text-xs sm:text-sm text-[#1A1816]">Edge APIs &amp; Security Protocols</span>
-              <span className="font-mono text-xs font-mono font-bold text-[#7A746D]">&lt; 10 ms Stateless</span>
+              <span className="font-mono text-xs font-mono font-bold text-[#4A4541]">&lt; 10 ms Stateless</span>
             </div>
             <p className="text-xs sm:text-sm text-[#2C2825] leading-relaxed">
               Stateless mathematical REST APIs on Edge runtimes, HMAC-SHA256 authenticated webhooks, AES-256-GCM encryption, and Matrix protocols.
@@ -618,7 +618,7 @@ function TaxonomyLeft() {
         </div>
       </div>
 
-      <div className="pt-2 border-t border-[#EDE4D9] text-xs text-[#7A746D] flex justify-between font-mono">
+      <div className="pt-2 border-t border-[#EDE4D9] text-xs text-[#4A4541] flex justify-between font-mono">
         <span>Runtimes &amp; Concurrency</span>
         <span className="font-bold">Page 15</span>
       </div>
@@ -629,14 +629,14 @@ function TaxonomyLeft() {
 function TaxonomyRight() {
   return (
     <div className="h-full w-full p-5 sm:p-6 md:p-7 flex flex-col justify-between bg-[#FDFCFA] text-[#2C2825] overflow-hidden select-none">
-      <div className="flex items-center justify-between text-xs font-mono uppercase tracking-widest text-[#7A746D] pb-2 border-b border-[#EDE4D9]">
+      <div className="flex items-center justify-between text-xs font-mono uppercase tracking-widest text-[#4A4541] pb-2 border-b border-[#EDE4D9]">
         <span className="font-bold text-[#1A1816]">Storage, Vector Stores &amp; Infra</span>
-        <span className="text-[#C4604A] font-bold">Chapter 08 · Infrastructure</span>
+        <span className="text-[#9E3D2B] font-bold">Chapter 08 · Infrastructure</span>
       </div>
 
       <div className="space-y-2.5 my-auto">
         <div>
-          <span className="text-[11px] uppercase font-mono tracking-wider text-[#C4604A] font-bold block mb-0.5">
+          <span className="text-[11px] uppercase font-mono tracking-wider text-[#9E3D2B] font-bold block mb-0.5">
             Databases &amp; AI Retrieval
           </span>
           <h2 className="font-serif text-lg sm:text-xl font-bold text-[#1A1816]">
@@ -649,7 +649,7 @@ function TaxonomyRight() {
           <div className="p-2 sm:p-2.5 rounded-lg bg-[#FAF6F1] border border-[#EDE4D9] space-y-0.5">
             <div className="flex items-center justify-between">
               <span className="font-bold text-xs sm:text-sm text-[#1A1816]">PostgreSQL &amp; Supabase</span>
-              <span className="font-mono text-xs font-mono font-bold text-[#C4604A]">Drizzle &amp; RLS</span>
+              <span className="font-mono text-xs font-mono font-bold text-[#9E3D2B]">Drizzle &amp; RLS</span>
             </div>
             <p className="text-xs sm:text-sm text-[#2C2825] leading-relaxed">
               Production schema design, Row-Level Security (RLS) policies, multi-tenant isolation, index tuning, and connection pooling.
@@ -679,7 +679,7 @@ function TaxonomyRight() {
           <div className="p-2 sm:p-2.5 rounded-lg bg-[#FAF6F1] border border-[#EDE4D9] space-y-0.5">
             <div className="flex items-center justify-between">
               <span className="font-bold text-xs sm:text-sm text-[#1A1816]">Linux &amp; Self-Hosted Infra</span>
-              <span className="font-mono text-xs font-mono font-bold text-[#7A746D]">Production Ops</span>
+              <span className="font-mono text-xs font-mono font-bold text-[#4A4541]">Production Ops</span>
             </div>
             <p className="text-xs sm:text-sm text-[#2C2825] leading-relaxed">
               Linux daemons, Docker containers, Mailcow, Dograh, Nginx reverse proxy, Cloudflare SSL, PM2 process clusters, and ProGuard.
@@ -688,7 +688,7 @@ function TaxonomyRight() {
         </div>
       </div>
 
-      <div className="pt-2 border-t border-[#EDE4D9] text-xs text-[#7A746D] flex justify-between font-mono">
+      <div className="pt-2 border-t border-[#EDE4D9] text-xs text-[#4A4541] flex justify-between font-mono">
         <span>Databases &amp; Cloud</span>
         <span className="font-bold">Page 16</span>
       </div>
@@ -702,8 +702,8 @@ function TaxonomyRight() {
 function ChronologyLeft() {
   return (
     <div className="h-full w-full p-5 sm:p-6 md:p-7 border-r border-[#EDE4D9] flex flex-col justify-between bg-[#FAF6F1] text-[#2C2825] overflow-hidden select-none">
-      <div className="flex items-center justify-between text-xs font-mono uppercase tracking-widest text-[#7A746D] pb-2 border-b border-[#EDE4D9]">
-        <span className="text-[#C4604A] font-bold">Chapter 09</span>
+      <div className="flex items-center justify-between text-xs font-mono uppercase tracking-widest text-[#4A4541] pb-2 border-b border-[#EDE4D9]">
+        <span className="text-[#9E3D2B] font-bold">Chapter 09</span>
         <span className="font-bold text-[#1A1816]">Recent Production Roles</span>
       </div>
 
@@ -711,10 +711,10 @@ function ChronologyLeft() {
         {/* Role 1: Krishora */}
         <div className="space-y-1.5 p-2.5 sm:p-3 rounded-lg bg-[#FDFCFA] border border-[#EDE4D9]">
           <div className="flex items-center justify-between">
-            <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-[#C4604A]/15 text-[#C4604A] uppercase tracking-wider">
+            <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-[#9E3D2B]/15 text-[#9E3D2B] uppercase tracking-wider">
               Founding Role
             </span>
-            <span className="font-mono text-xs text-[#C4604A] font-bold">May 2026 – Present</span>
+            <span className="font-mono text-xs text-[#9E3D2B] font-bold">May 2026 – Present</span>
           </div>
           <div>
             <h3 className="font-serif text-base sm:text-lg font-bold text-[#1A1816]">
@@ -724,15 +724,15 @@ function ChronologyLeft() {
           </div>
           <ul className="space-y-1 text-xs sm:text-sm text-[#2C2825] pt-0.5">
             <li className="flex items-start gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#C4604A] mt-1.5 shrink-0" />
+              <span className="w-1.5 h-1.5 rounded-full bg-[#9E3D2B] mt-1.5 shrink-0" />
               <span>Engineered low-latency Python pipeline (Pipecat, Exotel WebSockets, CUDA GPUs) with ~700 ms turnaround.</span>
             </li>
             <li className="flex items-start gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#C4604A] mt-1.5 shrink-0" />
+              <span className="w-1.5 h-1.5 rounded-full bg-[#9E3D2B] mt-1.5 shrink-0" />
               <span>Built Node.js/PM2 service router for Sevak AI using Qdrant vector retrieval.</span>
             </li>
             <li className="flex items-start gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#C4604A] mt-1.5 shrink-0" />
+              <span className="w-1.5 h-1.5 rounded-full bg-[#9E3D2B] mt-1.5 shrink-0" />
               <span>Deployed Dograh, Mailcow, Nginx, Cloudflare SSL, and ProGuard Expo apps.</span>
             </li>
           </ul>
@@ -744,7 +744,7 @@ function ChronologyLeft() {
             <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-[#EDE4D9] text-[#1A1816] uppercase tracking-wider">
               Defense &amp; Intelligence Lab
             </span>
-            <span className="font-mono text-xs text-[#5E5854] font-semibold">Aug 2025 – May 2026</span>
+            <span className="font-mono text-xs text-[#383432] font-semibold">Aug 2025 – May 2026</span>
           </div>
           <div>
             <h3 className="font-serif text-base sm:text-lg font-bold text-[#1A1816]">
@@ -754,18 +754,18 @@ function ChronologyLeft() {
           </div>
           <ul className="space-y-1 text-xs sm:text-sm text-[#2C2825] pt-0.5">
             <li className="flex items-start gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#C4604A] mt-1.5 shrink-0" />
+              <span className="w-1.5 h-1.5 rounded-full bg-[#9E3D2B] mt-1.5 shrink-0" />
               <span>Developed Kotlin/Java Android background services with encrypted SQLite queues preventing field loss.</span>
             </li>
             <li className="flex items-start gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#C4604A] mt-1.5 shrink-0" />
+              <span className="w-1.5 h-1.5 rounded-full bg-[#9E3D2B] mt-1.5 shrink-0" />
               <span>Built React/PostgreSQL apps with authentication, RBAC, and legal-domain RAG.</span>
             </li>
           </ul>
         </div>
       </div>
 
-      <div className="pt-2 border-t border-[#EDE4D9] text-xs text-[#7A746D] flex justify-between font-mono">
+      <div className="pt-2 border-t border-[#EDE4D9] text-xs text-[#4A4541] flex justify-between font-mono">
         <span>Production Experience</span>
         <span className="font-bold">Page 17</span>
       </div>
@@ -776,9 +776,9 @@ function ChronologyLeft() {
 function ChronologyRight() {
   return (
     <div className="h-full w-full p-5 sm:p-6 md:p-7 flex flex-col justify-between bg-[#FDFCFA] text-[#2C2825] overflow-hidden select-none">
-      <div className="flex items-center justify-between text-xs font-mono uppercase tracking-widest text-[#7A746D] pb-2 border-b border-[#EDE4D9]">
+      <div className="flex items-center justify-between text-xs font-mono uppercase tracking-widest text-[#4A4541] pb-2 border-b border-[#EDE4D9]">
         <span className="font-bold text-[#1A1816]">Internship &amp; Mentorship</span>
-        <span className="text-[#C4604A] font-bold">Chapter 09 · Part II</span>
+        <span className="text-[#9E3D2B] font-bold">Chapter 09 · Part II</span>
       </div>
 
       <div className="space-y-2.5 sm:space-y-3 my-auto">
@@ -798,15 +798,15 @@ function ChronologyRight() {
           </div>
           <ul className="space-y-1 text-xs sm:text-sm text-[#2C2825] pt-0.5">
             <li className="flex items-start gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#C4604A] mt-1.5 shrink-0" />
+              <span className="w-1.5 h-1.5 rounded-full bg-[#9E3D2B] mt-1.5 shrink-0" />
               <span>Replaced cron polling with Flexbase queues, reducing sync from 15m to 4s (~99.5%).</span>
             </li>
             <li className="flex items-start gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#C4604A] mt-1.5 shrink-0" />
+              <span className="w-1.5 h-1.5 rounded-full bg-[#9E3D2B] mt-1.5 shrink-0" />
               <span>Root cause analysis of production DB crash caused by payment cron retry bursts.</span>
             </li>
             <li className="flex items-start gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#C4604A] mt-1.5 shrink-0" />
+              <span className="w-1.5 h-1.5 rounded-full bg-[#9E3D2B] mt-1.5 shrink-0" />
               <span>Migrated PHP to TypeScript and Deno Edge Functions; evaluated Novu notification system.</span>
             </li>
           </ul>
@@ -818,7 +818,7 @@ function ChronologyRight() {
             <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-[#E2D5C6] text-[#1A1816] uppercase tracking-wider">
               Academic Faculty Service
             </span>
-            <span className="font-mono text-xs text-[#7A746D] font-semibold">Jun – Aug 2024</span>
+            <span className="font-mono text-xs text-[#4A4541] font-semibold">Jun – Aug 2024</span>
           </div>
           <div>
             <h3 className="font-serif text-base sm:text-lg font-bold text-[#1A1816]">
@@ -832,7 +832,7 @@ function ChronologyRight() {
         </div>
       </div>
 
-      <div className="pt-2 border-t border-[#EDE4D9] text-xs text-[#7A746D] flex justify-between font-mono">
+      <div className="pt-2 border-t border-[#EDE4D9] text-xs text-[#4A4541] flex justify-between font-mono">
         <span>Historical Record</span>
         <span className="font-bold">Page 18</span>
       </div>
@@ -846,8 +846,8 @@ function ChronologyRight() {
 function ColophonLeft() {
   return (
     <div className="h-full w-full p-5 sm:p-6 md:p-7 border-r border-[#EDE4D9] flex flex-col justify-between bg-[#FAF6F1] text-[#2C2825] overflow-hidden select-none">
-      <div className="flex items-center justify-between text-xs font-mono uppercase tracking-widest text-[#7A746D] pb-2 border-b border-[#EDE4D9]">
-        <span className="text-[#C4604A] font-bold">Chapter 10</span>
+      <div className="flex items-center justify-between text-xs font-mono uppercase tracking-widest text-[#4A4541] pb-2 border-b border-[#EDE4D9]">
+        <span className="text-[#9E3D2B] font-bold">Chapter 10</span>
         <span className="font-bold text-[#1A1816]">Education &amp; Credentials</span>
       </div>
 
@@ -858,7 +858,7 @@ function ColophonLeft() {
             <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-[#566449]/15 text-[#566449]">
               🏆 First Rank in College
             </span>
-            <span className="font-mono text-xs text-[#C4604A] font-bold">CGPA: 8.55 / 10.0</span>
+            <span className="font-mono text-xs text-[#9E3D2B] font-bold">CGPA: 8.55 / 10.0</span>
           </div>
           <h3 className="font-serif text-base sm:text-lg font-bold text-[#1A1816]">
             Bachelor of Science in Information Technology (B.Sc. IT)
@@ -873,12 +873,12 @@ function ColophonLeft() {
         <div className="p-2.5 sm:p-3 rounded-lg bg-[#FDFCFA] border border-[#EDE4D9] space-y-1">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-1.5">
-              <BookOpen className="w-3.5 h-3.5 text-[#C4604A]" />
+              <BookOpen className="w-3.5 h-3.5 text-[#9E3D2B]" />
               <span className="font-serif font-bold text-sm sm:text-base text-[#1A1816]">Data Science Training</span>
             </div>
             <span className="font-mono text-[10px] font-bold text-[#566449]">VERIFIED</span>
           </div>
-          <p className="font-mono text-xs text-[#7A746D] font-bold">Internshala Trainings · Oct 2023 · Cert ID: 263gl7b3rur</p>
+          <p className="font-mono text-xs text-[#4A4541] font-bold">Internshala Trainings · Oct 2023 · Cert ID: 263gl7b3rur</p>
           <p className="text-xs sm:text-sm text-[#2C2825] leading-relaxed">
             Hands-on training covering statistical data processing, vector datasets, Python scientific tooling, and data pipeline fundamentals.
           </p>
@@ -895,7 +895,7 @@ function ColophonLeft() {
         </div>
       </div>
 
-      <div className="pt-2 border-t border-[#EDE4D9] text-xs text-[#7A746D] flex justify-between font-mono">
+      <div className="pt-2 border-t border-[#EDE4D9] text-xs text-[#4A4541] flex justify-between font-mono">
         <span>Verified Credentials</span>
         <span className="font-bold">Page 19</span>
       </div>
@@ -906,9 +906,9 @@ function ColophonLeft() {
 function ColophonRight() {
   return (
     <div className="h-full w-full p-5 sm:p-6 md:p-7 flex flex-col justify-between bg-[#FDFCFA] text-[#2C2825] overflow-hidden select-none">
-      <div className="flex items-center justify-between text-xs font-mono uppercase tracking-widest text-[#7A746D] pb-2 border-b border-[#EDE4D9]">
+      <div className="flex items-center justify-between text-xs font-mono uppercase tracking-widest text-[#4A4541] pb-2 border-b border-[#EDE4D9]">
         <span className="font-bold text-[#1A1816]">Direct Contact &amp; Connect</span>
-        <span className="text-[#C4604A] font-bold">Available 2026</span>
+        <span className="text-[#9E3D2B] font-bold">Available 2026</span>
       </div>
 
       <div className="space-y-2.5 sm:space-y-3 my-auto">
@@ -916,7 +916,7 @@ function ColophonRight() {
           <h2 className="font-serif text-2xl sm:text-3xl font-extrabold text-[#1A1816]">
             Om Thakur
           </h2>
-          <p className="font-mono text-xs sm:text-sm text-[#C4604A] font-bold mt-1">
+          <p className="font-mono text-xs sm:text-sm text-[#9E3D2B] font-bold mt-1">
             Backend Engineer | Distributed Systems | Scalable APIs
           </p>
           <p className="text-sm sm:text-base text-[#2C2825] mt-2 leading-relaxed font-normal">
@@ -928,15 +928,15 @@ function ColophonRight() {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-mono">
           <a
             href="mailto:omthakur2366@gmail.com"
-            className="p-2 sm:p-2.5 rounded-lg bg-[#FAF6F1] border border-[#EDE4D9] hover:border-[#C4604A] transition-colors flex items-center gap-2 text-[#1A1816] font-bold"
+            className="p-2 sm:p-2.5 rounded-lg bg-[#FAF6F1] border border-[#EDE4D9] hover:border-[#9E3D2B] transition-colors flex items-center gap-2 text-[#1A1816] font-bold"
           >
-            <Mail className="w-3.5 h-3.5 text-[#C4604A] shrink-0" />
+            <Mail className="w-3.5 h-3.5 text-[#9E3D2B] shrink-0" />
             <span className="truncate">omthakur2366@gmail.com</span>
           </a>
 
           <a
             href="tel:+917756898550"
-            className="p-2 sm:p-2.5 rounded-lg bg-[#FAF6F1] border border-[#EDE4D9] hover:border-[#C4604A] transition-colors flex items-center gap-2 text-[#1A1816] font-bold"
+            className="p-2 sm:p-2.5 rounded-lg bg-[#FAF6F1] border border-[#EDE4D9] hover:border-[#9E3D2B] transition-colors flex items-center gap-2 text-[#1A1816] font-bold"
           >
             <Phone className="w-3.5 h-3.5 text-[#566449] shrink-0" />
             <span>+91 7756898550</span>
@@ -946,7 +946,7 @@ function ColophonRight() {
             href="https://github.com/MonsterFlick"
             target="_blank"
             rel="noopener noreferrer"
-            className="p-2 sm:p-2.5 rounded-lg bg-[#FAF6F1] border border-[#EDE4D9] hover:border-[#C4604A] transition-colors flex items-center gap-2 text-[#1A1816] font-bold"
+            className="p-2 sm:p-2.5 rounded-lg bg-[#FAF6F1] border border-[#EDE4D9] hover:border-[#9E3D2B] transition-colors flex items-center gap-2 text-[#1A1816] font-bold"
           >
             <Github className="w-3.5 h-3.5 text-[#1A1816] shrink-0" />
             <span>github.com/MonsterFlick</span>
@@ -956,7 +956,7 @@ function ColophonRight() {
             href="https://linkedin.com/in/omthakur2366"
             target="_blank"
             rel="noopener noreferrer"
-            className="p-2 sm:p-2.5 rounded-lg bg-[#FAF6F1] border border-[#EDE4D9] hover:border-[#C4604A] transition-colors flex items-center gap-2 text-[#1A1816] font-bold"
+            className="p-2 sm:p-2.5 rounded-lg bg-[#FAF6F1] border border-[#EDE4D9] hover:border-[#9E3D2B] transition-colors flex items-center gap-2 text-[#1A1816] font-bold"
           >
             <Linkedin className="w-3.5 h-3.5 text-[#0A66C2] shrink-0" />
             <span>linkedin.com/in/omthakur2366</span>
@@ -969,21 +969,21 @@ function ColophonRight() {
             <span className="font-mono text-xs uppercase font-bold text-[#1A1816] block">
               Curriculum Vitae / Resume
             </span>
-            <span className="text-xs text-[#5E5854] font-medium">
+            <span className="text-xs text-[#383432] font-medium">
               Clean ATS-ready print &amp; PDF version
             </span>
           </div>
           <Link
             href="/resume"
-            className="px-3 py-1.5 rounded-md bg-[#1A1816] text-[#FAF6F1] text-xs font-bold hover:bg-[#C4604A] transition-colors shrink-0 shadow-2xs"
+            className="px-3 py-1.5 rounded-md bg-[#1A1816] text-[#FAF6F1] text-xs font-bold hover:bg-[#9E3D2B] transition-colors shrink-0 shadow-2xs"
           >
             Open /resume →
           </Link>
         </div>
       </div>
 
-      <div className="pt-2 border-t border-[#EDE4D9] flex items-center justify-between text-xs text-[#5E5854] font-mono">
-        <span className="text-[#C4604A] font-bold">End of Volume I</span>
+      <div className="pt-2 border-t border-[#EDE4D9] flex items-center justify-between text-xs text-[#383432] font-mono">
+        <span className="text-[#9E3D2B] font-bold">End of Volume I</span>
         <span className="font-semibold">Page 20</span>
       </div>
     </div>

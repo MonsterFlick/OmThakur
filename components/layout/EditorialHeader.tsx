@@ -49,14 +49,14 @@ export function EditorialHeader({
             className="text-left group flex items-baseline gap-1"
             aria-label="Om Thakur - Back to top"
           >
-            <span className="font-serif text-xl sm:text-2xl font-black text-[#1A1816] tracking-tight group-hover:text-[#C4604A] transition-colors">
+            <span className="font-serif text-xl sm:text-2xl font-black text-[#1A1816] tracking-tight group-hover:text-[#9E3D2B] transition-colors">
               Om Thakur
             </span>
-            <span className="w-1.5 h-1.5 rounded-full bg-[#C4604A]" />
+            <span className="w-1.5 h-1.5 rounded-full bg-[#9E3D2B]" />
           </button>
 
           {/* Clean Concise Navigation Links (Semantic crawlable anchors) */}
-          <nav aria-label="Primary Navigation" className="hidden md:flex items-center gap-8 text-sm font-semibold text-[#5E5854]">
+          <nav aria-label="Primary Navigation" className="hidden md:flex items-center gap-8 text-sm font-semibold text-[#383432]">
             {navLinks.map((link) => (
               <a
                 key={link.id}
@@ -77,18 +77,18 @@ export function EditorialHeader({
             {/* Search Trigger */}
             <button
               onClick={onOpenSearch}
-              className="p-2 sm:px-3 sm:py-1.5 rounded-md border border-[#EDE4D9] bg-[#FDFCFA] text-[#5E5854] hover:text-[#1A1816] hover:border-[#D4C3AF] transition-colors inline-flex items-center gap-2 text-xs sm:text-sm shadow-2xs font-medium"
+              className="p-2 sm:px-3 sm:py-1.5 rounded-md border border-[#EDE4D9] bg-[#FDFCFA] text-[#383432] hover:text-[#1A1816] hover:border-[#D4C3AF] transition-colors inline-flex items-center gap-2 text-xs sm:text-sm shadow-2xs font-medium"
               title="Search (⌘K)"
               aria-label="Search"
             >
-              <Search className="w-3.5 h-3.5 text-[#C4604A]" />
-              <kbd className="hidden sm:inline font-mono text-xs text-[#928B87]">⌘K</kbd>
+              <Search className="w-3.5 h-3.5 text-[#9E3D2B]" />
+              <kbd className="hidden sm:inline font-mono text-xs text-[#4A4541]">⌘K</kbd>
             </button>
 
             {/* Terminal REPL Icon Trigger */}
             <button
               onClick={onOpenTerminal}
-              className="p-2 sm:p-2 rounded-md border border-[#EDE4D9] bg-[#FDFCFA] text-[#5E5854] hover:text-[#1A1816] hover:border-[#D4C3AF] transition-colors shadow-2xs"
+              className="p-2 sm:p-2 rounded-md border border-[#EDE4D9] bg-[#FDFCFA] text-[#383432] hover:text-[#1A1816] hover:border-[#D4C3AF] transition-colors shadow-2xs"
               title="Terminal Console (⌘`)"
               aria-label="Open Terminal"
             >
@@ -98,9 +98,9 @@ export function EditorialHeader({
             {/* Resume Button */}
             <Link
               href="/resume"
-              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-md bg-[#1A1816] text-[#FAF6F1] hover:bg-[#C4604A] transition-colors text-xs sm:text-sm font-semibold shadow-xs"
+              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-md bg-[#1A1816] text-[#FAF6F1] hover:bg-[#9E3D2B] transition-colors text-xs sm:text-sm font-semibold shadow-xs"
             >
-              <FileText className="w-3.5 h-3.5 text-[#C4604A]" />
+              <FileText className="w-3.5 h-3.5 text-[#9E3D2B]" />
               <span>Resume</span>
             </Link>
 
@@ -145,7 +145,7 @@ export function EditorialHeader({
                       onNavigate(link.id);
                       setMobileMenuOpen(false);
                     }}
-                    className="w-full text-left px-3 py-2 rounded-md text-sm font-medium text-[#2C2825] hover:text-[#C4604A] hover:bg-[#F3ECE4] transition-colors flex items-center justify-between"
+                    className="w-full text-left px-3 py-2 rounded-md text-sm font-medium text-[#2C2825] hover:text-[#9E3D2B] hover:bg-[#F3ECE4] transition-colors flex items-center justify-between"
                   >
                     <span>{link.label}</span>
                   </a>
@@ -159,11 +159,11 @@ export function EditorialHeader({
                     onOpenSearch();
                     setMobileMenuOpen(false);
                   }}
-                  className="flex-1 flex items-center justify-center gap-1.5 px-3 py-2 rounded-md border border-[#D4C3AF] bg-[#FDFCFA] text-xs font-medium text-[#5E5854]"
+                  className="flex-1 flex items-center justify-center gap-1.5 px-3 py-2 rounded-md border border-[#D4C3AF] bg-[#FDFCFA] text-xs font-medium text-[#383432]"
                 >
-                  <Search className="w-3.5 h-3.5 text-[#C4604A]" />
+                  <Search className="w-3.5 h-3.5 text-[#9E3D2B]" />
                   <span>Search</span>
-                  <kbd className="font-mono text-xs text-[#928B87]">⌘K</kbd>
+                  <kbd className="font-mono text-xs text-[#4A4541]">⌘K</kbd>
                 </button>
 
                 <button
@@ -171,7 +171,7 @@ export function EditorialHeader({
                     onOpenTerminal();
                     setMobileMenuOpen(false);
                   }}
-                  className="px-3 py-2 rounded-md border border-[#D4C3AF] bg-[#FDFCFA] text-xs font-medium text-[#5E5854]"
+                  className="px-3 py-2 rounded-md border border-[#D4C3AF] bg-[#FDFCFA] text-xs font-medium text-[#383432]"
                   title="Terminal"
                 >
                   <Terminal className="w-3.5 h-3.5 text-[#566449]" />
@@ -182,7 +182,7 @@ export function EditorialHeader({
                   onClick={() => setMobileMenuOpen(false)}
                   className="flex-1 flex items-center justify-center gap-1.5 px-3 py-2 rounded-md bg-[#1A1816] text-[#FAF6F1] text-xs font-semibold"
                 >
-                  <FileText className="w-3.5 h-3.5 text-[#C4604A]" />
+                  <FileText className="w-3.5 h-3.5 text-[#9E3D2B]" />
                   <span>Resume</span>
                 </Link>
               </div>

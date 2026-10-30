@@ -27,17 +27,17 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
           {/* Top Bar (Sticky) */}
           <div className="flex items-center justify-between px-4 py-3 sm:px-6 sm:py-4 border-b border-[#EDE4D9] bg-[#FDFCFA] shrink-0">
             <div className="flex items-center gap-2 sm:gap-3 truncate">
-              <span className="px-2 sm:px-2.5 py-0.5 rounded text-xs font-mono font-semibold bg-[#C4604A]/10 text-[#C4604A] uppercase tracking-wider truncate">
+              <span className="px-2 sm:px-2.5 py-0.5 rounded text-xs font-mono font-semibold bg-[#9E3D2B]/10 text-[#9E3D2B] uppercase tracking-wider truncate">
                 {project.category}
               </span>
-              <span className="font-mono text-xs sm:text-sm text-[#7A746D] truncate">
+              <span className="font-mono text-xs sm:text-sm text-[#4A4541] truncate">
                 {project.edition}
               </span>
             </div>
 
             <button
               onClick={onClose}
-              className="p-1.5 rounded-full text-[#7A746D] hover:text-[#1A1816] hover:bg-[#F3ECE4] transition-colors shrink-0 ml-2"
+              className="p-1.5 rounded-full text-[#4A4541] hover:text-[#1A1816] hover:bg-[#F3ECE4] transition-colors shrink-0 ml-2"
               aria-label="Close Project Modal"
             >
               <X className="w-5 h-5" />
@@ -50,7 +50,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
               <h2 className="font-serif text-2xl sm:text-4xl font-black text-[#1A1816] tracking-tight">
                 {project.name}
               </h2>
-              <p className="text-sm sm:text-base text-[#5E5854] mt-1.5 sm:mt-2 leading-relaxed">
+              <p className="text-sm sm:text-base text-[#383432] mt-1.5 sm:mt-2 leading-relaxed">
                 {project.purpose}
               </p>
             </div>
@@ -67,7 +67,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
               </div>
 
               <div className="md:col-span-5 space-y-3">
-                <span className="text-xs uppercase tracking-wider font-mono text-[#7A746D] block">
+                <span className="text-xs uppercase tracking-wider font-mono text-[#4A4541] block">
                   System Metrics &amp; Benchmarks:
                 </span>
                 <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-1 gap-2">
@@ -76,14 +76,14 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                       key={s.label}
                       className="flex items-center justify-between p-2.5 sm:p-3 rounded bg-[#FDFCFA] border border-[#EDE4D9]"
                     >
-                      <span className="text-xs text-[#5E5854] font-medium">{s.label}</span>
+                      <span className="text-xs text-[#383432] font-medium">{s.label}</span>
                       <span className="font-mono text-xs sm:text-sm font-bold text-[#1A1816]">{s.value}</span>
                     </div>
                   ))}
                 </div>
 
                 <div className="pt-2">
-                  <span className="text-xs uppercase tracking-wider font-mono text-[#7A746D] block mb-2">
+                  <span className="text-xs uppercase tracking-wider font-mono text-[#4A4541] block mb-2">
                     Technologies Used:
                   </span>
                   <div className="flex flex-wrap gap-1 sm:gap-1.5">
@@ -106,7 +106,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                 <span className="text-xs font-mono font-bold uppercase tracking-wider text-[#7A3B3B] block mb-2">
                   The Problem &amp; Challenge:
                 </span>
-                <p className="text-xs sm:text-sm text-[#5E5854] leading-relaxed">
+                <p className="text-xs sm:text-sm text-[#383432] leading-relaxed">
                   {project.problemStatement}
                 </p>
               </div>
@@ -118,7 +118,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                 <ul className="space-y-2 text-sm sm:text-base text-[#2C2825] leading-relaxed">
                   {project.solutionDetails.map((sol, i) => (
                     <li key={i} className="flex items-start gap-2">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#C4604A] mt-2 shrink-0" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#9E3D2B] mt-2 shrink-0" />
                       <span>{sol}</span>
                     </li>
                   ))}
@@ -129,7 +129,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
             {/* Code Block */}
             {project.codeSpecimen && (
               <div className="rounded-md border border-[#EDE4D9] bg-[#1A1816] text-[#FAF6F1] p-3.5 sm:p-4 overflow-hidden">
-                <div className="flex items-center justify-between pb-2 mb-2 border-b border-[#383432] text-xs font-mono text-[#928B87]">
+                <div className="flex items-center justify-between pb-2 mb-2 border-b border-[#383432] text-xs font-mono text-[#4A4541]">
                   <span className="truncate max-w-[200px]">{project.codeSpecimen.filename}</span>
                   <span>{project.codeSpecimen.language}</span>
                 </div>
@@ -146,7 +146,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                   href={project.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 px-4 sm:px-5 py-2.5 rounded bg-[#C4604A] text-white font-semibold text-xs sm:text-sm hover:bg-[#A8493A] transition-colors"
+                  className="inline-flex items-center justify-center gap-2 px-4 sm:px-5 py-2.5 rounded bg-[#9E3D2B] text-white font-semibold text-xs sm:text-sm hover:bg-[#852C1B] transition-colors"
                 >
                   <span>Open Live Project</span>
                   <ExternalLink className="w-3.5 h-3.5" />
@@ -165,7 +165,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                 )}
               </div>
 
-              <span className="text-xs sm:text-sm font-mono text-[#928B87] text-center sm:text-right">
+              <span className="text-xs sm:text-sm font-mono text-[#4A4541] text-center sm:text-right">
                 Project ID: {project.id}
               </span>
             </div>

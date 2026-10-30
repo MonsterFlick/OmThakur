@@ -266,7 +266,7 @@ export function EngineeringBook({
     <section className="relative pt-20 md:pt-24 pb-10 md:pb-12 px-4 sm:px-6 lg:px-8 border-b border-[#EDE4D9] bg-gradient-to-b from-[#FAF6F1] via-[#FDFCFA] to-[#FAF6F1]">
       <div className="w-full max-w-7xl xl:max-w-[1360px] mx-auto">
         {/* ── Top Masthead Information Bar ── */}
-        <div className="flex items-center justify-between pb-3.5 mb-6 border-b border-[#EDE4D9] text-xs font-mono text-[#7A746D]">
+        <div className="flex items-center justify-between pb-3.5 mb-6 border-b border-[#EDE4D9] text-xs font-mono text-[#4A4541]">
           <div className="flex items-center gap-2.5">
             <span className="inline-block w-2 h-2 rounded-full bg-[#566449] animate-pulse shrink-0" />
             <span className="font-medium text-[#1A1816] tracking-wide whitespace-nowrap">
@@ -278,7 +278,7 @@ export function EngineeringBook({
             </span>
           </div>
 
-          <div className="flex items-center gap-2 font-mono text-xs text-[#C4604A] shrink-0 whitespace-nowrap">
+          <div className="flex items-center gap-2 font-mono text-xs text-[#9E3D2B] shrink-0 whitespace-nowrap">
             <span className="hidden sm:inline text-[#8C827A]">Interactive Volume</span>
             <span className="hidden sm:inline text-[#D4C3AF]">·</span>
             <span className="font-semibold">{TOTAL_PLATES} Chapters</span>
@@ -287,19 +287,19 @@ export function EngineeringBook({
 
         {/* ── Book Hero Title ── */}
         <div className="text-center max-w-2xl mx-auto mb-5 sm:mb-6">
-          <div className="inline-flex items-center gap-2 px-3 py-0.5 rounded-full bg-[#F3ECE4] border border-[#E2D5C6] text-xs font-semibold text-[#7A746D] mb-2.5">
-            <Sparkles className="w-3.5 h-3.5 text-[#C4604A]" />
+          <div className="inline-flex items-center gap-2 px-3 py-0.5 rounded-full bg-[#F3ECE4] border border-[#E2D5C6] text-xs font-semibold text-[#4A4541] mb-2.5">
+            <Sparkles className="w-3.5 h-3.5 text-[#9E3D2B]" />
             <span>Interactive Engineering Volume</span>
           </div>
 
           <h1 className="font-serif text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#1A1816] tracking-tight leading-tight">
             Om Thakur — Scalable Backends &amp;{" "}
-            <span className="italic font-serif font-normal text-[#C4604A] block sm:inline">
+            <span className="italic font-serif font-normal text-[#9E3D2B] block sm:inline">
               Distributed Systems
             </span>
           </h1>
 
-          <p className="text-xs font-mono text-[#5E5854] mt-2">
+          <p className="text-xs font-mono text-[#383432] mt-2">
             Flip through the pages or press arrow keys (← / →)
           </p>
         </div>
@@ -317,7 +317,7 @@ export function EngineeringBook({
             <button
               onClick={prevPage}
               disabled={isFlipping}
-              className="p-2.5 sm:p-3 text-[#928B87] hover:text-[#1A1816] disabled:opacity-30 transition-all rounded-full hover:bg-[#F3ECE4] z-30 mr-2 md:mr-3 shrink-0 shadow-xs border border-[#EDE4D9] bg-[#FDFCFA]"
+              className="p-2.5 sm:p-3 text-[#4A4541] hover:text-[#1A1816] disabled:opacity-30 transition-all rounded-full hover:bg-[#F3ECE4] z-30 mr-2 md:mr-3 shrink-0 shadow-xs border border-[#EDE4D9] bg-[#FDFCFA]"
               aria-label="Previous Page"
               title="Previous (Left Arrow)"
             >
@@ -449,7 +449,7 @@ export function EngineeringBook({
             <button
               onClick={nextPage}
               disabled={isFlipping}
-              className="p-2.5 sm:p-3 text-[#928B87] hover:text-[#1A1816] disabled:opacity-30 transition-all rounded-full hover:bg-[#F3ECE4] z-30 ml-2 md:ml-3 shrink-0 shadow-xs border border-[#EDE4D9] bg-[#FDFCFA]"
+              className="p-2.5 sm:p-3 text-[#4A4541] hover:text-[#1A1816] disabled:opacity-30 transition-all rounded-full hover:bg-[#F3ECE4] z-30 ml-2 md:ml-3 shrink-0 shadow-xs border border-[#EDE4D9] bg-[#FDFCFA]"
               aria-label="Next Page"
               title="Next (Right Arrow)"
             >
@@ -467,7 +467,7 @@ export function EngineeringBook({
               {/* Top Mobile Plate Bar with Side Toggle Switch */}
               <div className="flex items-center justify-between px-3.5 py-2.5 bg-[#F3ECE4] border-b border-[#EDE4D9] text-xs font-mono">
                 <div className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-[#C4604A] animate-pulse" />
+                  <span className="w-2 h-2 rounded-full bg-[#9E3D2B] animate-pulse" />
                   <span className="font-bold text-[#1A1816] text-xs">
                     {activePlate.plateNumber}
                   </span>
@@ -480,7 +480,7 @@ export function EngineeringBook({
                     className={`px-2.5 py-1 rounded-full font-semibold transition-all ${
                       mobileSide === "left"
                         ? "bg-[#1A1816] text-[#FAF6F1] shadow-xs"
-                        : "text-[#5E5854] hover:text-[#1A1816]"
+                        : "text-[#383432] hover:text-[#1A1816]"
                     }`}
                   >
                     Side A
@@ -490,7 +490,7 @@ export function EngineeringBook({
                     className={`px-2.5 py-1 rounded-full font-semibold transition-all ${
                       mobileSide === "right"
                         ? "bg-[#1A1816] text-[#FAF6F1] shadow-xs"
-                        : "text-[#5E5854] hover:text-[#1A1816]"
+                        : "text-[#383432] hover:text-[#1A1816]"
                     }`}
                   >
                     Side B
@@ -519,9 +519,9 @@ export function EngineeringBook({
               </div>
 
               {/* Touch Swipe and Nav Tip */}
-              <div className="px-3 py-2 bg-[#F3ECE4]/80 border-t border-[#EDE4D9] flex items-center justify-between text-xs font-mono text-[#7A746D]">
+              <div className="px-3 py-2 bg-[#F3ECE4]/80 border-t border-[#EDE4D9] flex items-center justify-between text-xs font-mono text-[#4A4541]">
                 <span>← Swipe to turn →</span>
-                <span className="text-[#C4604A] font-medium">
+                <span className="text-[#9E3D2B] font-medium">
                   {mobileSide === "left" ? "Side A" : "Side B"} of Chapter {currentIdx + 1}
                 </span>
               </div>
@@ -534,12 +534,12 @@ export function EngineeringBook({
                 disabled={isFlipping}
                 className="flex-1 flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-md bg-[#F3ECE4] hover:bg-[#E2D5C6] active:bg-[#D4C3AF] text-[#1A1816] border border-[#EDE4D9] text-xs font-mono font-semibold transition-colors disabled:opacity-40"
               >
-                <ChevronLeft className="w-4 h-4 text-[#C4604A]" />
+                <ChevronLeft className="w-4 h-4 text-[#9E3D2B]" />
                 <span>Previous</span>
               </button>
 
               <div className="px-3 py-2 rounded-md bg-[#FAF6F1] border border-[#EDE4D9] text-center shrink-0">
-                <span className="font-mono text-xs font-bold text-[#C4604A]">
+                <span className="font-mono text-xs font-bold text-[#9E3D2B]">
                   {String(currentIdx + 1).padStart(2, "0")} / {TOTAL_PLATES}
                 </span>
               </div>
@@ -550,14 +550,14 @@ export function EngineeringBook({
                 className="flex-1 flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-md bg-[#F3ECE4] hover:bg-[#E2D5C6] active:bg-[#D4C3AF] text-[#1A1816] border border-[#EDE4D9] text-xs font-mono font-semibold transition-colors disabled:opacity-40"
               >
                 <span>Next</span>
-                <ChevronRight className="w-4 h-4 text-[#C4604A]" />
+                <ChevronRight className="w-4 h-4 text-[#9E3D2B]" />
               </button>
             </div>
           </div>
 
           {/* ── Active Plate Title & Position ── */}
           <div className="flex flex-col items-center justify-center text-center mt-2 px-4">
-            <span className="text-xs uppercase tracking-[0.22em] font-bold text-[#C4604A]">
+            <span className="text-xs uppercase tracking-[0.22em] font-bold text-[#9E3D2B]">
               {activePlate.plateNumber} · {activePlate.category}
             </span>
             <p className="font-serif font-black text-xl sm:text-2xl text-[#1A1816] mt-1">
@@ -579,11 +579,11 @@ export function EngineeringBook({
                   disabled={isFlipping}
                   className={`px-3.5 py-2 rounded text-xs sm:text-sm font-mono transition-all shrink-0 ${
                     isActive
-                      ? "bg-[#1A1816] text-[#FAF6F1] font-bold shadow-sm ring-1 ring-[#C4604A]"
-                      : "bg-[#F3ECE4] text-[#5E5854] hover:bg-[#E2D5C6] hover:text-[#1A1816] font-medium"
+                      ? "bg-[#1A1816] text-[#FAF6F1] font-bold shadow-sm ring-1 ring-[#9E3D2B]"
+                      : "bg-[#F3ECE4] text-[#383432] hover:bg-[#E2D5C6] hover:text-[#1A1816] font-medium"
                   }`}
                 >
-                  <span className="text-[#C4604A] font-bold mr-1.5">
+                  <span className="text-[#9E3D2B] font-bold mr-1.5">
                     {String(idx + 1).padStart(2, "0")}
                   </span>
                   <span>{p.slug.toUpperCase()}</span>
@@ -594,15 +594,15 @@ export function EngineeringBook({
 
           {/* ── SSR-Accessible 10-Chapter Monograph Index & Case Studies (AR-READ-01) ── */}
           <details className="w-full max-w-5xl mx-auto mt-2 rounded-md border border-[#EDE4D9] bg-[#FDFCFA] px-4 py-3 text-left shadow-2xs group">
-            <summary className="cursor-pointer font-mono text-xs uppercase tracking-wider text-[#5E5854] hover:text-[#C4604A] font-semibold flex items-center justify-between select-none">
+            <summary className="cursor-pointer font-mono text-xs uppercase tracking-wider text-[#383432] hover:text-[#9E3D2B] font-semibold flex items-center justify-between select-none">
               <span>Full 10-Chapter Monograph Index &amp; Database RCA Case Studies (Complete Text Archive)</span>
-              <span className="text-[#C4604A] group-open:rotate-180 transition-transform">↓</span>
+              <span className="text-[#9E3D2B] group-open:rotate-180 transition-transform">↓</span>
             </summary>
             <div className="mt-4 pt-4 border-t border-[#EDE4D9] space-y-5 text-xs sm:text-sm text-[#4A4541] leading-relaxed">
               <div className="grid sm:grid-cols-2 gap-4">
                 {MONOGRAPH_PLATES.map((plate, idx) => (
                   <div key={plate.id} className="p-3 rounded bg-[#FAF6F1] border border-[#EDE4D9]">
-                    <div className="flex items-center justify-between font-mono text-xs text-[#C4604A] font-bold mb-1">
+                    <div className="flex items-center justify-between font-mono text-xs text-[#9E3D2B] font-bold mb-1">
                       <span>{plate.plateNumber} · {plate.category}</span>
                       <button
                         type="button"
@@ -613,13 +613,13 @@ export function EngineeringBook({
                       </button>
                     </div>
                     <p className="font-serif font-bold text-[#1A1816] text-sm">{plate.title}</p>
-                    <p className="text-xs text-[#5E5854] mt-0.5">{plate.subtitle}</p>
+                    <p className="text-xs text-[#383432] mt-0.5">{plate.subtitle}</p>
                   </div>
                 ))}
               </div>
 
               <div className="p-4 rounded bg-[#FAF6F1] border border-[#EDE4D9] space-y-2">
-                <p className="font-mono text-xs uppercase tracking-wider font-bold text-[#C4604A]">
+                <p className="font-mono text-xs uppercase tracking-wider font-bold text-[#9E3D2B]">
                   Chapter 02 &amp; 09 Case Study — Production Database Outage RCA &amp; Indexing Optimization
                 </p>
                 <p>

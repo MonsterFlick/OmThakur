@@ -269,10 +269,10 @@ function parseLanyardActivity(
       category === "code"
         ? "#566449"
         : category === "video"
-        ? "#C4604A"
+        ? "#9E3D2B"
         : category === "music"
         ? "#7A3B3B"
-        : "#D97706",
+        : "#B45309",
     largeImage: largeImg,
     smallImage: smallImg,
     largeText: act.assets?.large_text,
@@ -301,7 +301,7 @@ function renderActivityWidget(act: ParsedActivity) {
               />
             ) : (
               <Disc
-                className="w-6 h-6 text-[#C4604A] animate-spin"
+                className="w-6 h-6 text-[#9E3D2B] animate-spin"
                 style={{ animationDuration: "6s" }}
               />
             )}
@@ -313,11 +313,11 @@ function renderActivityWidget(act: ParsedActivity) {
               {act.title}
             </h4>
             {act.subtitle && (
-              <p className="text-xs sm:text-sm text-[#5E5854] truncate">
+              <p className="text-xs sm:text-sm text-[#383432] truncate font-medium">
                 {act.subtitle}
               </p>
             )}
-            <p className="text-xs sm:text-sm text-[#5E5854] truncate">
+            <p className="text-xs sm:text-sm text-[#383432] truncate">
               {act.service}
             </p>
           </div>
@@ -327,11 +327,11 @@ function renderActivityWidget(act: ParsedActivity) {
           <div className="space-y-1 pt-0.5">
             <div className="w-full h-1.5 rounded-full bg-[#EDE4D9] overflow-hidden">
               <div
-                className="h-full bg-[#C4604A] rounded-full transition-all duration-300"
+                className="h-full bg-[#9E3D2B] rounded-full transition-all duration-300"
                 style={{ width: `${Math.min(100, Math.max(0, act.progress.percent || 0))}%` }}
               />
             </div>
-            <div className="flex justify-between text-xs font-mono text-[#7A746D]">
+            <div className="flex justify-between text-xs font-mono text-[#4A4541]">
               <span>{formatSec(act.progress.currentSec || 0)}</span>
               <span>{formatSec(act.progress.totalSec)}</span>
             </div>
@@ -350,7 +350,7 @@ function renderActivityWidget(act: ParsedActivity) {
                   className="inline-flex items-center justify-center gap-1.5 px-2.5 py-1.5 rounded bg-[#F3ECE4] hover:bg-[#E2D5C6] text-[#1A1816] text-xs sm:text-sm font-mono font-medium transition-colors border border-[#E2D5C6] text-center"
                 >
                   <span className="truncate">{btn.label.replace("Listen on ", "").replace("Visit ", "")}</span>
-                  <ExternalLink className="w-3 h-3 text-[#7A746D] shrink-0" />
+                  <ExternalLink className="w-3 h-3 text-[#4A4541] shrink-0" />
                 </a>
               ))}
             </div>
@@ -376,7 +376,7 @@ function renderActivityWidget(act: ParsedActivity) {
               </div>
             </div>
           ) : (
-            <div className="w-12 h-8 rounded bg-[#C4604A]/10 text-[#C4604A] flex items-center justify-center shrink-0 border border-[#C4604A]/20">
+            <div className="w-12 h-8 rounded bg-[#9E3D2B]/10 text-[#9E3D2B] flex items-center justify-center shrink-0 border border-[#9E3D2B]/20">
               <Play className="w-3.5 h-3.5 fill-current" />
             </div>
           )}
@@ -386,7 +386,7 @@ function renderActivityWidget(act: ParsedActivity) {
               href={act.url || undefined}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-serif font-bold text-sm sm:text-base text-[#1A1816] hover:text-[#C4604A] transition-colors line-clamp-2 leading-snug"
+              className="font-serif font-bold text-sm sm:text-base text-[#1A1816] hover:text-[#9E3D2B] transition-colors line-clamp-2 leading-snug"
             >
               {act.title}
             </a>
@@ -395,7 +395,7 @@ function renderActivityWidget(act: ParsedActivity) {
                 href={act.channelUrl || undefined}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-xs sm:text-sm text-[#5E5854] hover:text-[#1A1816] hover:underline block truncate mt-0.5"
+                className="text-xs sm:text-sm text-[#383432] hover:text-[#1A1816] hover:underline block truncate mt-0.5"
               >
                 {act.subtitle}
               </a>
@@ -407,11 +407,11 @@ function renderActivityWidget(act: ParsedActivity) {
           <div className="space-y-1">
             <div className="w-full h-1.5 rounded-full bg-[#EDE4D9] overflow-hidden">
               <div
-                className="h-full bg-[#C4604A] rounded-full transition-all duration-300"
+                className="h-full bg-[#9E3D2B] rounded-full transition-all duration-300"
                 style={{ width: `${Math.min(100, Math.max(0, act.progress.percent || 0))}%` }}
               />
             </div>
-            <div className="flex justify-between text-xs font-mono text-[#7A746D]">
+            <div className="flex justify-between text-xs font-mono text-[#4A4541]">
               <span>{formatSec(act.progress.currentSec || 0)}</span>
               <span>{formatSec(act.progress.totalSec)}</span>
             </div>
@@ -424,7 +424,7 @@ function renderActivityWidget(act: ParsedActivity) {
               href={act.buttons[0].url}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded bg-[#C4604A] text-white hover:bg-[#A8493A] text-xs sm:text-sm font-mono font-medium transition-colors shadow-xs text-center"
+              className="w-full inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded bg-[#9E3D2B] text-white hover:bg-[#8B1339] text-xs sm:text-sm font-mono font-medium transition-colors shadow-xs text-center"
             >
               <span>{act.buttons[0].label}</span>
               <ExternalLink className="w-3 h-3" />
@@ -471,13 +471,13 @@ function renderActivityWidget(act: ParsedActivity) {
                 {act.service}
               </span>
             </div>
-            <p className="font-mono text-xs sm:text-sm text-[#C4604A] truncate mt-0.5 font-medium">
+            <p className="font-mono text-xs sm:text-sm text-[#9E3D2B] truncate mt-0.5 font-medium">
               {act.subtitle}
             </p>
           </div>
         </div>
 
-        <div className="p-2 rounded bg-[#F3ECE4]/60 border border-[#EDE4D9]/80 flex items-center justify-between text-xs font-mono text-[#5E5854]">
+        <div className="p-2 rounded bg-[#F3ECE4]/60 border border-[#EDE4D9]/80 flex items-center justify-between text-xs font-mono text-[#383432]">
           <span>Antigravity Buffer</span>
           <span className="text-[#566449] font-semibold">● 0 Problems</span>
         </div>
@@ -488,7 +488,7 @@ function renderActivityWidget(act: ParsedActivity) {
               href={act.buttons[0].url}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded bg-[#1A1816] text-[#FAF6F1] hover:bg-[#C4604A] text-xs sm:text-sm font-mono font-medium transition-colors shadow-xs text-center"
+              className="w-full inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded bg-[#1A1816] text-[#FAF6F1] hover:bg-[#9E3D2B] text-xs sm:text-sm font-mono font-medium transition-colors shadow-xs text-center"
             >
               <span>{act.buttons[0].label}</span>
               <ExternalLink className="w-3 h-3 opacity-70" />
@@ -503,11 +503,11 @@ function renderActivityWidget(act: ParsedActivity) {
     <div key={act.id} className="p-3.5 rounded-lg bg-[#FAF6F1] border border-[#EDE4D9] space-y-3 shadow-2xs">
       <div className="space-y-1">
         <div className="flex items-center justify-between">
-          <span className="text-[#928B87] block text-xs uppercase tracking-wider font-mono">
+          <span className="text-[#4A4541] block text-xs uppercase tracking-wider font-mono font-medium">
             {act.service} Active
           </span>
-          <span className="inline-flex items-center gap-1 text-xs font-mono text-[#C4604A] font-semibold">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#C4604A] animate-pulse" />
+          <span className="inline-flex items-center gap-1 text-xs font-mono text-[#9E3D2B] font-semibold">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#9E3D2B] animate-pulse" />
             <span>Live Session</span>
           </span>
         </div>
@@ -515,7 +515,7 @@ function renderActivityWidget(act: ParsedActivity) {
           {act.title}
         </h4>
         {act.subtitle && (
-          <p className="text-[#5E5854] text-xs sm:text-sm">{act.subtitle}</p>
+          <p className="text-[#383432] text-xs sm:text-sm">{act.subtitle}</p>
         )}
       </div>
 
@@ -525,7 +525,7 @@ function renderActivityWidget(act: ParsedActivity) {
             href={act.buttons[0].url}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded bg-[#1A1816] text-[#FAF6F1] hover:bg-[#C4604A] text-xs sm:text-sm font-mono font-medium transition-colors text-center"
+            className="w-full inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded bg-[#1A1816] text-[#FAF6F1] hover:bg-[#9E3D2B] text-xs sm:text-sm font-mono font-medium transition-colors text-center"
           >
             <span>{act.buttons[0].label}</span>
             <ExternalLink className="w-3 h-3 opacity-70" />
@@ -546,47 +546,64 @@ export function LiveDeviceStation() {
   const heartbeatTimerRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
+    let reconnectTimeout: NodeJS.Timeout;
+    let ws: WebSocket | null = null;
+
+    const connectWs = () => {
+      try {
+        const socket = new WebSocket("wss://api.lanyard.rest/socket");
+        ws = socket;
+        wsRef.current = socket;
+        socket.onopen = () => setIsConnected(true);
+        socket.onmessage = (event) => {
+          try {
+            const msg = JSON.parse(event.data);
+            if (msg.op === 1) {
+              const interval = msg.d.heartbeat_interval || 30000;
+              if (heartbeatTimerRef.current) clearInterval(heartbeatTimerRef.current);
+              heartbeatTimerRef.current = setInterval(() => {
+                if (socket.readyState === WebSocket.OPEN) socket.send(JSON.stringify({ op: 3 }));
+              }, interval);
+              socket.send(JSON.stringify({ op: 2, d: { subscribe_to_id: DISCORD_USER_ID } }));
+            }
+            if (msg.op === 0 && (msg.t === "INIT_STATE" || msg.t === "PRESENCE_UPDATE")) setData(msg.d);
+          } catch {}
+        };
+        socket.onclose = () => {
+          setIsConnected(false);
+          if (heartbeatTimerRef.current) clearInterval(heartbeatTimerRef.current);
+          if (typeof window !== "undefined" && navigator.onLine) {
+            reconnectTimeout = setTimeout(connectWs, 10000);
+          }
+        };
+        socket.onerror = () => {
+          try { socket.close(); } catch {}
+        };
+      } catch {}
+    };
+
     fetch(`https://api.lanyard.rest/v1/users/${DISCORD_USER_ID}`)
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) throw new Error("HTTP error " + res.status);
+        return res.json();
+      })
       .then((json) => {
         if (json.success && json.data) {
           setData(json.data);
           setIsConnected(true);
+          if (typeof window !== "undefined" && navigator.onLine) {
+            connectWs();
+          }
         }
       })
-      .catch((err) => console.error("Presence fetch error:", err));
-  }, []);
+      .catch(() => {
+        // Fallback gracefully without unhandled console errors
+      });
 
-  useEffect(() => {
-    let reconnectTimeout: NodeJS.Timeout;
-    const connectWs = () => {
-      const ws = new WebSocket("wss://api.lanyard.rest/socket");
-      wsRef.current = ws;
-      ws.onopen = () => setIsConnected(true);
-      ws.onmessage = (event) => {
-        try {
-          const msg = JSON.parse(event.data);
-          if (msg.op === 1) {
-            const interval = msg.d.heartbeat_interval || 30000;
-            if (heartbeatTimerRef.current) clearInterval(heartbeatTimerRef.current);
-            heartbeatTimerRef.current = setInterval(() => {
-              if (ws.readyState === WebSocket.OPEN) ws.send(JSON.stringify({ op: 3 }));
-            }, interval);
-            ws.send(JSON.stringify({ op: 2, d: { subscribe_to_id: DISCORD_USER_ID } }));
-          }
-          if (msg.op === 0 && (msg.t === "INIT_STATE" || msg.t === "PRESENCE_UPDATE")) setData(msg.d);
-        } catch (e) { console.error("Presence parse error:", e); }
-      };
-      ws.onclose = () => {
-        setIsConnected(false);
-        if (heartbeatTimerRef.current) clearInterval(heartbeatTimerRef.current);
-        reconnectTimeout = setTimeout(connectWs, 5000);
-      };
-      ws.onerror = () => ws.close();
-    };
-    connectWs();
     return () => {
-      if (wsRef.current) wsRef.current.close();
+      if (ws) {
+        try { ws.close(); } catch {}
+      }
       if (heartbeatTimerRef.current) clearInterval(heartbeatTimerRef.current);
       clearTimeout(reconnectTimeout);
     };
@@ -659,7 +676,7 @@ export function LiveDeviceStation() {
   });
   const activeDesktopActivity = desktopActivities.find((a) => a.id === selectedDesktopActivityId) || desktopActivities[0] || null;
   const activeMobileActivity = mobileActivities.find((a) => a.id === selectedMobileActivityId) || mobileActivities[0] || null;
-  const avatarUrl = data?.discord_user?.avatar ? `https://cdn.discordapp.com/avatars/${DISCORD_USER_ID}/${data.discord_user.avatar}.png?size=128` : null;
+  const avatarUrl = data?.discord_user?.avatar ? `https://cdn.discordapp.com/avatars/${DISCORD_USER_ID}/${data.discord_user.avatar}.webp?size=64` : null;
   const displayName = "Om Thakur";
   const professionalTitle = "Architect & Backend Engineer";
   const discordHandle = data?.discord_user?.username || "monsterflick";
@@ -669,8 +686,8 @@ export function LiveDeviceStation() {
     <section id="workbench" className="py-20 md:py-28 px-4 sm:px-6 lg:px-8 border-b border-[#EDE4D9] bg-[#FAF6F1]">
       <div className="w-full max-w-7xl xl:max-w-[1360px] mx-auto">
         <div className="text-center max-w-3xl mx-auto mb-10">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#F3ECE4] border border-[#E2D5C6] text-xs font-semibold text-[#7A746D] mb-4">
-            <Radio className="w-3.5 h-3.5 text-[#C4604A] animate-pulse" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#F3ECE4] border border-[#E2D5C6] text-xs font-semibold text-[#4A4541] mb-4">
+            <Radio className="w-3.5 h-3.5 text-[#9E3D2B] animate-pulse" />
             <span>Live Activity Stream</span>
           </div>
           <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#1A1816] tracking-tight">
@@ -680,8 +697,8 @@ export function LiveDeviceStation() {
             Real-time status, active coding projects, and media streaming live across personal devices.
           </p>
           <div className="flex items-center justify-center gap-2 mt-4 text-xs font-mono">
-            <span className={`w-2 h-2 rounded-full ${isConnected ? "bg-[#566449] animate-pulse" : "bg-[#C4604A]"}`} />
-            <span className="text-[#7A746D]">{isConnected ? "LIVE FEED CONNECTED" : "CONNECTING..."}</span>
+            <span className={`w-2 h-2 rounded-full ${isConnected ? "bg-[#566449] animate-pulse" : "bg-[#9E3D2B]"}`} />
+            <span className="text-[#4A4541] font-semibold">{isConnected ? "LIVE FEED CONNECTED" : "CONNECTING..."}</span>
           </div>
         </div>
 
@@ -690,11 +707,15 @@ export function LiveDeviceStation() {
           <div className="flex items-center gap-4">
             {/* Avatar with dynamic radar ping */}
             <div className="relative shrink-0">
-              <div className="w-14 h-14 rounded-full p-0.5 bg-gradient-to-tr from-[#C4604A] via-[#D4C3AF] to-[#566449] shadow-sm">
+              <div className="w-14 h-14 rounded-full p-0.5 bg-gradient-to-tr from-[#9E3D2B] via-[#D4C3AF] to-[#566449] shadow-sm">
                 {avatarUrl ? (
                   <img
                     src={avatarUrl}
                     alt={displayName}
+                    width={56}
+                    height={56}
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full rounded-full object-cover bg-[#1A1816]"
                   />
                 ) : (
@@ -710,8 +731,8 @@ export function LiveDeviceStation() {
                     : discordStatus === "idle"
                     ? "bg-[#D97706]"
                     : discordStatus === "dnd"
-                    ? "bg-[#C4604A]"
-                    : "bg-[#928B87]"
+                    ? "bg-[#9E3D2B]"
+                    : "bg-[#544E49]"
                 }`}
               />
             </div>
@@ -722,7 +743,7 @@ export function LiveDeviceStation() {
                 <span className="font-serif font-black text-lg sm:text-xl text-[#1A1816] tracking-tight">
                   {displayName}
                 </span>
-                <span className="text-xs font-mono px-2.5 py-0.5 rounded bg-[#EDE4D9]/80 text-[#5E5854] border border-[#D4C3AF]/60 font-semibold">
+                <span className="text-xs font-mono px-2.5 py-0.5 rounded bg-[#EDE4D9] text-[#2C2825] border border-[#D4C3AF] font-bold">
                   {professionalTitle}
                 </span>
                 <span
@@ -732,8 +753,8 @@ export function LiveDeviceStation() {
                       : discordStatus === "idle"
                       ? "bg-[#D97706]/10 text-[#D97706]"
                       : discordStatus === "dnd"
-                      ? "bg-[#C4604A]/10 text-[#C4604A]"
-                      : "bg-[#928B87]/15 text-[#7A746D]"
+                      ? "bg-[#9E3D2B]/10 text-[#9E3D2B]"
+                      : "bg-[#544E49]/15 text-[#4A4541]"
                   }`}
                 >
                   <span
@@ -745,14 +766,14 @@ export function LiveDeviceStation() {
                 </span>
               </div>
 
-              <div className="flex items-center gap-3 text-xs sm:text-sm text-[#7A746D] mt-1.5 font-mono flex-wrap">
+              <div className="flex items-center gap-3 text-xs sm:text-sm text-[#4A4541] mt-1.5 font-mono flex-wrap">
                 <span>Discord Handle: @{discordHandle}</span>
                 <span>•</span>
                 <span>Location: Mumbai, IN (IST)</span>
                 {customStatusActivity?.state && (
                   <>
                     <span>•</span>
-                    <span className="text-[#C4604A] italic font-sans font-medium truncate max-w-[320px]">
+                    <span className="text-[#9E3D2B] italic font-sans font-medium truncate max-w-[320px]">
                       &ldquo;{customStatusActivity.state}&rdquo;
                     </span>
                   </>
@@ -790,8 +811,8 @@ export function LiveDeviceStation() {
                     </span>
                   ))
                 ) : (
-                  <span className="text-xs font-mono text-[#928B87] flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#928B87]" />
+                  <span className="text-xs font-mono text-[#4A4541] flex items-center gap-1.5 font-medium">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#544E49]" />
                     <span>Hardware daemons standing by · Ready for task execution</span>
                   </span>
                 )}
@@ -804,7 +825,7 @@ export function LiveDeviceStation() {
             <div className="flex items-center gap-2 text-xs font-mono text-[#1A1816] bg-[#F3ECE4] px-3.5 py-1.5 rounded-full border border-[#EDE4D9]">
               <span
                 className={`w-2 h-2 rounded-full ${
-                  discordStatus !== "offline" ? "bg-[#566449] animate-pulse" : "bg-[#928B87]"
+                  discordStatus !== "offline" ? "bg-[#566449] animate-pulse" : "bg-[#544E49]"
                 }`}
               />
               <span className="font-semibold">
@@ -818,7 +839,7 @@ export function LiveDeviceStation() {
                     }${isDesktopActive || desktopActivities.length > 0 ? "Desktop Rig" : ""} Active`}
               </span>
             </div>
-            <span className="text-xs sm:text-sm font-mono text-[#7A746D]">
+            <span className="text-xs sm:text-sm font-mono text-[#4A4541] font-semibold">
               Lanyard Telemetry &amp; Social Channels
             </span>
           </div>
@@ -829,23 +850,23 @@ export function LiveDeviceStation() {
             <div className="flex-1 flex flex-col">
               <div className="flex items-center justify-between pb-3 border-b border-[#EDE4D9] h-12">
                 <div className="flex items-center gap-2.5">
-                  <div className={`w-8 h-8 rounded flex items-center justify-center ${isMobileActive || mobileActivities.length > 0 ? "bg-[#C4604A]/10 text-[#C4604A]" : "bg-[#928B87]/10 text-[#928B87]"}`}>
+                  <div className={`w-8 h-8 rounded flex items-center justify-center ${isMobileActive || mobileActivities.length > 0 ? "bg-[#9E3D2B]/10 text-[#9E3D2B]" : "bg-[#544E49]/15 text-[#4A4541]"}`}>
                     <Smartphone className="w-4 h-4" />
                   </div>
                   <div>
                     <h3 className="font-serif font-bold text-lg sm:text-xl text-[#1A1816]">realme 11 Pro 5G</h3>
-                    <p className="text-xs sm:text-sm text-[#5E5854] font-medium">Dimensity 7050 · Android 14</p>
+                    <p className="text-xs sm:text-sm text-[#383432] font-medium">Dimensity 7050 · Android 14</p>
                   </div>
                 </div>
               </div>
               <div className="mt-4 h-7 flex items-center">
                 {mobileActivities.length > 0 ? (
-                  <div className="flex items-center justify-between gap-2 bg-[#F3ECE4] px-2.5 py-1 rounded border border-[#EDE4D9] w-full text-xs font-mono text-[#5E5854]">
+                  <div className="flex items-center justify-between gap-2 bg-[#F3ECE4] px-2.5 py-1 rounded border border-[#EDE4D9] w-full text-xs font-mono text-[#383432]">
                     <span className="flex items-center gap-1.5 font-semibold text-[#1A1816] truncate">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#C4604A] animate-pulse" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#9E3D2B] animate-pulse" />
                       <span>{mobileActivities.length > 1 ? `${mobileActivities.length} Sessions Active` : `${mobileActivities[0].service} Active`}</span>
                     </span>
-                    <span className="text-xs sm:text-sm text-[#5E5854] shrink-0 font-medium">
+                    <span className="text-xs sm:text-sm text-[#383432] shrink-0 font-medium">
                       {mobileActivities.map((a) => a.service).join(" + ")}
                     </span>
                   </div>
@@ -855,7 +876,7 @@ export function LiveDeviceStation() {
                     <span>Active on Mobile</span>
                   </span>
                 ) : (
-                  <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#928B87]/15 text-[#7A746D] text-xs font-medium">
+                  <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#544E49]/15 text-[#4A4541] text-xs font-semibold">
                     <Moon className="w-3 h-3" />
                     <span>Standby · Screen Locked</span>
                   </span>
@@ -878,30 +899,30 @@ export function LiveDeviceStation() {
                         </span>
                       </div>
 
-                      <div className="space-y-1.5 text-xs sm:text-sm font-mono text-[#5E5854]">
+                      <div className="space-y-1.5 text-xs sm:text-sm font-mono text-[#4A4541]">
                         <div className="flex justify-between pb-1 border-b border-[#EDE4D9]/60">
-                          <span className="text-[#928B87]">Processor</span>
+                          <span className="text-[#4A4541] font-medium">Processor</span>
                           <span className="font-semibold text-[#1A1816]">Dimensity 7050 (6nm)</span>
                         </div>
                         <div className="flex justify-between pb-1 border-b border-[#EDE4D9]/60">
-                          <span className="text-[#928B87]">Platform</span>
+                          <span className="text-[#4A4541] font-medium">Platform</span>
                           <span className="font-semibold text-[#1A1816]">realme UI 5.0 · Android 14</span>
                         </div>
                         <div className="flex justify-between">
-                          <span className="text-[#928B87]">Media Sync</span>
+                          <span className="text-[#4A4541] font-medium">Media Sync</span>
                           <span className="font-semibold text-[#1A1816]">Audio &amp; Video Streams Ready</span>
                         </div>
                       </div>
                     </div>
 
                     <div className="pt-3 border-t border-[#EDE4D9]/80 mt-auto">
-                      <div className="w-full py-1.5 px-3 rounded bg-[#EDE4D9]/40 border border-[#E2D5C6] text-[#7A746D] text-xs sm:text-sm font-mono flex items-center justify-between">
+                      <div className="w-full py-1.5 px-3 rounded bg-[#EDE4D9]/60 border border-[#E2D5C6] text-[#4A4541] text-xs sm:text-sm font-mono flex items-center justify-between">
                         <span className="flex items-center gap-1.5">
-                          <Radio className="w-3 h-3 text-[#7A746D]" />
+                          <Radio className="w-3 h-3 text-[#4A4541]" />
                           <span>Mobile Feed</span>
                         </span>
-                        <span className="text-[#5E5854] font-medium flex items-center gap-1">
-                          <span className="w-1.5 h-1.5 rounded-full bg-[#928B87]" />
+                        <span className="text-[#383432] font-semibold flex items-center gap-1">
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#544E49]" />
                           Standby
                         </span>
                       </div>
@@ -910,7 +931,7 @@ export function LiveDeviceStation() {
                 )}
               </div>
             </div>
-            <div className="mt-5 pt-3 border-t border-[#EDE4D9] text-xs text-[#7A746D] flex justify-between font-mono">
+            <div className="mt-5 pt-3 border-t border-[#EDE4D9] text-xs text-[#4A4541] font-semibold flex justify-between font-mono">
               <span>{isMobileActive || mobileActivities.length > 0 ? "● Live" : "○ Idle"}</span>
               <span>Mobile Device</span>
             </div>
@@ -920,23 +941,23 @@ export function LiveDeviceStation() {
             <div className="flex-1 flex flex-col">
               <div className="flex items-center justify-between pb-3 border-b border-[#EDE4D9] h-12">
                 <div className="flex items-center gap-2.5">
-                  <div className={`w-8 h-8 rounded flex items-center justify-center ${isDesktopActive || desktopActivities.length > 0 ? "bg-[#1A1816] text-[#FAF6F1]" : "bg-[#928B87]/10 text-[#928B87]"}`}>
-                    <Laptop className="w-4 h-4 text-[#C4604A]" />
+                  <div className={`w-8 h-8 rounded flex items-center justify-center ${isDesktopActive || desktopActivities.length > 0 ? "bg-[#1A1816] text-[#FAF6F1]" : "bg-[#544E49]/15 text-[#4A4541]"}`}>
+                    <Laptop className="w-4 h-4 text-[#9E3D2B]" />
                   </div>
                   <div>
                     <h3 className="font-serif font-bold text-lg sm:text-xl text-[#1A1816]">Gaming &amp; Dev PC</h3>
-                    <p className="text-xs sm:text-sm text-[#5E5854] font-medium">RTX 2060S · 32GB RAM · Ryzen 7 2600X</p>
+                    <p className="text-xs sm:text-sm text-[#383432] font-medium">RTX 2060S · 32GB RAM · Ryzen 7 2600X</p>
                   </div>
                 </div>
               </div>
               <div className="mt-4 h-7 flex items-center">
                 {desktopActivities.length > 0 ? (
-                  <div className="flex items-center justify-between gap-2 bg-[#F3ECE4] px-2.5 py-1 rounded border border-[#EDE4D9] w-full text-xs font-mono text-[#5E5854]">
+                  <div className="flex items-center justify-between gap-2 bg-[#F3ECE4] px-2.5 py-1 rounded border border-[#EDE4D9] w-full text-xs font-mono text-[#383432]">
                     <span className="flex items-center gap-1.5 font-semibold text-[#1A1816] truncate">
                       <span className="w-1.5 h-1.5 rounded-full bg-[#566449] animate-pulse" />
                       <span>{desktopActivities.length > 1 ? `${desktopActivities.length} Processes Active` : `${desktopActivities[0].service} Active`}</span>
                     </span>
-                    <span className="text-xs sm:text-sm text-[#5E5854] shrink-0 font-medium">
+                    <span className="text-xs sm:text-sm text-[#383432] shrink-0 font-medium">
                       {desktopActivities.map((a) => a.service).join(" + ")}
                     </span>
                   </div>
@@ -946,7 +967,7 @@ export function LiveDeviceStation() {
                     <span>Desktop Workstation Online</span>
                   </span>
                 ) : (
-                  <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#928B87]/15 text-[#7A746D] text-xs font-medium">
+                  <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#544E49]/15 text-[#4A4541] text-xs font-semibold">
                     <Moon className="w-3 h-3" />
                     <span>Standby · Desk Rig Asleep</span>
                   </span>
@@ -959,16 +980,16 @@ export function LiveDeviceStation() {
                 ) : isDesktopActive ? (
                   <div className="p-4 rounded bg-[#FAF6F1] border border-[#EDE4D9] space-y-1">
                     <p className="font-serif font-bold text-sm text-[#1A1816]">Desktop Online</p>
-                    <p className="text-xs sm:text-sm text-[#5E5854] font-medium">Windows 11 · Workstation Ready</p>
+                    <p className="text-xs sm:text-sm text-[#383432] font-medium">Windows 11 · Workstation Ready</p>
                   </div>
                 ) : (
                   <div className="p-4 rounded bg-[#FAF6F1]/50 border border-[#EDE4D9]/60 space-y-1">
-                    <p className="text-xs sm:text-sm text-[#5E5854] font-medium">Off</p>
+                    <p className="text-xs sm:text-sm text-[#383432] font-medium">Off</p>
                   </div>
                 )}
               </div>
             </div>
-            <div className="mt-5 pt-3 border-t border-[#EDE4D9] flex items-center justify-between text-xs text-[#7A746D] font-mono">
+            <div className="mt-5 pt-3 border-t border-[#EDE4D9] flex items-center justify-between text-xs text-[#4A4541] font-semibold font-mono">
               <span>{isDesktopActive || desktopActivities.length > 0 ? "● Active" : "○ Off"}</span>
               <span>Primary Rig</span>
             </div>
@@ -979,22 +1000,22 @@ export function LiveDeviceStation() {
             <div className="flex-1 flex flex-col">
               <div className="flex items-center justify-between pb-3 border-b border-[#EDE4D9] h-12">
                 <div className="flex items-center gap-2.5">
-                  <div className="w-8 h-8 rounded bg-[#E1306C]/10 text-[#E1306C] flex items-center justify-center">
+                  <div className="w-8 h-8 rounded bg-[#A81745]/10 text-[#A81745] flex items-center justify-center">
                     <Instagram className="w-4 h-4" />
                   </div>
                   <div>
                     <h3 className="font-serif font-bold text-lg sm:text-xl text-[#1A1816]">Social &amp; Content Hub</h3>
-                    <p className="text-xs sm:text-sm text-[#5E5854] font-medium">@omthakur.op · Creator Handles</p>
+                    <p className="text-xs sm:text-sm text-[#383432] font-medium">@omthakur.op · Creator Handles</p>
                   </div>
                 </div>
               </div>
 
               {/* Status Banner */}
               <div className="mt-4 h-7 flex items-center">
-                <div className="flex items-center gap-2 px-2.5 py-1 rounded bg-[#F3ECE4] border border-[#EDE4D9] w-full text-xs font-mono text-[#5E5854]">
-                  <span className="w-2 h-2 rounded-full bg-[#E1306C] animate-pulse" />
+                <div className="flex items-center gap-2 px-2.5 py-1 rounded bg-[#F3ECE4] border border-[#EDE4D9] w-full text-xs font-mono text-[#383432]">
+                  <span className="w-2 h-2 rounded-full bg-[#A81745] animate-pulse" />
                   <span className="font-semibold text-[#1A1816]">Instagram Connected</span>
-                  <span className="ml-auto text-xs sm:text-sm text-[#5E5854]">@omthakur.op</span>
+                  <span className="ml-auto text-xs sm:text-sm text-[#383432]">@omthakur.op</span>
                 </div>
               </div>
 
@@ -1005,25 +1026,25 @@ export function LiveDeviceStation() {
                   <div className="p-3 rounded-lg bg-[#FDFCFA] border border-[#E8DFC8] space-y-2">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
-                        <Instagram className="w-4 h-4 text-[#E1306C]" />
+                        <Instagram className="w-4 h-4 text-[#A81745]" />
                         <span className="font-serif font-bold text-sm text-[#1A1816]">Instagram</span>
                       </div>
-                      <span className="text-xs font-mono px-2 py-0.5 rounded bg-[#E1306C]/10 text-[#E1306C] font-bold">
+                      <span className="text-xs font-mono px-2 py-0.5 rounded bg-[#A81745]/15 text-[#A81745] font-bold">
                         ● Active Profile
                       </span>
                     </div>
                     <div className="flex justify-between items-center text-xs font-mono">
-                      <span className="text-[#7A746D]">Handle</span>
+                      <span className="text-[#4A4541] font-medium">Handle</span>
                       <span className="font-bold text-[#1A1816]">@omthakur.op</span>
                     </div>
-                    <p className="text-xs sm:text-sm text-[#5E5854] leading-snug">
+                    <p className="text-xs sm:text-sm text-[#383432] leading-snug">
                       Dev updates, project highlights &amp; behind-the-scenes engineering logs.
                     </p>
                     <a
                       href="https://www.instagram.com/omthakur.op"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-full inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded bg-[#E1306C] text-white hover:bg-[#C1275B] text-xs sm:text-sm font-mono font-medium transition-colors shadow-xs text-center mt-1"
+                      className="w-full inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded bg-[#A81745] text-white hover:bg-[#8B1339] text-xs sm:text-sm font-mono font-medium transition-colors shadow-xs text-center mt-1"
                     >
                       <span>Visit @omthakur.op</span>
                       <ExternalLink className="w-3 h-3" />
@@ -1034,28 +1055,28 @@ export function LiveDeviceStation() {
                   <div className="p-3 rounded-lg bg-[#F7F2EB]/70 border border-[#EDE4D9] space-y-1.5 opacity-90">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
-                        <Youtube className="w-4 h-4 text-[#C4604A]" />
+                        <Youtube className="w-4 h-4 text-[#9E3D2B]" />
                         <span className="font-serif font-bold text-sm text-[#1A1816]">YouTube Channel</span>
                       </div>
-                      <span className="text-xs font-mono px-2 py-0.5 rounded bg-[#C4604A]/10 text-[#C4604A] font-medium">
+                      <span className="text-xs font-mono px-2 py-0.5 rounded bg-[#9E3D2B]/15 text-[#9E3D2B] font-semibold">
                         Opening Soon
                       </span>
                     </div>
-                    <p className="text-xs sm:text-sm text-[#7A746D] leading-snug">
+                    <p className="text-xs sm:text-sm text-[#4A4541] leading-snug">
                       Account setup in progress. Video devlogs &amp; system architecture tutorials.
                     </p>
                   </div>
                 </div>
 
                 {/* Footer Profiles */}
-                <div className="pt-3 border-t border-[#EDE4D9]/80 mt-auto flex items-center justify-between text-xs sm:text-sm font-mono text-[#7A746D]">
-                  <span>Connected Channels</span>
+                <div className="pt-3 border-t border-[#EDE4D9]/80 mt-auto flex items-center justify-between text-xs sm:text-sm font-mono text-[#4A4541]">
+                  <span className="font-medium">Connected Channels</span>
                   <div className="flex items-center gap-2.5">
                     <a
                       href="https://www.instagram.com/omthakur.op"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="hover:text-[#E1306C] transition-colors"
+                      className="hover:text-[#A81745] transition-colors"
                       title="Instagram @omthakur.op"
                     >
                       <Instagram className="w-3.5 h-3.5" />
@@ -1091,7 +1112,7 @@ export function LiveDeviceStation() {
                 </div>
               </div>
             </div>
-            <div className="mt-5 pt-3 border-t border-[#EDE4D9] text-xs text-[#7A746D] font-mono flex justify-between">
+            <div className="mt-5 pt-3 border-t border-[#EDE4D9] text-xs text-[#4A4541] font-semibold font-mono flex justify-between">
               <span>● Connected</span>
               <span>Instagram @omthakur.op</span>
             </div>

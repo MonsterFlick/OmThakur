@@ -12,7 +12,7 @@ export function AcademicHonors() {
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12 pb-6 border-b border-[#EDE4D9]">
           <div>
-            <div className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.22em] text-[#C4604A] font-semibold mb-2">
+            <div className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.22em] text-[#9E3D2B] font-semibold mb-2">
               <Award className="w-3.5 h-3.5" />
               <span>Academic Distinctions</span>
             </div>
@@ -38,10 +38,10 @@ export function AcademicHonors() {
             >
               <div>
                 <div className="flex items-center justify-between pb-3 mb-3 border-b border-[#EDE4D9]">
-                  <span className="px-2.5 py-1 rounded text-xs sm:text-sm font-mono font-bold bg-[#C4604A]/10 text-[#C4604A]">
+                  <span className="px-2.5 py-1 rounded text-xs sm:text-sm font-mono font-bold bg-[#9E3D2B]/10 text-[#9E3D2B]">
                     {honor.badge}
                   </span>
-                  <span className="font-mono text-xs sm:text-sm font-medium text-[#7A746D]">
+                  <span className="font-mono text-xs sm:text-sm font-medium text-[#4A4541]">
                     {honor.date}
                   </span>
                 </div>
@@ -63,7 +63,7 @@ export function AcademicHonors() {
                     href={honor.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-mono font-bold text-[#C4604A] hover:underline"
+                    className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-mono font-bold text-[#9E3D2B] hover:underline"
                   >
                     <span>{honor.linkText || "Verify Credential"}</span>
                     <ExternalLink className="w-3.5 h-3.5" />

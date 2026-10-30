@@ -27,7 +27,7 @@ export function SkillsSpecimen() {
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12 pb-6 border-b border-[#EDE4D9]">
           <div>
-            <div className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.22em] text-[#C4604A] font-semibold mb-2">
+            <div className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.22em] text-[#9E3D2B] font-semibold mb-2">
               <Layers className="w-3.5 h-3.5" />
               <span>Core Expertise</span>
             </div>
@@ -49,7 +49,7 @@ export function SkillsSpecimen() {
               className={`px-3.5 py-2 rounded text-xs sm:text-sm font-mono transition-all shrink-0 ${
                 activeCategory === cat
                   ? "bg-[#1A1816] text-[#FAF6F1] font-semibold shadow-sm"
-                  : "bg-[#F3ECE4] text-[#5E5854] hover:bg-[#E2D5C6] hover:text-[#1A1816]"
+                  : "bg-[#F3ECE4] text-[#383432] hover:bg-[#E2D5C6] hover:text-[#1A1816]"
               }`}
             >
               {cat}
@@ -69,10 +69,10 @@ export function SkillsSpecimen() {
               className="p-5 sm:p-6 rounded-md bg-[#FAF6F1] border border-[#EDE4D9] hover:border-[#D4C3AF] hover:shadow-paper transition-all flex flex-col justify-between"
             >
               <div className="flex items-start justify-between mb-3">
-                <span className="text-xs sm:text-sm font-mono uppercase tracking-wider text-[#7A746D] font-semibold">
+                <span className="text-xs sm:text-sm font-mono uppercase tracking-wider text-[#4A4541] font-semibold">
                   {skill.category}
                 </span>
-                <span className="font-mono text-xs sm:text-sm font-bold text-[#C4604A]">
+                <span className="font-mono text-xs sm:text-sm font-bold text-[#9E3D2B]">
                   {skill.experience}
                 </span>
               </div>

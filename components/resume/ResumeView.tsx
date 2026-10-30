@@ -130,7 +130,7 @@ Bhimrao Pradhan College, University of Mumbai
   };
 
   return (
-    <div className="min-h-screen bg-[#FAF6F1] text-[#2C2825] font-sans antialiased selection:bg-[#C4604A]/20">
+    <div className="min-h-screen bg-[#FAF6F1] text-[#2C2825] font-sans antialiased selection:bg-[#9E3D2B]/20">
       {/* ── Print Styles Overlay ── */}
       <style jsx global>{`
         @media print {
@@ -232,8 +232,8 @@ Bhimrao Pradhan College, University of Mumbai
               <ArrowLeft className="w-3.5 h-3.5" />
               <span>Home</span>
             </Link>
-            <span className="text-[#928B87]" aria-hidden="true">/</span>
-            <span className="text-[#C4604A] font-semibold" aria-current="page">Resume &amp; CV</span>
+            <span className="text-[#4A4541]" aria-hidden="true">/</span>
+            <span className="text-[#9E3D2B] font-semibold" aria-current="page">Resume &amp; CV</span>
           </nav>
 
           <div className="flex items-center gap-2">
@@ -249,7 +249,7 @@ Bhimrao Pradhan College, University of Mumbai
                 </>
               ) : (
                 <>
-                  <Copy className="w-3.5 h-3.5 text-[#C4604A]" />
+                  <Copy className="w-3.5 h-3.5 text-[#9E3D2B]" />
                   <span>Copy ATS Text</span>
                 </>
               )}
@@ -257,10 +257,10 @@ Bhimrao Pradhan College, University of Mumbai
 
             <button
               onClick={handlePrint}
-              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-md bg-[#1A1816] text-[#FAF6F1] hover:bg-[#C4604A] text-xs font-mono font-semibold transition-colors shadow-xs"
+              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-md bg-[#1A1816] text-[#FAF6F1] hover:bg-[#9E3D2B] text-xs font-mono font-semibold transition-colors shadow-xs"
               title="Print or Save PDF"
             >
-              <Printer className="w-3.5 h-3.5 text-[#C4604A]" />
+              <Printer className="w-3.5 h-3.5 text-[#9E3D2B]" />
               <span>Print / Save PDF</span>
             </button>
           </div>
@@ -274,7 +274,7 @@ Bhimrao Pradhan College, University of Mumbai
       >
         <article className="p-5 sm:p-8 lg:p-10 bg-[#FDFCFA] border border-[#EDE4D9] rounded-xl shadow-paper relative overflow-hidden print-container">
           {/* Top Decorative Colophon Stripe (Web View Only) */}
-          <div className="no-print h-1.5 w-full bg-gradient-to-r from-[#C4604A] via-[#D4C3AF] to-[#566449] absolute top-0 left-0 right-0" />
+          <div className="no-print h-1.5 w-full bg-gradient-to-r from-[#9E3D2B] via-[#D4C3AF] to-[#566449] absolute top-0 left-0 right-0" />
 
           {/* ── HEADER & PROFESSIONAL SUMMARY ── */}
           <header className="pb-6 mb-8 border-b border-[#EDE4D9]">
@@ -285,20 +285,20 @@ Bhimrao Pradhan College, University of Mumbai
                   <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#1A1816] tracking-tight leading-tight print-header-name">
                     Om Thakur
                   </h1>
-                  <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#FAF6F1] border border-[#EDE4D9] text-xs font-mono text-[#5E5854]">
-                    <MapPin className="w-3.5 h-3.5 text-[#C4604A] shrink-0 no-print" />
+                  <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#FAF6F1] border border-[#EDE4D9] text-xs font-mono text-[#383432]">
+                    <MapPin className="w-3.5 h-3.5 text-[#9E3D2B] shrink-0 no-print" />
                     <strong className="text-[#1A1816]">Mumbai, India</strong>
                   </span>
                 </div>
 
-                <p className="font-mono text-xs sm:text-sm md:text-base text-[#C4604A] font-bold tracking-tight leading-snug break-words print-header-subtitle">
+                <p className="font-mono text-xs sm:text-sm md:text-base text-[#9E3D2B] font-bold tracking-tight leading-snug break-words print-header-subtitle">
                   Backend Engineer · Distributed Systems · Scalable APIs
                 </p>
 
                 {/* Professional Summary */}
                 <div className="pt-2">
-                  <h2 className="font-serif text-xs sm:text-sm font-bold text-[#7A746D] uppercase tracking-wider mb-1.5 flex items-center gap-1.5 print-section-heading">
-                    <Sparkles className="w-3.5 h-3.5 text-[#C4604A] no-print" />
+                  <h2 className="font-serif text-xs sm:text-sm font-bold text-[#4A4541] uppercase tracking-wider mb-1.5 flex items-center gap-1.5 print-section-heading">
+                    <Sparkles className="w-3.5 h-3.5 text-[#9E3D2B] no-print" />
                     <span>Professional Summary</span>
                   </h2>
                   <p className="text-xs sm:text-sm md:text-[15px] text-[#4A4541] leading-relaxed">
@@ -308,22 +308,22 @@ Bhimrao Pradhan College, University of Mumbai
               </div>
 
               {/* Right Column (4 Cols): Contact & Profiles Box */}
-              <div className="lg:col-span-4 w-full p-4 sm:p-5 rounded-lg bg-[#FAF6F1] border border-[#EDE4D9] flex flex-col gap-2.5 text-xs sm:text-sm font-mono text-[#5E5854] print-contact-bar">
-                <span className="text-[11px] uppercase tracking-wider text-[#7A746D] font-bold border-b border-[#EDE4D9] pb-1.5 mb-0.5 no-print">
+              <div className="lg:col-span-4 w-full p-4 sm:p-5 rounded-lg bg-[#FAF6F1] border border-[#EDE4D9] flex flex-col gap-2.5 text-xs sm:text-sm font-mono text-[#383432] print-contact-bar">
+                <span className="text-[11px] uppercase tracking-wider text-[#4A4541] font-bold border-b border-[#EDE4D9] pb-1.5 mb-0.5 no-print">
                   Direct Coordinates &amp; Profiles
                 </span>
 
                 <a
                   href="mailto:omthakur2366@gmail.com"
-                  className="inline-flex items-center gap-2.5 hover:text-[#C4604A] transition-colors break-all"
+                  className="inline-flex items-center gap-2.5 hover:text-[#9E3D2B] transition-colors break-all"
                 >
-                  <Mail className="w-4 h-4 text-[#C4604A] shrink-0 no-print" />
+                  <Mail className="w-4 h-4 text-[#9E3D2B] shrink-0 no-print" />
                   <span className="font-medium text-[#1A1816]">omthakur2366@gmail.com</span>
                 </a>
 
                 <a
                   href="tel:+917756898550"
-                  className="inline-flex items-center gap-2.5 hover:text-[#C4604A] transition-colors"
+                  className="inline-flex items-center gap-2.5 hover:text-[#9E3D2B] transition-colors"
                 >
                   <Phone className="w-4 h-4 text-[#566449] shrink-0 no-print" />
                   <span className="font-medium text-[#1A1816]">+91 7756898550</span>
@@ -333,9 +333,9 @@ Bhimrao Pradhan College, University of Mumbai
                   href="https://omthakur.in"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2.5 hover:text-[#C4604A] transition-colors"
+                  className="inline-flex items-center gap-2.5 hover:text-[#9E3D2B] transition-colors"
                 >
-                  <Globe className="w-4 h-4 text-[#C4604A] shrink-0 no-print" />
+                  <Globe className="w-4 h-4 text-[#9E3D2B] shrink-0 no-print" />
                   <span className="font-bold text-[#1A1816]">omthakur.in</span>
                 </a>
 
@@ -364,7 +364,7 @@ Bhimrao Pradhan College, University of Mumbai
             {/* 3 Headline Resume Metrics (Full Width 3-Column Strip) */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 mt-6">
               <div className="p-3.5 sm:p-4 rounded-lg bg-[#FAF6F1] border border-[#EDE4D9]">
-                <span className="font-serif text-xl sm:text-2xl font-black text-[#C4604A] block">
+                <span className="font-serif text-xl sm:text-2xl font-black text-[#9E3D2B] block">
                   15 min → 4 s
                 </span>
                 <span className="text-xs sm:text-sm text-[#4A4541] leading-relaxed block mt-1">
@@ -397,7 +397,7 @@ Bhimrao Pradhan College, University of Mumbai
               {/* ── WORK EXPERIENCE ── */}
               <section>
                 <h2 className="font-serif text-lg sm:text-xl font-bold text-[#1A1816] uppercase tracking-wider pb-2 mb-5 border-b border-[#EDE4D9] flex items-center gap-2 print-section-heading">
-                  <Briefcase className="w-4 h-4 text-[#C4604A] no-print" />
+                  <Briefcase className="w-4 h-4 text-[#9E3D2B] no-print" />
                   <span>Experience</span>
                 </h2>
 
@@ -410,10 +410,10 @@ Bhimrao Pradhan College, University of Mumbai
                           Founding Software Engineer
                         </h3>
                         <p className="font-mono text-xs sm:text-sm text-[#566449] font-semibold">
-                          Krishora Technologies · <span className="text-[#7A746D] font-normal">Mumbai, India</span>
+                          Krishora Technologies · <span className="text-[#4A4541] font-normal">Mumbai, India</span>
                         </p>
                       </div>
-                      <span className="font-mono text-xs sm:text-sm text-[#C4604A] font-semibold shrink-0">
+                      <span className="font-mono text-xs sm:text-sm text-[#9E3D2B] font-semibold shrink-0">
                         May 2026 – Present
                       </span>
                     </div>
@@ -439,16 +439,16 @@ Bhimrao Pradhan College, University of Mumbai
                           Software Developer
                         </h3>
                         <p className="font-mono text-xs sm:text-sm text-[#566449] font-semibold">
-                          Cyber Intelligence and Research Lab (CIARL) · <span className="text-[#7A746D] font-normal">Thane, India</span>
+                          Cyber Intelligence and Research Lab (CIARL) · <span className="text-[#4A4541] font-normal">Thane, India</span>
                         </p>
                       </div>
-                      <span className="font-mono text-xs sm:text-sm text-[#C4604A] font-semibold shrink-0">
+                      <span className="font-mono text-xs sm:text-sm text-[#9E3D2B] font-semibold shrink-0">
                         Aug 2025 – May 2026
                       </span>
                     </div>
 
-                    <div className="no-print inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded bg-[#EDE4D9]/60 text-xs font-mono text-[#5E5854] border border-[#D4C3AF]">
-                      <Shield className="w-3 h-3 text-[#C4604A] shrink-0" />
+                    <div className="no-print inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded bg-[#EDE4D9]/60 text-xs font-mono text-[#383432] border border-[#D4C3AF]">
+                      <Shield className="w-3 h-3 text-[#9E3D2B] shrink-0" />
                       <span>NDA-bound role; limited details disclosed</span>
                     </div>
 
@@ -479,16 +479,16 @@ Bhimrao Pradhan College, University of Mumbai
                           Software Development Engineer Intern
                         </h3>
                         <p className="font-mono text-xs sm:text-sm text-[#566449] font-semibold">
-                          Sumeru Technology Solutions Pvt. Ltd. · <span className="text-[#7A746D] font-normal">Bengaluru, India</span>
+                          Sumeru Technology Solutions Pvt. Ltd. · <span className="text-[#4A4541] font-normal">Bengaluru, India</span>
                         </p>
                       </div>
-                      <span className="font-mono text-xs sm:text-sm text-[#C4604A] font-semibold shrink-0">
+                      <span className="font-mono text-xs sm:text-sm text-[#9E3D2B] font-semibold shrink-0">
                         Aug 2024 – Feb 2025
                       </span>
                     </div>
 
                     {/* Key Impact Metric Pill */}
-                    <div className="no-print inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#C4604A]/10 text-xs font-mono text-[#C4604A] font-bold border border-[#C4604A]/20">
+                    <div className="no-print inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#9E3D2B]/10 text-xs font-mono text-[#9E3D2B] font-bold border border-[#9E3D2B]/20">
                       <span>⚡ Performance Milestone: 15-min cron reduced to 4-second sync (~99.5%)</span>
                     </div>
 
@@ -539,7 +539,7 @@ Bhimrao Pradhan College, University of Mumbai
                         href="https://store.sowebuild.in"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="font-mono text-xs text-[#C4604A] hover:underline inline-flex items-center gap-1 shrink-0"
+                        className="font-mono text-xs text-[#9E3D2B] hover:underline inline-flex items-center gap-1 shrink-0"
                       >
                         <span>store.sowebuild.in</span>
                         <ExternalLink className="w-3 h-3 no-print" />
@@ -569,7 +569,7 @@ Bhimrao Pradhan College, University of Mumbai
                           href="https://github.com/MonsterFlick/devpic"
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="font-mono text-xs text-[#C4604A] hover:underline inline-flex items-center gap-1 shrink-0"
+                          className="font-mono text-xs text-[#9E3D2B] hover:underline inline-flex items-center gap-1 shrink-0"
                         >
                           <span>GitHub</span>
                           <ExternalLink className="w-3 h-3 no-print" />
@@ -600,7 +600,7 @@ Bhimrao Pradhan College, University of Mumbai
                           href="https://github.com/MonsterFlick/Agni"
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="font-mono text-xs text-[#C4604A] hover:underline inline-flex items-center gap-1 shrink-0"
+                          className="font-mono text-xs text-[#9E3D2B] hover:underline inline-flex items-center gap-1 shrink-0"
                         >
                           <span>GitHub</span>
                           <ExternalLink className="w-3 h-3 no-print" />
@@ -631,7 +631,7 @@ Bhimrao Pradhan College, University of Mumbai
                           href="https://github.com/MonsterFlick/Fin-Read"
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="font-mono text-xs text-[#C4604A] hover:underline inline-flex items-center gap-1 shrink-0"
+                          className="font-mono text-xs text-[#9E3D2B] hover:underline inline-flex items-center gap-1 shrink-0"
                         >
                           <span>GitHub</span>
                           <ExternalLink className="w-3 h-3 no-print" />
@@ -662,7 +662,7 @@ Bhimrao Pradhan College, University of Mumbai
                           href="https://blogs.omthakur.in"
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="font-mono text-xs text-[#C4604A] hover:underline inline-flex items-center gap-1 shrink-0"
+                          className="font-mono text-xs text-[#9E3D2B] hover:underline inline-flex items-center gap-1 shrink-0"
                         >
                           <span>blogs.omthakur.in</span>
                           <ExternalLink className="w-3 h-3 no-print" />
@@ -696,7 +696,7 @@ Bhimrao Pradhan College, University of Mumbai
 
                 <div className="space-y-3 text-xs sm:text-sm">
                   <div className="p-3.5 rounded-lg bg-[#FAF6F1] border border-[#EDE4D9] space-y-1">
-                    <span className="font-mono text-xs font-bold text-[#C4604A] uppercase tracking-wider block">
+                    <span className="font-mono text-xs font-bold text-[#9E3D2B] uppercase tracking-wider block">
                       Languages &amp; Runtimes
                     </span>
                     <p className="text-[#4A4541] leading-relaxed">
@@ -723,7 +723,7 @@ Bhimrao Pradhan College, University of Mumbai
                   </div>
 
                   <div className="p-3.5 rounded-lg bg-[#FAF6F1] border border-[#EDE4D9] space-y-1">
-                    <span className="font-mono text-xs font-bold text-[#7A746D] uppercase tracking-wider block">
+                    <span className="font-mono text-xs font-bold text-[#4A4541] uppercase tracking-wider block">
                       Infrastructure &amp; Tooling
                     </span>
                     <p className="text-[#4A4541] leading-relaxed">
@@ -732,7 +732,7 @@ Bhimrao Pradhan College, University of Mumbai
                   </div>
 
                   <div className="p-3.5 rounded-lg bg-[#FAF6F1] border border-[#EDE4D9] space-y-1">
-                    <span className="font-mono text-xs font-bold text-[#C4604A] uppercase tracking-wider block">
+                    <span className="font-mono text-xs font-bold text-[#9E3D2B] uppercase tracking-wider block">
                       Additional Technologies
                     </span>
                     <p className="text-[#4A4541] leading-relaxed">
@@ -745,7 +745,7 @@ Bhimrao Pradhan College, University of Mumbai
               {/* ── EDUCATION ── */}
               <section className="page-break-inside-avoid">
                 <h2 className="font-serif text-lg sm:text-xl font-bold text-[#1A1816] uppercase tracking-wider pb-2 mb-4 border-b border-[#EDE4D9] flex items-center gap-2 print-section-heading">
-                  <GraduationCap className="w-4 h-4 text-[#C4604A] no-print" />
+                  <GraduationCap className="w-4 h-4 text-[#9E3D2B] no-print" />
                   <span>Education</span>
                 </h2>
 
@@ -757,7 +757,7 @@ Bhimrao Pradhan College, University of Mumbai
                     <p className="font-mono text-xs text-[#566449] font-semibold">
                       Sonubhau Baswant College, University of Mumbai
                     </p>
-                    <span className="font-mono text-xs text-[#C4604A] font-semibold block">
+                    <span className="font-mono text-xs text-[#9E3D2B] font-semibold block">
                       Aug 2021 – Apr 2024
                     </span>
                   </div>
@@ -780,17 +780,17 @@ Bhimrao Pradhan College, University of Mumbai
               {/* ── CERTIFICATION & ACADEMIC HONORS ── */}
               <section className="page-break-inside-avoid">
                 <h2 className="font-serif text-lg sm:text-xl font-bold text-[#1A1816] uppercase tracking-wider pb-2 mb-4 border-b border-[#EDE4D9] flex items-center gap-2 print-section-heading">
-                  <Award className="w-4 h-4 text-[#C4604A] no-print" />
+                  <Award className="w-4 h-4 text-[#9E3D2B] no-print" />
                   <span>Certifications &amp; Honors</span>
                 </h2>
 
                 <div className="space-y-3 text-xs sm:text-sm">
                   <div className="p-4 rounded-lg bg-[#FAF6F1] border border-[#EDE4D9] space-y-1.5">
-                    <div className="flex items-center gap-1.5 text-[#C4604A] font-serif font-bold text-sm">
+                    <div className="flex items-center gap-1.5 text-[#9E3D2B] font-serif font-bold text-sm">
                       <Award className="w-4 h-4 shrink-0 no-print" />
                       <span>First Rank – B.Sc. IT (CGPA: 8.55/10)</span>
                     </div>
-                    <p className="font-mono text-xs text-[#7A746D]">
+                    <p className="font-mono text-xs text-[#4A4541]">
                       Sonubhau Baswant College, University of Mumbai · Apr 2024
                     </p>
                     <p className="text-[#4A4541] text-xs sm:text-sm leading-relaxed">
@@ -804,16 +804,16 @@ Bhimrao Pradhan College, University of Mumbai
                         <BookOpen className="w-4 h-4 shrink-0 no-print" />
                         <span>Data Science Training</span>
                       </div>
-                      <span className="font-mono text-xs text-[#7A746D]">Oct 2023</span>
+                      <span className="font-mono text-xs text-[#4A4541]">Oct 2023</span>
                     </div>
-                    <p className="font-mono text-xs text-[#7A746D]">
+                    <p className="font-mono text-xs text-[#4A4541]">
                       Internshala · Certificate ID 263gl7b3rur
                     </p>
                     <a
                       href="https://trainings.internshala.com/verify-certificate/?certificate_number=263gl7b3rur"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="font-mono text-xs text-[#C4604A] hover:underline inline-flex items-center gap-1 pt-0.5"
+                      className="font-mono text-xs text-[#9E3D2B] hover:underline inline-flex items-center gap-1 pt-0.5"
                     >
                       <span>Verify Credential</span>
                       <ExternalLink className="w-3 h-3 no-print" />
@@ -837,7 +837,7 @@ Bhimrao Pradhan College, University of Mumbai
                     <p className="font-mono text-xs text-[#566449] font-semibold">
                       Bhimrao Pradhan College, University of Mumbai
                     </p>
-                    <span className="font-mono text-xs text-[#C4604A] font-semibold block">
+                    <span className="font-mono text-xs text-[#9E3D2B] font-semibold block">
                       Jun – Aug 2024
                     </span>
                   </div>
@@ -850,17 +850,17 @@ Bhimrao Pradhan College, University of Mumbai
           </div>
 
           {/* ── FOOTER COLOPHON (Web View Only) ── */}
-          <footer className="no-print mt-10 pt-6 border-t border-[#EDE4D9] flex flex-col sm:flex-row items-center justify-between text-xs font-mono text-[#7A746D] gap-3">
+          <footer className="no-print mt-10 pt-6 border-t border-[#EDE4D9] flex flex-col sm:flex-row items-center justify-between text-xs font-mono text-[#4A4541] gap-3">
             <div className="flex flex-wrap items-center gap-3">
-              <Link href="/#projects" className="hover:text-[#C4604A] transition-colors">
+              <Link href="/#projects" className="hover:text-[#9E3D2B] transition-colors">
                 ← Project Blueprints
               </Link>
               <span>•</span>
-              <Link href="/#faq" className="hover:text-[#C4604A] transition-colors">
+              <Link href="/#faq" className="hover:text-[#9E3D2B] transition-colors">
                 Architecture FAQ
               </Link>
               <span>•</span>
-              <a href="/llms-full.txt" className="hover:text-[#C4604A] transition-colors">
+              <a href="/llms-full.txt" className="hover:text-[#9E3D2B] transition-colors">
                 llms-full.txt
               </a>
             </div>
@@ -874,7 +874,7 @@ Bhimrao Pradhan College, University of Mumbai
               <span>•</span>
               <button
                 onClick={handlePrint}
-                className="hover:text-[#C4604A] transition-colors font-semibold"
+                className="hover:text-[#9E3D2B] transition-colors font-semibold"
               >
                 Print / Save PDF
               </button>
