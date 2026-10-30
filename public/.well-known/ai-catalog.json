@@ -1,10 +1,14 @@
 {
-  "$schema": "https://agentready.org/schemas/ai-catalog-v1.json",
-  "specVersion": "1.0.0",
-  "version": "1.0.0",
+  "$schema": "https://raw.githubusercontent.com/ards-project/ard-spec/main/spec/schemas/ai-catalog.schema.json",
+  "specVersion": "1.0",
+  "version": "1.0",
   "name": "Om Thakur — Backend & Distributed Systems Portfolio",
   "url": "https://omthakur.in",
   "updatedAt": "2026-10-30T10:00:00+05:30",
+  "host": {
+    "displayName": "Om Thakur",
+    "identifier": "urn:air:omthakur.in"
+  },
   "publisher": {
     "name": "Om Thakur",
     "email": "omthakur2366@gmail.com",
@@ -12,40 +16,40 @@
   },
   "entries": [
     {
-      "id": "llms-txt",
-      "name": "LLMs Summary Context",
+      "identifier": "urn:air:omthakur.in:doc:llms-txt",
+      "displayName": "LLMs Summary Context",
       "type": "llms-txt",
       "url": "https://omthakur.in/llms.txt",
       "description": "Summary context and architecture highlights formatted for LLMs and autonomous agents.",
       "mediaType": "text/plain"
     },
     {
-      "id": "llms-full-txt",
-      "name": "Complete Technical Dossier & Blueprints",
+      "identifier": "urn:air:omthakur.in:doc:llms-full-txt",
+      "displayName": "Complete Technical Dossier & Blueprints",
       "type": "llms-full-txt",
       "url": "https://omthakur.in/llms-full.txt",
       "description": "Full technical monograph, system blueprints, database post-mortems, and code specimens.",
       "mediaType": "text/plain"
     },
     {
-      "id": "okf-bundle",
-      "name": "Open Knowledge Format (OKF v0.1) Index",
+      "identifier": "urn:air:omthakur.in:doc:okf-bundle",
+      "displayName": "Open Knowledge Format (OKF v0.1) Index",
       "type": "okf-bundle",
       "url": "https://omthakur.in/okf/index.md",
       "description": "Google Open Knowledge Format bundle describing backend concepts and implementations.",
       "mediaType": "text/markdown"
     },
     {
-      "id": "curriculum-vitae",
-      "name": "Om Thakur Official Resume & CV",
+      "identifier": "urn:air:omthakur.in:doc:curriculum-vitae",
+      "displayName": "Om Thakur Official Resume & CV",
       "type": "curriculum-vitae",
       "url": "https://omthakur.in/resume",
       "description": "Comprehensive engineering curriculum vitae with ATS text copy and verified credentials.",
       "mediaType": "text/html"
     },
     {
-      "id": "sitemap",
-      "name": "XML Sitemap",
+      "identifier": "urn:air:omthakur.in:doc:sitemap",
+      "displayName": "XML Sitemap",
       "type": "sitemap",
       "url": "https://omthakur.in/sitemap.xml",
       "description": "Machine-readable site index and route hierarchy.",

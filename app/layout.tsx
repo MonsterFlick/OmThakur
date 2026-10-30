@@ -238,13 +238,18 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
+        {/* Resource Preconnect for LCP optimization */}
+        <link rel="preconnect" href="https://api.lanyard.rest" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://api.lanyard.rest" />
+
         {/* Discovery files for AI engines & autonomous agents (AEO / GEO / AgentReady) */}
         <link rel="alternate" type="text/plain" href="/llms.txt" title="LLMs.txt Summary Context" />
         <link rel="alternate" type="text/plain" href="/llms-full.txt" title="Full LLMs Technical Dossier" />
         <link rel="alternate" type="text/markdown" href="/okf/index.md" title="Open Knowledge Format (OKF) Bundle" />
         <link rel="ai-catalog" href="/.well-known/ai-catalog.json" />
+        <link rel="ard" href="/.well-known/ard.json" />
 
-        {/* Google Analytics */}
+        {/* Google Analytics - Deferred to idle to prevent main thread blocking during LCP */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-XPGMFRY0D0"
           strategy="lazyOnload"
@@ -254,7 +259,7 @@ export default function RootLayout({
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'G-XPGMFRY0D0');
+            gtag('config', 'G-XPGMFRY0D0', { send_page_view: true });
           `}
         </Script>
         {/* Site-Wide JSON-LD Structured Data (WebSite + Person entities) */}

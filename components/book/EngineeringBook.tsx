@@ -29,6 +29,7 @@ export function EngineeringBook({
   const [flipDir, setFlipDir] = useState<"next" | "prev">("next");
   const [targetIdx, setTargetIdx] = useState<number | null>(null);
   const [mobileSide, setMobileSide] = useState<"left" | "right">("left");
+  const [hasTurned, setHasTurned] = useState(false);
   const touchStartXRef = useRef<number | null>(null);
 
   // Sync mobile side back to left when turning plate
@@ -45,12 +46,14 @@ export function EngineeringBook({
     const deltaX = e.changedTouches[0].clientX - touchStartXRef.current;
     touchStartXRef.current = null;
     if (deltaX < -45) {
+      setHasTurned(true);
       if (mobileSide === "left") {
         setMobileSide("right");
       } else {
         nextPage();
       }
     } else if (deltaX > 45) {
+      setHasTurned(true);
       if (mobileSide === "right") {
         setMobileSide("left");
       } else {
@@ -84,6 +87,7 @@ export function EngineeringBook({
   const turnToPage = useCallback(
     (toIndex: number, dir: "next" | "prev") => {
       if (isFlipping || toIndex === currentIdx) return;
+      setHasTurned(true);
       setIsFlipping(true);
       setFlipDir(dir);
       setTargetIdx(toIndex);
@@ -476,7 +480,10 @@ export function EngineeringBook({
                 {/* Page Switcher Pill */}
                 <div className="inline-flex rounded-full bg-[#EDE4D9] p-0.5 text-xs">
                   <button
-                    onClick={() => setMobileSide("left")}
+                    onClick={() => {
+                      setHasTurned(true);
+                      setMobileSide("left");
+                    }}
                     className={`px-2.5 py-1 rounded-full font-semibold transition-all ${
                       mobileSide === "left"
                         ? "bg-[#1A1816] text-[#FAF6F1] shadow-xs"
@@ -486,7 +493,10 @@ export function EngineeringBook({
                     Side A
                   </button>
                   <button
-                    onClick={() => setMobileSide("right")}
+                    onClick={() => {
+                      setHasTurned(true);
+                      setMobileSide("right");
+                    }}
                     className={`px-2.5 py-1 rounded-full font-semibold transition-all ${
                       mobileSide === "right"
                         ? "bg-[#1A1816] text-[#FAF6F1] shadow-xs"
@@ -500,10 +510,10 @@ export function EngineeringBook({
 
               {/* Mobile Page Content Leaf with Smooth Transition */}
               <div className="min-h-[580px] sm:min-h-[640px] flex flex-col justify-between">
-                <AnimatePresence mode="wait">
+                <AnimatePresence mode="wait" initial={false}>
                   <motion.div
                     key={`${currentIdx}-${mobileSide}`}
-                    initial={{ opacity: 0, x: mobileSide === "right" ? 12 : -12 }}
+                    initial={hasTurned ? { opacity: 0, x: mobileSide === "right" ? 12 : -12 } : false}
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: mobileSide === "right" ? -12 : 12 }}
                     transition={{ duration: 0.22 }}

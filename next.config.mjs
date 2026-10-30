@@ -35,7 +35,24 @@ const nextConfig = {
           {
             key: "Link",
             value:
-              '</llms.txt>; rel="llms-txt", </llms-full.txt>; rel="llms-full-txt", </.well-known/ai-catalog.json>; rel="ai-catalog", </okf/index.md>; rel="alternate"; type="text/markdown"',
+              '</llms.txt>; rel="llms-txt", </llms-full.txt>; rel="llms-full-txt", </.well-known/ai-catalog.json>; rel="ai-catalog", </.well-known/ard.json>; rel="ard", </okf/index.md>; rel="alternate"; type="text/markdown"',
+          },
+        ],
+      },
+      {
+        source: "/.well-known/(.*)",
+        headers: [
+          {
+            key: "Content-Type",
+            value: "application/json; charset=utf-8",
+          },
+          {
+            key: "Cache-Control",
+            value: "public, max-age=3600, stale-while-revalidate=86400",
+          },
+          {
+            key: "Access-Control-Allow-Origin",
+            value: "*",
           },
         ],
       },
