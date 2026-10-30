@@ -129,7 +129,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
             {/* Code Block */}
             {project.codeSpecimen && (
               <div className="rounded-md border border-[#EDE4D9] bg-[#1A1816] text-[#FAF6F1] p-3.5 sm:p-4 overflow-hidden">
-                <div className="flex items-center justify-between pb-2 mb-2 border-b border-[#383432] text-xs font-mono text-[#4A4541]">
+                <div className="flex items-center justify-between pb-2 mb-2 border-b border-[#383432] text-xs font-mono text-[#D6D3D1]">
                   <span className="truncate max-w-[200px]">{project.codeSpecimen.filename}</span>
                   <span>{project.codeSpecimen.language}</span>
                 </div>

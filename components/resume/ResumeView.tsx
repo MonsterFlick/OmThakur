@@ -260,7 +260,7 @@ Bhimrao Pradhan College, University of Mumbai
               className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-md bg-[#1A1816] text-[#FAF6F1] hover:bg-[#9E3D2B] text-xs font-mono font-semibold transition-colors shadow-xs"
               title="Print or Save PDF"
             >
-              <Printer className="w-3.5 h-3.5 text-[#9E3D2B]" />
+              <Printer className="w-3.5 h-3.5 text-[#E07A5F]" />
               <span>Print / Save PDF</span>
             </button>
           </div>

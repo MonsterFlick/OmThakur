@@ -66,6 +66,7 @@ export function EngineeringBook({
   const flipAngle = useMotionValue(0); // 0 to -180 for next, 0 to 180 for prev
   const isDraggingRef = useRef(false);
   const dragStartXRef = useRef(0);
+  const dragRectRef = useRef<{ left: number; width: number; top: number; height: number } | null>(null);
   const bookContainerRef = useRef<HTMLDivElement | null>(null);
 
   // Parallax tilt motion values
@@ -153,6 +154,7 @@ export function EngineeringBook({
   const handlePointerDown = (e: React.PointerEvent) => {
     if (isFlipping || e.button !== 0 || !bookContainerRef.current) return;
     const rect = bookContainerRef.current.getBoundingClientRect();
+    dragRectRef.current = rect;
     const isRightHalf = e.clientX - rect.left > rect.width * 0.5;
 
     isDraggingRef.current = true;
@@ -172,7 +174,7 @@ export function EngineeringBook({
 
   const handlePointerMove = (e: React.PointerEvent) => {
     if (!isDraggingRef.current || !bookContainerRef.current) return;
-    const rect = bookContainerRef.current.getBoundingClientRect();
+    const rect = dragRectRef.current || bookContainerRef.current.getBoundingClientRect();
     const deltaX = e.clientX - dragStartXRef.current;
     const halfW = rect.width * 0.5;
 
@@ -188,6 +190,7 @@ export function EngineeringBook({
   };
 
   const handlePointerUp = () => {
+    dragRectRef.current = null;
     if (!isDraggingRef.current) return;
     isDraggingRef.current = false;
 
@@ -247,11 +250,16 @@ export function EngineeringBook({
     }
   };
 
+  const stageRectRef = useRef<{ left: number; top: number; width: number; height: number } | null>(null);
+
   // Subtle Mouse Parallax Hover
   const handleStagePointerMove = (e: React.PointerEvent) => {
     if (e.pointerType === "touch" || isDraggingRef.current || !bookContainerRef.current) return;
-    const r = bookContainerRef.current.getBoundingClientRect();
-    if (!r.width) return;
+    if (!stageRectRef.current) {
+      stageRectRef.current = bookContainerRef.current.getBoundingClientRect();
+    }
+    const r = stageRectRef.current;
+    if (!r || !r.width) return;
     const nx = (e.clientX - (r.left + r.width / 2)) / (r.width * 0.5);
     const ny = (e.clientY - (r.top + r.height / 2)) / (r.height * 0.5);
     tiltY.set(Math.max(-5, Math.min(5, nx * 5)));
@@ -259,6 +267,7 @@ export function EngineeringBook({
   };
 
   const handleStagePointerLeave = () => {
+    stageRectRef.current = null;
     animate(tiltX, 0, { duration: 0.5 });
     animate(tiltY, 0, { duration: 0.5 });
   };
@@ -593,7 +602,7 @@ export function EngineeringBook({
                       : "bg-[#F3ECE4] text-[#383432] hover:bg-[#E2D5C6] hover:text-[#1A1816] font-medium"
                   }`}
                 >
-                  <span className="text-[#9E3D2B] font-bold mr-1.5">
+                  <span className={`${isActive ? "text-[#E07A5F]" : "text-[#9E3D2B]"} font-bold mr-1.5`}>
                     {String(idx + 1).padStart(2, "0")}
                   </span>
                   <span>{p.slug.toUpperCase()}</span>

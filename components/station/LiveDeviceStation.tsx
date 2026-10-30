@@ -942,7 +942,7 @@ export function LiveDeviceStation() {
               <div className="flex items-center justify-between pb-3 border-b border-[#EDE4D9] h-12">
                 <div className="flex items-center gap-2.5">
                   <div className={`w-8 h-8 rounded flex items-center justify-center ${isDesktopActive || desktopActivities.length > 0 ? "bg-[#1A1816] text-[#FAF6F1]" : "bg-[#544E49]/15 text-[#4A4541]"}`}>
-                    <Laptop className="w-4 h-4 text-[#9E3D2B]" />
+                    <Laptop className="w-4 h-4 text-[#E07A5F]" />
                   </div>
                   <div>
                     <h3 className="font-serif font-bold text-lg sm:text-xl text-[#1A1816]">Gaming &amp; Dev PC</h3>

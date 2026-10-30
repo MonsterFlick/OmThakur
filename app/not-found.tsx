@@ -42,7 +42,7 @@ export default function NotFound() {
               href="/"
               className="flex items-center gap-3 p-3.5 rounded-md bg-[#1A1816] text-[#FAF6F1] hover:bg-[#9E3D2B] transition-colors text-xs sm:text-sm font-mono font-semibold"
             >
-              <ArrowLeft className="w-4 h-4 text-[#9E3D2B] shrink-0" />
+              <ArrowLeft className="w-4 h-4 text-[#E07A5F] shrink-0" />
               <span>Return to Portfolio Home (/)</span>
             </Link>
 

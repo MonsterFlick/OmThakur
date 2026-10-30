@@ -143,7 +143,7 @@ export function EngineeringFaqSection() {
                 href="/resume"
                 className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded bg-[#1A1816] text-[#FAF6F1] hover:bg-[#9E3D2B] transition-colors text-xs font-mono font-semibold"
               >
-                <FileText className="w-3.5 h-3.5 text-[#9E3D2B]" />
+                <FileText className="w-3.5 h-3.5 text-[#E07A5F]" />
                 <span>Full Resume (/resume)</span>
               </Link>
               <a

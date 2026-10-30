@@ -227,7 +227,7 @@ export function ProjectsDossier({ onSelectProject }: ProjectsDossierProps) {
                             </ul>
                             {project.codeSpecimen && (
                               <div className="rounded bg-[#1A1816] text-[#FAF6F1] p-2.5 overflow-x-auto">
-                                <div className="flex justify-between text-[10px] font-mono text-[#4A4541] pb-1 mb-1 border-b border-[#383432]">
+                                <div className="flex justify-between text-[10px] font-mono text-[#D6D3D1] pb-1 mb-1 border-b border-[#383432]">
                                   <span>{project.codeSpecimen.filename}</span>
                                   <span>{project.codeSpecimen.language}</span>
                                 </div>

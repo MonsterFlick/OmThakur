@@ -100,7 +100,7 @@ export function EditorialHeader({
               href="/resume"
               className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-md bg-[#1A1816] text-[#FAF6F1] hover:bg-[#9E3D2B] transition-colors text-xs sm:text-sm font-semibold shadow-xs"
             >
-              <FileText className="w-3.5 h-3.5 text-[#9E3D2B]" />
+              <FileText className="w-3.5 h-3.5 text-[#E07A5F]" />
               <span>Resume</span>
             </Link>
 
@@ -182,7 +182,7 @@ export function EditorialHeader({
                   onClick={() => setMobileMenuOpen(false)}
                   className="flex-1 flex items-center justify-center gap-1.5 px-3 py-2 rounded-md bg-[#1A1816] text-[#FAF6F1] text-xs font-semibold"
                 >
-                  <FileText className="w-3.5 h-3.5 text-[#9E3D2B]" />
+                  <FileText className="w-3.5 h-3.5 text-[#E07A5F]" />
                   <span>Resume</span>
                 </Link>
               </div>

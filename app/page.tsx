@@ -275,7 +275,7 @@ export default function Home() {
           className="flex items-center gap-2 px-3 sm:px-3.5 py-1.5 sm:py-2 rounded-full bg-[#1A1816]/95 backdrop-blur text-[#FAF6F1] hover:bg-[#9E3D2B] transition-all shadow-xl border border-[#4A4541] font-mono text-xs font-semibold active:scale-95"
           title="Open Telemetry Terminal Console (⌘`)"
         >
-          <Terminal className="w-3.5 h-3.5 text-[#9E3D2B]" />
+          <Terminal className="w-3.5 h-3.5 text-[#E07A5F]" />
           <span>REPL Console</span>
         </button>
       </div>

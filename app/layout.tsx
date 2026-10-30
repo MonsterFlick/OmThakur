@@ -249,17 +249,30 @@ export default function RootLayout({
         <link rel="ai-catalog" href="/.well-known/ai-catalog.json" />
         <link rel="ard" href="/.well-known/ard.json" />
 
-        {/* Google Analytics - Deferred to idle to prevent main thread blocking during LCP */}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-XPGMFRY0D0"
-          strategy="lazyOnload"
-        />
-        <Script id="google-analytics" strategy="lazyOnload">
+        {/* Google Analytics - Deferred until after initial paint & user interaction to avoid blocking critical LCP path */}
+        <Script id="google-analytics" strategy="afterInteractive">
           {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-XPGMFRY0D0', { send_page_view: true });
+            function initGTM() {
+              if (window.__gtmLoaded) return;
+              window.__gtmLoaded = true;
+              var s = document.createElement('script');
+              s.src = 'https://www.googletagmanager.com/gtag/js?id=G-XPGMFRY0D0';
+              s.async = true;
+              document.head.appendChild(s);
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-XPGMFRY0D0');
+            }
+            if (typeof window !== 'undefined') {
+              var events = ['scroll', 'pointerdown', 'keydown', 'touchstart'];
+              var listener = function() {
+                initGTM();
+                events.forEach(function(e) { window.removeEventListener(e, listener); });
+              };
+              events.forEach(function(e) { window.addEventListener(e, listener, { passive: true, once: true }); });
+              setTimeout(initGTM, 3500);
+            }
           `}
         </Script>
         {/* Site-Wide JSON-LD Structured Data (WebSite + Person entities) */}
