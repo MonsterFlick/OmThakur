@@ -426,7 +426,7 @@ export const CAREER_CHRONOLOGY: CareerEntry[] = [
   {
     company: 'Krishora Technologies',
     role: 'Founding Software Engineer',
-    period: 'May 2026 — Present',
+    period: 'Apr 2026 — Present',
     location: 'Mumbai, India',
     classification: 'Founding Engineer · Full-Time',
     description:
@@ -441,7 +441,7 @@ export const CAREER_CHRONOLOGY: CareerEntry[] = [
   {
     company: 'Cyber Intelligence and Research Lab (CIARL)',
     role: 'Software Developer',
-    period: 'Aug 2025 — May 2026',
+    period: 'Aug 2025 — Apr 2026',
     location: 'Thane, India',
     classification: 'Secure Systems & Legal RAG',
     description:
