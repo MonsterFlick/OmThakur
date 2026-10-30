@@ -491,7 +491,7 @@ function renderActivityWidget(act: ParsedActivity) {
               className="w-full inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded bg-[#1A1816] text-[#FAF6F1] hover:bg-[#9E3D2B] text-xs sm:text-sm font-mono font-medium transition-colors shadow-xs text-center"
             >
               <span>{act.buttons[0].label}</span>
-              <ExternalLink className="w-3 h-3 opacity-70" />
+              <ExternalLink className="w-3 h-3 text-[#FAF6F1]/80" />
             </a>
           </div>
         )}
@@ -528,7 +528,7 @@ function renderActivityWidget(act: ParsedActivity) {
             className="w-full inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded bg-[#1A1816] text-[#FAF6F1] hover:bg-[#9E3D2B] text-xs sm:text-sm font-mono font-medium transition-colors text-center"
           >
             <span>{act.buttons[0].label}</span>
-            <ExternalLink className="w-3 h-3 opacity-70" />
+            <ExternalLink className="w-3 h-3 text-[#FAF6F1]/80" />
           </a>
         </div>
       )}
@@ -846,7 +846,7 @@ export function LiveDeviceStation() {
         </div>
 
         <div className="grid md:grid-cols-3 gap-6 items-stretch">
-          <div className={`p-4 sm:p-6 rounded-lg border shadow-sm flex flex-col justify-between h-full transition-all ${isMobileActive || mobileActivities.length > 0 ? "bg-[#FDFCFA] border-[#EDE4D9] hover:border-[#D4C3AF]" : "bg-[#F7F2EB]/60 border-[#E8DFC8] opacity-80"}`}>
+          <div className={`p-4 sm:p-6 rounded-lg border shadow-sm flex flex-col justify-between h-full transition-all ${isMobileActive || mobileActivities.length > 0 ? "bg-[#FDFCFA] border-[#EDE4D9] hover:border-[#D4C3AF]" : "bg-[#F7F2EB] border-[#E8DFC8]"}`}>
             <div className="flex-1 flex flex-col">
               <div className="flex items-center justify-between pb-3 border-b border-[#EDE4D9] h-12">
                 <div className="flex items-center gap-2.5">
@@ -937,7 +937,7 @@ export function LiveDeviceStation() {
             </div>
           </div>
 
-          <div className={`p-4 sm:p-6 rounded-lg border shadow-sm flex flex-col justify-between h-full transition-all ${isDesktopActive || desktopActivities.length > 0 ? "bg-[#FDFCFA] border-[#EDE4D9] hover:border-[#D4C3AF]" : "bg-[#F7F2EB]/60 border-[#E8DFC8] opacity-80"}`}>
+          <div className={`p-4 sm:p-6 rounded-lg border shadow-sm flex flex-col justify-between h-full transition-all ${isDesktopActive || desktopActivities.length > 0 ? "bg-[#FDFCFA] border-[#EDE4D9] hover:border-[#D4C3AF]" : "bg-[#F7F2EB] border-[#E8DFC8]"}`}>
             <div className="flex-1 flex flex-col">
               <div className="flex items-center justify-between pb-3 border-b border-[#EDE4D9] h-12">
                 <div className="flex items-center gap-2.5">
@@ -1052,7 +1052,7 @@ export function LiveDeviceStation() {
                   </div>
 
                   {/* YouTube Card (Coming Soon) */}
-                  <div className="p-3 rounded-lg bg-[#F7F2EB]/70 border border-[#EDE4D9] space-y-1.5 opacity-90">
+                  <div className="p-3 rounded-lg bg-[#F7F2EB] border border-[#EDE4D9] space-y-1.5">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
                         <Youtube className="w-4 h-4 text-[#9E3D2B]" />
