@@ -12,11 +12,30 @@ const nextConfig = {
     optimizeCss: true,
     optimizePackageImports: ["lucide-react", "framer-motion", "date-fns"],
   },
+  async redirects() {
+    return [
+      {
+        source: "/:path*",
+        has: [
+          {
+            type: "host",
+            value: "www.omthakur.in",
+          },
+        ],
+        destination: "https://omthakur.in/:path*",
+        permanent: true,
+      },
+    ];
+  },
   async headers() {
     return [
       {
         source: "/(.*)",
         headers: [
+          {
+            key: "Strict-Transport-Security",
+            value: "max-age=63072000; includeSubDomains; preload",
+          },
           {
             key: "X-Content-Type-Options",
             value: "nosniff",
@@ -85,6 +104,19 @@ const nextConfig = {
           {
             key: "Cache-Control",
             value: "public, max-age=3600, stale-while-revalidate=86400",
+          },
+        ],
+      },
+      {
+        source: "/_next/static/(.*)",
+        headers: [
+          {
+            key: "X-Robots-Tag",
+            value: "noindex",
+          },
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
           },
         ],
       },
