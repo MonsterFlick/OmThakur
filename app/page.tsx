@@ -1,22 +1,32 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { motion, useScroll, useSpring } from "framer-motion";
+import dynamic from "next/dynamic";
 import { EditorialHeader } from "@/components/layout/EditorialHeader";
 import { EngineeringBook } from "@/components/book/EngineeringBook";
 import { LiveDeviceStation } from "@/components/station/LiveDeviceStation";
 import { ProjectsDossier } from "@/components/dossier/ProjectsDossier";
-import { ProjectModal } from "@/components/dossier/ProjectModal";
 import { SkillsSpecimen } from "@/components/specimen/SkillsSpecimen";
 import { CareerChronology } from "@/components/chronology/CareerChronology";
 import { AcademicHonors } from "@/components/honors/AcademicHonors";
 import { EngineeringFaqSection } from "@/components/faq/EngineeringFaqSection";
 import { PostalContactStation } from "@/components/contact/PostalContactStation";
 import { EditorialFooter } from "@/components/layout/EditorialFooter";
-import { TelemetryConsole } from "@/components/terminal/TelemetryConsole";
-import { CommandPalette } from "@/components/ui/CommandPalette";
 import { PROJECTS, ENGINEERING_FAQS, type Project } from "@/data/portfolio-data";
 import { Terminal } from "lucide-react";
+
+const ProjectModal = dynamic(
+  () => import("@/components/dossier/ProjectModal").then((m) => m.ProjectModal),
+  { ssr: false }
+);
+const TelemetryConsole = dynamic(
+  () => import("@/components/terminal/TelemetryConsole").then((m) => m.TelemetryConsole),
+  { ssr: false }
+);
+const CommandPalette = dynamic(
+  () => import("@/components/ui/CommandPalette").then((m) => m.CommandPalette),
+  { ssr: false }
+);
 
 const homeJsonLd = {
   "@context": "https://schema.org",
@@ -162,9 +172,6 @@ export default function Home() {
   const [terminalOpen, setTerminalOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
-  const { scrollYProgress } = useScroll();
-  const progress = useSpring(scrollYProgress, { stiffness: 80, damping: 30, restDelta: 0.001 });
-
   // ⌘K keyboard shortcut
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -201,12 +208,6 @@ export default function Home() {
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(homeJsonLd).replace(/</g, "\\u003c"),
         }}
-      />
-
-      {/* Terracotta Top Scroll Progress Bar */}
-      <motion.div
-        className="fixed top-0 left-0 right-0 h-[2.5px] bg-[#9E3D2B] z-[9999] origin-left shadow-sm"
-        style={{ scaleX: progress }}
       />
 
       {/* Editorial Navigation Header */}
@@ -281,25 +282,31 @@ export default function Home() {
       </div>
 
       {/* Global Command Palette */}
-      <CommandPalette
-        open={searchOpen}
-        onClose={() => setSearchOpen(false)}
-        onSelectProject={handleInspectProjectById}
-        onOpenTerminal={() => setTerminalOpen(true)}
-        onNavigate={handleNavigate}
-      />
+      {searchOpen && (
+        <CommandPalette
+          open={searchOpen}
+          onClose={() => setSearchOpen(false)}
+          onSelectProject={handleInspectProjectById}
+          onOpenTerminal={() => setTerminalOpen(true)}
+          onNavigate={handleNavigate}
+        />
+      )}
 
       {/* Project Blueprint Inspection Modal */}
-      <ProjectModal
-        project={selectedProject}
-        onClose={() => setSelectedProject(null)}
-      />
+      {selectedProject && (
+        <ProjectModal
+          project={selectedProject}
+          onClose={() => setSelectedProject(null)}
+        />
+      )}
 
       {/* Live Terminal REPL Console Drawer */}
-      <TelemetryConsole
-        open={terminalOpen}
-        onClose={() => setTerminalOpen(false)}
-      />
+      {terminalOpen && (
+        <TelemetryConsole
+          open={terminalOpen}
+          onClose={() => setTerminalOpen(false)}
+        />
+      )}
     </main>
   );
 }

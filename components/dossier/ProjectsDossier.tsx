@@ -1,8 +1,7 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
 import { ExternalLink, ArrowUpRight, Sparkles, Github, Code2 } from "lucide-react";
 import { PROJECTS, type Project } from "@/data/portfolio-data";
 
@@ -15,22 +14,6 @@ const CATEGORIES = ["All", "Distributed Web", "Low-Level Tools", "Autonomous AI"
 export function ProjectsDossier({ onSelectProject }: ProjectsDossierProps) {
   const [activeCategory, setActiveCategory] = useState<string>("All");
   const [searchQuery, setSearchQuery] = useState("");
-  const [numCols, setNumCols] = useState<number>(3);
-
-  useEffect(() => {
-    const updateCols = () => {
-      if (window.innerWidth >= 1024) {
-        setNumCols(3);
-      } else if (window.innerWidth >= 640) {
-        setNumCols(2);
-      } else {
-        setNumCols(1);
-      }
-    };
-    updateCols();
-    window.addEventListener("resize", updateCols);
-    return () => window.removeEventListener("resize", updateCols);
-  }, []);
 
   const filteredProjects = PROJECTS.filter((p) => {
     const matchesCat = activeCategory === "All" || p.category === activeCategory;
@@ -43,11 +26,11 @@ export function ProjectsDossier({ onSelectProject }: ProjectsDossierProps) {
   });
 
   // Partition cards across independent vertical columns so opening a card only pushes down cards directly below it in the same column
-  const columns = Array.from({ length: numCols }, (_, colIdx) =>
+  const columns = Array.from({ length: 3 }, (_, colIdx) =>
     filteredProjects
       .map((project, originalIdx) => ({ project, originalIdx }))
-      .filter((_, idx) => idx % numCols === colIdx)
-  );
+      .filter((_, idx) => idx % 3 === colIdx)
+  ).filter((col) => col.length > 0);
 
   return (
     <section
@@ -115,36 +98,33 @@ export function ProjectsDossier({ onSelectProject }: ProjectsDossierProps) {
                 }`}
               >
                 <span>{cat}</span>
-                <span className="text-xs text-[#4A4541] font-semibold">({count})</span>
+                <span className={`text-xs font-semibold ${isActive ? "text-[#E07A5F]" : "text-[#4A4541]"}`}>
+                  ({count})
+                </span>
               </button>
             );
           })}
         </div>
 
         {/* ── Independent Column Masonry Grid (opening a card only moves cards directly below it in its column) ── */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 items-start">
           {columns.map((colItems, colIdx) => (
             <div key={colIdx} className="flex flex-col gap-6 sm:gap-8 min-w-0">
-              <AnimatePresence mode="popLayout">
-                {colItems.map(({ project, originalIdx }) => (
-                  <motion.article
-                    key={project.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, scale: 0.95 }}
-                    transition={{ duration: 0.35, delay: originalIdx * 0.06 }}
-                    className="group relative bg-[#FDFCFA] border border-[#EDE4D9] rounded-md overflow-hidden hover:border-[#D4C3AF] hover:shadow-paper-hover transition-all duration-300 flex flex-col justify-between"
-                  >
-                    <div>
-                      {/* Thumbnail Banner */}
-                      <div className="relative aspect-video w-full overflow-hidden bg-[#F3ECE4] border-b border-[#EDE4D9]">
-                        <Image
-                          src={project.image}
-                          alt={`${project.name} — ${project.category} system architecture by Om Thakur`}
-                          fill
-                          priority={originalIdx === 0}
-                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                          className="object-cover transition-transform duration-500 group-hover:scale-105"
+              {colItems.map(({ project }) => (
+                <article
+                  key={project.id}
+                  className="group relative bg-[#FDFCFA] border border-[#EDE4D9] rounded-md overflow-hidden hover:border-[#D4C3AF] hover:shadow-paper-hover transition-all duration-300 flex flex-col justify-between"
+                >
+                  <div>
+                    {/* Thumbnail Banner */}
+                    <div className="relative aspect-video w-full overflow-hidden bg-[#F3ECE4] border-b border-[#EDE4D9]">
+                      <Image
+                        src={project.image}
+                        alt={`${project.name} — ${project.category} system architecture by Om Thakur`}
+                        fill
+                        loading="lazy"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        className="object-cover transition-transform duration-500 group-hover:scale-105"
                         />
                         <div className="absolute top-3 left-3">
                           <span className="px-2.5 py-0.5 rounded text-xs font-mono font-semibold bg-[#FAF6F1]/90 backdrop-blur text-[#9E3D2B] border border-[#EDE4D9]">
@@ -261,6 +241,7 @@ export function ProjectsDossier({ onSelectProject }: ProjectsDossierProps) {
                             rel="noopener noreferrer"
                             className="text-xs font-mono text-[#383432] hover:text-[#1A1816] inline-flex items-center gap-1 font-medium"
                             title={`View ${project.name} source code on GitHub`}
+                            aria-label={`View ${project.name} source code on GitHub`}
                           >
                             <Github className="w-3.5 h-3.5" />
                             <span>Code</span>
@@ -271,15 +252,16 @@ export function ProjectsDossier({ onSelectProject }: ProjectsDossierProps) {
                           target="_blank"
                           rel="noopener noreferrer"
                           className="text-xs font-mono text-[#383432] hover:text-[#1A1816] inline-flex items-center gap-1 font-medium"
+                          title={project.url.includes("github.com") ? `Open ${project.name} GitHub repository` : `Visit ${project.name} live site`}
+                          aria-label={project.url.includes("github.com") ? `Open ${project.name} GitHub repository` : `Visit ${project.name} live site`}
                         >
                           <span>{project.url.includes("github.com") ? "Repository" : "Live Site"}</span>
                           <ExternalLink className="w-3.5 h-3.5" />
                         </a>
                       </div>
                     </div>
-                  </motion.article>
+                  </article>
                 ))}
-              </AnimatePresence>
             </div>
           ))}
         </div>

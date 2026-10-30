@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion } from "framer-motion";
 import { Layers } from "lucide-react";
 import { SKILL_SPECIMENS } from "@/data/portfolio-data";
 
@@ -59,13 +58,9 @@ export function SkillsSpecimen() {
 
         {/* Skills Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-5 sm:gap-6">
-          {filteredSkills.map((skill, idx) => (
-            <motion.div
+          {filteredSkills.map((skill) => (
+            <div
               key={skill.name}
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.3, delay: idx * 0.04 }}
               className="p-5 sm:p-6 rounded-md bg-[#FAF6F1] border border-[#EDE4D9] hover:border-[#D4C3AF] hover:shadow-paper transition-all flex flex-col justify-between"
             >
               <div className="flex items-start justify-between mb-3">
@@ -84,7 +79,7 @@ export function SkillsSpecimen() {
               <p className="text-sm sm:text-base text-[#2C2825] leading-relaxed font-normal">
                 {skill.specimenNote}
               </p>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

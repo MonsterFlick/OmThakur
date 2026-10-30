@@ -2,7 +2,6 @@
 
 import React from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
 import { HelpCircle, Activity, CheckCircle2, FileText, ArrowUpRight } from "lucide-react";
 import { ARCHITECTURE_BENCHMARKS, ENGINEERING_FAQS } from "@/data/portfolio-data";
 
@@ -51,7 +50,12 @@ export function EngineeringFaqSection() {
             </span>
           </div>
 
-          <div className="overflow-x-auto rounded-lg border border-[#EDE4D9] bg-[#FAF6F1] shadow-2xs">
+          <div
+            tabIndex={0}
+            role="region"
+            aria-label="Production Systems Architecture Benchmarks"
+            className="overflow-x-auto rounded-lg border border-[#EDE4D9] bg-[#FAF6F1] shadow-2xs focus:outline-none focus:ring-2 focus:ring-[#9E3D2B]"
+          >
             <table className="w-full text-left border-collapse text-xs sm:text-sm">
               <thead>
                 <tr className="border-b border-[#EDE4D9] bg-[#F3ECE4] font-mono text-xs uppercase tracking-wider text-[#1A1816]">
@@ -97,12 +101,8 @@ export function EngineeringFaqSection() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
             {ENGINEERING_FAQS.map((faq, idx) => (
-              <motion.article
+              <article
                 key={faq.question}
-                initial={{ opacity: 0, y: 14 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.3, delay: idx * 0.05 }}
                 className="p-5 sm:p-6 rounded-md bg-[#FAF6F1] border border-[#EDE4D9] hover:border-[#D4C3AF] transition-all flex flex-col justify-between"
               >
                 <div>
@@ -123,7 +123,7 @@ export function EngineeringFaqSection() {
                     {faq.answer}
                   </p>
                 </div>
-              </motion.article>
+              </article>
             ))}
           </div>
 

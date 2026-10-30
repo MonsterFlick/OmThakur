@@ -1,6 +1,6 @@
 import type React from "react"
 import type { Metadata, Viewport } from "next"
-import { Playfair_Display, Inter, Caveat, Geist_Mono } from "next/font/google"
+import { Playfair_Display, Inter, Geist_Mono } from "next/font/google"
 import Script from "next/script"
 import "./globals.css"
 
@@ -14,13 +14,6 @@ const inter = Inter({
   subsets: ["latin"],
   variable: "--font-sans",
   display: "swap",
-})
-
-const caveat = Caveat({
-  subsets: ["latin"],
-  variable: "--font-script",
-  display: "swap",
-  preload: false,
 })
 
 const geistMono = Geist_Mono({
@@ -236,7 +229,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${playfair.variable} ${inter.variable} ${caveat.variable} ${geistMono.variable}`}
+      className={`${playfair.variable} ${inter.variable} ${geistMono.variable}`}
       suppressHydrationWarning
     >
       <head>
@@ -291,8 +284,6 @@ export default function RootLayout({
         >
           Skip to main content
         </a>
-        {/* Paper Grain Noise Overlay */}
-        <div className="grain-layer" aria-hidden="true" />
         {children}
       </body>
     </html>

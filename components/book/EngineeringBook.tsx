@@ -519,22 +519,32 @@ export function EngineeringBook({
 
               {/* Mobile Page Content Leaf with Smooth Transition */}
               <div className="min-h-[580px] sm:min-h-[640px] flex flex-col justify-between">
-                <AnimatePresence mode="wait" initial={false}>
-                  <motion.div
-                    key={`${currentIdx}-${mobileSide}`}
-                    initial={hasTurned ? { opacity: 0, x: mobileSide === "right" ? 12 : -12 } : false}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: mobileSide === "right" ? -12 : 12 }}
-                    transition={{ duration: 0.22 }}
-                    className="flex-1 flex flex-col justify-between"
-                  >
+                {hasTurned ? (
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={`${currentIdx}-${mobileSide}`}
+                      initial={{ opacity: 0, x: mobileSide === "right" ? 12 : -12 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: mobileSide === "right" ? -12 : 12 }}
+                      transition={{ duration: 0.22 }}
+                      className="flex-1 flex flex-col justify-between"
+                    >
+                      <BookPage
+                        plateIndex={currentIdx}
+                        side={mobileSide}
+                        onInspectProject={onInspectProject}
+                      />
+                    </motion.div>
+                  </AnimatePresence>
+                ) : (
+                  <div className="flex-1 flex flex-col justify-between">
                     <BookPage
                       plateIndex={currentIdx}
                       side={mobileSide}
                       onInspectProject={onInspectProject}
                     />
-                  </motion.div>
-                </AnimatePresence>
+                  </div>
+                )}
               </div>
 
               {/* Touch Swipe and Nav Tip */}

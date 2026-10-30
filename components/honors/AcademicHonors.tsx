@@ -1,8 +1,7 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
-import { Award, ExternalLink, GraduationCap, CheckCircle2, ShieldCheck } from "lucide-react";
+import { Award, ExternalLink } from "lucide-react";
 import { ACADEMIC_HONORS } from "@/data/portfolio-data";
 
 export function AcademicHonors() {
@@ -17,7 +16,7 @@ export function AcademicHonors() {
               <span>Academic Distinctions</span>
             </div>
             <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#1A1816] tracking-tight">
-              Honors & Certified Attestations
+              Honors &amp; Certified Attestations
             </h2>
             <p className="text-sm sm:text-base text-[#4A4541] mt-2 max-w-xl leading-relaxed">
               Academic excellence recognition from Mumbai University and professional verified credentials.
@@ -27,13 +26,9 @@ export function AcademicHonors() {
 
         {/* Honors Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6">
-          {ACADEMIC_HONORS.map((honor, idx) => (
-            <motion.div
+          {ACADEMIC_HONORS.map((honor) => (
+            <div
               key={honor.id}
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.35, delay: idx * 0.08 }}
               className="p-4 sm:p-6 rounded-md bg-[#FAF6F1] border border-[#EDE4D9] hover:border-[#D4C3AF] hover:shadow-paper transition-all flex flex-col justify-between"
             >
               <div>
@@ -70,12 +65,10 @@ export function AcademicHonors() {
                   </a>
                 </div>
               )}
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>
     </section>
   );
 }
-
-

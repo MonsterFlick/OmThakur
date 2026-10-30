@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
 import { Briefcase, Calendar, MapPin } from "lucide-react";
 import { CAREER_CHRONOLOGY } from "@/data/portfolio-data";
 
@@ -27,13 +26,9 @@ export function CareerChronology() {
 
         {/* Timeline Entries */}
         <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 sm:gap-8 w-full">
-          {CAREER_CHRONOLOGY.map((entry, idx) => (
-            <motion.div
+          {CAREER_CHRONOLOGY.map((entry) => (
+            <div
               key={entry.company}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: idx * 0.1 }}
               className="p-5 sm:p-7 md:p-8 rounded-md bg-[#FDFCFA] border border-[#EDE4D9] hover:border-[#D4C3AF] hover:shadow-paper transition-all flex flex-col justify-between"
             >
               <div>
@@ -93,7 +88,7 @@ export function CareerChronology() {
                   </span>
                 ))}
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>
