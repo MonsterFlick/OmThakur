@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { Search, X, Terminal, FileText, Radio } from "lucide-react";
+import { Search, X, FileText, Radio } from "lucide-react";
 import { PROJECTS, SKILL_SPECIMENS } from "@/data/portfolio-data";
 
 interface CommandPaletteProps {
@@ -86,19 +86,6 @@ export function CommandPalette({
                 Quick Actions
               </span>
               <div className="space-y-1">
-                <button
-                  onClick={() => {
-                    onOpenTerminal?.();
-                    onClose();
-                  }}
-                  className="w-full flex items-center justify-between p-2 rounded text-left hover:bg-[#F3ECE4] transition-colors text-xs text-[#1A1816]"
-                >
-                  <div className="flex items-center gap-2.5">
-                    <Terminal className="w-3.5 h-3.5 text-[#9E3D2B]" />
-                    <span>Open Terminal REPL</span>
-                  </div>
-                  <span className="font-mono text-xs text-[#4A4541]">Terminal</span>
-                </button>
 
                 <Link
                   href="/resume"

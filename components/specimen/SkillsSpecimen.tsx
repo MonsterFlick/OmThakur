@@ -21,19 +21,19 @@ export function SkillsSpecimen() {
       : SKILL_SPECIMENS.filter((s) => s.category === activeCategory);
 
   return (
-    <section id="skills" className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 border-b border-[#EDE4D9] bg-[#FDFCFA]">
-      <div className="w-full max-w-7xl xl:max-w-[1360px] mx-auto">
+    <section id="skills" className="py-10 sm:py-12 md:py-14 px-4 sm:px-6 lg:px-8 border-b border-[#EDE4D9] bg-[#FDFCFA]">
+      <div className="w-full max-w-6xl xl:max-w-7xl mx-auto">
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12 pb-6 border-b border-[#EDE4D9]">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8 sm:mb-10 pb-5 border-b border-[#EDE4D9]">
           <div>
-            <div className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.22em] text-[#9E3D2B] font-semibold mb-2">
+            <div className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.2em] text-[#9E3D2B] font-mono font-semibold mb-1.5">
               <Layers className="w-3.5 h-3.5" />
               <span>Core Expertise</span>
             </div>
-            <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#1A1816] tracking-tight">
+            <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#1A1816] tracking-tight">
               Skills &amp; Technologies
             </h2>
-            <p className="text-sm sm:text-base text-[#4A4541] mt-2 max-w-xl leading-relaxed">
+            <p className="text-sm text-[#4A4541] mt-1.5 max-w-xl leading-relaxed">
               Languages, database engines, concurrency patterns, and cloud platforms tested under production workloads.
             </p>
           </div>
@@ -45,7 +45,7 @@ export function SkillsSpecimen() {
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
-              className={`px-3.5 py-2 rounded text-xs sm:text-sm font-mono transition-all shrink-0 ${
+              className={`px-3 py-1.5 rounded text-xs font-mono transition-all shrink-0 ${
                 activeCategory === cat
                   ? "bg-[#1A1816] text-[#FAF6F1] font-semibold shadow-sm"
                   : "bg-[#F3ECE4] text-[#383432] hover:bg-[#E2D5C6] hover:text-[#1A1816]"
@@ -57,26 +57,26 @@ export function SkillsSpecimen() {
         </div>
 
         {/* Skills Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-5 sm:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {filteredSkills.map((skill) => (
             <div
               key={skill.name}
-              className="p-5 sm:p-6 rounded-md bg-[#FAF6F1] border border-[#EDE4D9] hover:border-[#D4C3AF] hover:shadow-paper transition-all flex flex-col justify-between"
+              className="p-4 sm:p-5 rounded-lg bg-[#FAF6F1] border border-[#EDE4D9] hover:border-[#D4C3AF] hover:shadow-2xs transition-all flex flex-col justify-between"
             >
               <div className="flex items-start justify-between mb-3">
-                <span className="text-xs sm:text-sm font-mono uppercase tracking-wider text-[#4A4541] font-semibold">
+                <span className="text-[11px] font-mono uppercase tracking-wider text-[#7A746D]">
                   {skill.category}
                 </span>
-                <span className="font-mono text-xs sm:text-sm font-bold text-[#9E3D2B]">
+                <span className="font-mono text-xs font-medium text-[#9E3D2B]">
                   {skill.experience}
                 </span>
               </div>
 
-              <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#1A1816] mb-2">
+              <h3 className="font-serif text-base sm:text-lg font-semibold text-[#1A1816] mb-1.5">
                 {skill.name}
               </h3>
 
-              <p className="text-sm sm:text-base text-[#2C2825] leading-relaxed font-normal">
+              <p className="text-xs sm:text-sm text-[#4A4541] leading-relaxed font-normal">
                 {skill.specimenNote}
               </p>
             </div>
@@ -86,3 +86,4 @@ export function SkillsSpecimen() {
     </section>
   );
 }
+

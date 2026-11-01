@@ -36,23 +36,23 @@ export function ProjectsDossier({ onSelectProject }: ProjectsDossierProps) {
     <section
       id="projects"
       aria-labelledby="projects-heading"
-      className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 border-b border-[#EDE4D9] bg-[#FAF6F1]"
+      className="py-10 sm:py-12 md:py-14 px-4 sm:px-6 lg:px-8 border-b border-[#EDE4D9] bg-[#FAF6F1]"
     >
-      <div className="w-full max-w-7xl xl:max-w-[1360px] mx-auto">
+      <div className="w-full max-w-6xl xl:max-w-7xl mx-auto">
         {/* ── Section Masthead ── */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12 pb-6 border-b border-[#EDE4D9]">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8 sm:mb-10 pb-5 border-b border-[#EDE4D9]">
           <div>
-            <div className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.22em] text-[#9E3D2B] font-semibold mb-2">
+            <div className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.2em] text-[#9E3D2B] font-mono font-semibold mb-1.5">
               <Sparkles className="w-3.5 h-3.5" />
               <span>Selected Work</span>
             </div>
             <h2
               id="projects-heading"
-              className="font-serif text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#1A1816] tracking-tight"
+              className="font-serif text-2xl sm:text-3xl font-bold text-[#1A1816] tracking-tight"
             >
               Featured Projects &amp; Systems
             </h2>
-            <p className="text-sm text-[#383432] mt-2 max-w-xl">
+            <p className="text-sm text-[#4A4541] mt-1.5 max-w-xl leading-relaxed">
               Production systems ranging from cryptographic digital commerce platforms to sub-10ms stateless mathematical Edge APIs, offline AI agents, and Android finance engines.
             </p>
           </div>
@@ -107,7 +107,7 @@ export function ProjectsDossier({ onSelectProject }: ProjectsDossierProps) {
         </div>
 
         {/* ── Independent Column Masonry Grid (opening a card only moves cards directly below it in its column) ── */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 sm:gap-6 items-start">
           {columns.map((colItems, colIdx) => (
             <div key={colIdx} className="flex flex-col gap-6 sm:gap-8 min-w-0">
               {colItems.map(({ project }) => (
@@ -134,17 +134,17 @@ export function ProjectsDossier({ onSelectProject }: ProjectsDossierProps) {
                       </div>
 
                       {/* Card Content */}
-                      <div className="p-4 sm:p-6 space-y-3">
+                      <div className="p-4 sm:p-5 space-y-3">
                         <div>
                           <span className="text-xs uppercase font-mono text-[#4A4541] block">
                             {project.edition}
                           </span>
-                          <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#1A1816] mt-0.5">
+                          <h3 className="font-serif text-lg font-semibold text-[#1A1816] mt-0.5">
                             {project.name}
                           </h3>
                         </div>
 
-                        <p className="text-sm sm:text-base text-[#2C2825] leading-relaxed font-normal">
+                        <p className="text-xs sm:text-sm text-[#383432] leading-relaxed font-normal">
                           {project.purpose}
                         </p>
 
@@ -158,7 +158,7 @@ export function ProjectsDossier({ onSelectProject }: ProjectsDossierProps) {
                               <span className="text-[10px] uppercase font-mono text-[#4A4541] block truncate">
                                 {s.label}
                               </span>
-                              <span className="font-mono text-xs font-bold text-[#1A1816] block truncate mt-0.5">
+                              <span className="font-mono text-xs font-medium text-[#1A1816] block truncate mt-0.5">
                                 {s.value}
                               </span>
                             </div>
@@ -166,10 +166,10 @@ export function ProjectsDossier({ onSelectProject }: ProjectsDossierProps) {
                         </div>
 
                         <div className="p-3.5 rounded bg-[#FAF6F1] border border-[#EDE4D9]">
-                          <span className="text-xs uppercase tracking-wider font-bold text-[#9E3D2B] block mb-1">
+                          <span className="text-xs uppercase tracking-wider font-mono text-[11px] uppercase tracking-wider text-[#9E3D2B] font-medium block mb-0.5">
                             Key Architecture:
                           </span>
-                          <p className="text-sm sm:text-base text-[#1A1816] font-semibold leading-relaxed">
+                          <p className="text-xs text-[#383432] leading-relaxed">
                             {project.feature}
                           </p>
                         </div>
@@ -179,7 +179,7 @@ export function ProjectsDossier({ onSelectProject }: ProjectsDossierProps) {
                           {project.techStack.map((tech) => (
                             <span
                               key={tech}
-                              className="px-2.5 py-1 rounded text-xs font-mono font-medium bg-[#F3ECE4] text-[#1A1816] border border-[#D4C3AF]"
+                              className="px-2.5 py-1 rounded text-xs font-mono bg-[#F3ECE4] text-[#4A4541] border border-[#D4C3AF]"
                             >
                               {tech}
                             </span>
@@ -188,7 +188,7 @@ export function ProjectsDossier({ onSelectProject }: ProjectsDossierProps) {
 
                         {/* Crawlable Architecture & Fenced Code Specimen (AR-READ-01 compliant) */}
                         <details className="group/spec rounded border border-[#EDE4D9] bg-[#FAF6F1] text-xs">
-                          <summary className="cursor-pointer select-none px-3 py-2 font-mono font-semibold text-[#383432] hover:text-[#1A1816] flex items-center justify-between">
+                          <summary className="cursor-pointer select-none px-3 py-2 font-mono font-medium text-[#5E5854] hover:text-[#1A1816] flex items-center justify-between">
                             <span className="inline-flex items-center gap-1.5">
                               <Code2 className="w-3.5 h-3.5 text-[#566449]" />
                               <span>Architecture Spec &amp; Code Specimen</span>
@@ -197,7 +197,7 @@ export function ProjectsDossier({ onSelectProject }: ProjectsDossierProps) {
                           </summary>
                           <div className="p-3 pt-2 border-t border-[#EDE4D9] space-y-2.5 text-[#2C2825]">
                             <p className="leading-relaxed">
-                              <strong className="text-[#7A3B3B] font-mono uppercase text-[11px]">Challenge: </strong>
+                              <span className="text-[#7A3B3B] font-mono uppercase text-[11px] font-medium">Challenge: </span>
                               {project.problemStatement}
                             </p>
                             <ul className="list-disc pl-4 space-y-1 leading-snug">
@@ -269,3 +269,4 @@ export function ProjectsDossier({ onSelectProject }: ProjectsDossierProps) {
     </section>
   );
 }
+

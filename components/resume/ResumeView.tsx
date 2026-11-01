@@ -223,7 +223,7 @@ Bhimrao Pradhan College, University of Mumbai
 
       {/* ── Top Floating Action Toolbar (Web View Only) ── */}
       <div className="no-print sticky top-0 z-50 bg-[#FAF6F1]/95 backdrop-blur-md border-b border-[#EDE4D9] py-3 px-4 sm:px-8 lg:px-12 shadow-xs">
-        <div className="w-full max-w-7xl xl:max-w-[1440px] mx-auto flex flex-wrap items-center justify-between gap-3">
+        <div className="w-full max-w-5xl mx-auto flex flex-wrap items-center justify-between gap-3">
           <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs font-mono">
             <Link
               href="/"
@@ -270,7 +270,7 @@ Bhimrao Pradhan College, University of Mumbai
       {/* ── Main Full-Screen Resume Container ── */}
       <main
         id="main-content"
-        className="py-6 sm:py-10 px-4 sm:px-8 lg:px-12 w-full max-w-7xl xl:max-w-[1440px] mx-auto print-container"
+        className="py-6 sm:py-10 px-4 sm:px-8 lg:px-12 w-full max-w-5xl mx-auto print-container"
       >
         <article className="p-5 sm:p-8 lg:p-10 bg-[#FDFCFA] border border-[#EDE4D9] rounded-xl shadow-paper relative overflow-hidden print-container">
           {/* Top Decorative Colophon Stripe (Web View Only) */}
@@ -885,3 +885,4 @@ Bhimrao Pradhan College, University of Mumbai
     </div>
   );
 }
+

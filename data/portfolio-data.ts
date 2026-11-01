@@ -157,7 +157,7 @@ export const PROJECTS: Project[] = [
   {
     id: 'digital-commerce',
     name: 'Digital Commerce & Entitlement Platform',
-    edition: 'Edition I · Cryptographic Commerce',
+    edition: 'Payments & Asset Entitlement',
     category: 'Distributed Web',
     purpose: 'Digital commerce platform with dual payment verification and encrypted digital asset access control.',
     feature: 'Dual-verification checkout (sync API + HMAC-SHA256 webhook) and AES-256-GCM encryption at rest with randomized IVs.',
@@ -193,7 +193,7 @@ export const PROJECTS: Project[] = [
   {
     id: 'devpic',
     name: 'devpic — Stateless Mathematical SVG API',
-    edition: 'Edition II · Stateless Edge API',
+    edition: 'Stateless Edge REST API',
     category: 'Low-Level Tools',
     purpose: 'Open-source, stateless REST API that generates deterministic SVG patterns, geometric meshes, and UI assets using mathematical algorithms.',
     feature: 'Achieved sub-10 ms response times on Next.js Edge Runtime with no database or persistent storage dependencies.',
@@ -231,7 +231,7 @@ export async function GET(req: Request): Promise<Response> {
   {
     id: 'agni',
     name: 'Agni — Local AI Automation Agent',
-    edition: 'Edition III · Autonomous AI',
+    edition: 'Autonomous Desktop Agent',
     category: 'Autonomous AI',
     purpose: 'Offline automation agent that translates natural-language instructions into structured Windows actions.',
     feature: 'Command blacklisting, destructive operation protection, execution logging, script caching, and an automated error-driven repair loop.',
@@ -264,7 +264,7 @@ export async function GET(req: Request): Promise<Response> {
   {
     id: 'fin-read',
     name: 'Fin Read — Offline-First Finance Tracker',
-    edition: 'Edition IV · Mobile Engine',
+    edition: 'Offline-First Android App',
     category: 'Mobile Systems',
     purpose: 'Android finance application that extracts transaction information from SMS and payment notifications to automate expense categorization.',
     feature: 'Offline-first persistence with Room Database, cloud synchronization with Supabase, and Material 3 interface.',
@@ -299,7 +299,7 @@ export async function GET(req: Request): Promise<Response> {
   {
     id: 'gitfool',
     name: 'GitFool',
-    edition: 'Edition V · Distributed Web',
+    edition: 'Edge Publication Engine',
     category: 'Distributed Web',
     purpose: 'High-performance edge-rendered publication platform sourced straight from GitHub markdown repositories.',
     feature: 'Sub-30ms TTFB worldwide with automated markdown compilation and SEO tag generation.',

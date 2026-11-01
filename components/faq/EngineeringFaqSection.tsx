@@ -10,23 +10,23 @@ export function EngineeringFaqSection() {
     <section
       id="faq"
       aria-labelledby="faq-heading"
-      className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 border-b border-[#EDE4D9] bg-[#FDFCFA]"
+      className="py-10 sm:py-12 md:py-14 px-4 sm:px-6 lg:px-8 border-b border-[#EDE4D9] bg-[#FDFCFA]"
     >
-      <div className="w-full max-w-7xl xl:max-w-[1360px] mx-auto">
+      <div className="w-full max-w-6xl xl:max-w-7xl mx-auto">
         {/* ── Section Masthead with Freshness Signal ── */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12 pb-6 border-b border-[#EDE4D9]">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8 sm:mb-10 pb-5 border-b border-[#EDE4D9]">
           <div>
-            <div className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.22em] text-[#9E3D2B] font-semibold mb-2">
+            <div className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.2em] text-[#9E3D2B] font-mono font-semibold mb-1.5">
               <Activity className="w-3.5 h-3.5" />
               <span>Systems Benchmarks &amp; Technical Reference</span>
             </div>
             <h2
               id="faq-heading"
-              className="font-serif text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#1A1816] tracking-tight"
+              className="font-serif text-2xl sm:text-3xl font-bold text-[#1A1816] tracking-tight"
             >
               Architecture Comparisons &amp; Engineering FAQ
             </h2>
-            <p className="text-sm sm:text-base text-[#4A4541] mt-2 max-w-2xl leading-relaxed">
+            <p className="text-sm text-[#4A4541] mt-1.5 max-w-2xl leading-relaxed">
               Production latency benchmarks, architectural trade-offs, and direct technical answers regarding distributed systems, message queues, and real-time pipelines built by Om Thakur.
             </p>
           </div>
@@ -40,9 +40,9 @@ export function EngineeringFaqSection() {
         </div>
 
         {/* ── 1. Production Architecture Comparison Table (AEO / GEO Table Pattern) ── */}
-        <div className="mb-14">
+        <div className="mb-10">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#1A1816]">
+            <h3 className="font-serif text-lg sm:text-xl font-semibold text-[#1A1816]">
               Conventional Approaches vs. Engineered Production Architecture
             </h3>
             <span className="hidden sm:inline font-mono text-xs text-[#4A4541] uppercase tracking-wider">
@@ -68,7 +68,7 @@ export function EngineeringFaqSection() {
               <tbody className="divide-y divide-[#EDE4D9] bg-[#FDFCFA]">
                 {ARCHITECTURE_BENCHMARKS.map((row) => (
                   <tr key={row.domain} className="hover:bg-[#FAF6F1]/80 transition-colors">
-                    <td className="py-3.5 px-4 align-top font-serif font-bold text-[#1A1816] text-sm sm:text-base">
+                    <td className="py-3.5 px-4 align-top font-serif font-semibold text-[#1A1816] text-sm sm:text-base">
                       {row.domain}
                       <span className="block font-mono text-[11px] font-normal text-[#4A4541] mt-0.5">
                         {row.verificationContext}
@@ -80,7 +80,7 @@ export function EngineeringFaqSection() {
                     <td className="py-3.5 px-4 align-top text-[#2C2825] font-medium leading-relaxed">
                       {row.engineeredArchitecture}
                     </td>
-                    <td className="py-3.5 px-4 align-top font-mono font-bold text-[#9E3D2B] whitespace-nowrap">
+                    <td className="py-3.5 px-4 align-top font-mono font-medium text-[#9E3D2B] whitespace-nowrap">
                       {row.measuredOutcome}
                     </td>
                   </tr>
@@ -94,16 +94,16 @@ export function EngineeringFaqSection() {
         <div>
           <div className="flex items-center gap-2 mb-6">
             <HelpCircle className="w-4 h-4 text-[#9E3D2B]" />
-            <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#1A1816]">
+            <h3 className="font-serif text-lg sm:text-xl font-semibold text-[#1A1816]">
               Frequently Asked Questions
             </h3>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
             {ENGINEERING_FAQS.map((faq, idx) => (
               <article
                 key={faq.question}
-                className="p-5 sm:p-6 rounded-md bg-[#FAF6F1] border border-[#EDE4D9] hover:border-[#D4C3AF] transition-all flex flex-col justify-between"
+                className="p-4 sm:p-5 rounded-lg bg-[#FAF6F1] border border-[#EDE4D9] hover:border-[#D4C3AF] hover:shadow-2xs transition-all flex flex-col justify-between"
               >
                 <div>
                   <div className="flex items-center justify-between gap-2 pb-2.5 mb-3 border-b border-[#EDE4D9]">
@@ -115,7 +115,7 @@ export function EngineeringFaqSection() {
                     </span>
                   </div>
 
-                  <h4 className="font-serif text-lg sm:text-xl font-bold text-[#1A1816] mb-2.5 leading-snug">
+                  <h4 className="font-serif text-lg sm:text-xl font-semibold text-[#1A1816] mb-2.5 leading-snug">
                     {faq.question}
                   </h4>
 
@@ -160,4 +160,5 @@ export function EngineeringFaqSection() {
     </section>
   );
 }
+
 

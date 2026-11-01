@@ -1,9 +1,8 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, ExternalLink, Github } from "lucide-react";
+import { X, ExternalLink, Github, CheckCircle2, ShieldAlert } from "lucide-react";
 import { type Project } from "@/data/portfolio-data";
 
 interface ProjectModalProps {
@@ -16,163 +15,151 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
 
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 z-[9995] flex items-center justify-center p-2.5 sm:p-6 bg-black/60 backdrop-blur-sm overflow-y-auto">
+      <div
+        className="fixed inset-0 z-[9995] flex items-center justify-center p-3 sm:p-6 bg-black/60 backdrop-blur-xs"
+        onClick={(e) => {
+          if (e.target === e.currentTarget) onClose();
+        }}
+      >
         <motion.div
-          initial={{ opacity: 0, scale: 0.96, y: 20 }}
+          initial={{ opacity: 0, scale: 0.96, y: 14 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.96, y: 20 }}
-          transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-          className="relative w-full max-w-4xl bg-[#FAF6F1] text-[#2C2825] rounded-lg border border-[#EDE4D9] shadow-2xl overflow-hidden my-2 sm:my-8 flex flex-col max-h-[92vh]"
+          exit={{ opacity: 0, scale: 0.96, y: 14 }}
+          transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
+          className="relative w-full max-w-3xl bg-[#FAF6F1] text-[#2C2825] rounded-2xl border border-[#EDE4D9] shadow-2xl overflow-hidden flex flex-col max-h-[88vh] my-auto"
         >
           {/* Top Bar (Sticky) */}
-          <div className="flex items-center justify-between px-4 py-3 sm:px-6 sm:py-4 border-b border-[#EDE4D9] bg-[#FDFCFA] shrink-0">
-            <div className="flex items-center gap-2 sm:gap-3 truncate">
-              <span className="px-2 sm:px-2.5 py-0.5 rounded text-xs font-mono font-semibold bg-[#9E3D2B]/10 text-[#9E3D2B] uppercase tracking-wider truncate">
+          <div className="flex items-center justify-between px-5 py-3.5 border-b border-[#EDE4D9] bg-[#FDFCFA] shrink-0">
+            <div className="flex items-center gap-2.5">
+              <span className="px-2.5 py-0.5 rounded-md text-xs font-mono font-semibold bg-[#9E3D2B]/10 text-[#9E3D2B] uppercase tracking-wider">
                 {project.category}
               </span>
-              <span className="font-mono text-xs sm:text-sm text-[#4A4541] truncate">
+              <span className="font-mono text-xs text-[#5E5854] hidden sm:inline">
                 {project.edition}
               </span>
             </div>
 
             <button
               onClick={onClose}
-              className="p-1.5 rounded-full text-[#4A4541] hover:text-[#1A1816] hover:bg-[#F3ECE4] transition-colors shrink-0 ml-2"
-              aria-label="Close Project Modal"
+              className="p-1.5 rounded-lg text-[#5E5854] hover:text-[#1A1816] hover:bg-[#F3ECE4] transition-colors cursor-pointer"
+              aria-label="Close Modal"
             >
               <X className="w-5 h-5" />
             </button>
           </div>
 
-          <div className="p-4 sm:p-8 space-y-5 sm:space-y-6 overflow-y-auto no-scrollbar">
-            {/* Title Header */}
+          {/* Modal Body (Scrollable) */}
+          <div className="p-6 sm:p-7 space-y-5 overflow-y-auto">
+            {/* Title & Description */}
             <div>
-              <h2 className="font-serif text-2xl sm:text-4xl font-black text-[#1A1816] tracking-tight">
+              <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#1A1816] tracking-tight">
                 {project.name}
               </h2>
-              <p className="text-sm sm:text-base text-[#383432] mt-1.5 sm:mt-2 leading-relaxed">
+              <p className="text-sm text-[#4A4541] mt-1.5 leading-relaxed">
                 {project.purpose}
               </p>
             </div>
 
-            {/* Banner Image & Stats Row */}
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-5 sm:gap-6 items-center">
-              <div className="md:col-span-7 relative aspect-video rounded-md overflow-hidden border border-[#EDE4D9] bg-[#EDE4D9]">
-                <Image
-                  src={project.image}
-                  alt={project.name}
-                  fill
-                  className="object-cover"
-                />
-              </div>
-
-              <div className="md:col-span-5 space-y-3">
-                <span className="text-xs uppercase tracking-wider font-mono text-[#4A4541] block">
-                  System Metrics &amp; Benchmarks:
-                </span>
-                <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-1 gap-2">
-                  {project.stats.map((s) => (
-                    <div
-                      key={s.label}
-                      className="flex items-center justify-between p-2.5 sm:p-3 rounded bg-[#FDFCFA] border border-[#EDE4D9]"
-                    >
-                      <span className="text-xs text-[#383432] font-medium">{s.label}</span>
-                      <span className="font-mono text-xs sm:text-sm font-bold text-[#1A1816]">{s.value}</span>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="pt-2">
-                  <span className="text-xs uppercase tracking-wider font-mono text-[#4A4541] block mb-2">
-                    Technologies Used:
+            {/* 3 Symmetrical Metrics Cards */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              {project.stats.map((s) => (
+                <div
+                  key={s.label}
+                  className="p-3 rounded-xl bg-[#FDFCFA] border border-[#EDE4D9] text-center flex flex-col justify-center min-h-[68px]"
+                >
+                  <span className="text-[11px] font-mono text-[#7A746D] block leading-tight">
+                    {s.label}
                   </span>
-                  <div className="flex flex-wrap gap-1 sm:gap-1.5">
-                    {project.techStack.map((tech) => (
-                      <span
-                        key={tech}
-                        className="px-2 py-0.5 rounded text-xs sm:text-sm font-mono font-medium bg-[#F3ECE4] text-[#4A4541] border border-[#E2D5C6]"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
+                  <span className="font-serif text-base sm:text-lg font-bold text-[#1A1816] block mt-1 leading-tight">
+                    {s.value}
+                  </span>
                 </div>
+              ))}
+            </div>
+
+            {/* Tech Stack Pills */}
+            <div>
+              <span className="text-[11px] uppercase font-mono tracking-wider text-[#7A746D] font-semibold block mb-2">
+                Technologies &amp; Protocols:
+              </span>
+              <div className="flex flex-wrap gap-1.5">
+                {project.techStack.map((tech) => (
+                  <span
+                    key={tech}
+                    className="px-2.5 py-1 rounded-md text-xs font-mono bg-[#F3ECE4] text-[#1A1816] border border-[#D4C3AF]"
+                  >
+                    {tech}
+                  </span>
+                ))}
               </div>
             </div>
 
-            {/* Problem & Solution Breakdown */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 pt-2 border-t border-[#EDE4D9]">
-              <div className="p-4 sm:p-5 rounded-md bg-[#FDFCFA] border border-[#EDE4D9]">
-                <span className="text-xs font-mono font-bold uppercase tracking-wider text-[#7A3B3B] block mb-2">
-                  The Problem &amp; Challenge:
-                </span>
-                <p className="text-xs sm:text-sm text-[#383432] leading-relaxed">
+            {/* Problem & Architecture Breakdown (Symmetrical 2-Column Grid) */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 items-stretch">
+              {/* Challenge */}
+              <div className="p-4 rounded-xl bg-[#FDFCFA] border border-[#EDE4D9] flex flex-col justify-start h-full space-y-2">
+                <div className="flex items-center gap-1.5 text-xs font-mono font-semibold text-[#9E3D2B]">
+                  <ShieldAlert className="w-3.5 h-3.5 shrink-0" />
+                  <span>The Challenge:</span>
+                </div>
+                <p className="text-xs sm:text-[13px] text-[#4A4541] leading-relaxed">
                   {project.problemStatement}
                 </p>
               </div>
 
-              <div className="p-4 sm:p-5 rounded-md bg-[#FDFCFA] border border-[#EDE4D9]">
-                <span className="text-xs font-mono font-bold uppercase tracking-wider text-[#566449] block mb-2">
-                  Architecture &amp; Implementation:
-                </span>
-                <ul className="space-y-2 text-sm sm:text-base text-[#2C2825] leading-relaxed">
+              {/* Solution */}
+              <div className="p-4 rounded-xl bg-[#FDFCFA] border border-[#EDE4D9] flex flex-col justify-start h-full space-y-2">
+                <div className="flex items-center gap-1.5 text-xs font-mono font-semibold text-[#566449]">
+                  <CheckCircle2 className="w-3.5 h-3.5 shrink-0" />
+                  <span>Architecture Solution:</span>
+                </div>
+                <ul className="space-y-1.5 text-xs sm:text-[13px] text-[#4A4541] leading-relaxed">
                   {project.solutionDetails.map((sol, i) => (
                     <li key={i} className="flex items-start gap-2">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#9E3D2B] mt-2 shrink-0" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#566449] mt-1.5 shrink-0" />
                       <span>{sol}</span>
                     </li>
                   ))}
                 </ul>
               </div>
             </div>
+          </div>
 
-            {/* Code Block */}
-            {project.codeSpecimen && (
-              <div className="rounded-md border border-[#EDE4D9] bg-[#1A1816] text-[#FAF6F1] p-3.5 sm:p-4 overflow-hidden">
-                <div className="flex items-center justify-between pb-2 mb-2 border-b border-[#383432] text-xs font-mono text-[#D6D3D1]">
-                  <span className="truncate max-w-[200px]">{project.codeSpecimen.filename}</span>
-                  <span>{project.codeSpecimen.language}</span>
-                </div>
-                <pre className="font-mono text-xs sm:text-sm leading-relaxed overflow-x-auto text-[#EDE4D9]">
-                  <code>{project.codeSpecimen.code}</code>
-                </pre>
-              </div>
-            )}
+          {/* Modal Footer (Sticky Actions) */}
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 px-6 py-3.5 border-t border-[#EDE4D9] bg-[#FDFCFA] shrink-0">
+            <div className="flex items-center gap-2.5">
+              <a
+                href={project.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-lg bg-[#9E3D2B] text-white font-medium text-xs hover:bg-[#852C1B] transition-colors cursor-pointer shadow-xs"
+              >
+                <span>Live Demo</span>
+                <ExternalLink className="w-3.5 h-3.5" />
+              </a>
 
-            {/* Action Buttons Footer */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 pt-3 border-t border-[#EDE4D9]">
-              <div className="flex flex-col xs:flex-row items-stretch xs:items-center gap-2.5">
+              {project.github && (
                 <a
-                  href={project.url}
+                  href={project.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 px-4 sm:px-5 py-2.5 rounded bg-[#9E3D2B] text-white font-semibold text-xs sm:text-sm hover:bg-[#852C1B] transition-colors"
+                  className="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-lg bg-[#FAF6F1] text-[#1A1816] border border-[#EDE4D9] font-medium text-xs hover:bg-[#EDE4D9] transition-colors cursor-pointer"
                 >
-                  <span>Open Live Project</span>
-                  <ExternalLink className="w-3.5 h-3.5" />
+                  <Github className="w-3.5 h-3.5" />
+                  <span>GitHub Repository</span>
                 </a>
-
-                {project.github && (
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded bg-[#F3ECE4] text-[#1A1816] border border-[#E2D5C6] font-semibold text-xs sm:text-sm hover:bg-[#E2D5C6] transition-colors"
-                  >
-                    <Github className="w-4 h-4" />
-                    <span>View Repository</span>
-                  </a>
-                )}
-              </div>
-
-              <span className="text-xs sm:text-sm font-mono text-[#4A4541] text-center sm:text-right">
-                Project ID: {project.id}
-              </span>
+              )}
             </div>
+
+            <button
+              onClick={onClose}
+              className="px-4 py-2 rounded-lg text-xs font-mono text-[#5E5854] hover:text-[#1A1816] transition-colors cursor-pointer"
+            >
+              Close Blueprint ✕
+            </button>
           </div>
         </motion.div>
       </div>
     </AnimatePresence>
   );
 }
-

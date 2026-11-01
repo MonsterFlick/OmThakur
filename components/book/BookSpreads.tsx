@@ -4,21 +4,12 @@ import React from "react";
 import Link from "next/link";
 import {
   ArrowUpRight,
-  Award,
-  BookOpen,
-  CheckCircle2,
   ExternalLink,
   Github,
   Linkedin,
   Mail,
   Phone,
-  MapPin,
-  Shield,
-  Layers,
   Database,
-  Cpu,
-  Terminal,
-  Zap,
 } from "lucide-react";
 import { PROJECTS, MONOGRAPH_PLATES } from "@/data/portfolio-data";
 
@@ -33,75 +24,76 @@ export function BookPage({ plateIndex, side, onInspectProject }: BookPageProps) 
 
   switch (boundedIndex) {
     case 0:
-      return side === "left" ? <FrontispieceLeft /> : <FrontispieceRight />;
+      return side === "left" ? <OverviewLeft /> : <OverviewRight />;
     case 1:
-      return side === "left" ? <ManifestoLeft /> : <ManifestoRight />;
+      return side === "left" ? <PrinciplesLeft /> : <PrinciplesRight />;
     case 2:
       return side === "left" ? (
-        <ProjectBlueprintLeft project={PROJECTS[0]} plateNumber="Chapter 03" />
+        <ProjectLeft project={PROJECTS[0]} chapter="Chapter 03" />
       ) : (
-        <ProjectBlueprintRight
+        <ProjectRight
           project={PROJECTS[0]}
-          topology="Client Checkout ──> Sync API ──> HMAC Webhook ──> AES-256-GCM ──> Instant Asset Entitlement"
-          tradeoff="Dual-verification checkout eliminates client-side bypass and webhook drop race conditions, while AES-256-GCM guarantees digital assets remain encrypted at rest with zero plaintext exposure."
+          topology="Checkout → Sync API → HMAC Webhook → AES-256-GCM Decryption → Asset Storage"
+          tradeoff="Dual verification prevents client bypass and webhook race conditions. Encrypted storage with randomized IVs prevents data leakage at rest."
           onInspect={() => onInspectProject?.(PROJECTS[0].id)}
         />
       );
     case 3:
       return side === "left" ? (
-        <ProjectBlueprintLeft project={PROJECTS[1]} plateNumber="Chapter 04" />
+        <ProjectLeft project={PROJECTS[1]} chapter="Chapter 04" />
       ) : (
-        <ProjectBlueprintRight
+        <ProjectRight
           project={PROJECTS[1]}
-          topology="HTTP Request ──> Next.js Edge Isolate ──> Algorithmic Matrix Transform ──> Stateless SVG Output"
-          tradeoff="Pure mathematical SVG generation at the Edge eliminates headless browser (Puppeteer) memory bloat, database cold-starts, and expensive cloud asset storage buckets."
+          topology="HTTP Request → Next.js Edge Isolate → Matrix Math Transform → Stateless SVG Response"
+          tradeoff="Pure mathematical rendering at the edge eliminates headless browsers (Puppeteer), memory bloat, and cold starts."
           onInspect={() => onInspectProject?.(PROJECTS[1].id)}
         />
       );
     case 4:
       return side === "left" ? (
-        <ProjectBlueprintLeft project={PROJECTS[2]} plateNumber="Chapter 05" />
+        <ProjectLeft project={PROJECTS[2]} chapter="Chapter 05" />
       ) : (
-        <ProjectBlueprintRight
+        <ProjectRight
           project={PROJECTS[2]}
-          topology="Natural Language ──> Local Ollama LLM ──> Structured Action JSON ──> Sandboxed PowerShell Execution"
-          tradeoff="Completely offline local model inference eliminates cloud API token costs, operates with zero internet connectivity, and guarantees zero leakage of private filesystem data."
+          topology="Natural Language → Local Ollama LLM → Action Validator → Sandboxed Execution"
+          tradeoff="Completely local inference operates with zero internet dependency, prevents data leaks, and avoids recurring cloud API costs."
           onInspect={() => onInspectProject?.(PROJECTS[2].id)}
         />
       );
     case 5:
       return side === "left" ? (
-        <ProjectBlueprintLeft project={PROJECTS[3]} plateNumber="Chapter 06" />
+        <ProjectLeft project={PROJECTS[3]} chapter="Chapter 06" />
       ) : (
-        <ProjectBlueprintRight
+        <ProjectRight
           project={PROJECTS[3]}
-          topology="Expense Mutation ──> Room SQLite DB (Zero Latency) ──> Encrypted Queue ──> Supabase Sync"
-          tradeoff="Offline-first architecture guarantees zero field data loss during intermittent mobile connectivity, decoupling user interaction from network round-trips."
+          topology="SMS Ingest → Regex Parser → Room SQLite Persistence → Idempotent Supabase Sync"
+          tradeoff="Offline-first SQLite architecture prevents data loss in unstable connectivity while background cloud sync preserves idempotency."
           onInspect={() => onInspectProject?.(PROJECTS[3].id)}
         />
       );
     case 6:
       return side === "left" ? (
-        <ProjectBlueprintLeft project={PROJECTS[4]} plateNumber="Chapter 07" />
+        <ProjectLeft project={PROJECTS[4]} chapter="Chapter 07" />
       ) : (
-        <ProjectBlueprintRight
+        <ProjectRight
           project={PROJECTS[4]}
-          topology="Markdown Route ──> GitHub REST API ──> Edge Isolate Sanitization ──> Instant Cached Documentation"
-          tradeoff="Using GitHub repositories directly as the headless CMS eliminates custom database infrastructure and keeps documentation strictly synchronized with git commits."
+          topology="GitHub Webhook → Markdown Compiler → Edge Cache Key → Sub-30ms HTML Response"
+          tradeoff="Compiling markdown directly from Git commits eliminates static rebuild pipelines and achieves sub-30ms TTFB worldwide."
           onInspect={() => onInspectProject?.(PROJECTS[4].id)}
         />
       );
     case 7:
-      return side === "left" ? <TaxonomyLeft /> : <TaxonomyRight />;
+      return side === "left" ? <SkillsLeft /> : <SkillsRight />;
     case 8:
-      return side === "left" ? <ChronologyLeft /> : <ChronologyRight />;
+      return side === "left" ? <ExperienceLeft /> : <ExperienceRight />;
     case 9:
+      return side === "left" ? <EducationLeft /> : <ContactRight />;
     default:
-      return side === "left" ? <ColophonLeft /> : <ColophonRight />;
+      return side === "left" ? <OverviewLeft /> : <OverviewRight />;
   }
 }
 
-export function BookSpread({
+export function DesktopSpread({
   plateIndex,
   onInspectProject,
 }: {
@@ -117,336 +109,297 @@ export function BookSpread({
 }
 
 /* ─────────────────────────────────────────────────────────────
-   Chapter 01: Overview & Table of Contents
+   Chapter 01: Overview
 ───────────────────────────────────────────────────────────── */
-function FrontispieceLeft() {
+function OverviewLeft() {
   return (
-    <div className="h-full w-full p-5 sm:p-6 md:p-7 border-r border-[#EDE4D9] flex flex-col justify-between relative bg-[#FAF6F1] text-[#2C2825] overflow-hidden select-none">
+    <div className="h-full w-full p-6 sm:p-7 border-r border-[#EDE4D9] flex flex-col justify-between bg-[#FAF6F1] text-[#2C2825] select-none">
       {/* Top Header */}
-      <div className="flex items-center justify-between text-xs sm:text-sm font-mono uppercase tracking-widest text-[#4A4541] pb-2.5 border-b border-[#EDE4D9]">
+      <div className="flex items-center justify-between text-xs font-mono text-[#7A746D] pb-3 border-b border-[#EDE4D9]">
         <span className="flex items-center gap-2">
-          <span className="w-2.5 h-2.5 rounded-full bg-[#566449] animate-pulse" />
-          <span className="font-bold text-[#1A1816]">Systems Architecture</span>
+          <span className="w-2 h-2 rounded-full bg-[#566449] animate-pulse" />
+          <span className="text-[#1A1816] font-medium">Systems Engineer</span>
         </span>
-        <span className="font-semibold text-[#4A4541]">Mumbai, India</span>
+        <span>Mumbai, India</span>
       </div>
 
-      {/* Main Content Flow */}
-      <div className="space-y-3.5 sm:space-y-4 my-auto">
+      {/* Main Content */}
+      <div className="flex-1 flex flex-col justify-center space-y-4 my-2">
         <div>
-          <span className="text-xs sm:text-sm uppercase font-mono tracking-wider text-[#9E3D2B] font-bold block mb-1">
-            Backend Engineer · Distributed Systems · Scalable APIs
+          <span className="text-xs uppercase font-mono text-[#9E3D2B] font-semibold block mb-1">
+            Backend &amp; Distributed Systems
           </span>
-          <p className="font-serif text-3xl sm:text-4xl font-extrabold text-[#1A1816] tracking-tight leading-tight">
+          <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#1A1816] tracking-tight">
             Om Thakur
-          </p>
-          <p className="font-mono text-xs sm:text-sm text-[#383432] mt-1 font-medium">
-            omthakur2366@gmail.com · omthakur.in · github.com/MonsterFlick
+          </h2>
+          <p className="font-mono text-xs text-[#5E5854] mt-1">
+            omthakur2366@gmail.com · omthakur.in
           </p>
         </div>
 
-        <p className="text-sm sm:text-base text-[#2C2825] leading-relaxed font-normal">
-          Backend engineer focused on distributed, database-backed architectures and production reliability. Experience spans low-latency WebSocket streaming pipelines, offline-first background services, message-queue-driven workflows, role-based access control (RBAC), and automated webhook verification systems.
+        <p className="text-sm text-[#4A4541] leading-relaxed">
+          Backend engineer building low-latency WebSocket pipelines, event-driven message queues,
+          and robust database architectures with strict data safety.
         </p>
 
-        {/* 3 Headline Resume Metrics */}
-        <div className="grid grid-cols-3 gap-2.5">
-          <div className="p-3 rounded-lg bg-[#FDFCFA] border border-[#EDE4D9] shadow-2xs">
-            <span className="font-serif text-xl sm:text-2xl font-bold text-[#9E3D2B] block leading-tight">
+        {/* 3 Key Verified Metrics */}
+        <div className="grid grid-cols-3 gap-2.5 pt-1">
+          <div className="p-2.5 rounded-lg bg-[#FDFCFA] border border-[#EDE4D9] text-center">
+            <span className="font-serif text-lg sm:text-xl font-bold text-[#9E3D2B] block">
               15m → 4s
             </span>
-            <span className="text-xs sm:text-sm text-[#3A3532] font-medium leading-snug block mt-1">
-              Sync speedup via queue (~99.5% reduction)
+            <span className="text-[11px] font-mono text-[#5E5854] block mt-1 leading-snug">
+              Queue sync speedup
             </span>
           </div>
 
-          <div className="p-3 rounded-lg bg-[#FDFCFA] border border-[#EDE4D9] shadow-2xs">
-            <span className="font-serif text-xl sm:text-2xl font-bold text-[#1A1816] block leading-tight">
+          <div className="p-2.5 rounded-lg bg-[#FDFCFA] border border-[#EDE4D9] text-center">
+            <span className="font-serif text-lg sm:text-xl font-bold text-[#1A1816] block">
               ~700 ms
             </span>
-            <span className="text-xs sm:text-sm text-[#3A3532] font-medium leading-snug block mt-1">
-              WebSocket GPU pipeline turnaround
+            <span className="text-[11px] font-mono text-[#5E5854] block mt-1 leading-snug">
+              GPU WebSocket pipeline
             </span>
           </div>
 
-          <div className="p-3 rounded-lg bg-[#FDFCFA] border border-[#EDE4D9] shadow-2xs">
-            <span className="font-serif text-xl sm:text-2xl font-bold text-[#566449] block leading-tight">
+          <div className="p-2.5 rounded-lg bg-[#FDFCFA] border border-[#EDE4D9] text-center">
+            <span className="font-serif text-lg sm:text-xl font-bold text-[#566449] block">
               &lt; 10 ms
             </span>
-            <span className="text-xs sm:text-sm text-[#3A3532] font-medium leading-snug block mt-1">
-              Stateless SVG Edge API response time
+            <span className="text-[11px] font-mono text-[#5E5854] block mt-1 leading-snug">
+              Stateless Edge API
             </span>
           </div>
         </div>
 
-        {/* Core Technical Highlights Box */}
-        <div className="p-3 sm:p-3.5 rounded-lg bg-[#F3ECE4]/90 border border-[#EDE4D9] space-y-2">
-          <span className="font-mono text-xs sm:text-sm uppercase tracking-wider font-bold text-[#1A1816] block">
-            Core Production Technologies:
+        {/* Core Stack */}
+        <div className="p-3 rounded-lg bg-[#F3ECE4]/80 border border-[#EDE4D9]">
+          <span className="text-[11px] font-mono uppercase tracking-wider text-[#5E5854] block mb-2 font-semibold">
+            Primary Stack:
           </span>
-          <div className="flex flex-wrap gap-2 font-mono text-xs sm:text-sm text-[#1A1816]">
-            <span className="px-2.5 py-1 rounded bg-[#FAF6F1] border border-[#D4C3AF] font-bold">TypeScript</span>
-            <span className="px-2.5 py-1 rounded bg-[#FAF6F1] border border-[#D4C3AF] font-bold">Python</span>
-            <span className="px-2.5 py-1 rounded bg-[#FAF6F1] border border-[#D4C3AF] font-bold">PostgreSQL</span>
-            <span className="px-2.5 py-1 rounded bg-[#FAF6F1] border border-[#D4C3AF] font-bold">Flexbase Queues</span>
-            <span className="px-2.5 py-1 rounded bg-[#FAF6F1] border border-[#D4C3AF] font-bold">WebSockets</span>
-            <span className="px-2.5 py-1 rounded bg-[#FAF6F1] border border-[#D4C3AF] font-bold">Supabase RLS</span>
-            <span className="px-2.5 py-1 rounded bg-[#FAF6F1] border border-[#D4C3AF] font-bold">Qdrant Vector DB</span>
-            <span className="px-2.5 py-1 rounded bg-[#FAF6F1] border border-[#D4C3AF] font-bold">Docker &amp; Linux</span>
-          </div>
-        </div>
-      </div>
-
-      {/* Footer Colophon */}
-      <div className="pt-2.5 border-t border-[#EDE4D9] flex items-center justify-between text-xs sm:text-sm text-[#4A4541] font-mono">
-        <div className="flex items-center gap-2">
-          <span className="w-2.5 h-2.5 rounded-full bg-[#566449]" />
-          <span className="font-medium text-[#1A1816]">Available for Production Roles · 2026</span>
-        </div>
-        <span className="text-[#9E3D2B] font-bold">Chapter 01 · Page 01</span>
-      </div>
-    </div>
-  );
-}
-
-function FrontispieceRight() {
-  return (
-    <div className="h-full w-full p-5 sm:p-6 md:p-7 flex flex-col justify-between relative bg-[#FDFCFA] text-[#2C2825] overflow-hidden select-none">
-      {/* Top Header */}
-      <div className="flex items-center justify-between text-xs sm:text-sm font-mono uppercase tracking-widest text-[#4A4541] pb-2.5 border-b border-[#EDE4D9]">
-        <span className="font-bold text-[#1A1816]">Table of Contents</span>
-        <span className="text-[#9E3D2B] font-bold">10 Chapters</span>
-      </div>
-
-      {/* Dense, Clean Chapter Index List */}
-      <div className="space-y-2 my-auto">
-        <div className="space-y-1.5">
-          {MONOGRAPH_PLATES.slice(1).map((plate) => (
-            <div
-              key={plate.id}
-              className="px-3.5 py-1.5 rounded-lg bg-[#FAF6F1]/90 hover:bg-[#F3ECE4] border border-[#EDE4D9] transition-colors flex items-center justify-between gap-3"
-            >
-              <div className="flex items-center gap-3 min-w-0">
-                <span className="font-mono text-xs sm:text-sm text-[#9E3D2B] font-bold shrink-0">
-                  {plate.plateNumber}
-                </span>
-                <span className="font-serif font-bold text-sm sm:text-base text-[#1A1816] truncate">
-                  {plate.title}
-                </span>
-              </div>
-              <span className="text-xs uppercase font-mono tracking-wider px-2.5 py-0.5 rounded bg-[#EDE4D9] text-[#1A1816] shrink-0 font-semibold">
-                {plate.category}
+          <div className="flex flex-wrap gap-1.5 font-mono text-xs text-[#1A1816]">
+            {["TypeScript", "Python", "PostgreSQL", "WebSockets", "Flexbase Queues", "Docker"].map((tech) => (
+              <span key={tech} className="px-2.5 py-0.5 rounded bg-[#FAF6F1] border border-[#D4C3AF]">
+                {tech}
               </span>
-            </div>
-          ))}
-        </div>
-
-        {/* Reading Guide Box */}
-        <div className="p-3 rounded-lg bg-[#F3ECE4]/90 border border-[#EDE4D9] text-xs sm:text-sm text-[#3A3532] space-y-1">
-          <span className="font-mono text-xs uppercase font-bold tracking-wider text-[#1A1816] block">
-            Navigation Directives:
-          </span>
-          <p className="leading-relaxed">
-            Flip through with cursor drags or keyboard arrow keys (← / →). Chapters 03–07 present production systems &amp; data flow blueprints, Chapter 08 breaks down the full architectural stack, Chapter 09 records career appointments, and Chapter 10 provides academic distinctions and verified contacts.
-          </p>
+            ))}
+          </div>
         </div>
       </div>
 
       {/* Footer */}
-      <div className="pt-2.5 border-t border-[#EDE4D9] flex items-center justify-between text-xs sm:text-sm text-[#383432] font-mono">
-        <span className="text-[#9E3D2B] font-bold">
-          Flip to proceed to Engineering Principles →
+      <div className="pt-3 border-t border-[#EDE4D9] flex items-center justify-between text-xs text-[#5E5854] font-mono">
+        <span className="flex items-center gap-1.5">
+          <span className="w-1.5 h-1.5 rounded-full bg-[#566449]" />
+          <span>Available for Roles · 2026</span>
         </span>
-        <span className="text-[#4A4541] font-medium">Page 02</span>
+        <span className="text-[#9E3D2B] font-semibold">Page 01</span>
+      </div>
+    </div>
+  );
+}
+
+function OverviewRight() {
+  const sections = [
+    { title: "Chapter 02: Principles & Case Study", tag: "Architecture", page: "03–04" },
+    { title: "Chapter 03: Digital Commerce Platform", tag: "Payments & Crypto", page: "05–06" },
+    { title: "Chapter 04: devpic SVG API", tag: "Edge Computing", page: "07–08" },
+    { title: "Chapter 05: Agni AI Agent", tag: "Local AI & Automation", page: "09–10" },
+    { title: "Chapter 06: Fin Read Android", tag: "Offline Storage", page: "11–12" },
+    { title: "Chapter 07: GitFool Engine", tag: "Distributed Web", page: "13–14" },
+    { title: "Chapter 08: Technical Skills & Stack", tag: "Taxonomy", page: "15–16" },
+    { title: "Chapter 09: Work Experience", tag: "Career History", page: "17–18" },
+    { title: "Chapter 10: Credentials & Contact", tag: "Education & Links", page: "19–20" },
+  ];
+
+  return (
+    <div className="h-full w-full p-6 sm:p-7 flex flex-col justify-between bg-[#FDFCFA] text-[#2C2825] select-none">
+      {/* Top Header */}
+      <div className="flex items-center justify-between text-xs font-mono text-[#7A746D] pb-3 border-b border-[#EDE4D9]">
+        <span className="text-[#1A1816] font-semibold">Table of Contents</span>
+        <span className="text-[#9E3D2B] font-mono">10 Chapters</span>
+      </div>
+
+      {/* Chapter List */}
+      <div className="flex-1 flex flex-col justify-center space-y-1.5 my-2">
+        {sections.map((s, idx) => (
+          <div
+            key={idx}
+            className="px-3 py-1.5 rounded-md bg-[#FAF6F1] border border-[#EDE4D9] flex items-center justify-between text-xs"
+          >
+            <div className="flex items-center gap-2 min-w-0">
+              <span className="font-mono text-[#9E3D2B] font-semibold shrink-0">
+                {String(idx + 2).padStart(2, "0")}
+              </span>
+              <span className="text-[#1A1816] font-medium truncate">
+                {s.title.replace(/^Chapter \d+: /, "")}
+              </span>
+            </div>
+            <span className="text-[11px] font-mono text-[#7A746D] shrink-0 ml-2">
+              p. {s.page}
+            </span>
+          </div>
+        ))}
+      </div>
+
+      {/* Footer */}
+      <div className="pt-3 border-t border-[#EDE4D9] flex items-center justify-between text-xs text-[#5E5854] font-mono">
+        <span className="text-[#9E3D2B]">Flip with arrow keys (← / →)</span>
+        <span>Page 02</span>
       </div>
     </div>
   );
 }
 
 /* ─────────────────────────────────────────────────────────────
-   Chapter 02: Core Engineering Principles
+   Chapter 02: Principles & Case Study
 ───────────────────────────────────────────────────────────── */
-function ManifestoLeft() {
+function PrinciplesLeft() {
   return (
-    <div className="h-full w-full p-5 sm:p-6 md:p-7 border-r border-[#EDE4D9] flex flex-col justify-between bg-[#FAF6F1] text-[#2C2825] overflow-hidden select-none">
-      <div className="flex items-center justify-between text-xs sm:text-sm font-mono uppercase tracking-widest text-[#4A4541] pb-2.5 border-b border-[#EDE4D9]">
-        <span className="font-bold text-[#1A1816]">Core Architectural Principles</span>
-        <span className="text-[#9E3D2B] font-bold">Chapter 02 · Part I</span>
+    <div className="h-full w-full p-6 sm:p-7 border-r border-[#EDE4D9] flex flex-col justify-between bg-[#FAF6F1] text-[#2C2825] select-none">
+      <div className="flex items-center justify-between text-xs font-mono text-[#7A746D] pb-3 border-b border-[#EDE4D9]">
+        <span className="text-[#1A1816] font-medium">Core Principles</span>
+        <span className="text-[#9E3D2B]">Chapter 02</span>
       </div>
 
-      <div className="space-y-3.5 sm:space-y-4 my-auto">
-        {/* Principle I */}
-        <div className="space-y-1.5 p-3 sm:p-3.5 rounded-lg bg-[#FDFCFA] border border-[#EDE4D9]">
-          <span className="text-xs uppercase font-mono tracking-wider text-[#566449] font-bold block">
-            Principle I · Concurrency &amp; Event Loops
+      <div className="flex-1 flex flex-col justify-center space-y-3.5 my-2">
+        <div className="p-3.5 rounded-lg bg-[#FDFCFA] border border-[#EDE4D9] space-y-1">
+          <span className="text-[11px] uppercase font-mono text-[#566449] font-semibold block">
+            Principle 01 · Concurrency &amp; Event Queues
           </span>
-          <h2 className="font-serif text-lg sm:text-xl font-bold text-[#1A1816]">
-            Asynchronous Queues over Polling Overhead
-          </h2>
-          <p className="text-sm sm:text-base text-[#2C2825] leading-relaxed">
-            Cron-based database polling at scheduled intervals produces artificial latency and dangerous request bursts that overwhelm connection pools. Replacing cron polling with asynchronous message queues (such as Flexbase) processes mutations continuously in near real-time, reducing sync latency from <strong>15 minutes to 4 seconds</strong> (~99.5% reduction) while flattening database load spikes.
-          </p>
-        </div>
-
-        {/* Principle II */}
-        <div className="space-y-1.5 p-3 sm:p-3.5 rounded-lg bg-[#FDFCFA] border border-[#EDE4D9]">
-          <span className="text-xs uppercase font-mono tracking-wider text-[#9E3D2B] font-bold block">
-            Principle II · Fault Boundaries &amp; Data Preservation
-          </span>
-          <h3 className="font-serif text-lg sm:text-xl font-bold text-[#1A1816]">
-            Offline-First Persistence with Zero Field Loss
+          <h3 className="font-serif text-base font-bold text-[#1A1816]">
+            Asynchronous Queues over Polling Loops
           </h3>
-          <p className="text-sm sm:text-base text-[#2C2825] leading-relaxed">
-            Mobile and edge endpoints operate in unpredictable network conditions. Services must never assume persistent connectivity. By buffering operations in encrypted local SQLite queues and syncing upstream once network stability is verified, systems prevent critical field data loss under network drops.
+          <p className="text-xs sm:text-[13px] text-[#4A4541] leading-relaxed">
+            Cron polling introduces latency spikes and saturates database connection pools.
+            Event-driven queues process tasks immediately with exponential backoff and dead-letter routing,
+            cutting synchronization latency from 15 minutes to 4 seconds (~99.5% faster).
           </p>
         </div>
 
-        {/* Visual Architectural Pipeline Diagram */}
-        <div className="p-3 rounded-lg bg-[#F3ECE4]/90 border border-[#EDE4D9] space-y-1.5 font-mono">
-          <span className="text-xs uppercase font-bold text-[#1A1816] tracking-wider block">
-            Asynchronous Event Pipeline Data Flow:
+        <div className="p-3.5 rounded-lg bg-[#FDFCFA] border border-[#EDE4D9] space-y-1">
+          <span className="text-[11px] uppercase font-mono text-[#9E3D2B] font-semibold block">
+            Principle 02 · Webhook Security &amp; Idempotency
           </span>
-          <div className="p-2.5 rounded bg-[#FAF6F1] border border-[#D4C3AF] text-xs sm:text-sm leading-relaxed text-[#1A1816]">
-            <p className="font-bold text-[#9E3D2B]">[Client Mutation] → [API Gateway + Rate Limiter]</p>
-            <p className="text-[#383432] pl-3 sm:pl-4 font-medium">↳ Enqueue Task into Flexbase Message Queue (Zero Lock Delay)</p>
-            <p className="text-[#566449] pl-6 sm:pl-8 font-semibold">↳ Asynchronous Worker Pool Consumer (Idempotent Execution)</p>
-            <p className="text-[#1A1816] pl-9 sm:pl-12 font-bold">↳ PostgreSQL (ACID Write) + Redis Cache Invalidation (4s Total)</p>
-          </div>
+          <h3 className="font-serif text-base font-bold text-[#1A1816]">
+            Zero-Trust Payloads &amp; Idempotency Keys
+          </h3>
+          <p className="text-xs sm:text-[13px] text-[#4A4541] leading-relaxed">
+            External callbacks require timing-safe HMAC-SHA256 signature checks before touching the database.
+            Combining verified signatures with unique transaction keys ensures duplicate webhook retries
+            never cause race conditions or double entitlements.
+          </p>
         </div>
       </div>
 
-      <div className="pt-2.5 border-t border-[#EDE4D9] text-xs sm:text-sm text-[#4A4541] flex justify-between font-mono">
-        <span>Architectural Manifesto</span>
-        <span className="font-bold">Page 03</span>
+      <div className="pt-3 border-t border-[#EDE4D9] flex items-center justify-between text-xs text-[#5E5854] font-mono">
+        <span>Architecture Philosophy</span>
+        <span>Page 03</span>
       </div>
     </div>
   );
 }
 
-function ManifestoRight() {
+function PrinciplesRight() {
   return (
-    <div className="h-full w-full p-5 sm:p-6 md:p-7 flex flex-col justify-between bg-[#FDFCFA] text-[#2C2825] overflow-hidden select-none">
-      <div className="flex items-center justify-between text-xs sm:text-sm font-mono uppercase tracking-widest text-[#4A4541] pb-2.5 border-b border-[#EDE4D9]">
-        <span className="font-bold text-[#1A1816]">Reliability &amp; Outage Prevention</span>
-        <span className="text-[#9E3D2B] font-bold">Chapter 02 · Part II</span>
+    <div className="h-full w-full p-6 sm:p-7 flex flex-col justify-between bg-[#FDFCFA] text-[#2C2825] select-none">
+      <div className="flex items-center justify-between text-xs font-mono text-[#7A746D] pb-3 border-b border-[#EDE4D9]">
+        <span className="text-[#1A1816] font-medium">Production Case Study</span>
+        <span className="text-[#9E3D2B]">RCA &amp; Optimization</span>
       </div>
 
-      <div className="space-y-3.5 sm:space-y-4 my-auto">
-        {/* Principle III */}
-        <div className="space-y-1.5 p-3 sm:p-3.5 rounded-lg bg-[#FAF6F1] border border-[#EDE4D9]">
-          <span className="text-xs uppercase font-mono tracking-wider text-[#9E3D2B] font-bold block">
-            Principle III · Cryptographic Verification &amp; Idempotency
-          </span>
-          <h2 className="font-serif text-lg sm:text-xl font-bold text-[#1A1816]">
-            Defensive Webhooks &amp; Strict State Verification
-          </h2>
-          <p className="text-sm sm:text-base text-[#2C2825] leading-relaxed">
-            Never trust unverified payloads. Every payment confirmation and external webhook must undergo cryptographic HMAC-SHA256 signature verification combined with server-side API validation, backed by unique idempotency keys to guarantee duplicate delivery prevention.
-          </p>
-        </div>
-
-        {/* RCA Case Study Box */}
-        <div className="p-3 sm:p-3.5 rounded-lg bg-[#FAF6F1] border-l-4 border-l-[#9E3D2B] border border-[#EDE4D9] space-y-1.5">
+      <div className="flex-1 flex flex-col justify-center space-y-3.5 my-2">
+        <div className="p-4 rounded-lg bg-[#FAF6F1] border border-[#EDE4D9] space-y-2">
           <div className="flex items-center justify-between">
-            <span className="text-xs uppercase font-mono font-bold tracking-wider text-[#9E3D2B]">
-              Production RCA Case Study:
+            <span className="text-xs font-mono font-semibold text-[#9E3D2B] uppercase">
+              Database Outage Prevention
             </span>
-            <span className="text-xs font-mono font-bold px-2 py-0.5 rounded bg-[#9E3D2B]/10 text-[#9E3D2B]">
-              Resolved
+            <span className="text-[11px] font-mono px-2 py-0.5 rounded bg-[#566449]/10 text-[#566449] font-medium">
+              Resolved in Prod
             </span>
           </div>
-          <h3 className="font-serif text-base sm:text-lg font-bold text-[#1A1816]">
-            Database Outage Prevention via Cron Elimination
-          </h3>
-          <p className="text-xs sm:text-sm text-[#2C2825] leading-relaxed">
-            <strong>Incident Finding:</strong> Root-cause analysis of a production database crash where a payment retry cron repeatedly executed failed requests every 60 seconds, creating cascading simultaneous request bursts that saturated database connection pools.
+
+          <h4 className="font-serif text-base font-bold text-[#1A1816]">
+            Eliminating Retry Storms via Persistent Message Queues
+          </h4>
+
+          <p className="text-xs sm:text-[13px] text-[#4A4541] leading-relaxed">
+            During an incident at Sumeru Technology Solutions, an unthrottled payment retry cron repeatedly
+            saturated PostgreSQL connection pools under load. Replacing the cron with an event-driven Flexbase queue
+            eliminated connection exhaustion crashes entirely.
           </p>
-          <p className="text-xs sm:text-sm text-[#2C2825] leading-relaxed">
-            <strong>Resolution:</strong> Replaced the polling cron with a persistent queue featuring exponential backoff with jitter, dead-letter queuing (DLQ), and PgBouncer connection pooling to guarantee system survival under third-party downtime.
+
+          <p className="text-xs sm:text-[13px] text-[#4A4541] leading-relaxed border-t border-[#EDE4D9] pt-2">
+            For entitlement verification, replacing sequential scans with partial covering B-Tree indexes dropped
+            execution time from <strong>840.2 ms</strong> to <strong>0.11 ms</strong> (99.98% latency reduction)
+            with heap fetches = 0.
           </p>
         </div>
 
-        {/* Architectural Tenet Quote */}
         <div className="p-3 rounded-lg bg-[#F3ECE4]/80 border border-[#EDE4D9]">
-          <p className="font-serif italic text-xs sm:text-sm text-[#1A1816] leading-relaxed">
-            &ldquo;Software architecture is not about avoiding failures; it is about building boundaries so that when failure occurs, data is preserved, recovery is deterministic, and latency remains bound.&rdquo;
+          <p className="font-serif italic text-xs text-[#2C2825] leading-relaxed">
+            &ldquo;Software architecture is not about avoiding failure; it is about setting boundaries so recovery is deterministic and latency remains predictable.&rdquo;
           </p>
         </div>
       </div>
 
-      <div className="pt-2.5 border-t border-[#EDE4D9] flex items-center justify-between text-xs sm:text-sm text-[#383432] font-mono">
-        <span className="text-[#9E3D2B] font-bold">Flip to inspect Project Blueprints →</span>
-        <span className="font-medium">Page 04</span>
+      <div className="pt-3 border-t border-[#EDE4D9] flex items-center justify-between text-xs text-[#5E5854] font-mono">
+        <span>Case Studies</span>
+        <span>Page 04</span>
       </div>
     </div>
   );
 }
 
 /* ─────────────────────────────────────────────────────────────
-   Chapters 03–07: Project Blueprints (Left & Right Spreads)
-   Right page has NO raw code block! Pure architectural blueprint.
+   Chapters 03–07: Project Spreads
 ───────────────────────────────────────────────────────────── */
-function ProjectBlueprintLeft({
+function ProjectLeft({
   project,
-  plateNumber,
+  chapter,
 }: {
   project: (typeof PROJECTS)[0];
-  plateNumber: string;
+  chapter: string;
 }) {
   return (
-    <div className="h-full w-full p-5 sm:p-6 md:p-7 border-r border-[#EDE4D9] flex flex-col justify-between bg-[#FAF6F1] text-[#2C2825] overflow-hidden select-none">
-      <div className="flex items-center justify-between text-xs sm:text-sm font-mono uppercase tracking-widest text-[#4A4541] pb-2.5 border-b border-[#EDE4D9]">
-        <span className="text-[#9E3D2B] font-bold">{plateNumber}</span>
-        <span className="font-bold text-[#1A1816]">{project.category}</span>
+    <div className="h-full w-full p-6 sm:p-7 border-r border-[#EDE4D9] flex flex-col justify-between bg-[#FAF6F1] text-[#2C2825] select-none">
+      <div className="flex items-center justify-between text-xs font-mono text-[#7A746D] pb-3 border-b border-[#EDE4D9]">
+        <span className="text-[#9E3D2B] font-semibold">{chapter}</span>
+        <span className="text-[#1A1816] font-medium">{project.category}</span>
       </div>
 
-      <div className="space-y-3.5 sm:space-y-4 my-auto">
+      <div className="flex-1 flex flex-col justify-center space-y-3.5 my-2">
         <div>
-          <span className="text-xs uppercase tracking-wider text-[#4A4541] font-mono font-bold block mb-1">
+          <span className="text-[11px] uppercase tracking-wider text-[#7A746D] font-mono font-medium block">
             {project.edition}
           </span>
-          <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#1A1816] tracking-tight leading-tight">
+          <h3 className="font-serif text-2xl font-bold text-[#1A1816] tracking-tight mt-0.5">
             {project.name}
-          </h2>
+          </h3>
         </div>
 
-        <p className="text-sm sm:text-base text-[#1A1816] leading-relaxed font-normal">
+        <p className="text-xs sm:text-[13px] text-[#4A4541] leading-relaxed">
           {project.purpose}
         </p>
 
-        {/* Problem Statement Box */}
-        <div className="p-3 sm:p-3.5 rounded-lg bg-[#FDFCFA] border border-[#EDE4D9] space-y-1.5">
-          <span className="text-xs uppercase tracking-wider font-mono font-bold text-[#7A3B3B] block">
-            Production Challenge / Problem Statement:
+        {/* Challenge & Architecture */}
+        <div className="p-3 rounded-lg bg-[#FDFCFA] border border-[#EDE4D9] space-y-1">
+          <span className="text-[11px] font-mono uppercase text-[#9E3D2B] font-semibold block">
+            Core Engineering Challenge:
           </span>
-          <p className="text-xs sm:text-sm text-[#2C2825] leading-relaxed font-normal">
+          <p className="text-xs sm:text-[13px] text-[#4A4541] leading-relaxed">
             {project.problemStatement}
           </p>
         </div>
 
-        {/* Key Architectural Solutions */}
-        <div className="p-3 sm:p-3.5 rounded-lg bg-[#FDFCFA] border border-[#EDE4D9] space-y-2">
-          <span className="text-xs uppercase tracking-wider font-mono font-bold text-[#566449] block">
-            Architectural Implementation &amp; Safeguards:
-          </span>
-          <ul className="space-y-1.5 text-xs sm:text-sm text-[#2C2825]">
-            {project.solutionDetails.slice(0, 3).map((item, i) => (
-              <li key={i} className="flex items-start gap-2">
-                <span className="w-2 h-2 rounded-full bg-[#9E3D2B] mt-1.5 shrink-0" />
-                <span className="leading-snug">{item}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Metrics Row */}
-        <div className="grid grid-cols-3 gap-2.5 pt-1">
+        {/* 3 Metric Cards */}
+        <div className="grid grid-cols-3 gap-2">
           {project.stats.map((s) => (
-            <div key={s.label} className="p-2.5 sm:p-3 rounded-lg bg-[#F3ECE4] border border-[#EDE4D9] text-center">
-              <span className="text-xs uppercase tracking-wider text-[#4A4541] font-mono font-medium block">
+            <div key={s.label} className="p-2 rounded-lg bg-[#F3ECE4] border border-[#EDE4D9] text-center">
+              <span className="text-[11px] font-mono text-[#7A746D] block leading-tight">
                 {s.label}
               </span>
-              <span className="font-serif text-lg sm:text-xl font-bold text-[#1A1816] mt-1 block leading-tight">
+              <span className="font-serif text-sm sm:text-base font-bold text-[#1A1816] block mt-1 leading-tight">
                 {s.value}
               </span>
             </div>
@@ -454,15 +407,15 @@ function ProjectBlueprintLeft({
         </div>
       </div>
 
-      <div className="pt-2.5 border-t border-[#EDE4D9] text-xs sm:text-sm text-[#4A4541] flex justify-between font-mono">
-        <span className="font-medium">System Specification</span>
-        <span className="font-bold">Plate Overview</span>
+      <div className="pt-3 border-t border-[#EDE4D9] flex items-center justify-between text-xs text-[#5E5854] font-mono">
+        <span>Project Overview</span>
+        <span>Specs</span>
       </div>
     </div>
   );
 }
 
-function ProjectBlueprintRight({
+function ProjectRight({
   project,
   topology,
   tradeoff,
@@ -474,23 +427,23 @@ function ProjectBlueprintRight({
   onInspect?: () => void;
 }) {
   return (
-    <div className="h-full w-full p-5 sm:p-6 md:p-7 flex flex-col justify-between bg-[#FDFCFA] text-[#2C2825] overflow-hidden select-none">
-      <div className="flex items-center justify-between text-xs sm:text-sm font-mono uppercase tracking-widest text-[#4A4541] pb-2.5 border-b border-[#EDE4D9]">
-        <span className="font-bold text-[#1A1816]">Architecture Blueprint &amp; Topology</span>
-        <span className="text-[#9E3D2B] font-bold">Systems Design</span>
+    <div className="h-full w-full p-6 sm:p-7 flex flex-col justify-between bg-[#FDFCFA] text-[#2C2825] select-none">
+      <div className="flex items-center justify-between text-xs font-mono text-[#7A746D] pb-3 border-b border-[#EDE4D9]">
+        <span className="text-[#1A1816] font-medium">Implementation &amp; Architecture</span>
+        <span className="text-[#9E3D2B]">Systems</span>
       </div>
 
-      <div className="space-y-3.5 sm:space-y-4 my-auto">
-        {/* Tech Stack Tags */}
+      <div className="flex-1 flex flex-col justify-center space-y-3.5 my-2">
+        {/* Tech Stack */}
         <div>
-          <span className="text-xs uppercase tracking-wider font-mono text-[#4A4541] block mb-2 font-bold">
-            Technology Stack &amp; Protocols:
+          <span className="text-[11px] uppercase tracking-wider font-mono text-[#7A746D] block mb-1.5 font-semibold">
+            Technology Stack:
           </span>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-1.5">
             {project.techStack.map((tech) => (
               <span
                 key={tech}
-                className="px-3 py-1 rounded-md text-xs sm:text-sm font-mono font-bold bg-[#F3ECE4] text-[#1A1816] border border-[#D4C3AF]"
+                className="px-2.5 py-0.5 rounded text-xs font-mono bg-[#F3ECE4] text-[#1A1816] border border-[#D4C3AF]"
               >
                 {tech}
               </span>
@@ -498,55 +451,45 @@ function ProjectBlueprintRight({
           </div>
         </div>
 
-        {/* Feature Highlight Callout */}
-        <div className="p-3 sm:p-3.5 rounded-lg bg-[#FAF6F1] border border-[#EDE4D9] space-y-1.5">
-          <span className="text-xs uppercase tracking-wider font-bold text-[#9E3D2B] block font-mono">
-            Core Architectural Breakthrough:
+        {/* Data Pipeline Diagram */}
+        <div className="p-3 rounded-lg bg-[#FAF6F1] border border-[#EDE4D9] font-mono">
+          <span className="text-[11px] uppercase font-semibold text-[#566449] tracking-wider block mb-1">
+            Data Flow Pipeline:
           </span>
-          <p className="text-sm sm:text-base text-[#1A1816] font-semibold leading-relaxed">
-            {project.feature}
+          <p className="text-xs text-[#9E3D2B] leading-relaxed font-medium">
+            {topology}
           </p>
         </div>
 
-        {/* System Topology Diagram Box */}
-        <div className="p-3 sm:p-3.5 rounded-lg bg-[#FAF6F1] border border-[#EDE4D9] space-y-2 font-mono">
-          <span className="text-xs uppercase font-bold text-[#566449] tracking-wider block">
-            Data Flow &amp; System Topology:
+        {/* Tradeoffs */}
+        <div className="p-3 rounded-lg bg-[#F3ECE4]/80 border border-[#EDE4D9] space-y-1">
+          <span className="text-[11px] uppercase font-semibold text-[#1A1816] font-mono block">
+            Architecture Tradeoffs:
           </span>
-          <div className="p-2.5 rounded bg-[#FDFCFA] border border-[#D4C3AF] text-xs sm:text-sm text-[#1A1816] leading-relaxed font-medium">
-            <p className="text-[#9E3D2B] font-bold">{topology}</p>
-          </div>
-        </div>
-
-        {/* Engineering Tradeoffs & Decisions Card */}
-        <div className="p-3 sm:p-3.5 rounded-lg bg-[#F3ECE4]/90 border border-[#EDE4D9] space-y-1.5">
-          <span className="text-xs uppercase font-bold text-[#1A1816] tracking-wider font-mono block">
-            Engineering Tradeoffs &amp; Decisions:
-          </span>
-          <p className="text-xs sm:text-sm text-[#2C2825] leading-relaxed">
+          <p className="text-xs sm:text-[13px] text-[#4A4541] leading-relaxed">
             {tradeoff}
           </p>
         </div>
       </div>
 
-      {/* Interactive Actions Footer */}
-      <div className="pt-2.5 border-t border-[#EDE4D9] flex items-center justify-between gap-3">
+      {/* Actions */}
+      <div className="pt-3 border-t border-[#EDE4D9] flex items-center justify-between gap-3">
         <button
           onClick={onInspect}
-          className="inline-flex items-center gap-2 px-3.5 py-2 rounded-md bg-[#9E3D2B] text-white text-xs sm:text-sm font-bold hover:bg-[#852C1B] transition-colors shadow-2xs"
+          className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-[#9E3D2B] text-white text-xs font-medium hover:bg-[#852C1B] transition-colors cursor-pointer shadow-xs"
         >
-          <span>Inspect Architecture Dossier</span>
-          <ArrowUpRight className="w-4 h-4" />
+          <span>Inspect Blueprint</span>
+          <ArrowUpRight className="w-3.5 h-3.5" />
         </button>
 
         <a
           href={project.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-xs sm:text-sm font-mono text-[#383432] hover:text-[#1A1816] inline-flex items-center gap-1.5 font-bold"
+          className="text-xs font-mono text-[#5E5854] hover:text-[#1A1816] inline-flex items-center gap-1 cursor-pointer"
         >
-          <span>Live Deployment</span>
-          <ExternalLink className="w-4 h-4" />
+          <span>Live Demo</span>
+          <ExternalLink className="w-3.5 h-3.5" />
         </a>
       </div>
     </div>
@@ -554,437 +497,343 @@ function ProjectBlueprintRight({
 }
 
 /* ─────────────────────────────────────────────────────────────
-   Chapter 08: Technical Architecture Stack
+   Chapter 08: Skills & Stack
 ───────────────────────────────────────────────────────────── */
-function TaxonomyLeft() {
+function SkillsLeft() {
   return (
-    <div className="h-full w-full p-5 sm:p-6 md:p-7 border-r border-[#EDE4D9] flex flex-col justify-between bg-[#FAF6F1] text-[#2C2825] overflow-hidden select-none">
-      <div className="flex items-center justify-between text-xs font-mono uppercase tracking-widest text-[#4A4541] pb-2 border-b border-[#EDE4D9]">
-        <span className="font-bold text-[#1A1816]">Core Engineering Taxonomy</span>
-        <span className="text-[#9E3D2B] font-bold">Chapter 08 · Runtimes</span>
+    <div className="h-full w-full p-6 sm:p-7 border-r border-[#EDE4D9] flex flex-col justify-between bg-[#FAF6F1] text-[#2C2825] select-none">
+      <div className="flex items-center justify-between text-xs font-mono text-[#7A746D] pb-3 border-b border-[#EDE4D9]">
+        <span className="text-[#1A1816] font-medium">Backend &amp; Concurrency</span>
+        <span className="text-[#9E3D2B]">Chapter 08 · Part I</span>
       </div>
 
-      <div className="space-y-2.5 my-auto">
-        <div>
-          <span className="text-[11px] uppercase font-mono tracking-wider text-[#9E3D2B] font-bold block mb-0.5">
-            Runtimes, APIs &amp; Concurrency
-          </span>
-          <h2 className="font-serif text-lg sm:text-xl font-bold text-[#1A1816]">
-            Distributed Execution Engines
-          </h2>
+      <div className="flex-1 flex flex-col justify-center space-y-3 my-2">
+        <div className="p-3 rounded-lg bg-[#FDFCFA] border border-[#EDE4D9]">
+          <div className="flex items-center justify-between text-xs">
+            <span className="font-serif font-bold text-[#1A1816]">TypeScript, Node.js &amp; Deno</span>
+            <span className="font-mono text-xs text-[#9E3D2B] font-medium">Edge &amp; APIs</span>
+          </div>
+          <p className="text-xs text-[#4A4541] mt-1 leading-relaxed">
+            Next.js Edge Runtime, Deno Deploy, asynchronous I/O, REST APIs, and PM2 process clustering.
+          </p>
         </div>
 
-        {/* 4 Rich Stack Cards */}
-        <div className="space-y-2">
-          <div className="p-2 sm:p-2.5 rounded-lg bg-[#FDFCFA] border border-[#EDE4D9] space-y-0.5">
-            <div className="flex items-center justify-between">
-              <span className="font-bold text-xs sm:text-sm text-[#1A1816]">TypeScript, Node.js &amp; Deno</span>
-              <span className="font-mono text-xs font-mono font-bold text-[#9E3D2B]">Strict Type Safety</span>
-            </div>
-            <p className="text-xs sm:text-sm text-[#2C2825] leading-relaxed">
-              Deno Edge Functions, Next.js Edge Runtime, asynchronous I/O, REST APIs, PM2 daemon process orchestration, and zero-downtime cluster reloads.
-            </p>
+        <div className="p-3 rounded-lg bg-[#FDFCFA] border border-[#EDE4D9]">
+          <div className="flex items-center justify-between text-xs">
+            <span className="font-serif font-bold text-[#1A1816]">Python, WebSockets &amp; Audio Pipelines</span>
+            <span className="font-mono text-xs text-[#566449] font-medium">~700 ms Turnaround</span>
           </div>
-
-          <div className="p-2 sm:p-2.5 rounded-lg bg-[#FDFCFA] border border-[#EDE4D9] space-y-0.5">
-            <div className="flex items-center justify-between">
-              <span className="font-bold text-xs sm:text-sm text-[#1A1816]">Python, WebSockets &amp; CUDA</span>
-              <span className="font-mono text-xs font-mono font-bold text-[#566449]">~700 ms Turnaround</span>
-            </div>
-            <p className="text-xs sm:text-sm text-[#2C2825] leading-relaxed">
-              Pipecat streaming integration, Exotel bidirectional audio WebSockets, local LLM orchestration with Ollama, and CUDA GPU inference pipelines.
-            </p>
-          </div>
-
-          <div className="p-2 sm:p-2.5 rounded-lg bg-[#FDFCFA] border border-[#EDE4D9] space-y-0.5">
-            <div className="flex items-center justify-between">
-              <span className="font-bold text-xs sm:text-sm text-[#1A1816]">Flexbase Message Queues</span>
-              <span className="font-mono text-xs font-mono font-bold text-[#7A3B3B]">15m → 4s (~99.5%)</span>
-            </div>
-            <p className="text-xs sm:text-sm text-[#2C2825] leading-relaxed">
-              Asynchronous worker pipelines eliminating cron polling overhead, database lock contention, and connection-pool request burst crashes.
-            </p>
-          </div>
-
-          <div className="p-2 sm:p-2.5 rounded-lg bg-[#FDFCFA] border border-[#EDE4D9] space-y-0.5">
-            <div className="flex items-center justify-between">
-              <span className="font-bold text-xs sm:text-sm text-[#1A1816]">Edge APIs &amp; Security Protocols</span>
-              <span className="font-mono text-xs font-mono font-bold text-[#4A4541]">&lt; 10 ms Stateless</span>
-            </div>
-            <p className="text-xs sm:text-sm text-[#2C2825] leading-relaxed">
-              Stateless mathematical REST APIs on Edge runtimes, HMAC-SHA256 authenticated webhooks, AES-256-GCM encryption, and Matrix protocols.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <div className="pt-2 border-t border-[#EDE4D9] text-xs text-[#4A4541] flex justify-between font-mono">
-        <span>Runtimes &amp; Concurrency</span>
-        <span className="font-bold">Page 15</span>
-      </div>
-    </div>
-  );
-}
-
-function TaxonomyRight() {
-  return (
-    <div className="h-full w-full p-5 sm:p-6 md:p-7 flex flex-col justify-between bg-[#FDFCFA] text-[#2C2825] overflow-hidden select-none">
-      <div className="flex items-center justify-between text-xs font-mono uppercase tracking-widest text-[#4A4541] pb-2 border-b border-[#EDE4D9]">
-        <span className="font-bold text-[#1A1816]">Storage, Vector Stores &amp; Infra</span>
-        <span className="text-[#9E3D2B] font-bold">Chapter 08 · Infrastructure</span>
-      </div>
-
-      <div className="space-y-2.5 my-auto">
-        <div>
-          <span className="text-[11px] uppercase font-mono tracking-wider text-[#9E3D2B] font-bold block mb-0.5">
-            Databases &amp; AI Retrieval
-          </span>
-          <h2 className="font-serif text-lg sm:text-xl font-bold text-[#1A1816]">
-            Persistent, Cache &amp; Vector Stores
-          </h2>
+          <p className="text-xs text-[#4A4541] mt-1 leading-relaxed">
+            Real-time bidirectional audio streams, Pipecat integration, Exotel WebSockets, and GPU pipeline tuning.
+          </p>
         </div>
 
-        {/* 4 Rich Storage Cards */}
-        <div className="space-y-2">
-          <div className="p-2 sm:p-2.5 rounded-lg bg-[#FAF6F1] border border-[#EDE4D9] space-y-0.5">
-            <div className="flex items-center justify-between">
-              <span className="font-bold text-xs sm:text-sm text-[#1A1816]">PostgreSQL &amp; Supabase</span>
-              <span className="font-mono text-xs font-mono font-bold text-[#9E3D2B]">Drizzle &amp; RLS</span>
-            </div>
-            <p className="text-xs sm:text-sm text-[#2C2825] leading-relaxed">
-              Production schema design, Row-Level Security (RLS) policies, multi-tenant isolation, index tuning, and connection pooling.
-            </p>
+        <div className="p-3 rounded-lg bg-[#FDFCFA] border border-[#EDE4D9]">
+          <div className="flex items-center justify-between text-xs">
+            <span className="font-serif font-bold text-[#1A1816]">Flexbase Message Queues</span>
+            <span className="font-mono text-xs text-[#7A3B3B] font-medium">15m → 4s Sync</span>
           </div>
-
-          <div className="p-2 sm:p-2.5 rounded-lg bg-[#FAF6F1] border border-[#EDE4D9] space-y-0.5">
-            <div className="flex items-center justify-between">
-              <span className="font-bold text-xs sm:text-sm text-[#1A1816]">Qdrant Vector DB &amp; RAG</span>
-              <span className="font-mono text-xs font-mono font-bold text-[#566449]">Semantic Search</span>
-            </div>
-            <p className="text-xs sm:text-sm text-[#2C2825] leading-relaxed">
-              Semantic retrieval pipelines utilizing nomic-embed-text embeddings, document ingestion chunking, and citation-backed legal responses.
-            </p>
-          </div>
-
-          <div className="p-2 sm:p-2.5 rounded-lg bg-[#FAF6F1] border border-[#EDE4D9] space-y-0.5">
-            <div className="flex items-center justify-between">
-              <span className="font-bold text-xs sm:text-sm text-[#1A1816]">Redis, MySQL &amp; SQLite</span>
-              <span className="font-mono text-xs font-mono font-bold text-[#7A3B3B]">Encrypted Queues</span>
-            </div>
-            <p className="text-xs sm:text-sm text-[#2C2825] leading-relaxed">
-              In-memory cache layers, Room Database synchronization, and Android encrypted SQLite queues preventing field packet loss.
-            </p>
-          </div>
-
-          <div className="p-2 sm:p-2.5 rounded-lg bg-[#FAF6F1] border border-[#EDE4D9] space-y-0.5">
-            <div className="flex items-center justify-between">
-              <span className="font-bold text-xs sm:text-sm text-[#1A1816]">Linux &amp; Self-Hosted Infra</span>
-              <span className="font-mono text-xs font-mono font-bold text-[#4A4541]">Production Ops</span>
-            </div>
-            <p className="text-xs sm:text-sm text-[#2C2825] leading-relaxed">
-              Linux daemons, Docker containers, Mailcow, Dograh, Nginx reverse proxy, Cloudflare SSL, PM2 process clusters, and ProGuard.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <div className="pt-2 border-t border-[#EDE4D9] text-xs text-[#4A4541] flex justify-between font-mono">
-        <span>Databases &amp; Cloud</span>
-        <span className="font-bold">Page 16</span>
-      </div>
-    </div>
-  );
-}
-
-/* ─────────────────────────────────────────────────────────────
-   Chapter 09: Work Experience & History
-───────────────────────────────────────────────────────────── */
-function ChronologyLeft() {
-  return (
-    <div className="h-full w-full p-5 sm:p-6 md:p-7 border-r border-[#EDE4D9] flex flex-col justify-between bg-[#FAF6F1] text-[#2C2825] overflow-hidden select-none">
-      <div className="flex items-center justify-between text-xs font-mono uppercase tracking-widest text-[#4A4541] pb-2 border-b border-[#EDE4D9]">
-        <span className="text-[#9E3D2B] font-bold">Chapter 09</span>
-        <span className="font-bold text-[#1A1816]">Recent Production Roles</span>
-      </div>
-
-      <div className="space-y-2.5 sm:space-y-3 my-auto">
-        {/* Role 1: Krishora */}
-        <div className="space-y-1.5 p-2.5 sm:p-3 rounded-lg bg-[#FDFCFA] border border-[#EDE4D9]">
-          <div className="flex items-center justify-between">
-            <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-[#9E3D2B]/15 text-[#9E3D2B] uppercase tracking-wider">
-              Founding Role
-            </span>
-            <span className="font-mono text-xs text-[#9E3D2B] font-bold">May 2026 – Present</span>
-          </div>
-          <div>
-            <h3 className="font-serif text-base sm:text-lg font-bold text-[#1A1816]">
-              Krishora Technologies
-            </h3>
-            <p className="font-mono text-xs text-[#566449] font-bold">Founding Software Engineer · Mumbai, India</p>
-          </div>
-          <ul className="space-y-1 text-xs sm:text-sm text-[#2C2825] pt-0.5">
-            <li className="flex items-start gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#9E3D2B] mt-1.5 shrink-0" />
-              <span>Engineered low-latency Python pipeline (Pipecat, Exotel WebSockets, CUDA GPUs) with ~700 ms turnaround.</span>
-            </li>
-            <li className="flex items-start gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#9E3D2B] mt-1.5 shrink-0" />
-              <span>Built Node.js/PM2 service router for Sevak AI using Qdrant vector retrieval.</span>
-            </li>
-            <li className="flex items-start gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#9E3D2B] mt-1.5 shrink-0" />
-              <span>Deployed Dograh, Mailcow, Nginx, Cloudflare SSL, and ProGuard Expo apps.</span>
-            </li>
-          </ul>
-        </div>
-
-        {/* Role 2: CIARL */}
-        <div className="space-y-1.5 p-2.5 sm:p-3 rounded-lg bg-[#FDFCFA] border border-[#EDE4D9]">
-          <div className="flex items-center justify-between">
-            <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-[#EDE4D9] text-[#1A1816] uppercase tracking-wider">
-              Defense &amp; Intelligence Lab
-            </span>
-            <span className="font-mono text-xs text-[#383432] font-semibold">Aug 2025 – May 2026</span>
-          </div>
-          <div>
-            <h3 className="font-serif text-base sm:text-lg font-bold text-[#1A1816]">
-              Cyber Intelligence and Research Lab (CIARL)
-            </h3>
-            <p className="font-mono text-xs text-[#566449] font-bold">Software Developer · Thane, India</p>
-          </div>
-          <ul className="space-y-1 text-xs sm:text-sm text-[#2C2825] pt-0.5">
-            <li className="flex items-start gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#9E3D2B] mt-1.5 shrink-0" />
-              <span>Developed Kotlin/Java Android background services with encrypted SQLite queues preventing field loss.</span>
-            </li>
-            <li className="flex items-start gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#9E3D2B] mt-1.5 shrink-0" />
-              <span>Built React/PostgreSQL apps with authentication, RBAC, and legal-domain RAG.</span>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <div className="pt-2 border-t border-[#EDE4D9] text-xs text-[#4A4541] flex justify-between font-mono">
-        <span>Production Experience</span>
-        <span className="font-bold">Page 17</span>
-      </div>
-    </div>
-  );
-}
-
-function ChronologyRight() {
-  return (
-    <div className="h-full w-full p-5 sm:p-6 md:p-7 flex flex-col justify-between bg-[#FDFCFA] text-[#2C2825] overflow-hidden select-none">
-      <div className="flex items-center justify-between text-xs font-mono uppercase tracking-widest text-[#4A4541] pb-2 border-b border-[#EDE4D9]">
-        <span className="font-bold text-[#1A1816]">Internship &amp; Mentorship</span>
-        <span className="text-[#9E3D2B] font-bold">Chapter 09 · Part II</span>
-      </div>
-
-      <div className="space-y-2.5 sm:space-y-3 my-auto">
-        {/* Role 3: Sumeru */}
-        <div className="space-y-1.5 p-2.5 sm:p-3 rounded-lg bg-[#FAF6F1] border border-[#EDE4D9]">
-          <div className="flex items-center justify-between">
-            <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-[#566449]/15 text-[#566449] uppercase tracking-wider">
-              Performance Milestone
-            </span>
-            <span className="font-mono text-xs text-[#566449] font-bold">Aug 2024 – Feb 2025</span>
-          </div>
-          <div>
-            <h3 className="font-serif text-base sm:text-lg font-bold text-[#1A1816]">
-              Sumeru Technology Solutions Pvt. Ltd.
-            </h3>
-            <p className="font-mono text-xs text-[#566449] font-bold">SDE Intern · Bengaluru, India</p>
-          </div>
-          <ul className="space-y-1 text-xs sm:text-sm text-[#2C2825] pt-0.5">
-            <li className="flex items-start gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#9E3D2B] mt-1.5 shrink-0" />
-              <span>Replaced cron polling with Flexbase queues, reducing sync from 15m to 4s (~99.5%).</span>
-            </li>
-            <li className="flex items-start gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#9E3D2B] mt-1.5 shrink-0" />
-              <span>Root cause analysis of production DB crash caused by payment cron retry bursts.</span>
-            </li>
-            <li className="flex items-start gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#9E3D2B] mt-1.5 shrink-0" />
-              <span>Migrated PHP to TypeScript and Deno Edge Functions; evaluated Novu notification system.</span>
-            </li>
-          </ul>
-        </div>
-
-        {/* Role 4: Bhimrao Pradhan College */}
-        <div className="space-y-1.5 p-2.5 sm:p-3 rounded-lg bg-[#FAF6F1] border border-[#EDE4D9]">
-          <div className="flex items-center justify-between">
-            <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-[#E2D5C6] text-[#1A1816] uppercase tracking-wider">
-              Academic Faculty Service
-            </span>
-            <span className="font-mono text-xs text-[#4A4541] font-semibold">Jun – Aug 2024</span>
-          </div>
-          <div>
-            <h3 className="font-serif text-base sm:text-lg font-bold text-[#1A1816]">
-              Bhimrao Pradhan College, University of Mumbai
-            </h3>
-            <p className="font-mono text-xs text-[#566449] font-bold">Assistant Professor (Volunteer) · Shahapur, India</p>
-          </div>
-          <p className="text-xs sm:text-sm text-[#2C2825] leading-relaxed pt-0.5 font-normal">
-            Taught core subjects to B.Sc. IT undergraduate students, mentored final-year project teams, and created structured curriculum to build industry readiness in database systems and backend architecture.
+          <p className="text-xs text-[#4A4541] mt-1 leading-relaxed">
+            Worker queues with exponential backoff and dead-letter routing to eliminate polling overhead and connection pool exhaustion.
           </p>
         </div>
       </div>
 
-      <div className="pt-2 border-t border-[#EDE4D9] text-xs text-[#4A4541] flex justify-between font-mono">
-        <span>Historical Record</span>
-        <span className="font-bold">Page 18</span>
+      <div className="pt-3 border-t border-[#EDE4D9] text-xs text-[#5E5854] flex justify-between font-mono">
+        <span>Runtimes &amp; Streaming</span>
+        <span>Page 15</span>
+      </div>
+    </div>
+  );
+}
+
+function SkillsRight() {
+  return (
+    <div className="h-full w-full p-6 sm:p-7 flex flex-col justify-between bg-[#FDFCFA] text-[#2C2825] select-none">
+      <div className="flex items-center justify-between text-xs font-mono text-[#7A746D] pb-3 border-b border-[#EDE4D9]">
+        <span className="text-[#1A1816] font-medium">Databases &amp; Infrastructure</span>
+        <span className="text-[#9E3D2B]">Chapter 08 · Part II</span>
+      </div>
+
+      <div className="flex-1 flex flex-col justify-center space-y-3 my-2">
+        <div className="p-3 rounded-lg bg-[#FAF6F1] border border-[#EDE4D9]">
+          <div className="flex items-center justify-between text-xs">
+            <span className="font-serif font-bold text-[#1A1816]">PostgreSQL &amp; Supabase</span>
+            <span className="font-mono text-xs text-[#9E3D2B] font-medium">Drizzle &amp; RLS</span>
+          </div>
+          <p className="text-xs text-[#4A4541] mt-1 leading-relaxed">
+            Relational schema design, Row-Level Security (RLS) policies, partial covering indexes, and connection pooling.
+          </p>
+        </div>
+
+        <div className="p-3 rounded-lg bg-[#FAF6F1] border border-[#EDE4D9]">
+          <div className="flex items-center justify-between text-xs">
+            <span className="font-serif font-bold text-[#1A1816]">Qdrant Vector Database</span>
+            <span className="font-mono text-xs text-[#566449] font-medium">Semantic Search</span>
+          </div>
+          <p className="text-xs text-[#4A4541] mt-1 leading-relaxed">
+            Dense vector embeddings with nomic-embed-text, cosine similarity search, and citation-grounded RAG pipelines.
+          </p>
+        </div>
+
+        <div className="p-3 rounded-lg bg-[#FAF6F1] border border-[#EDE4D9]">
+          <div className="flex items-center justify-between text-xs">
+            <span className="font-serif font-bold text-[#1A1816]">Linux &amp; Self-Hosted Infrastructure</span>
+            <span className="font-mono text-xs text-[#5E5854] font-medium">Docker &amp; Nginx</span>
+          </div>
+          <p className="text-xs text-[#4A4541] mt-1 leading-relaxed">
+            Docker Compose, Nginx reverse proxies, Cloudflare SSL, automated backups, and self-hosted mail/monitoring servers.
+          </p>
+        </div>
+      </div>
+
+      <div className="pt-3 border-t border-[#EDE4D9] text-xs text-[#5E5854] flex justify-between font-mono">
+        <span>Databases &amp; Cloud</span>
+        <span>Page 16</span>
       </div>
     </div>
   );
 }
 
 /* ─────────────────────────────────────────────────────────────
-   Chapter 10: Academic Honors & Contact
+   Chapter 09: Work Experience
 ───────────────────────────────────────────────────────────── */
-function ColophonLeft() {
+function ExperienceLeft() {
   return (
-    <div className="h-full w-full p-5 sm:p-6 md:p-7 border-r border-[#EDE4D9] flex flex-col justify-between bg-[#FAF6F1] text-[#2C2825] overflow-hidden select-none">
-      <div className="flex items-center justify-between text-xs font-mono uppercase tracking-widest text-[#4A4541] pb-2 border-b border-[#EDE4D9]">
-        <span className="text-[#9E3D2B] font-bold">Chapter 10</span>
-        <span className="font-bold text-[#1A1816]">Education &amp; Credentials</span>
+    <div className="h-full w-full p-6 sm:p-7 border-r border-[#EDE4D9] flex flex-col justify-between bg-[#FAF6F1] text-[#2C2825] select-none">
+      <div className="flex items-center justify-between text-xs font-mono text-[#7A746D] pb-3 border-b border-[#EDE4D9]">
+        <span className="text-[#9E3D2B] font-semibold">Chapter 09</span>
+        <span className="text-[#1A1816] font-medium">Recent Experience</span>
       </div>
 
-      <div className="space-y-2.5 sm:space-y-3 my-auto">
-        {/* Degree Card */}
-        <div className="p-2.5 sm:p-3 rounded-lg bg-[#FDFCFA] border border-[#EDE4D9] space-y-1">
+      <div className="flex-1 flex flex-col justify-center space-y-3.5 my-2">
+        {/* Krishora */}
+        <div className="p-3.5 rounded-lg bg-[#FDFCFA] border border-[#EDE4D9] space-y-1.5">
           <div className="flex items-center justify-between">
-            <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-[#566449]/15 text-[#566449]">
-              🏆 First Rank in College
+            <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-[#9E3D2B]/10 text-[#9E3D2B] font-semibold uppercase">
+              Founding Engineer
+            </span>
+            <span className="font-mono text-xs text-[#7A746D]">May 2026 – Present</span>
+          </div>
+          <div>
+            <h4 className="font-serif text-base font-bold text-[#1A1816]">
+              Krishora Technologies
+            </h4>
+            <p className="font-mono text-xs text-[#566449]">Founding Software Engineer · Mumbai</p>
+          </div>
+          <p className="text-xs sm:text-[13px] text-[#4A4541] leading-relaxed">
+            Architected real-time WebSocket pipelines with ~700 ms turnaround; built Node.js routing layer with Qdrant vector retrieval for voice AI agent.
+          </p>
+        </div>
+
+        {/* CIARL */}
+        <div className="p-3.5 rounded-lg bg-[#FDFCFA] border border-[#EDE4D9] space-y-1.5">
+          <div className="flex items-center justify-between">
+            <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-[#EDE4D9] text-[#1A1816] font-semibold uppercase">
+              Research Developer
+            </span>
+            <span className="font-mono text-xs text-[#7A746D]">Aug 2025 – May 2026</span>
+          </div>
+          <div>
+            <h4 className="font-serif text-base font-bold text-[#1A1816]">
+              Cyber Intelligence &amp; Research Lab (CIARL)
+            </h4>
+            <p className="font-mono text-xs text-[#566449]">Software Developer · Thane</p>
+          </div>
+          <p className="text-xs sm:text-[13px] text-[#4A4541] leading-relaxed">
+            Built Android background services with encrypted SQLite queues to ensure zero field data loss; developed React/PostgreSQL apps with RBAC and legal search.
+          </p>
+        </div>
+      </div>
+
+      <div className="pt-3 border-t border-[#EDE4D9] text-xs text-[#5E5854] flex justify-between font-mono">
+        <span>Production History</span>
+        <span>Page 17</span>
+      </div>
+    </div>
+  );
+}
+
+function ExperienceRight() {
+  return (
+    <div className="h-full w-full p-6 sm:p-7 flex flex-col justify-between bg-[#FDFCFA] text-[#2C2825] select-none">
+      <div className="flex items-center justify-between text-xs font-mono text-[#7A746D] pb-3 border-b border-[#EDE4D9]">
+        <span className="text-[#1A1816] font-medium">Internship &amp; Academic</span>
+        <span className="text-[#9E3D2B]">Chapter 09 · Part II</span>
+      </div>
+
+      <div className="flex-1 flex flex-col justify-center space-y-3.5 my-2">
+        {/* Sumeru */}
+        <div className="p-3.5 rounded-lg bg-[#FAF6F1] border border-[#EDE4D9] space-y-1.5">
+          <div className="flex items-center justify-between">
+            <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-[#566449]/10 text-[#566449] font-semibold uppercase">
+              SDE Intern
+            </span>
+            <span className="font-mono text-xs text-[#7A746D]">Aug 2024 – Feb 2025</span>
+          </div>
+          <div>
+            <h4 className="font-serif text-base font-bold text-[#1A1816]">
+              Sumeru Technology Solutions
+            </h4>
+            <p className="font-mono text-xs text-[#566449]">Software Engineering Intern · Bengaluru</p>
+          </div>
+          <p className="text-xs sm:text-[13px] text-[#4A4541] leading-relaxed">
+            Replaced polling cron jobs with Flexbase queues, reducing sync from 15m to 4s (~99.5% speedup); resolved database connection exhaustion and migrated legacy PHP endpoints to TypeScript.
+          </p>
+        </div>
+
+        {/* Academic Mentorship */}
+        <div className="p-3.5 rounded-lg bg-[#FAF6F1] border border-[#EDE4D9] space-y-1.5">
+          <div className="flex items-center justify-between">
+            <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-[#E2D5C6] text-[#1A1816] font-semibold uppercase">
+              Teaching &amp; Mentorship
+            </span>
+            <span className="font-mono text-xs text-[#7A746D]">Jun – Aug 2024</span>
+          </div>
+          <div>
+            <h4 className="font-serif text-base font-bold text-[#1A1816]">
+              University of Mumbai Affiliate College
+            </h4>
+            <p className="font-mono text-xs text-[#566449]">Volunteer Assistant Professor · Shahapur</p>
+          </div>
+          <p className="text-xs sm:text-[13px] text-[#4A4541] leading-relaxed">
+            Taught database normalization, SQL indexing, and relational schemas to B.Sc. IT undergraduates; mentored final-year project teams.
+          </p>
+        </div>
+      </div>
+
+      <div className="pt-3 border-t border-[#EDE4D9] text-xs text-[#5E5854] flex justify-between font-mono">
+        <span>Work History</span>
+        <span>Page 18</span>
+      </div>
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Chapter 10: Education & Direct Contact
+───────────────────────────────────────────────────────────── */
+function EducationLeft() {
+  return (
+    <div className="h-full w-full p-6 sm:p-7 border-r border-[#EDE4D9] flex flex-col justify-between bg-[#FAF6F1] text-[#2C2825] select-none">
+      <div className="flex items-center justify-between text-xs font-mono text-[#7A746D] pb-3 border-b border-[#EDE4D9]">
+        <span className="text-[#9E3D2B] font-semibold">Chapter 10</span>
+        <span className="text-[#1A1816] font-medium">Education &amp; Honors</span>
+      </div>
+
+      <div className="flex-1 flex flex-col justify-center space-y-3.5 my-2">
+        {/* Degree */}
+        <div className="p-3.5 rounded-lg bg-[#FDFCFA] border border-[#EDE4D9] space-y-1.5">
+          <div className="flex items-center justify-between">
+            <span className="px-2.5 py-0.5 rounded text-[11px] font-mono bg-[#566449]/10 text-[#566449] font-semibold">
+              First Rank in College
             </span>
             <span className="font-mono text-xs text-[#9E3D2B] font-bold">CGPA: 8.55 / 10.0</span>
           </div>
-          <h3 className="font-serif text-base sm:text-lg font-bold text-[#1A1816]">
-            Bachelor of Science in Information Technology (B.Sc. IT)
-          </h3>
-          <p className="font-mono text-xs text-[#566449] font-bold">Sonubhau Baswant College, University of Mumbai · 2021 – 2024</p>
-          <p className="text-xs sm:text-sm text-[#2C2825] leading-relaxed">
-            Graduated with First Rank in the college across the entire cohort. Led the final-year project team as project head. Built core foundations in relational algebra, operating systems, and distributed system design.
+          <h4 className="font-serif text-base font-bold text-[#1A1816]">
+            B.Sc. in Information Technology
+          </h4>
+          <p className="font-mono text-xs text-[#566449]">University of Mumbai · 2021 – 2024</p>
+          <p className="text-xs sm:text-[13px] text-[#4A4541] leading-relaxed">
+            Graduated with First Rank across the cohort. Core focus in database architecture, operating systems, networking protocols, and distributed algorithms.
           </p>
         </div>
 
-        {/* Certificate Card */}
-        <div className="p-2.5 sm:p-3 rounded-lg bg-[#FDFCFA] border border-[#EDE4D9] space-y-1">
+        {/* Training */}
+        <div className="p-3.5 rounded-lg bg-[#FDFCFA] border border-[#EDE4D9] space-y-1">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-1.5">
-              <BookOpen className="w-3.5 h-3.5 text-[#9E3D2B]" />
-              <span className="font-serif font-bold text-sm sm:text-base text-[#1A1816]">Data Science Training</span>
-            </div>
-            <span className="font-mono text-[10px] font-bold text-[#566449]">VERIFIED</span>
+            <span className="font-serif font-bold text-sm text-[#1A1816]">Data Science &amp; Python Training</span>
+            <span className="font-mono text-[11px] text-[#566449] font-medium">Verified</span>
           </div>
-          <p className="font-mono text-xs text-[#4A4541] font-bold">Internshala Trainings · Oct 2023 · Cert ID: 263gl7b3rur</p>
-          <p className="text-xs sm:text-sm text-[#2C2825] leading-relaxed">
-            Hands-on training covering statistical data processing, vector datasets, Python scientific tooling, and data pipeline fundamentals.
-          </p>
-        </div>
-
-        {/* Theoretical Competencies Box */}
-        <div className="p-2.5 rounded-lg bg-[#F3ECE4]/90 border border-[#EDE4D9] space-y-0.5 text-xs">
-          <span className="font-mono text-[10px] uppercase font-bold tracking-wider text-[#1A1816] block">
-            Academic &amp; Systems Foundation:
-          </span>
-          <p className="text-[#2C2825] leading-relaxed font-medium">
-            Database normalization, ACID transaction guarantees, Row-Level Security, asynchronous event loops, WebSocket protocol lifecycles, and cryptographic authentication.
+          <p className="font-mono text-xs text-[#7A746D]">Internshala Trainings · Oct 2023</p>
+          <p className="text-xs sm:text-[13px] text-[#4A4541] leading-relaxed">
+            Practical coursework in data manipulation, array processing with NumPy/Pandas, and statistical data pipelines.
           </p>
         </div>
       </div>
 
-      <div className="pt-2 border-t border-[#EDE4D9] text-xs text-[#4A4541] flex justify-between font-mono">
-        <span>Verified Credentials</span>
-        <span className="font-bold">Page 19</span>
+      <div className="pt-3 border-t border-[#EDE4D9] text-xs text-[#5E5854] flex justify-between font-mono">
+        <span>Education</span>
+        <span>Page 19</span>
       </div>
     </div>
   );
 }
 
-function ColophonRight() {
+function ContactRight() {
   return (
-    <div className="h-full w-full p-5 sm:p-6 md:p-7 flex flex-col justify-between bg-[#FDFCFA] text-[#2C2825] overflow-hidden select-none">
-      <div className="flex items-center justify-between text-xs font-mono uppercase tracking-widest text-[#4A4541] pb-2 border-b border-[#EDE4D9]">
-        <span className="font-bold text-[#1A1816]">Direct Contact &amp; Connect</span>
-        <span className="text-[#9E3D2B] font-bold">Available 2026</span>
+    <div className="h-full w-full p-6 sm:p-7 flex flex-col justify-between bg-[#FDFCFA] text-[#2C2825] select-none">
+      <div className="flex items-center justify-between text-xs font-mono text-[#7A746D] pb-3 border-b border-[#EDE4D9]">
+        <span className="text-[#1A1816] font-medium">Contact &amp; Links</span>
+        <span className="text-[#9E3D2B]">Available 2026</span>
       </div>
 
-      <div className="space-y-2.5 sm:space-y-3 my-auto">
+      <div className="flex-1 flex flex-col justify-center space-y-4 my-2">
         <div>
-          <h2 className="font-serif text-2xl sm:text-3xl font-extrabold text-[#1A1816]">
+          <h3 className="font-serif text-2xl font-bold text-[#1A1816]">
             Om Thakur
-          </h2>
-          <p className="font-mono text-xs sm:text-sm text-[#9E3D2B] font-bold mt-1">
-            Backend Engineer | Distributed Systems | Scalable APIs
+          </h3>
+          <p className="font-mono text-xs text-[#9E3D2B] font-medium mt-0.5">
+            Backend &amp; Distributed Systems Engineer
           </p>
-          <p className="text-sm sm:text-base text-[#2C2825] mt-2 leading-relaxed font-normal">
-            Open for backend engineering appointments, scalable systems architecture consulting, and high-concurrency real-time infrastructure projects.
+          <p className="text-xs sm:text-[13px] text-[#4A4541] mt-1.5 leading-relaxed">
+            Available for full-time backend engineering roles, concurrency consulting, and distributed systems architecture.
           </p>
         </div>
 
         {/* Contact Links Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-mono">
+        <div className="grid grid-cols-2 gap-2 text-xs font-mono">
           <a
             href="mailto:omthakur2366@gmail.com"
-            className="p-2 sm:p-2.5 rounded-lg bg-[#FAF6F1] border border-[#EDE4D9] hover:border-[#9E3D2B] transition-colors flex items-center gap-2 text-[#1A1816] font-bold"
+            className="p-2.5 rounded-lg bg-[#FAF6F1] border border-[#EDE4D9] hover:border-[#9E3D2B] transition-colors flex items-center gap-2 text-[#1A1816]"
           >
-            <Mail className="w-3.5 h-3.5 text-[#9E3D2B] shrink-0" />
-            <span className="truncate">omthakur2366@gmail.com</span>
+            <Mail className="w-4 h-4 text-[#9E3D2B] shrink-0" />
+            <span className="truncate">Email Me</span>
           </a>
 
           <a
             href="tel:+917756898550"
-            className="p-2 sm:p-2.5 rounded-lg bg-[#FAF6F1] border border-[#EDE4D9] hover:border-[#9E3D2B] transition-colors flex items-center gap-2 text-[#1A1816] font-bold"
+            className="p-2.5 rounded-lg bg-[#FAF6F1] border border-[#EDE4D9] hover:border-[#9E3D2B] transition-colors flex items-center gap-2 text-[#1A1816]"
           >
-            <Phone className="w-3.5 h-3.5 text-[#566449] shrink-0" />
-            <span>+91 7756898550</span>
+            <Phone className="w-4 h-4 text-[#566449] shrink-0" />
+            <span className="truncate">+91 7756898550</span>
           </a>
 
           <a
             href="https://github.com/MonsterFlick"
             target="_blank"
             rel="noopener noreferrer"
-            className="p-2 sm:p-2.5 rounded-lg bg-[#FAF6F1] border border-[#EDE4D9] hover:border-[#9E3D2B] transition-colors flex items-center gap-2 text-[#1A1816] font-bold"
+            className="p-2.5 rounded-lg bg-[#FAF6F1] border border-[#EDE4D9] hover:border-[#9E3D2B] transition-colors flex items-center gap-2 text-[#1A1816]"
           >
-            <Github className="w-3.5 h-3.5 text-[#1A1816] shrink-0" />
-            <span>github.com/MonsterFlick</span>
+            <Github className="w-4 h-4 text-[#1A1816] shrink-0" />
+            <span>GitHub</span>
           </a>
 
           <a
             href="https://linkedin.com/in/omthakur2366"
             target="_blank"
             rel="noopener noreferrer"
-            className="p-2 sm:p-2.5 rounded-lg bg-[#FAF6F1] border border-[#EDE4D9] hover:border-[#9E3D2B] transition-colors flex items-center gap-2 text-[#1A1816] font-bold"
+            className="p-2.5 rounded-lg bg-[#FAF6F1] border border-[#EDE4D9] hover:border-[#9E3D2B] transition-colors flex items-center gap-2 text-[#1A1816]"
           >
-            <Linkedin className="w-3.5 h-3.5 text-[#0A66C2] shrink-0" />
-            <span>linkedin.com/in/omthakur2366</span>
+            <Linkedin className="w-4 h-4 text-[#0A66C2] shrink-0" />
+            <span>LinkedIn</span>
           </a>
         </div>
 
-        {/* Direct Action Box */}
-        <div className="p-2.5 sm:p-3 rounded-lg bg-[#FAF6F1] border border-[#EDE4D9] flex items-center justify-between gap-3">
-          <div>
-            <span className="font-mono text-xs uppercase font-bold text-[#1A1816] block">
-              Curriculum Vitae / Resume
-            </span>
-            <span className="text-xs text-[#383432] font-medium">
-              Clean ATS-ready print &amp; PDF version
-            </span>
-          </div>
+        {/* Resume Button */}
+        <div>
           <Link
             href="/resume"
-            className="px-3 py-1.5 rounded-md bg-[#1A1816] text-[#FAF6F1] text-xs font-bold hover:bg-[#9E3D2B] transition-colors shrink-0 shadow-2xs"
+            className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-[#1A1816] text-[#FAF6F1] text-xs font-semibold hover:bg-[#9E3D2B] transition-colors shadow-xs"
           >
-            Open /resume →
+            <span>View Full Resume / CV →</span>
           </Link>
         </div>
       </div>
 
-      <div className="pt-2 border-t border-[#EDE4D9] flex items-center justify-between text-xs text-[#383432] font-mono">
-        <span className="text-[#9E3D2B] font-bold">End of Volume I</span>
-        <span className="font-semibold">Page 20</span>
+      <div className="pt-3 border-t border-[#EDE4D9] flex items-center justify-between text-xs text-[#5E5854] font-mono">
+        <span className="text-[#9E3D2B]">End of Portfolio</span>
+        <span>Page 20</span>
       </div>
     </div>
   );

@@ -683,27 +683,32 @@ export function LiveDeviceStation() {
   const discordStatus = data?.discord_status || "offline";
 
   return (
-    <section id="workbench" className="py-20 md:py-28 px-4 sm:px-6 lg:px-8 border-b border-[#EDE4D9] bg-[#FAF6F1]">
-      <div className="w-full max-w-7xl xl:max-w-[1360px] mx-auto">
-        <div className="text-center max-w-3xl mx-auto mb-10">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#F3ECE4] border border-[#E2D5C6] text-xs font-semibold text-[#4A4541] mb-4">
-            <Radio className="w-3.5 h-3.5 text-[#9E3D2B] animate-pulse" />
-            <span>Live Activity Stream</span>
+    <section id="workbench" className="py-10 sm:py-12 md:py-14 px-4 sm:px-6 lg:px-8 border-b border-[#EDE4D9] bg-[#FAF6F1]">
+      <div className="w-full max-w-6xl xl:max-w-7xl mx-auto">
+        {/* Section Masthead */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8 sm:mb-10 pb-5 border-b border-[#EDE4D9]">
+          <div>
+            <div className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.2em] text-[#9E3D2B] font-mono font-semibold mb-1.5">
+              <Radio className="w-3.5 h-3.5 animate-pulse text-[#9E3D2B]" />
+              <span>Live Telemetry &amp; Signal Station</span>
+            </div>
+            <h2 className="font-serif text-2xl sm:text-3xl text-[#1A1816] font-medium tracking-tight">
+              Live Activity &amp; Workstations
+            </h2>
+            <p className="text-sm text-[#4A4541] mt-1.5 max-w-xl leading-relaxed">
+              Real-time hardware status, active processes, and streaming media broadcast live across personal dev workstations.
+            </p>
           </div>
-          <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#1A1816] tracking-tight">
-            Live Activity &amp; Status
-          </h2>
-          <p className="text-base sm:text-lg text-[#2C2825] mt-3 leading-relaxed font-normal">
-            Real-time status, active coding projects, and media streaming live across personal devices.
-          </p>
-          <div className="flex items-center justify-center gap-2 mt-4 text-xs font-mono">
-            <span className={`w-2 h-2 rounded-full ${isConnected ? "bg-[#566449] animate-pulse" : "bg-[#9E3D2B]"}`} />
-            <span className="text-[#4A4541] font-semibold">{isConnected ? "LIVE FEED CONNECTED" : "CONNECTING..."}</span>
+          <div className="flex items-center gap-2 shrink-0">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-[#FDFCFA] border border-[#EDE4D9] font-mono text-xs text-[#383432]">
+              <span className={`w-2 h-2 rounded-full ${isConnected ? "bg-[#566449] animate-pulse" : "bg-[#9E3D2B]"}`} />
+              <span className="text-[#2C2825] font-normal">{isConnected ? "LIVE FEED CONNECTED" : "CONNECTING..."}</span>
+            </span>
           </div>
         </div>
 
         {/* ── Central Presence Beacon Banner ── */}
-        <div className="mb-8 p-5 sm:p-6 rounded-xl bg-[#FDFCFA] border border-[#EDE4D9] shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-6">
+        <div className="mb-8 p-4 sm:p-5 rounded-lg bg-[#FDFCFA] border border-[#EDE4D9] shadow-2xs flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div className="flex items-center gap-4">
             {/* Avatar with dynamic radar ping */}
             <div className="relative shrink-0">
@@ -740,14 +745,14 @@ export function LiveDeviceStation() {
             {/* Author Identity & Custom Status */}
             <div className="min-w-0">
               <div className="flex items-center gap-2.5 flex-wrap">
-                <span className="font-serif font-black text-lg sm:text-xl text-[#1A1816] tracking-tight">
+                <span className="font-serif font-bold text-lg text-[#1A1816] tracking-tight">
                   {displayName}
                 </span>
-                <span className="text-xs font-mono px-2.5 py-0.5 rounded bg-[#EDE4D9] text-[#2C2825] border border-[#D4C3AF] font-bold">
+                <span className="text-xs font-mono px-2 py-0.5 rounded bg-[#EDE4D9] text-[#383432] border border-[#D4C3AF] font-medium">
                   {professionalTitle}
                 </span>
                 <span
-                  className={`text-xs font-mono uppercase tracking-wider px-2.5 py-0.5 rounded-full font-bold flex items-center gap-1.5 ${
+                  className={`text-xs font-mono uppercase tracking-wider px-2.5 py-0.5 rounded-full font-medium flex items-center gap-1.5 ${
                     discordStatus === "online"
                       ? "bg-[#566449]/10 text-[#566449]"
                       : discordStatus === "idle"
@@ -845,8 +850,8 @@ export function LiveDeviceStation() {
           </div>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6 items-stretch">
-          <div className={`p-4 sm:p-6 rounded-lg border shadow-sm flex flex-col justify-between h-full transition-all ${isMobileActive || mobileActivities.length > 0 ? "bg-[#FDFCFA] border-[#EDE4D9] hover:border-[#D4C3AF]" : "bg-[#F7F2EB] border-[#E8DFC8]"}`}>
+        <div className="grid md:grid-cols-3 gap-4 sm:gap-5 items-stretch">
+          <div className={`p-4 sm:p-5 rounded-lg border shadow-2xs flex flex-col justify-between h-full transition-all ${isMobileActive || mobileActivities.length > 0 ? "bg-[#FDFCFA] border-[#EDE4D9] hover:border-[#D4C3AF]" : "bg-[#F7F2EB] border-[#E8DFC8]"}`}>
             <div className="flex-1 flex flex-col">
               <div className="flex items-center justify-between pb-3 border-b border-[#EDE4D9] h-12">
                 <div className="flex items-center gap-2.5">
@@ -854,7 +859,7 @@ export function LiveDeviceStation() {
                     <Smartphone className="w-4 h-4" />
                   </div>
                   <div>
-                    <h3 className="font-serif font-bold text-lg sm:text-xl text-[#1A1816]">realme 11 Pro 5G</h3>
+                    <h3 className="font-serif font-semibold text-base text-[#1A1816]">realme 11 Pro 5G</h3>
                     <p className="text-xs sm:text-sm text-[#383432] font-medium">Dimensity 7050 · Android 14</p>
                   </div>
                 </div>
@@ -862,7 +867,7 @@ export function LiveDeviceStation() {
               <div className="mt-4 h-7 flex items-center">
                 {mobileActivities.length > 0 ? (
                   <div className="flex items-center justify-between gap-2 bg-[#F3ECE4] px-2.5 py-1 rounded border border-[#EDE4D9] w-full text-xs font-mono text-[#383432]">
-                    <span className="flex items-center gap-1.5 font-semibold text-[#1A1816] truncate">
+                    <span className="flex items-center gap-1.5 text-[#1A1816] truncate font-medium">
                       <span className="w-1.5 h-1.5 rounded-full bg-[#9E3D2B] animate-pulse" />
                       <span>{mobileActivities.length > 1 ? `${mobileActivities.length} Sessions Active` : `${mobileActivities[0].service} Active`}</span>
                     </span>
@@ -890,7 +895,7 @@ export function LiveDeviceStation() {
                   <div className="p-4 rounded bg-[#FAF6F1] border border-[#EDE4D9] flex-1 flex flex-col justify-between space-y-3">
                     <div className="space-y-2.5">
                       <div className="flex items-center justify-between">
-                        <span className="text-xs sm:text-sm font-mono uppercase tracking-wider font-bold text-[#1A1816]">
+                        <span className="text-xs sm:text-sm font-mono uppercase tracking-wider text-[#1A1816] font-medium">
                           Mobile Station Specs
                         </span>
                         <span className="inline-flex items-center gap-1 text-xs font-mono text-[#566449] font-medium">
@@ -902,15 +907,15 @@ export function LiveDeviceStation() {
                       <div className="space-y-1.5 text-xs sm:text-sm font-mono text-[#4A4541]">
                         <div className="flex justify-between pb-1 border-b border-[#EDE4D9]/60">
                           <span className="text-[#4A4541] font-medium">Processor</span>
-                          <span className="font-semibold text-[#1A1816]">Dimensity 7050 (6nm)</span>
+                          <span className="text-[#2C2825] font-normal">Dimensity 7050 (6nm)</span>
                         </div>
                         <div className="flex justify-between pb-1 border-b border-[#EDE4D9]/60">
                           <span className="text-[#4A4541] font-medium">Platform</span>
-                          <span className="font-semibold text-[#1A1816]">realme UI 5.0 · Android 14</span>
+                          <span className="text-[#2C2825] font-normal">realme UI 5.0 · Android 14</span>
                         </div>
                         <div className="flex justify-between">
                           <span className="text-[#4A4541] font-medium">Media Sync</span>
-                          <span className="font-semibold text-[#1A1816]">Audio &amp; Video Streams Ready</span>
+                          <span className="text-[#2C2825] font-normal">Audio &amp; Video Streams Ready</span>
                         </div>
                       </div>
                     </div>
@@ -937,7 +942,7 @@ export function LiveDeviceStation() {
             </div>
           </div>
 
-          <div className={`p-4 sm:p-6 rounded-lg border shadow-sm flex flex-col justify-between h-full transition-all ${isDesktopActive || desktopActivities.length > 0 ? "bg-[#FDFCFA] border-[#EDE4D9] hover:border-[#D4C3AF]" : "bg-[#F7F2EB] border-[#E8DFC8]"}`}>
+          <div className={`p-4 sm:p-5 rounded-lg border shadow-2xs flex flex-col justify-between h-full transition-all ${isDesktopActive || desktopActivities.length > 0 ? "bg-[#FDFCFA] border-[#EDE4D9] hover:border-[#D4C3AF]" : "bg-[#F7F2EB] border-[#E8DFC8]"}`}>
             <div className="flex-1 flex flex-col">
               <div className="flex items-center justify-between pb-3 border-b border-[#EDE4D9] h-12">
                 <div className="flex items-center gap-2.5">
@@ -945,7 +950,7 @@ export function LiveDeviceStation() {
                     <Laptop className={`w-4 h-4 ${isDesktopActive || desktopActivities.length > 0 ? "text-[#E07A5F]" : "text-[#4A4541]"}`} />
                   </div>
                   <div>
-                    <h3 className="font-serif font-bold text-lg sm:text-xl text-[#1A1816]">Gaming &amp; Dev PC</h3>
+                    <h3 className="font-serif font-semibold text-base text-[#1A1816]">Gaming &amp; Dev PC</h3>
                     <p className="text-xs sm:text-sm text-[#383432] font-medium">RTX 2060S · 32GB RAM · Ryzen 7 2600X</p>
                   </div>
                 </div>
@@ -953,7 +958,7 @@ export function LiveDeviceStation() {
               <div className="mt-4 h-7 flex items-center">
                 {desktopActivities.length > 0 ? (
                   <div className="flex items-center justify-between gap-2 bg-[#F3ECE4] px-2.5 py-1 rounded border border-[#EDE4D9] w-full text-xs font-mono text-[#383432]">
-                    <span className="flex items-center gap-1.5 font-semibold text-[#1A1816] truncate">
+                    <span className="flex items-center gap-1.5 text-[#1A1816] truncate font-medium">
                       <span className="w-1.5 h-1.5 rounded-full bg-[#566449] animate-pulse" />
                       <span>{desktopActivities.length > 1 ? `${desktopActivities.length} Processes Active` : `${desktopActivities[0].service} Active`}</span>
                     </span>
@@ -979,7 +984,7 @@ export function LiveDeviceStation() {
                   desktopActivities.map((act) => renderActivityWidget(act))
                 ) : isDesktopActive ? (
                   <div className="p-4 rounded bg-[#FAF6F1] border border-[#EDE4D9] space-y-1">
-                    <p className="font-serif font-bold text-sm text-[#1A1816]">Desktop Online</p>
+                    <p className="font-serif font-semibold text-sm text-[#1A1816]">Desktop Online</p>
                     <p className="text-xs sm:text-sm text-[#383432] font-medium">Windows 11 · Workstation Ready</p>
                   </div>
                 ) : (
@@ -996,7 +1001,7 @@ export function LiveDeviceStation() {
           </div>
 
           {/* Card 3: Social Channels & Content Hub */}
-          <div className="p-4 sm:p-6 rounded-lg bg-[#FDFCFA] border border-[#EDE4D9] hover:border-[#D4C3AF] shadow-sm flex flex-col justify-between h-full transition-all">
+          <div className="p-4 sm:p-5 rounded-lg bg-[#FDFCFA] border border-[#EDE4D9] hover:border-[#D4C3AF] shadow-2xs flex flex-col justify-between h-full transition-all">
             <div className="flex-1 flex flex-col">
               <div className="flex items-center justify-between pb-3 border-b border-[#EDE4D9] h-12">
                 <div className="flex items-center gap-2.5">
@@ -1004,7 +1009,7 @@ export function LiveDeviceStation() {
                     <Instagram className="w-4 h-4" />
                   </div>
                   <div>
-                    <h3 className="font-serif font-bold text-lg sm:text-xl text-[#1A1816]">Social &amp; Content Hub</h3>
+                    <h3 className="font-serif font-semibold text-base text-[#1A1816]">Social &amp; Content Hub</h3>
                     <p className="text-xs sm:text-sm text-[#383432] font-medium">@omthakur.op · Creator Handles</p>
                   </div>
                 </div>
@@ -1014,7 +1019,7 @@ export function LiveDeviceStation() {
               <div className="mt-4 h-7 flex items-center">
                 <div className="flex items-center gap-2 px-2.5 py-1 rounded bg-[#F3ECE4] border border-[#EDE4D9] w-full text-xs font-mono text-[#383432]">
                   <span className="w-2 h-2 rounded-full bg-[#A81745] animate-pulse" />
-                  <span className="font-semibold text-[#1A1816]">Instagram Connected</span>
+                  <span className="text-[#2C2825] font-normal">Instagram Connected</span>
                   <span className="ml-auto text-xs sm:text-sm text-[#383432]">@omthakur.op</span>
                 </div>
               </div>
@@ -1027,7 +1032,7 @@ export function LiveDeviceStation() {
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
                         <Instagram className="w-4 h-4 text-[#A81745]" />
-                        <span className="font-serif font-bold text-sm text-[#1A1816]">Instagram</span>
+                        <span className="font-serif font-semibold text-sm text-[#1A1816]">Instagram</span>
                       </div>
                       <span className="text-xs font-mono px-2 py-0.5 rounded bg-[#A81745]/15 text-[#A81745] font-bold">
                         ● Active Profile
@@ -1035,7 +1040,7 @@ export function LiveDeviceStation() {
                     </div>
                     <div className="flex justify-between items-center text-xs font-mono">
                       <span className="text-[#4A4541] font-medium">Handle</span>
-                      <span className="font-bold text-[#1A1816]">@omthakur.op</span>
+                      <span className="text-[#1A1816] font-medium">@omthakur.op</span>
                     </div>
                     <p className="text-xs sm:text-sm text-[#383432] leading-snug">
                       Dev updates, project highlights &amp; behind-the-scenes engineering logs.
@@ -1056,7 +1061,7 @@ export function LiveDeviceStation() {
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
                         <Youtube className="w-4 h-4 text-[#9E3D2B]" />
-                        <span className="font-serif font-bold text-sm text-[#1A1816]">YouTube Channel</span>
+                        <span className="font-serif font-semibold text-sm text-[#1A1816]">YouTube Channel</span>
                       </div>
                       <span className="text-xs font-mono px-2 py-0.5 rounded bg-[#9E3D2B]/15 text-[#9E3D2B] font-semibold">
                         Opening Soon
