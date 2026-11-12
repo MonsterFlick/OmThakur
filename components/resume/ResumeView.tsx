@@ -3,7 +3,6 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import {
-  Printer,
   ArrowLeft,
   Mail,
   Phone,
@@ -100,11 +99,6 @@ Kotlin · Android SDK · Room Database · Supabase · Material 3
 - Implemented offline-first persistence with Room Database and cloud synchronization with Supabase.
 - Developed the interface using Material 3.
 
-GitFool — Edge-Runtime Markdown Publication Engine | blogs.omthakur.in
-Next.js Edge Runtime · TypeScript · Tailwind CSS · MDX
-- Built a high-performance edge-rendered publication platform compiling markdown directly from GitHub repositories via webhooks with sub-30ms TTFB.
-- Engineered on-the-fly syntax highlighting and automated SEO tag generation with zero database dependencies and 100/100 Lighthouse scores.
-
 EDUCATION
 Bachelor of Science in Information Technology (B.Sc. IT) | Aug 2021 - Apr 2024
 Sonubhau Baswant College, University of Mumbai
@@ -126,10 +120,6 @@ Bhimrao Pradhan College, University of Mumbai
     setTimeout(() => setCopied(false), 2500);
   };
 
-  const handlePrint = () => {
-    window.print();
-  };
-
   return (
     <div className="min-h-screen bg-[#FAF6F1] text-[#2C2825] font-sans antialiased selection:bg-[#9E3D2B]/20">
       {/* ── Top Floating Action Toolbar (Web View Only) ── */}
@@ -147,17 +137,7 @@ Bhimrao Pradhan College, University of Mumbai
             <span className="text-[#9E3D2B] font-semibold" aria-current="page">Resume &amp; CV</span>
           </nav>
 
-          <div className="flex items-center gap-2">
-            <a
-              href="/Om_Thakur_Resume.pdf"
-              download="Om_Thakur_Resume.pdf"
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-[#FDFCFA] hover:bg-[#F3ECE4] text-[#1A1816] text-xs font-mono font-medium transition-colors border border-[#D4C3AF] shadow-xs"
-              title="Download pre-compiled 2-Page Master PDF"
-            >
-              <Download className="w-3.5 h-3.5 text-[#566449]" />
-              <span>Download PDF</span>
-            </a>
-
+          <div className="flex items-center gap-2.5">
             <button
               onClick={handleCopyText}
               className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-[#FDFCFA] hover:bg-[#F3ECE4] text-[#1A1816] text-xs font-mono font-medium transition-colors border border-[#D4C3AF] shadow-xs"
@@ -176,14 +156,15 @@ Bhimrao Pradhan College, University of Mumbai
               )}
             </button>
 
-            <button
-              onClick={handlePrint}
+            <a
+              href="/Om_Thakur_Resume_2Page.pdf"
+              download="Om_Thakur_Resume_2Page.pdf"
               className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-md bg-[#1A1816] text-[#FAF6F1] hover:bg-[#9E3D2B] text-xs font-mono font-semibold transition-colors shadow-xs"
-              title="Print or Save PDF"
+              title="Download pre-compiled 2-Page Master PDF Resume"
             >
-              <Printer className="w-3.5 h-3.5 text-[#E07A5F]" />
-              <span>Print / Save PDF</span>
-            </button>
+              <Download className="w-3.5 h-3.5 text-[#E07A5F]" />
+              <span>Download PDF (2-Page)</span>
+            </a>
           </div>
         </div>
       </div>
@@ -571,37 +552,6 @@ Bhimrao Pradhan College, University of Mumbai
                       </li>
                     </ul>
                   </div>
-
-                  {/* Project 5: GitFool */}
-                  <div className="page-break-inside-avoid p-4 rounded-lg bg-[#FAF6F1] border border-[#EDE4D9] space-y-2">
-                    <div className="flex flex-col justify-between gap-1">
-                      <div className="flex flex-wrap items-baseline justify-between gap-2">
-                        <h3 className="font-serif font-bold text-base text-[#1A1816]">
-                          GitFool — Edge Markdown Engine
-                        </h3>
-                        <a
-                          href="https://blogs.omthakur.in"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="font-mono text-xs text-[#9E3D2B] hover:underline inline-flex items-center gap-1 shrink-0"
-                        >
-                          <span>blogs.omthakur.in</span>
-                          <ExternalLink className="w-3 h-3 no-print" />
-                        </a>
-                      </div>
-                      <p className="font-mono text-xs text-[#566449] font-medium">
-                        Next.js Edge Runtime · TypeScript · MDX
-                      </p>
-                    </div>
-                    <ul className="list-disc list-outside pl-4 space-y-1 text-xs sm:text-sm text-[#4A4541] leading-relaxed print-bullet-list">
-                      <li>
-                        Engineered an edge-rendered publication platform pulling markdown source files directly from GitHub repositories via webhooks with sub-30ms TTFB worldwide.
-                      </li>
-                      <li>
-                        Built on-the-fly syntax highlighting and automated SEO tag compilation with zero database dependencies and a 100/100 Google Lighthouse score.
-                      </li>
-                    </ul>
-                  </div>
                 </div>
               </section>
             </div>
@@ -793,12 +743,15 @@ Bhimrao Pradhan College, University of Mumbai
                 Copy Text
               </button>
               <span>•</span>
-              <button
-                onClick={handlePrint}
-                className="hover:text-[#9E3D2B] transition-colors font-semibold"
+              <a
+                href="/Om_Thakur_Resume_2Page.pdf"
+                download="Om_Thakur_Resume_2Page.pdf"
+                className="hover:text-[#9E3D2B] transition-colors font-semibold inline-flex items-center gap-1 text-[#9E3D2B]"
+                title="Download 2-Page Master PDF"
               >
-                Print / Save PDF
-              </button>
+                <Download className="w-3 h-3" />
+                <span>Download PDF (2-Page)</span>
+              </a>
             </div>
           </footer>
         </article>
