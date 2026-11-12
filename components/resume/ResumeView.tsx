@@ -124,7 +124,7 @@ Bhimrao Pradhan College, University of Mumbai
     <div className="min-h-screen bg-[#FAF6F1] text-[#2C2825] font-sans antialiased selection:bg-[#9E3D2B]/20">
       {/* ── Top Floating Action Toolbar (Web View Only) ── */}
       <div className="no-print sticky top-0 z-50 bg-[#FAF6F1]/95 backdrop-blur-md border-b border-[#EDE4D9] py-3 px-4 sm:px-8 lg:px-12 shadow-xs">
-        <div className="w-full max-w-5xl mx-auto flex flex-wrap items-center justify-between gap-3">
+        <div className="w-full max-w-7xl xl:max-w-[1536px] 2xl:max-w-[1600px] mx-auto flex flex-wrap items-center justify-between gap-3">
           <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs font-mono">
             <Link
               href="/"
@@ -172,9 +172,9 @@ Bhimrao Pradhan College, University of Mumbai
       {/* ── Main Full-Screen Resume Container ── */}
       <main
         id="main-content"
-        className="py-6 sm:py-10 px-4 sm:px-8 lg:px-12 w-full max-w-5xl mx-auto print-container"
+        className="py-6 sm:py-8 lg:py-10 px-4 sm:px-6 lg:px-8 xl:px-12 w-full max-w-7xl xl:max-w-[1536px] 2xl:max-w-[1600px] mx-auto print-container"
       >
-        <article className="p-5 sm:p-8 lg:p-10 bg-[#FDFCFA] border border-[#EDE4D9] rounded-xl shadow-paper relative overflow-hidden print-container">
+        <article className="p-5 sm:p-8 lg:p-10 xl:p-12 bg-[#FDFCFA] border border-[#EDE4D9] rounded-xl shadow-paper relative overflow-hidden print-container">
           {/* Top Decorative Colophon Stripe (Web View Only) */}
           <div className="no-print h-1.5 w-full bg-gradient-to-r from-[#9E3D2B] via-[#D4C3AF] to-[#566449] absolute top-0 left-0 right-0" />
 
