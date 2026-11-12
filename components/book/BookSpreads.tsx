@@ -613,7 +613,7 @@ function ExperienceLeft() {
             <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-[#9E3D2B]/10 text-[#9E3D2B] font-semibold uppercase">
               Founding Engineer
             </span>
-            <span className="font-mono text-xs text-[#7A746D]">May 2026 – Present</span>
+            <span className="font-mono text-xs text-[#7A746D]">Apr 2026 – Present</span>
           </div>
           <div>
             <h4 className="font-serif text-base font-bold text-[#1A1816]">
@@ -632,7 +632,7 @@ function ExperienceLeft() {
             <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-[#EDE4D9] text-[#1A1816] font-semibold uppercase">
               Research Developer
             </span>
-            <span className="font-mono text-xs text-[#7A746D]">Aug 2025 – May 2026</span>
+            <span className="font-mono text-xs text-[#7A746D]">Aug 2025 – Apr 2026</span>
           </div>
           <div>
             <h4 className="font-serif text-base font-bold text-[#1A1816]">

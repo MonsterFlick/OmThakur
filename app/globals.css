@@ -110,3 +110,121 @@
   --shadow-paper-hover: 0 4px 12px 0 rgba(44, 40, 37, 0.08), 0 2px 4px -2px rgba(44, 40, 37, 0.04);
   --shadow-paper-lg: 0 10px 25px -3px rgba(44, 40, 37, 0.08), 0 4px 6px -4px rgba(44, 40, 37, 0.04);
 }
+
+/* ─────────────────────────────────────────────────────────────
+   RESUME & PAGE PRINT STYLESHEET
+   Eliminates overflow clipping, preserves 2-column layout,
+   and formats cleanly for A4 / Letter printing and PDF export.
+   ───────────────────────────────────────────────────────────── */
+@media print {
+  @page {
+    margin: 10mm 12mm 10mm 12mm;
+    size: A4 portrait;
+  }
+
+  html,
+  body {
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+    color: #1a1816 !important;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif !important;
+    font-size: 9.2pt !important;
+    line-height: 1.35 !important;
+    overflow: visible !important;
+  }
+
+  /* Hide web chrome, interactive controls, and decorative layers */
+  .no-print,
+  nav:not([aria-label="Breadcrumb"]),
+  .grain-layer {
+    display: none !important;
+  }
+
+  /* Reset outer container and eliminate overflow clipping */
+  .print-container {
+    padding: 0 !important;
+    margin: 0 !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    box-shadow: none !important;
+    border: none !important;
+    background: transparent !important;
+    overflow: visible !important;
+    border-radius: 0 !important;
+  }
+
+  /* Ensure the printed grid keeps the side-by-side editorial proportion */
+  .print-grid {
+    display: grid !important;
+    grid-template-columns: 7.2fr 4.8fr !important;
+    gap: 14pt !important;
+    align-items: start !important;
+  }
+
+  /* Page break rules: avoid splitting entries across pages */
+  .page-break-inside-avoid {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  h1, h2, h3, h4 {
+    break-after: avoid !important;
+    page-break-after: avoid !important;
+  }
+
+  /* Clean typography for print */
+  .print-header-name {
+    font-size: 24pt !important;
+    font-weight: 800 !important;
+    color: #1a1816 !important;
+    line-height: 1.1 !important;
+  }
+
+  .print-header-subtitle {
+    font-size: 10pt !important;
+    font-weight: 700 !important;
+    color: #9e3d2b !important;
+    margin-top: 2pt !important;
+  }
+
+  .print-contact-bar {
+    background: #fdfcfa !important;
+    border: 1pt solid #d4c3af !important;
+    padding: 7pt !important;
+    font-size: 8.5pt !important;
+    gap: 4pt !important;
+  }
+
+  .print-contact-bar a {
+    text-decoration: none !important;
+    color: #1a1816 !important;
+  }
+
+  .print-section-heading {
+    font-size: 10.5pt !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    border-bottom: 1.5pt solid #1a1816 !important;
+    padding-bottom: 2pt !important;
+    margin-bottom: 6pt !important;
+    color: #1a1816 !important;
+    letter-spacing: 0.5pt !important;
+  }
+
+  .print-bullet-list {
+    margin-top: 3pt !important;
+    margin-bottom: 4pt !important;
+    padding-left: 12pt !important;
+  }
+
+  .print-bullet-list li {
+    margin-bottom: 2pt !important;
+    font-size: 8.8pt !important;
+    line-height: 1.35 !important;
+  }
+
+  a {
+    color: inherit !important;
+    text-decoration: none !important;
+  }
+}

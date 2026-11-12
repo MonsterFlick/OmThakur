@@ -22,6 +22,7 @@ import {
   Shield,
   BookOpen,
   Sparkles,
+  Download,
 } from "lucide-react";
 
 export function ResumeView() {
@@ -43,13 +44,13 @@ KEY METRICS
 
 EXPERIENCE
 
-Founding Software Engineer | May 2026 - Present
+Founding Software Engineer | Apr 2026 - Present
 Krishora Technologies · Mumbai, India
 - Engineered a low-latency Python processing pipeline integrating Pipecat, Exotel WebSockets, model inference, and CUDA-accelerated processing, achieving approximately 700 ms turnaround.
 - Built the Node.js/PM2 service router for Sevak AI, using Qdrant and the nomic-embed-text embedding model for retrieval.
 - Deployed and maintained infrastructure including Dograh, Mailcow, Nginx, Cloudflare SSL, and a ProGuard-protected Expo application.
 
-Software Developer | Aug 2025 - May 2026
+Software Developer | Aug 2025 - Apr 2026
 Cyber Intelligence and Research Lab (CIARL) · Thane, India
 (NDA-bound role; limited details disclosed)
 - Developed Kotlin/Java Android background services with encrypted SQLite queues to prevent field data loss during intermittent connectivity.
@@ -131,96 +132,6 @@ Bhimrao Pradhan College, University of Mumbai
 
   return (
     <div className="min-h-screen bg-[#FAF6F1] text-[#2C2825] font-sans antialiased selection:bg-[#9E3D2B]/20">
-      {/* ── Print Styles Overlay ── */}
-      <style jsx global>{`
-        @media print {
-          @page {
-            margin: 12mm 15mm 12mm 15mm;
-            size: A4 portrait;
-          }
-          body {
-            background-color: #ffffff !important;
-            color: #000000 !important;
-            font-family: Arial, Helvetica, sans-serif !important;
-            font-size: 10pt !important;
-            line-height: 1.35 !important;
-          }
-          .no-print,
-          .grain-layer,
-          header,
-          footer {
-            display: none !important;
-          }
-          .print-container {
-            padding: 0 !important;
-            margin: 0 !important;
-            max-width: 100% !important;
-            width: 100% !important;
-            box-shadow: none !important;
-            border: none !important;
-            background: #ffffff !important;
-          }
-          .print-grid {
-            display: block !important;
-          }
-          .print-header-name {
-            font-size: 22pt !important;
-            font-weight: bold !important;
-            text-transform: uppercase;
-            letter-spacing: 0.5pt;
-            color: #000000 !important;
-            margin-bottom: 2pt !important;
-          }
-          .print-header-subtitle {
-            font-size: 10.5pt !important;
-            font-weight: bold !important;
-            color: #333333 !important;
-            margin-bottom: 6pt !important;
-          }
-          .print-contact-bar {
-            font-size: 9pt !important;
-            border-bottom: 1.5pt solid #000000 !important;
-            padding-bottom: 6pt !important;
-            margin-bottom: 10pt !important;
-            color: #222222 !important;
-          }
-          .print-section-heading {
-            font-size: 11pt !important;
-            font-weight: bold !important;
-            text-transform: uppercase !important;
-            border-bottom: 1pt solid #000000 !important;
-            padding-bottom: 2pt !important;
-            margin-top: 10pt !important;
-            margin-bottom: 6pt !important;
-            color: #000000 !important;
-            letter-spacing: 0.5pt !important;
-          }
-          .print-bullet-list {
-            margin-top: 3pt !important;
-            margin-bottom: 6pt !important;
-            padding-left: 14pt !important;
-          }
-          .print-bullet-list li {
-            margin-bottom: 2.5pt !important;
-            font-size: 9.5pt !important;
-          }
-          .print-badge {
-            background: none !important;
-            border: none !important;
-            color: #000000 !important;
-            padding: 0 !important;
-            font-weight: bold !important;
-          }
-          a {
-            color: #000000 !important;
-            text-decoration: none !important;
-          }
-          .page-break-inside-avoid {
-            page-break-inside: avoid;
-          }
-        }
-      `}</style>
-
       {/* ── Top Floating Action Toolbar (Web View Only) ── */}
       <div className="no-print sticky top-0 z-50 bg-[#FAF6F1]/95 backdrop-blur-md border-b border-[#EDE4D9] py-3 px-4 sm:px-8 lg:px-12 shadow-xs">
         <div className="w-full max-w-5xl mx-auto flex flex-wrap items-center justify-between gap-3">
@@ -237,6 +148,16 @@ Bhimrao Pradhan College, University of Mumbai
           </nav>
 
           <div className="flex items-center gap-2">
+            <a
+              href="/Om_Thakur_Resume.pdf"
+              download="Om_Thakur_Resume.pdf"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-[#FDFCFA] hover:bg-[#F3ECE4] text-[#1A1816] text-xs font-mono font-medium transition-colors border border-[#D4C3AF] shadow-xs"
+              title="Download pre-compiled 2-Page Master PDF"
+            >
+              <Download className="w-3.5 h-3.5 text-[#566449]" />
+              <span>Download PDF</span>
+            </a>
+
             <button
               onClick={handleCopyText}
               className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-[#FDFCFA] hover:bg-[#F3ECE4] text-[#1A1816] text-xs font-mono font-medium transition-colors border border-[#D4C3AF] shadow-xs"
@@ -414,7 +335,7 @@ Bhimrao Pradhan College, University of Mumbai
                         </p>
                       </div>
                       <span className="font-mono text-xs sm:text-sm text-[#9E3D2B] font-semibold shrink-0">
-                        May 2026 – Present
+                        Apr 2026 – Present
                       </span>
                     </div>
 
@@ -443,7 +364,7 @@ Bhimrao Pradhan College, University of Mumbai
                         </p>
                       </div>
                       <span className="font-mono text-xs sm:text-sm text-[#9E3D2B] font-semibold shrink-0">
-                        Aug 2025 – May 2026
+                        Aug 2025 – Apr 2026
                       </span>
                     </div>
 
