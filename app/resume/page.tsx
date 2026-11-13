@@ -61,7 +61,7 @@ export default function ResumePage() {
         "url": "https://omthakur.in/resume",
         "name": "Om Thakur — Resume / Curriculum Vitae",
         "datePublished": "2025-01-01T00:00:00+05:30",
-        "dateModified": "2026-10-29T18:00:00+05:30",
+        "dateModified": "2026-11-13T09:00:00+05:30",
         "isPartOf": {
           "@id": "https://omthakur.in/#website",
         },
