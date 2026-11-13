@@ -28,10 +28,9 @@ export function ResumeView() {
   const [copied, setCopied] = useState(false);
 
   const plainTextResume = `OM THAKUR
-Backend Engineer | Distributed Systems | Scalable APIs
-Mumbai, India
-Email: omthakur2366@gmail.com | Phone: +91 7756898550
-GitHub: https://github.com/MonsterFlick | Portfolio: https://omthakur.in
+Backend Engineer · Mumbai, India
+TEL: +91 7756898550 | MAIL: omthakur2366@gmail.com
+GIT: https://github.com/MonsterFlick | WEB: https://omthakur.in
 
 PROFESSIONAL SUMMARY
 Backend engineer focused on distributed, database-backed systems and production reliability. Reduced a data synchronization workflow from 15 minutes to 4 seconds by replacing cron polling with message-queue processing, and took part in the root cause analysis of a production database outage. Experience spans low-latency WebSocket pipelines, offline-first background services, role-based access control, payment-webhook verification, and self-hosted infrastructure, built mainly with TypeScript, Python, and PostgreSQL.
@@ -183,22 +182,17 @@ Bhimrao Pradhan College, University of Mumbai
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
               {/* Left Column (8 Cols): Identity, Subtitle & Professional Summary */}
               <div className="lg:col-span-8 space-y-3 min-w-0">
-                <div className="flex flex-wrap items-center gap-3">
+                <div>
                   <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#1A1816] tracking-tight leading-tight print-header-name">
                     Om Thakur
                   </h1>
-                  <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#FAF6F1] border border-[#EDE4D9] text-xs font-mono text-[#383432]">
-                    <MapPin className="w-3.5 h-3.5 text-[#9E3D2B] shrink-0 no-print" />
-                    <strong className="text-[#1A1816]">Mumbai, India</strong>
-                  </span>
+                  <p className="mt-1.5 font-sans text-sm sm:text-base md:text-lg text-[#9E3D2B] font-semibold tracking-tight print-header-subtitle">
+                    Backend Engineer <span className="text-[#8A827A] font-normal mx-1.5">·</span> Mumbai, India
+                  </p>
                 </div>
 
-                <p className="font-mono text-xs sm:text-sm md:text-base text-[#9E3D2B] font-bold tracking-tight leading-snug break-words print-header-subtitle">
-                  Backend Engineer · Distributed Systems · Scalable APIs
-                </p>
-
                 {/* Professional Summary */}
-                <div className="pt-2">
+                <div className="pt-1">
                   <h2 className="font-serif text-xs sm:text-sm font-bold text-[#4A4541] uppercase tracking-wider mb-1.5 flex items-center gap-1.5 print-section-heading">
                     <Sparkles className="w-3.5 h-3.5 text-[#9E3D2B] no-print" />
                     <span>Professional Summary</span>
@@ -209,57 +203,56 @@ Bhimrao Pradhan College, University of Mumbai
                 </div>
               </div>
 
-              {/* Right Column (4 Cols): Contact & Profiles Box */}
-              <div className="lg:col-span-4 w-full p-4 sm:p-5 rounded-lg bg-[#FAF6F1] border border-[#EDE4D9] flex flex-col gap-2.5 text-xs sm:text-sm font-mono text-[#383432] print-contact-bar">
+              {/* Right Column (4 Cols): Contact & Coordinates Box */}
+              <div className="lg:col-span-4 w-full p-4 sm:p-5 rounded-lg bg-[#FAF6F1] border border-[#EDE4D9] flex flex-col gap-2 text-xs sm:text-sm font-mono text-[#383432] print-contact-bar">
                 <span className="text-[11px] uppercase tracking-wider text-[#4A4541] font-bold border-b border-[#EDE4D9] pb-1.5 mb-0.5 no-print">
-                  Direct Coordinates &amp; Profiles
+                  Coordinates
                 </span>
 
-                <a
-                  href="mailto:omthakur2366@gmail.com"
-                  className="inline-flex items-center gap-2.5 hover:text-[#9E3D2B] transition-colors break-all"
-                >
-                  <Mail className="w-4 h-4 text-[#9E3D2B] shrink-0 no-print" />
-                  <span className="font-medium text-[#1A1816]">omthakur2366@gmail.com</span>
-                </a>
+                <div className="flex items-center justify-between gap-3">
+                  <span className="text-[11px] font-bold text-[#7A746D] tracking-wider uppercase shrink-0">TEL</span>
+                  <a
+                    href="tel:+917756898550"
+                    className="font-medium text-[#1A1816] hover:text-[#9E3D2B] transition-colors"
+                  >
+                    +91 7756898550
+                  </a>
+                </div>
 
-                <a
-                  href="tel:+917756898550"
-                  className="inline-flex items-center gap-2.5 hover:text-[#9E3D2B] transition-colors"
-                >
-                  <Phone className="w-4 h-4 text-[#566449] shrink-0 no-print" />
-                  <span className="font-medium text-[#1A1816]">+91 7756898550</span>
-                </a>
+                <div className="flex items-center justify-between gap-3">
+                  <span className="text-[11px] font-bold text-[#7A746D] tracking-wider uppercase shrink-0">MAIL</span>
+                  <a
+                    href="mailto:omthakur2366@gmail.com"
+                    className="font-medium text-[#1A1816] hover:text-[#9E3D2B] transition-colors break-all"
+                  >
+                    omthakur2366@gmail.com
+                  </a>
+                </div>
 
-                <a
-                  href="https://omthakur.in"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2.5 hover:text-[#9E3D2B] transition-colors"
-                >
-                  <Globe className="w-4 h-4 text-[#9E3D2B] shrink-0 no-print" />
-                  <span className="font-bold text-[#1A1816]">omthakur.in</span>
-                </a>
+                <div className="flex items-center justify-between gap-3">
+                  <span className="text-[11px] font-bold text-[#7A746D] tracking-wider uppercase shrink-0">GIT</span>
+                  <a
+                    href="https://github.com/MonsterFlick"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-medium text-[#1A1816] hover:text-[#9E3D2B] transition-colors break-all"
+                  >
+                    github.com/MonsterFlick
+                  </a>
+                </div>
 
-                <a
-                  href="https://github.com/MonsterFlick"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2.5 hover:text-[#1A1816] transition-colors break-all"
-                >
-                  <Github className="w-4 h-4 text-[#1A1816] shrink-0 no-print" />
-                  <span className="font-medium text-[#1A1816]">github.com/MonsterFlick</span>
-                </a>
-
-                <a
-                  href="https://linkedin.com/in/omthakur2366"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2.5 hover:text-[#0A66C2] transition-colors break-all"
-                >
-                  <Linkedin className="w-4 h-4 text-[#0A66C2] shrink-0 no-print" />
-                  <span className="font-medium text-[#1A1816]">linkedin.com/in/omthakur2366</span>
-                </a>
+                <div className="flex items-center justify-between gap-3">
+                  <span className="text-[11px] font-bold text-[#7A746D] tracking-wider uppercase shrink-0">WEB</span>
+                  <a
+                    href="https://omthakur.in"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-bold text-[#9E3D2B] hover:underline transition-colors inline-flex items-center gap-1"
+                  >
+                    <span>omthakur.in</span>
+                    <span className="text-xs">↗</span>
+                  </a>
+                </div>
               </div>
             </div>
 
