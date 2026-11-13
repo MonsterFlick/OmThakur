@@ -31,8 +31,8 @@ Last updated: 2026-10-29
 - **GitFool** ([blogs.omthakur.in](https://blogs.omthakur.in)): Edge-runtime publication platform compiling markdown directly from GitHub repositories via webhooks with sub-30ms TTFB.
 
 ## Career History
-- **Krishora Technologies** (May 2026 – Present): Founding Software Engineer — Python/CUDA low-latency voice pipelines (~700ms), Qdrant vector retrieval service router for Sevak AI (`nomic-embed-text`), self-hosted Linux/Nginx/Mailcow/Dograh infrastructure.
-- **Cyber Intelligence and Research Lab (CIARL)** (Aug 2025 – May 2026): Software Developer — Kotlin encrypted SQLite offline background queues, React/PostgreSQL RBAC portals, legal-domain citation-backed RAG pipelines, and Matrix real-time chat/voice/video systems.
+- **Krishora Technologies** (Apr 2026 – Present): Founding Software Engineer — Python/CUDA low-latency voice pipelines (~700ms), Qdrant vector retrieval service router for Sevak AI (`nomic-embed-text`), self-hosted Linux/Nginx/Mailcow/Dograh infrastructure.
+- **Cyber Intelligence and Research Lab (CIARL)** (Aug 2025 – Apr 2026): Software Developer — Kotlin encrypted SQLite offline background queues, React/PostgreSQL RBAC portals, legal-domain citation-backed RAG pipelines, and Matrix real-time chat/voice/video systems.
 - **Sumeru Technology Solutions Pvt. Ltd.** (Aug 2024 – Feb 2025): Software Development Engineer Intern — Flexbase message queue migration (15 min → 4 s sync), production database crash RCA (payment retry burst mitigation), PHP to TypeScript/Deno Edge Function migration, Supabase RLS + Drizzle ORM.
 - **Bhimrao Pradhan College, University of Mumbai** (Jun 2024 – Aug 2024): Assistant Professor (Volunteer) — Taught B.Sc. IT database systems and software architecture.
 

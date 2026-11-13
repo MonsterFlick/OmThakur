@@ -157,13 +157,13 @@ class SmsTransactionParser {
 ## 5. Career Chronology & Work Experience
 
 ### Founding Software Engineer — Krishora Technologies
-*May 2026 — Present | Mumbai, India*
+*Apr 2026 — Present | Mumbai, India*
 - Engineered a low-latency Python processing pipeline integrating Pipecat, Exotel WebSockets, model inference, and CUDA-accelerated processing, achieving approximately 700 ms turnaround.
 - Built the Node.js/PM2 service router for Sevak AI, using Qdrant and the `nomic-embed-text` embedding model for semantic retrieval.
 - Deployed and maintained self-hosted production infrastructure including Dograh, Mailcow, Nginx, Cloudflare SSL, and a ProGuard-protected Expo application.
 
 ### Software Developer — Cyber Intelligence and Research Lab (CIARL)
-*Aug 2025 — May 2026 | Thane, India*
+*Aug 2025 — Apr 2026 | Thane, India*
 - Developed Kotlin/Java Android background services with encrypted SQLite queues to prevent field data loss during intermittent connectivity.
 - Implemented secure backend integrations for managed environments.
 - Developed React/PostgreSQL applications with authentication, role-based access control (RBAC), and user management.
