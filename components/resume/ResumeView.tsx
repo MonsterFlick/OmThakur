@@ -31,7 +31,7 @@ export function ResumeView() {
 Backend Engineer | Distributed Systems | Scalable APIs
 Mumbai, India
 Email: omthakur2366@gmail.com | Phone: +91 7756898550
-Portfolio: https://omthakur.in | GitHub: https://github.com/MonsterFlick | LinkedIn: https://linkedin.com/in/omthakur2366
+GitHub: https://github.com/MonsterFlick | Portfolio: https://omthakur.in
 
 PROFESSIONAL SUMMARY
 Backend engineer focused on distributed, database-backed systems and production reliability. Reduced a data synchronization workflow from 15 minutes to 4 seconds by replacing cron polling with message-queue processing, and took part in the root cause analysis of a production database outage. Experience spans low-latency WebSocket pipelines, offline-first background services, role-based access control, payment-webhook verification, and self-hosted infrastructure, built mainly with TypeScript, Python, and PostgreSQL.
