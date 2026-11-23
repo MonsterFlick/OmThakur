@@ -425,10 +425,10 @@ export const SKILL_SPECIMENS: SkillItem[] = [
 export const CAREER_CHRONOLOGY: CareerEntry[] = [
   {
     company: 'Krishora Technologies',
-    role: 'Founding Software Engineer',
+    role: 'Software Engineer',
     period: 'Apr 2026 — Present',
     location: 'Mumbai, India',
-    classification: 'Founding Engineer · Full-Time',
+    classification: 'Software Engineer · Full-Time',
     description:
       'Engineered low-latency Python/CUDA WebSocket voice pipelines, built the Node.js/PM2 vector retrieval router for Sevak AI, and deployed self-hosted production infrastructure.',
     deliverables: [
@@ -540,7 +540,7 @@ export const ARCHITECTURE_BENCHMARKS: ArchitectureBenchmark[] = [
     conventionalApproach: 'Sequential HTTP REST transcription and cloud TTS round-trips (>2,000 ms)',
     engineeredArchitecture: 'Bidirectional Exotel WebSockets + Python Pipecat + CUDA GPU inference pipeline',
     measuredOutcome: '~700 ms end-to-end voice turnaround',
-    verificationContext: 'Krishora Technologies (Founding Software Engineer)',
+    verificationContext: 'Krishora Technologies (Software Engineer)',
   },
   {
     domain: 'Dynamic Vector & SVG Generation',
@@ -576,7 +576,7 @@ export const ENGINEERING_FAQS: EngineeringFaq[] = [
     category: 'Identity & Core Expertise',
     question: 'Who is Om Thakur and what backend systems does he specialize in?',
     answer:
-      'Om Thakur is a Backend and Distributed Systems Engineer based in Mumbai, India, specializing in high-concurrency APIs, asynchronous message queues, real-time WebSocket pipelines, and database reliability. Building primarily with TypeScript, Python, Node.js, Deno, PostgreSQL, and Qdrant, he currently serves as Founding Software Engineer at Krishora Technologies and graduated First Rank in B.Sc. IT from the University of Mumbai (CGPA 8.55/10).',
+      'Om Thakur is a Backend and Distributed Systems Engineer based in Mumbai, India, specializing in high-concurrency APIs, asynchronous message queues, real-time WebSocket pipelines, and database reliability. Building primarily with TypeScript, Python, Node.js, Deno, PostgreSQL, and Qdrant, he currently serves as Software Engineer at Krishora Technologies and graduated First Rank in B.Sc. IT from the University of Mumbai (CGPA 8.55/10).',
   },
   {
     category: 'Queue Architecture & RCA',

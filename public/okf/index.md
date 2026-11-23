@@ -1,7 +1,7 @@
 ---
 type: Person
 title: Om Thakur — Backend & Distributed Systems Engineer
-description: Open Knowledge Format (OKF v0.1) bundle for Om Thakur, Founding Software Engineer at Krishora Technologies and Backend & Distributed Systems Engineer in Mumbai, India.
+description: Open Knowledge Format (OKF v0.1) bundle for Om Thakur, Software Engineer at Krishora Technologies and Backend & Distributed Systems Engineer in Mumbai, India.
 resource: https://omthakur.in/
 tags: [backend-engineer, distributed-systems, typescript, python, postgresql, qdrant, websockets, message-queues, deno, edge-runtime]
 timestamp: 2026-10-29T18:00:00+05:30

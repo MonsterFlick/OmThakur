@@ -139,7 +139,7 @@ const rootJsonLd = {
       "alternateName": "MonsterFlick",
       "url": "https://omthakur.in",
       "image": "https://omthakur.in/og-image.png",
-      "jobTitle": "Founding Software Engineer & Backend Systems Architect",
+      "jobTitle": "Software Engineer & Backend Systems Architect",
       "description":
         "Backend Engineer based in Mumbai, India, focused on distributed database-backed systems, 15m-to-4s Flexbase message queues, ~700ms Python/CUDA WebSocket pipelines, and sub-10ms stateless Edge APIs.",
       "email": "omthakur2366@gmail.com",

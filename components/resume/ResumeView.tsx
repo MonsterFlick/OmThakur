@@ -42,7 +42,7 @@ KEY METRICS
 
 EXPERIENCE
 
-Founding Software Engineer | Apr 2026 - Present
+Software Engineer | Apr 2026 - Present
 Krishora Technologies · Mumbai, India
 - Engineered a low-latency Python processing pipeline integrating Pipecat, Exotel WebSockets, model inference, and CUDA-accelerated processing, achieving approximately 700 ms turnaround.
 - Built the Node.js/PM2 service router for Sevak AI, using Qdrant and the nomic-embed-text embedding model for retrieval.
@@ -302,7 +302,7 @@ Bhimrao Pradhan College, University of Mumbai
                     <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 sm:gap-4">
                       <div className="min-w-0">
                         <h3 className="font-serif font-bold text-base sm:text-lg text-[#1A1816]">
-                          Founding Software Engineer
+                          Software Engineer
                         </h3>
                         <p className="font-mono text-xs sm:text-sm text-[#566449] font-semibold">
                           Krishora Technologies · <span className="text-[#4A4541] font-normal">Mumbai, India</span>

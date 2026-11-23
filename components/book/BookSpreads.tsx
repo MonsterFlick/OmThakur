@@ -611,7 +611,7 @@ function ExperienceLeft() {
         <div className="p-3.5 rounded-lg bg-[#FDFCFA] border border-[#EDE4D9] space-y-1.5">
           <div className="flex items-center justify-between">
             <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-[#9E3D2B]/10 text-[#9E3D2B] font-semibold uppercase">
-              Founding Engineer
+              Software Engineer
             </span>
             <span className="font-mono text-xs text-[#7A746D]">Apr 2026 – Present</span>
           </div>
@@ -619,7 +619,7 @@ function ExperienceLeft() {
             <h4 className="font-serif text-base font-bold text-[#1A1816]">
               Krishora Technologies
             </h4>
-            <p className="font-mono text-xs text-[#566449]">Founding Software Engineer · Mumbai</p>
+            <p className="font-mono text-xs text-[#566449]">Software Engineer · Mumbai</p>
           </div>
           <p className="text-xs sm:text-[13px] text-[#4A4541] leading-relaxed">
             Architected real-time WebSocket pipelines with ~700 ms turnaround; built Node.js routing layer with Qdrant vector retrieval for voice AI agent.

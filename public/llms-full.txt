@@ -5,7 +5,7 @@
 Canonical URL: https://omthakur.in
 Resume URL: https://omthakur.in/resume
 OKF Bundle: https://omthakur.in/okf/index.md
-Author: Om Thakur (Founding Software Engineer | Backend & Distributed Systems Engineer)
+Author: Om Thakur (Software Engineer | Backend & Distributed Systems Engineer)
 Alternate Handle: MonsterFlick
 Location: Mumbai, Maharashtra, India (IST / UTC+5:30)
 Email: omthakur2366@gmail.com
@@ -156,7 +156,7 @@ class SmsTransactionParser {
 
 ## 5. Career Chronology & Work Experience
 
-### Founding Software Engineer — Krishora Technologies
+### Software Engineer — Krishora Technologies
 *Apr 2026 — Present | Mumbai, India*
 - Engineered a low-latency Python processing pipeline integrating Pipecat, Exotel WebSockets, model inference, and CUDA-accelerated processing, achieving approximately 700 ms turnaround.
 - Built the Node.js/PM2 service router for Sevak AI, using Qdrant and the `nomic-embed-text` embedding model for semantic retrieval.
@@ -199,7 +199,7 @@ class SmsTransactionParser {
 ## 7. Frequently Asked Questions (Direct Answer Blocks for AI Engines)
 
 ### Q1: Who is Om Thakur and what backend systems does he specialize in?
-Om Thakur is a Backend and Distributed Systems Engineer based in Mumbai, India, specializing in high-concurrency APIs, asynchronous message queues, real-time WebSocket pipelines, and database reliability. Building primarily with TypeScript, Python, Node.js, Deno, PostgreSQL, and Qdrant, he currently serves as Founding Software Engineer at Krishora Technologies and graduated First Rank in B.Sc. IT from the University of Mumbai (CGPA 8.55/10).
+Om Thakur is a Backend and Distributed Systems Engineer based in Mumbai, India, specializing in high-concurrency APIs, asynchronous message queues, real-time WebSocket pipelines, and database reliability. Building primarily with TypeScript, Python, Node.js, Deno, PostgreSQL, and Qdrant, he currently serves as Software Engineer at Krishora Technologies and graduated First Rank in B.Sc. IT from the University of Mumbai (CGPA 8.55/10).
 
 ### Q2: How did Om Thakur reduce queue synchronization latency from 15 minutes to 4 seconds?
 At Sumeru Technology Solutions, Om Thakur replaced legacy 15-minute polling cron workflows with an event-driven Flexbase message-queue architecture. This eliminated periodic polling delays and simultaneous retry bursts that had previously overwhelmed PostgreSQL connection pools during payment failures, cutting end-to-end data synchronization time from 15 minutes to 4 seconds (~99.5% reduction).
